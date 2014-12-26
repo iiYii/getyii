@@ -18,6 +18,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+<<<<<<< HEAD
         'css/font-awesome.min.css',
         'css/prettyPhoto.css',
         'css/animate.css',
@@ -28,6 +29,11 @@ class AppAsset extends AssetBundle
         'js/bootstrap.min.js',
         'js/jquery.prettyPhoto.js',
         'js/main.js',
+=======
+        'css/site.css',
+    ];
+    public $js = [
+>>>>>>> origin/master
     ];
     public $depends = [
         'yii\web\YiiAsset',

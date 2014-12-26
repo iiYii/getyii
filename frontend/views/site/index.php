@@ -248,4 +248,8 @@ $this->title = 'My Yii Application';
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 </section><!--/#testimonial-->
+=======
+</section><!--/#testimonial-->
+>>>>>>> 3271a67... 首页添加OK

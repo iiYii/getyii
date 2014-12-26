@@ -5,6 +5,7 @@ use yii\helpers\Html;
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<<<<<<< HEAD
 <section id="about-us" class="container">
     <div class="row">
         <div class="col-sm-6">
@@ -84,3 +85,12 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div><!--/#meet-the-team-->
 </section><!--/#about-us-->
+=======
+<div class="site-about">
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <p>This is the About page. You may modify the following file to customize its content:</p>
+
+    <code><?= __FILE__ ?></code>
+</div>
+>>>>>>> 3271a67... 首页添加OK

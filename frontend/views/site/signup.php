@@ -7,8 +7,14 @@ use yii\bootstrap\ActiveForm;
 /* @var $model \frontend\models\SignupForm */
 
 $this->title = 'Signup';
+<<<<<<< HEAD
 ?>
 <section class="container site-signup">
+=======
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="site-signup">
+>>>>>>> 3271a67... 首页添加OK
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Please fill out the following fields to signup:</p>
@@ -25,4 +31,8 @@ $this->title = 'Signup';
             <?php ActiveForm::end(); ?>
         </div>
     </div>
+<<<<<<< HEAD
 </section>
+=======
+</div>
+>>>>>>> 3271a67... 首页添加OK

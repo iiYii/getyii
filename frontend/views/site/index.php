@@ -15,8 +15,8 @@ $this->title = 'My Yii Application';
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="carousel-content centered">
-                                <h2 class="animation animated-item-1">Powerful and Responsive Web Design</h2>
-                                <p class="animation animated-item-2">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                                <h2 class="animation animated-item-1">快速，安全，专业的 PHP 框架</h2>
+                                <p class="animation animated-item-2">Yii 是一个高性能的，适用于开发 WEB2.0 应用的 PHP 框架。</p>
                             </div>
                         </div>
                     </div>
@@ -27,8 +27,8 @@ $this->title = 'My Yii Application';
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="carousel-content center centered">
-                                <h2 class="boxed animation animated-item-1">Clean, Crisp, Powerful and Responsive Web Design</h2>
-                                <p class="boxed animation animated-item-2">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                                <h2 class="boxed animation animated-item-1">基于组件、用于开发大型 Web 应用的高性能 PHP 框架</h2>
+                                <p class="boxed animation animated-item-2">Yii 几乎拥有了 所有的特性 ，包括 MVC、DAO/ActiveRecord、I18N/L10N、caching、基于 JQuery 的 AJAX 支持、用户认证和基于角色的访问控制、脚手架、输入验证、部件、事件、主题化以及 Web 服务等等。</p>
                                 <br>
                                 <a class="btn btn-md animation animated-item-3" href="#">Learn More</a>
                             </div>
@@ -41,18 +41,18 @@ $this->title = 'My Yii Application';
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="carousel-content centered">
-                                <h2 class="animation animated-item-1">Powerful and Responsive Web Design Theme</h2>
-                                <p class="animation animated-item-2">Pellentesque habitant morbi tristique senectus et netus et malesuada fames</p>
+                                <h2 class="animation animated-item-1">约定大于配置</h2>
+                                <p class="animation animated-item-2">Yii 采用严格的 OOP 编写，Yii 使用简单，非常灵活，具有很好的可扩展性。</p>
                                 <a class="btn btn-md animation animated-item-3" href="#">Learn More</a>
                             </div>
                         </div>
-                        <div class="col-sm-6 hidden-xs animation animated-item-4">
+                        <!-- <div class="col-sm-6 hidden-xs animation animated-item-4">
                             <div class="centered">
                                 <div class="embed-container">
                                     <iframe src="//player.vimeo.com/video/69421653?title=0&amp;byline=0&amp;portrait=0&amp;color=a22c2f" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div><!--/.item-->
@@ -72,33 +72,33 @@ $this->title = 'My Yii Application';
             <div class="col-md-4 col-sm-6">
                 <div class="media">
                     <div class="pull-left">
-                        <i class="icon-twitter icon-md"></i>
+                        <i class="glyphicon glyphicon-flash"></i>
                     </div>
                     <div class="media-body">
-                        <h3 class="media-heading">Twitter Marketing</h3>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</p>
+                        <h3 class="media-heading">快速</h3>
+                        <p>Yii 只加载您需要的功能。它具有强大的缓存支持。它明确的设计能与 AJAX 一起高效率的工作。</p>
                     </div>
                 </div>
             </div><!--/.col-md-4-->
             <div class="col-md-4 col-sm-6">
                 <div class="media">
                     <div class="pull-left">
-                        <i class="icon-facebook icon-md"></i>
+                        <i class="glyphicon glyphicon-cloud"></i>
                     </div>
                     <div class="media-body">
-                        <h3 class="media-heading">Facebook Marketing</h3>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</p>
+                        <h3 class="media-heading">安全</h3>
+                        <p>Yii 的标准是安全的。它包括了输入验证，输出过滤，SQL 注入和跨站点脚本的预防。</p>
                     </div>
                 </div>
             </div><!--/.col-md-4-->
             <div class="col-md-4 col-sm-6">
                 <div class="media">
                     <div class="pull-left">
-                        <i class="icon-google-plus icon-md"></i>
+                        <i class="glyphicon glyphicon-fire"></i>
                     </div>
                     <div class="media-body">
-                        <h3 class="media-heading">Google Plus Marketing</h3>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</p>
+                        <h3 class="media-heading">专业</h3>
+                        <p>Yii 可帮助您开发清洁和可重用的代码。它遵循了 MVC 模式，确保了清晰分离逻辑层和表示层。</p>
                     </div>
                 </div>
             </div><!--/.col-md-4-->
@@ -110,8 +110,8 @@ $this->title = 'My Yii Application';
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <h3>Our Latest Project</h3>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                <h3>一些案例</h3>
+                <p>他们正自豪的使用 Yii 框架开发。</p>
                 <div class="btn-group">
                     <a class="btn btn-danger" href="#scroller" data-slide="prev"><i class="icon-angle-left"></i></a>
                     <a class="btn btn-danger" href="#scroller" data-slide="next"><i class="icon-angle-right"></i></a>
@@ -128,23 +128,10 @@ $this->title = 'My Yii Application';
                                         <div class="item-inner">
                                             <img class="img-responsive" src="images/portfolio/recent/item1.png" alt="">
                                             <h5>
-                                                Nova - Corporate site template
+                                                DCMS - 基于Yii2 开发的小型开源CMS
                                             </h5>
                                             <div class="overlay">
-                                                <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="portfolio-item">
-                                        <div class="item-inner">
-                                            <img class="img-responsive" src="images/portfolio/recent/item3.png" alt="">
-                                            <h5>
-                                                Fornax - Apps site template
-                                            </h5>
-                                            <div class="overlay">
-                                                <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+                                                <a class="preview btn btn-danger" title="基于Yii2 开发的小型开源CMS" href="images/portfolio/full/item1.png" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -154,10 +141,23 @@ $this->title = 'My Yii Application';
                                         <div class="item-inner">
                                             <img class="img-responsive" src="images/portfolio/recent/item2.png" alt="">
                                             <h5>
-                                                Flat Theme - Business Theme
+                                                Yincart - 基于Yii2 开发的电商系统
                                             </h5>
                                             <div class="overlay">
-                                                <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+                                                <a class="preview btn btn-danger" title="基于Yii2 开发的电商系统" href="images/portfolio/full/item2.png" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="portfolio-item">
+                                        <div class="item-inner">
+                                            <img class="img-responsive" src="images/portfolio/recent/item3.png" alt="">
+                                            <h5>
+                                                Xunsearch - 免费开源的专业全文检索解决方案
+                                            </h5>
+                                            <div class="overlay">
+                                                <a class="preview btn btn-danger" title="免费开源的专业全文检索解决方案" href="images/portfolio/full/item3.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -169,12 +169,12 @@ $this->title = 'My Yii Application';
                                 <div class="col-xs-4">
                                     <div class="portfolio-item">
                                         <div class="item-inner">
-                                            <img class="img-responsive" src="images/portfolio/recent/item2.png" alt="">
+                                            <img class="img-responsive" src="images/portfolio/recent/item4.png" alt="">
                                             <h5>
-                                                Flat Theme - Business Theme
+                                                bageCMS - 基于 Yii1 的博客开源CMS
                                             </h5>
                                             <div class="overlay">
-                                                <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+                                                <a class="preview btn btn-danger" title="基于 Yii1 的博客开源CMS" href="images/portfolio/full/item4.png" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -182,12 +182,12 @@ $this->title = 'My Yii Application';
                                 <div class="col-xs-4">
                                     <div class="portfolio-item">
                                         <div class="item-inner">
-                                            <img class="img-responsive" src="images/portfolio/recent/item1.png" alt="">
+                                            <img class="img-responsive" src="images/portfolio/recent/item5.png" alt="">
                                             <h5>
-                                                Nova - Corporate site template
+                                                yiifcms - 基于 Yii1框架开发的CMS
                                             </h5>
                                             <div class="overlay">
-                                                <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+                                                <a class="preview btn btn-danger" title="基于 Yii1框架开发的CMS" href="images/portfolio/full/item5.png" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -195,12 +195,12 @@ $this->title = 'My Yii Application';
                                 <div class="col-xs-4">
                                     <div class="portfolio-item">
                                         <div class="item-inner">
-                                            <img class="img-responsive" src="images/portfolio/recent/item3.png" alt="">
+                                            <img class="img-responsive" src="images/portfolio/recent/item6.png" alt="">
                                             <h5>
-                                                Fornax - Apps site template
+                                                24betacms - 基于 Yii1 的博客开源项目
                                             </h5>
                                             <div class="overlay">
-                                                <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+                                                <a class="preview btn btn-danger" title="基于 Yii1 的博客开源项目" href="images/portfolio/full/item6.png" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -219,8 +219,8 @@ $this->title = 'My Yii Application';
         <div class="row">
             <div class="col-lg-12">
                 <div class="center">
-                    <h2>What our clients say</h2>
-                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                    <h2>开发者是这样说的……</h2>
+                    <!-- <p>用过都说好，你还在等什么呢？</p> -->
                 </div>
                 <div class="gap"></div>
                 <div class="row">

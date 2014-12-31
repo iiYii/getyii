@@ -36,7 +36,8 @@ AppAsset::register($this);
     <div class="container">
         <?php
         NavBar::begin([
-            'brandLabel' => Html::img('/images/logo.png'),
+            // 'brandLabel' => Html::img('/images/logo.png'),
+            'brandLabel' => 'Get√Yii',
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar-header',

@@ -116,8 +116,6 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     public function actionServices()
     {
         return $this->render('services');
@@ -144,10 +142,6 @@ class SiteController extends Controller
         return $this->render('faq');
     }
 
-=======
->>>>>>> 3271a67... 首页添加OK
-=======
->>>>>>> fbb4942... first commit
     public function actionSignup()
     {
         $model = new SignupForm();

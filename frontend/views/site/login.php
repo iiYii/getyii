@@ -7,20 +7,9 @@ use yii\bootstrap\ActiveForm;
 /* @var $model \common\models\LoginForm */
 
 $this->title = 'Login';
-<<<<<<< HEAD
-<<<<<<< HEAD
 ?>
 <section class="container site-login">
-=======
-$this->params['breadcrumbs'][] = $this->title;
-?>
-<div class="site-login">
->>>>>>> 3271a67... 首页添加OK
-=======
-$this->params['breadcrumbs'][] = $this->title;
-?>
-<div class="site-login">
->>>>>>> fbb4942... first commit
+
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Please fill out the following fields to login:</p>
@@ -40,12 +29,5 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php ActiveForm::end(); ?>
         </div>
     </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 </section>
-=======
-</div>
->>>>>>> 3271a67... 首页添加OK
-=======
-</div>
->>>>>>> fbb4942... first commit

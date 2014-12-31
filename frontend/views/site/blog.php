@@ -106,7 +106,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="blog-item">
                     <img class="img-responsive img-blog" src="images/blog/blog2.jpg" width="100%" alt="" />
                     <div class="blog-content">
-                        <a href="blog-item.html"><h3>Conubia nostra per inceptos himenaeos</h3></a>
+                        <a href="<?= Url::to(['blog-item']) ?>"><h3>Conubia nostra per inceptos himenaeos</h3></a>
                         <div class="entry-meta">
                             <span><i class="icon-user"></i> <a href="#">John</a></span>
                             <span><i class="icon-folder-close"></i> <a href="#">Bootstrap</a></span>

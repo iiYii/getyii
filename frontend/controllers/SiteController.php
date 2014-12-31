@@ -116,6 +116,27 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+    public function actionServices()
+    {
+        return $this->render('services');
+    }
+
+
+    public function actionPortfolio()
+    {
+        return $this->render('portfolio');
+    }
+
+    public function actionBlog()
+    {
+        return $this->render('blog');
+    }
+
+    public function actionFaq()
+    {
+        return $this->render('faq');
+    }
+
     public function actionSignup()
     {
         $model = new SignupForm();

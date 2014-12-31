@@ -132,11 +132,6 @@ class SiteController extends Controller
         return $this->render('blog');
     }
 
-    public function actionBlogItem()
-    {
-        return $this->render('blog-item');
-    }
-
     public function actionFaq()
     {
         return $this->render('faq');

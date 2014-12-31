@@ -1,6 +1,5 @@
 <?php
 use yii\helpers\Html;
-use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 $this->title = 'Blog';
@@ -92,7 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="blog-item">
                     <img class="img-responsive img-blog" src="images/blog/blog1.jpg" width="100%" alt="" />
                     <div class="blog-content">
-                        <a href="<?= Url::to(['blog-item']) ?>"><h3>Duis sed odio sit amet nibh vulputate cursus</h3></a>
+                        <a href="blog-item.html"><h3>Duis sed odio sit amet nibh vulputate cursus</h3></a>
                         <div class="entry-meta">
                             <span><i class="icon-user"></i> <a href="#">John</a></span>
                             <span><i class="icon-folder-close"></i> <a href="#">Bootstrap</a></span>

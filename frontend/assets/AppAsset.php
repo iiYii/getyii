@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php
 /**
  * @link http://www.yiiframework.com/
@@ -37,6 +38,8 @@ class AppAsset extends AssetBundle
     ];
 }
 =======
+=======
+>>>>>>> fbb4942... first commit
 <?php
 /**
  * @link http://www.yiiframework.com/
@@ -57,6 +60,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+<<<<<<< HEAD
         'css/font-awesome.min.css',
         'css/prettyPhoto.css',
         'css/animate.css',
@@ -67,10 +71,18 @@ class AppAsset extends AssetBundle
         'js/bootstrap.min.js',
         'js/jquery.prettyPhoto.js',
         'js/main.js',
+=======
+        'css/site.css',
+    ];
+    public $js = [
+>>>>>>> fbb4942... first commit
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
 }
+<<<<<<< HEAD
 >>>>>>> 3271a67... 首页添加OK
+=======
+>>>>>>> fbb4942... first commit

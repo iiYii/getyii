@@ -6,6 +6,7 @@ $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <section id="about-us" class="container">
     <div class="row">
         <div class="col-sm-6">
@@ -86,6 +87,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </div><!--/#meet-the-team-->
 </section><!--/#about-us-->
 =======
+=======
+>>>>>>> fbb4942... first commit
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -93,4 +96,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <code><?= __FILE__ ?></code>
 </div>
+<<<<<<< HEAD
 >>>>>>> 3271a67... 首页添加OK
+=======
+>>>>>>> fbb4942... first commit

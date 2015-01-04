@@ -14,7 +14,7 @@ class m150104_071047_init_blog extends Migration
         }
 
     	// 分类
-        $tableName = '{{%post_metas}}';
+        $tableName = '{{%post_meta}}';
         $this->createTable($tableName, [
             'id' => Schema::TYPE_PK,
             'name' => Schema::TYPE_STRING . "(100) DEFAULT NULL COMMENT '名称'",
@@ -29,7 +29,7 @@ class m150104_071047_init_blog extends Migration
         $this->createIndex('type', $tableName, 'type', true);
 
         // 文章
-        $tableName = '{{%posts}}';
+        $tableName = '{{%post}}';
         $this->createTable($tableName, [
             'id' => Schema::TYPE_PK,
             'post_meta_id' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '版块ID'",
@@ -55,7 +55,7 @@ class m150104_071047_init_blog extends Migration
         $this->createIndex('user_id', $tableName, 'user_id');
 
         // 标签表
-        $tableName = '{{%post_tags}}';
+        $tableName = '{{%post_tag}}';
         $this->createTable($tableName, [
             'id' => Schema::TYPE_PK,
             'name' => Schema::TYPE_STRING . "(20) DEFAULT NULL COMMENT '名称'",
@@ -64,7 +64,7 @@ class m150104_071047_init_blog extends Migration
         ], $tableOptions);
 
         // 评论表
-        $tableName = '{{%post_comments}}';
+        $tableName = '{{%post_comment}}';
         $this->createTable($tableName, [
             'id' => Schema::TYPE_PK,
             'parent' => Schema::TYPE_INTEGER . " UNSIGNED DEFAULT NULL COMMENT '父级评论'",
@@ -82,10 +82,10 @@ class m150104_071047_init_blog extends Migration
     public function down()
     {
         echo "m150104_071047_init_blog cannot be reverted.\n";
-        $this->dropTable('{{%post_metas}}');
-        $this->dropTable('{{%posts}}');
-        $this->dropTable('{{%post_tags}}');
-        $this->dropTable('{{%post_comments}}');
+        $this->dropTable('{{%post_meta}}');
+        $this->dropTable('{{%post}}');
+        $this->dropTable('{{%post_tag}}');
+        $this->dropTable('{{%post_comment}}');
         return false;
     }
 }

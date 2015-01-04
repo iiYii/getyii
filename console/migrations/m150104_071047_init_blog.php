@@ -63,19 +63,6 @@ class m150104_071047_init_blog extends Migration
             'created_at' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间'",
         ], $tableOptions);
 
-        // 动作表
-        $tableName = '{{%post_actions}}';
-        $this->createTable($tableName, [
-            'id' => Schema::TYPE_PK,
-            'type' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL COMMENT '1为赞 2为感谢 4为收藏 5为讨厌'",
-            'post_id' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL COMMENT '文章ID'",
-            'user_id' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL COMMENT '用户ID'",
-            'created_at' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间'",
-        ], $tableOptions);
-        $this->createIndex('post_id', $tableName, 'post_id');
-        $this->createIndex('user_id', $tableName, 'user_id');
-        $this->createIndex('type', $tableName, 'type');
-
         // 评论表
         $tableName = '{{%post_comments}}';
         $this->createTable($tableName, [
@@ -98,7 +85,6 @@ class m150104_071047_init_blog extends Migration
         $this->dropTable('{{%post_metas}}');
         $this->dropTable('{{%posts}}');
         $this->dropTable('{{%post_tags}}');
-        $this->dropTable('{{%post_actions}}');
         $this->dropTable('{{%post_comments}}');
         return false;
     }

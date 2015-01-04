@@ -46,8 +46,9 @@ AppAsset::register($this);
         $menuItems = [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Services', 'url' => ['/site/services']],
-            ['label' => 'Portfolio', 'url' => ['/site/portfolio']],
+            ['label' => 'Book', 'url' => ['/site/book']],
+            // ['label' => 'Services', 'url' => ['/site/services']],
+            // ['label' => 'Portfolio', 'url' => ['/site/portfolio']],
             ['label' => 'Blog', 'url' => ['/site/blog']],
             ['label' => 'FAQ', 'url' => ['/site/faq']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
@@ -98,36 +99,32 @@ AppAsset::register($this);
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-6">
-                <h4>About Us</h4>
+                <h4>关于我们</h4>
 
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
+                <p>因为热爱 Yii，我们相聚在这里，我们会持续关注于 Yii 开发的项目。</p>
 
-                <p>Pellentesque habitant morbi tristique senectus.</p>
+                <p>如果您有时间和兴趣请联系</br> QQ：314494687 </br> Mail：caizhenghai@gmail.com </br>申请加入我们的开发团队。</p>
             </div>
             <!--/.col-md-3-->
 
             <div class="col-md-3 col-sm-6">
-                <h4>Company</h4>
+                <h4>友情链接</h4>
 
                 <div>
                     <ul class="arrow">
-                        <li><a href="#">Company Overview</a></li>
-                        <li><a href="#">Meet The Team</a></li>
-                        <li><a href="#">Our Awesome Partners</a></li>
-                        <li><a href="#">Our Services</a></li>
-                        <li><a href="#">Frequently Asked Questions</a></li>
-                        <li><a href="#">Conatct Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Copyright</a></li>
+                        <li><a href="http://www.yiichina.com/" target="_banck">YiiChina</a></li>
+                        <li><a href="http://yincart.com/" target="_banck">YinCart</a></li>
+                        <li><a href="http://www.yiibook.com/" target="_banck">YiiBook</a></li>
+                        <li><a href="http://www.yiifans.com/" target="_banck">YiiFans</a></li>
+                        <li><a href="http://www.yiichina.com/" target="_banck">YiiChina</a></li>
+                        <li><a href="http://www.cmsboom.com/" target="_banck">DCMS</a></li>
                     </ul>
                 </div>
             </div>
             <!--/.col-md-3-->
 
             <div class="col-md-3 col-sm-6">
-                <h4>Latest Blog</h4>
+                <h4>最新文章</h4>
 
                 <div>
                     <div class="media">
@@ -150,38 +147,18 @@ AppAsset::register($this);
                             <small class="muted">Posted 13 Sep 2013</small>
                         </div>
                     </div>
-                    <div class="media">
-                        <div class="pull-left">
-                            <img src="images/blog/thumb3.jpg" alt="">
-                        </div>
-                        <div class="media-body">
-                            <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique
-                                    senectus</a></span>
-                            <small class="muted">Posted 11 Jul 2013</small>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!--/.col-md-3-->
 
             <div class="col-md-3 col-sm-6">
-                <h4>Address</h4>
+                <h4>联系我们</h4>
                 <address>
-                    <strong>Twitter, Inc.</strong><br>
-                    795 Folsom Ave, Suite 600<br>
-                    San Francisco, CA 94107<br>
-                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                    <strong>深圳.中国</strong><br>
                 </address>
-                <h4>Newsletter</h4>
+                <h4>QQ群</h4>
+                    321493381
 
-                <form role="form">
-                    <div class="input-group">
-                        <input type="text" class="form-control" autocomplete="off" placeholder="Enter your email">
-                            <span class="input-group-btn">
-                                <button class="btn btn-danger" type="button">Go!</button>
-                            </span>
-                    </div>
-                </form>
             </div>
             <!--/.col-md-3-->
         </div>
@@ -193,8 +170,7 @@ AppAsset::register($this);
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                &copy; 2013 <a target="_blank" href="http://shapebootstrap.net/"
-                               title="Free Twitter Bootstrap WordPress Themes and HTML templates">ShapeBootstrap</a>.
+                &copy; 2015 <a target="_blank" href="http://www.getyii.net/">GetYii</a>.
                 All Rights Reserved.
             </div>
             <div class="col-sm-6">

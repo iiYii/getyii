@@ -116,6 +116,11 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+    public function actionBook()
+    {
+        return $this->redirect('http://book.getyii.com');
+    }
+
     public function actionServices()
     {
         return $this->render('services');

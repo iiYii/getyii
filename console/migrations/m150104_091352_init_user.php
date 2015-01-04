@@ -14,7 +14,6 @@ class m150104_091352_init_user extends Migration
         }
 
         $this->addColumn('{{%user}}', 'avatar' , Schema::TYPE_STRING . " DEFAULT NULL COMMENT '头像' AFTER `username` ");
-        $this->_generateFounderUser()
 
         // 会员动作表
         $tableName = '{{%user_meta}}';

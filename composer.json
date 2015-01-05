@@ -20,6 +20,7 @@
         "callmez/yii2-wechat": "dev-master",
         "callmez/yii2-wechat-sdk": "dev-master",
         "mdmsoft/yii2-admin": "~1.0",
+        "callmez/yii2-storage": "*",
         "bower-asset/pagedown": "*",
         "bower-asset/selectize": "*",
         "yiisoft/yii2-swiftmailer": "*"

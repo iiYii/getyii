@@ -3,6 +3,9 @@
 namespace common\models;
 
 use Yii;
+use common\models\PostTag;
+use common\components\db\ActiveRecord;
+use yii\data\ActiveDataProvider;
 
 /**
  * This is the model class for table "post".
@@ -26,7 +29,7 @@ use Yii;
  * @property string $created_at
  * @property string $updated_at
  */
-class Post extends \yii\db\ActiveRecord
+class Post extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -75,5 +78,33 @@ class Post extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    /**
+     * 添加标签
+     * @param array $tags
+     * @return bool
+     */
+    public function addTags(array $tags)
+    {
+        $return = false;
+        $tagItem = new PostTag();
+        foreach ($tags as $tag) {
+            $count = false;
+            $_tagItem = clone $tagItem;
+            $count = $_tagItem::find()
+                ->where(['name' => $tag])
+                ->count();
+            if (!$count) {
+                $_tagItem->setAttributes([
+                    'name' => $tag,
+                    'count' => 1,
+                ]);
+                if ($_tagItem->save()) {
+                    $return = true;
+                }
+            }
+        }
+        return $return;
     }
 }

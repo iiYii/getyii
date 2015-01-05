@@ -3,17 +3,16 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\Models\Post;
 use common\Models\PostTag;
 use yii\data\ActiveDataProvider;
-use common\components\Controller;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PostController implements the CRUD actions for Post model.
+ * PostTagController implements the CRUD actions for PostTag model.
  */
-class PostController extends Controller
+class PostTagController extends Controller
 {
     public function behaviors()
     {
@@ -28,13 +27,13 @@ class PostController extends Controller
     }
 
     /**
-     * Lists all Post models.
+     * Lists all PostTag models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Post::find(),
+            'query' => PostTag::find(),
         ]);
 
         return $this->render('index', [
@@ -43,7 +42,7 @@ class PostController extends Controller
     }
 
     /**
-     * Displays a single Post model.
+     * Displays a single PostTag model.
      * @param integer $id
      * @return mixed
      */
@@ -55,20 +54,16 @@ class PostController extends Controller
     }
 
     /**
-     * Creates a new Post model.
+     * Creates a new PostTag model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Post();
-        if ($model->load(Yii::$app->request->post())) {
-            $model->tags = Yii::$app->request->post('tags');
-            $model->addTags(explode(',', $model->tags));
-            if ($model->save()) {
-                $this->flash('发表文章成功!', 'success');
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
+        $model = new PostTag();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -77,7 +72,7 @@ class PostController extends Controller
     }
 
     /**
-     * Updates an existing Post model.
+     * Updates an existing PostTag model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +91,7 @@ class PostController extends Controller
     }
 
     /**
-     * Deletes an existing Post model.
+     * Deletes an existing PostTag model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -109,15 +104,15 @@ class PostController extends Controller
     }
 
     /**
-     * Finds the Post model based on its primary key value.
+     * Finds the PostTag model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Post the loaded model
+     * @return PostTag the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Post::findOne($id)) !== null) {
+        if (($model = PostTag::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

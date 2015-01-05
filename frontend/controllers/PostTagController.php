@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\Models\PostTag;
-use yii\data\ActiveDataProvider;
+use common\models\PostTagSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -32,11 +32,11 @@ class PostTagController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => PostTag::find(),
-        ]);
+        $searchModel = new PostTagSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }

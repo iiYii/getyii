@@ -61,8 +61,7 @@ SelectizeAsset::register($this);
 
 </div>
 <?php
-$tagSearchApiUrl = Url::to(['/tag/index', 'name' => '{name}', 'do' => 'search']);
-$tagCreateApiUrl = Url::to(['/tag/create']);
+$tagSearchApiUrl = Url::to(['/post-tag/index', 'name' => '{name}', 'do' => 'search']);
 $script = <<<EOF
     var topicConverter = Markdown.getSanitizingConverter();
         topicEditor = new Markdown.Editor(topicConverter);
@@ -100,28 +99,6 @@ $script = <<<EOF
                 }
             });
         },
-        onOptionAdd: function (value, data) {
-            if (!data.hasOwnProperty('id')) {
-                var _this = this;
-                $.ajax({
-                    url: ('{$tagCreateApiUrl}'),
-                    type: 'POST',
-                    data: {
-                        Tag: {
-                            name: value
-                        }
-                    },
-                    success: function(res) {
-                        if (res.type != 'success') {
-                            alert(res.message);
-                            if (res.type == 'error') {
-                                _this.removeOption(value);
-                            }
-                        }
-                    }
-                });
-            }
-        }
     });
 EOF;
 $this->registerJs($script);

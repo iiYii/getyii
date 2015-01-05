@@ -47,12 +47,12 @@ class Controller extends \yii\web\Controller
         }
     }
 
-    public $ajaxLayout = '/ajaxMain';
-    public function findLayoutFile($view)
-    {
-        if (($this->layout === null) && ($this->ajaxLayout !== false) && Yii::$app->getRequest()->getIsAjax()) {
-            $this->layout = $this->ajaxLayout;
-        }
-        return parent::findLayoutFile($view);
-    }
+    // public $ajaxLayout = '/ajaxMain';
+    // public function findLayoutFile($view)
+    // {
+    //     if (($this->layout === null) && ($this->ajaxLayout !== false) && Yii::$app->getRequest()->getIsAjax()) {
+    //         $this->layout = $this->ajaxLayout;
+    //     }
+    //     return parent::findLayoutFile($view);
+    // }
 }

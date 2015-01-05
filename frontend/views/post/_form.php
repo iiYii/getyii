@@ -31,17 +31,6 @@ SelectizeAsset::register($this);
         'placeholder' => '标题'
     ]) ?>
 
-    <?= $form->field($model, 'image')->textInput([
-        'maxlength' => 255,
-        'placeholder' => '图片'
-    ]) ?>
-
-    <?= $form->field($model, 'excerpt')->textarea([
-        'maxlength' => 255,
-        'placeholder' => '简介(可为空)',
-        'rows' => 4
-    ]) ?>
-
     <div class="wmd-panel">
         <div id="wmd-button-bar"></div>
         <?= $form->field($model, 'content', [

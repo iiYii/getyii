@@ -37,7 +37,7 @@ class m150104_071047_init_blog extends Migration
             'title' => Schema::TYPE_STRING . " NOT NULL COMMENT '标题'",
             'author' => Schema::TYPE_STRING . "(100) DEFAULT NULL COMMENT '作者'",
             'excerpt' => Schema::TYPE_STRING . " DEFAULT NULL COMMENT '摘要'",
-            'image' => Schema::TYPE_STRING . " NOT NULL COMMENT '封面图片'",
+            'image' => Schema::TYPE_STRING . " DEFAULT NULL COMMENT '封面图片'",
             'content' => Schema::TYPE_TEXT . " NOT NULL COMMENT '内容'",
             'tags' => Schema::TYPE_STRING . " NOT NULL COMMENT '标签 用空格隔开'",
             'view_count' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '查看数'",

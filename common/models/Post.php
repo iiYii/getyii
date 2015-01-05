@@ -43,7 +43,7 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             [['post_meta_id', 'user_id', 'view_count', 'comment_count', 'favorite_count', 'like_count', 'hate_count', 'status', 'order', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'image', 'content', 'tags'], 'required'],
+            [['title', 'content', 'tags'], 'required'],
             [['content'], 'string'],
             [['title', 'excerpt', 'image', 'tags'], 'string', 'max' => 255],
             [['author'], 'string', 'max' => 100]

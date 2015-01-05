@@ -144,7 +144,7 @@ class SiteController extends Controller
 
     public function actionFaq()
     {
-        return $this->render('faq');
+        return $this->redirect('http://segmentfault.com/t/yii');
     }
 
     public function actionSignup()

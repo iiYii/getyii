@@ -1,8 +1,8 @@
 <?php
 
-namespace app\assets;
+namespace frontend\assets;
 
-use app\components\AssetBundle;
+use yii\web\AssetBundle;
 
 class PageDownAsset extends AssetBundle
 {

@@ -90,12 +90,10 @@ class Post extends ActiveRecord
         $return = false;
         $tagItem = new PostTag();
         foreach ($tags as $tag) {
-            $count = false;
+            $tagRaw = false;
             $_tagItem = clone $tagItem;
-            $count = $_tagItem::find()
-                ->where(['name' => $tag])
-                ->count();
-            if (!$count) {
+            $tagRaw = $_tagItem::findOne(['name' => $tag]);
+            if (!$tagRaw) {
                 $_tagItem->setAttributes([
                     'name' => $tag,
                     'count' => 1,
@@ -103,6 +101,8 @@ class Post extends ActiveRecord
                 if ($_tagItem->save()) {
                     $return = true;
                 }
+            } else {
+                $tagRaw->updateCounters(['count' => 1]);
             }
         }
         return $return;

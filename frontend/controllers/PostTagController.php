@@ -4,8 +4,9 @@ namespace frontend\controllers;
 
 use Yii;
 use common\Models\PostTag;
+use yii\helpers\ArrayHelper;
 use common\models\PostTagSearch;
-use yii\web\Controller;
+use common\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -34,6 +35,13 @@ class PostTagController extends Controller
     {
         $searchModel = new PostTagSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        //ajax
+        if (Yii::$app->request->getIsAjax()) {
+            return $this->message(ArrayHelper::getColumn($dataProvider->getModels(), function($model){
+                return $model->getAttributes(['id', 'name']);
+            }), 'success');
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,

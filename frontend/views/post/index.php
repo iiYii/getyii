@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ListView;
+use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -13,14 +14,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <aside class="col-sm-4 col-sm-push-8">
             <div class="widget search">
-                <form role="form">
+                <?php $form = ActiveForm::begin([
+                    'action' => ['index'],
+                    'method' => 'get',
+                    'fieldConfig' => [
+                        'template' => "{input}\n{hint}"
+                    ]
+                ]); ?>
                     <div class="input-group">
-                        <input type="text" class="form-control" autocomplete="off" placeholder="Search">
+                        <?= $form->field($searchModel, 'title')->textInput([
+                            'class' => 'form-control',
+                            'autocomplete' => 'off',
+                            'placeholder' => 'Search'
+                        ]) ?>
                         <span class="input-group-btn">
-                            <button class="btn btn-danger" type="button"><i class="icon-search"></i></button>
+                            <?= Html::submitButton('<i class="icon-search"></i>', ['class' => 'btn btn-danger']) ?>
                         </span>
                     </div>
-                </form>
+                <?php ActiveForm::end(); ?>
             </div><!--/.search-->
 
             <div class="widget ads">

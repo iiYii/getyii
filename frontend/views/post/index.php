@@ -97,16 +97,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     'itemOptions' => ['class' => 'item'],
                     'summary' => false,
                     'itemView' => '_post',
+                    'pager' => [
+                        'options' => ['class'=>'pagination pagination-lg'],
+                        'prevPageLabel' => '<i class="icon-angle-left"></i>',
+                        'nextPageLabel' => '<i class="icon-angle-right"></i>',
+                    ]
                 ]) ?>
-                <ul class="pagination pagination-lg">
-                    <li><a href="#"><i class="icon-angle-left"></i></a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#"><i class="icon-angle-right"></i></a></li>
-                </ul><!--/.pagination-->
             </div>
         </div><!--/.col-md-8-->
     </div><!--/.row-->

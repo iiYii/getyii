@@ -49,7 +49,7 @@ AppAsset::register($this);
             ['label' => 'Book', 'url' => ['/site/book']],
             // ['label' => 'Services', 'url' => ['/site/services']],
             // ['label' => 'Portfolio', 'url' => ['/site/portfolio']],
-            ['label' => 'Blog', 'url' => ['/site/blog']],
+            ['label' => 'Blog', 'url' => ['/post/index']],
             ['label' => 'FAQ', 'url' => ['/site/faq']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
         ];

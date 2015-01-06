@@ -61,7 +61,7 @@ SelectizeAsset::register($this);
 
 </div>
 <?php
-$tagSearchApiUrl = Url::to(['/post-tag/index', 'name' => '{name}', 'do' => 'search']);
+$tagSearchApiUrl = Url::to(['/post-tag/index', 'name' => '{name}']);
 $script = <<<EOF
     var topicConverter = Markdown.getSanitizingConverter();
         topicEditor = new Markdown.Editor(topicConverter);

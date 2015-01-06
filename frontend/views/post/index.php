@@ -1,6 +1,5 @@
 <?php
 
-
 use yii\helpers\Html;
 use yii\widgets\ListView;
 /* @var $this yii\web\View */
@@ -51,14 +50,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row">
                     <div class="col-sm-6">
                         <ul class="arrow">
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Updates</a></li>
-                            <li><a href="#">Tutorial</a></li>
-                            <li><a href="#">News</a></li>
+                            <?php foreach ($category as $key => $value): ?>
+                                <li><?= Html::a(Html::encode($value->name), ['/post/index', 'PostSearch[post_meta_id]' => $value->id]);?></li>
+                            <?php endforeach ?>
                         </ul>
                     </div>
-                    <div class="col-sm-6">
+                    <!-- <div class="col-sm-6">
                         <ul class="arrow">
                             <li><a href="#">Joomla</a></li>
                             <li><a href="#">Wordpress</a></li>
@@ -66,21 +63,19 @@ $this->params['breadcrumbs'][] = $this->title;
                             <li><a href="#">Magento</a></li>
                             <li><a href="#">Bootstrap</a></li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div><!--/.categories-->
             <div class="widget tags">
                 <h3>Tag Cloud</h3>
                 <ul class="tag-cloud">
-                    <li><a class="btn btn-xs btn-primary" href="#">CSS3</a></li>
-                    <li><a class="btn btn-xs btn-primary" href="#">HTML5</a></li>
-                    <li><a class="btn btn-xs btn-primary" href="#">WordPress</a></li>
-                    <li><a class="btn btn-xs btn-primary" href="#">Joomla</a></li>
-                    <li><a class="btn btn-xs btn-primary" href="#">Drupal</a></li>
-                    <li><a class="btn btn-xs btn-primary" href="#">Bootstrap</a></li>
-                    <li><a class="btn btn-xs btn-primary" href="#">jQuery</a></li>
-                    <li><a class="btn btn-xs btn-primary" href="#">Tutorial</a></li>
-                    <li><a class="btn btn-xs btn-primary" href="#">Update</a></li>
+                    <?php foreach ($tags as $key => $value): ?>
+                        <li><?= Html::a(
+                            Html::encode($value->name),
+                            ['/post/index', 'PostSearch[post_meta_id]' => $value->id],
+                            ['class' => 'btn btn-xs btn-primary']
+                        );?></li>
+                    <?php endforeach ?>
                 </ul>
             </div><!--/.tags-->
         </aside>

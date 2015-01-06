@@ -5,7 +5,8 @@ namespace frontend\controllers;
 use Yii;
 use common\Models\Post;
 use common\Models\PostTag;
-use yii\data\ActiveDataProvider;
+use common\Models\PostMeta;
+use common\Models\PostSearch;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -33,12 +34,17 @@ class PostController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Post::find(),
-        ]);
+        $searchModel = new PostSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $category = PostMeta::findAll(['type' => 'category']);
+        $tags = PostTag::find()->orderBy('count DESC')->all();
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'category' => $category,
+            'tags' => $tags,
         ]);
     }
 

@@ -20,7 +20,6 @@ class m150104_071047_init_blog extends Migration
             'name' => Schema::TYPE_STRING . "(100) DEFAULT NULL COMMENT '名称'",
             'type' => Schema::TYPE_STRING . "(32) DEFAULT NULL COMMENT '项目类型'",
             'description' => Schema::TYPE_STRING . " DEFAULT NULL COMMENT '选项描述'",
-            'icon' => Schema::TYPE_STRING . " NOT NULL DEFAULT '' COMMENT '版块图标'",
             'count' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '项目所属内容个数'",
             'order' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '项目排序'",
             'created_at' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间'",

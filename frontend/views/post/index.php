@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\widgets\ActiveForm;
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -20,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="col-sm-8 col-sm-pull-4">
             <div class="blog">
+                <?php Pjax::begin(); ?>
                 <?= ListView::widget([
                     'dataProvider' => $dataProvider,
                     'itemOptions' => ['class' => 'item'],
@@ -31,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'nextPageLabel' => '<i class="icon-angle-right"></i>',
                     ]
                 ]) ?>
+                <?php Pjax::end(); ?>
             </div>
         </div><!--/.col-md-8-->
     </div><!--/.row-->

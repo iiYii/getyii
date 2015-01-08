@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\Models\Post;
+use yii\filters\AccessControl;
 use common\Models\PostSearch;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
@@ -23,6 +24,30 @@ class PostController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            'access' => [
+                 'class' => AccessControl::className(),
+                 'rules' => [
+                     // 默认只能Get方式访问
+                     [
+                        'allow' => true,
+                        'actions' => ['view'],
+                        'verbs' => ['GET'],
+                     ],
+                     // 登录用户才能提交评论或其他内容
+                     [
+                        'allow' => true,
+                        'actions' => ['view'],
+                        'verbs' => ['POST'],
+                        'roles' => ['@'],
+                     ],
+                     // 登录用户才能使用API操作(赞,踩,收藏)
+                     [
+                        'allow' => true,
+                        'actions' => ['index', 'create'],
+                        'roles' => ['@']
+                     ],
+                 ]
+            ]
         ];
     }
 
@@ -62,6 +87,7 @@ class PostController extends Controller
     {
         $model = new Post();
         if ($model->load(Yii::$app->request->post())) {
+            $model->user_id = Yii::$app->user->id;
             $model->tags = Yii::$app->request->post('tags');
             $model->addTags(explode(',', $model->tags));
             if ($model->save()) {

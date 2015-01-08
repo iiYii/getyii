@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
                                 <div class="media-body">
                                     <div class="media-heading">
-                                        <strong>John Doe</strong>
+                                        <strong><?= $model->user->username ?></strong>
                                     </div>
                                     <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
                                 </div>

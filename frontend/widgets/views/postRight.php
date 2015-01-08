@@ -76,7 +76,7 @@ use yii\widgets\ActiveForm;
             <?php foreach ($tags as $key => $value): ?>
                 <li><?= Html::a(
                     Html::encode($value->name),
-                    ['/post/index', 'PostSearch[post_meta_id]' => $value->id],
+                    ['/post/index', 'PostSearch[tags]' => $value->name],
                     ['class' => 'btn btn-xs btn-primary']
                 );?></li>
             <?php endforeach ?>

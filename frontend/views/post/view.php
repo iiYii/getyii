@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use frontend\widgets\PostRight;
+use yii\helpers\Markdown;
 
 /* @var $this yii\web\View */
 /* @var $model common\Models\Post */
@@ -19,25 +20,32 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-sm-8 col-sm-pull-4">
             <div class="blog">
                 <div class="blog-item">
-                    <img class="img-responsive img-blog" src="images/blog/blog2.jpg" width="100%" alt="" />
+                    <?php if ($model->image) {
+                        echo Html::img($model->image, ['class' => 'img-responsive img-blog', 'width' => '100%']);
+                    } ?>
                     <div class="blog-content">
-                        <h3>Duis sed odio sit amet nibh vulputate cursus</h3>
+                        <h3><?= $model->title ?></h3>
                         <div class="entry-meta">
-                            <span><i class="icon-user"></i> <a href="#">John</a></span>
+                            <span><i class="icon-user"></i> <a href="#"><?= $model->title ?></a></span>
                             <span><i class="icon-folder-close"></i> <a href="#">Bootstrap</a></span>
-                            <span><i class="icon-calendar"></i> Sept 16th, 2012</span>
-                            <span><i class="icon-comment"></i> <a href="blog-item.html#comments">3 Comments</a></span>
+                            <span><i class="icon-calendar"></i> <?= date('Y-m-d H:i:s', $model->updated_at) ?></span>
+                            <span><i class="icon-comment"></i>
+                                <?= Html::a(Html::encode($model->comment_count), ['/post/view', 'id' => $model->id, '#'=>'comments']);?>
+                            </span>
                         </div>
-                        <p class="lead">Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                        <p><?= Markdown::process($model->content, 'gfm') ?></p>
 
                         <hr>
 
                         <div class="tags">
-                            <i class="icon-tags"></i> Tags <a class="btn btn-xs btn-primary" href="#">CSS3</a> <a class="btn btn-xs btn-primary" href="#">HTML5</a> <a class="btn btn-xs btn-primary" href="#">WordPress</a> <a class="btn btn-xs btn-primary" href="#">Joomla</a>
+                            <i class="icon-tags"></i> Tags
+                            <?php foreach (explode(',', $model->tags) as $key => $value){
+                                echo Html::a(
+                                        Html::encode($value),
+                                        ['/post/index', 'PostSearch[tags]' => $value],
+                                        ['class' => 'btn btn-xs btn-primary']
+                                    );
+                            } ?>
                         </div>
 
                         <p>&nbsp;</p>

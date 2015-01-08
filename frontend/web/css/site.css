@@ -90,13 +90,9 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
-#w0.navbar {
+#w0.navbar, #w1.navbar, #w2.navbar, #w3.navbar, #w4.navbar {
     margin-bottom:25px;
 }
-#w1.navbar {
-    margin-bottom:25px;
-}
-
 
 /* markdown 编辑器 */
 .wmd-panel {

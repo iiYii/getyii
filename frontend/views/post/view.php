@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use frontend\widgets\PostRight;
 
 /* @var $this yii\web\View */
 /* @var $model common\Models\Post */
@@ -13,11 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <section id="blog" class="container">
     <div class="row">
-        <?= $this->render('_right',[
-            'model' => $searchModel,
-            'category' => $category,
-            'tags' => $tags,
-        ]); ?>
+        <?= PostRight::widget(); ?>
 
         <div class="col-sm-8 col-sm-pull-4">
             <div class="blog">

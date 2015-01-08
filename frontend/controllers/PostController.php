@@ -4,8 +4,6 @@ namespace frontend\controllers;
 
 use Yii;
 use common\Models\Post;
-use common\Models\PostTag;
-use common\Models\PostMeta;
 use common\Models\PostSearch;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
@@ -37,14 +35,9 @@ class PostController extends Controller
         $searchModel = new PostSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $category = PostMeta::findAll(['type' => 'category']);
-        $tags = PostTag::find()->orderBy('count DESC')->all();
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'category' => $category,
-            'tags' => $tags,
         ]);
     }
 

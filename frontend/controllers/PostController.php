@@ -43,7 +43,7 @@ class PostController extends Controller
                      // 登录用户才能使用API操作(赞,踩,收藏)
                      [
                         'allow' => true,
-                        'actions' => ['index', 'create'],
+                        'actions' => ['index', 'create', 'update'],
                         'roles' => ['@']
                      ],
                  ]

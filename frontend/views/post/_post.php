@@ -15,10 +15,12 @@ use yii\helpers\Markdown;
             <span><i class="icon-user"></i> <a href="#"><?= $model->title ?></a></span>
             <span><i class="icon-folder-close"></i> <a href="#">Bootstrap</a></span>
             <span><i class="icon-calendar"></i> <?= date('Y-m-d H:i:s', $model->updated_at) ?></span>
-            <span><i class="icon-comment"></i> <a href="<?= Url::to(['post/view', 'id' => $model->id]) ?>#comments"><?= $model->comment_count ?></a></span>
+            <span><i class="icon-comment"></i>
+                <?= Html::a(Html::encode($model->comment_count), ['/post/view', 'id' => $model->id, '#'=>'comments']);?>
+            </span>
         </div>
         <?php $content = explode('<!--more-->', $model->content) ?>
-        <p><?= Markdown::process($content[0], 'gfm') ?></p>
+        <?= Markdown::process($content[0], 'gfm') ?>
         <a class="btn btn-default" href="<?= Url::to(['post/view', 'id' => $model->id]) ?>">Read More <i class="icon-angle-right"></i></a>
     </div>
 </div><!--/.blog-item-->

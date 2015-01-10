@@ -2,7 +2,9 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use common\models\PostMeta;
 use frontend\assets\PageDownAsset;
 use frontend\assets\SelectizeAsset;
 
@@ -30,6 +32,11 @@ SelectizeAsset::register($this);
         'maxlength' => 255,
         'placeholder' => '标题'
     ]) ?>
+
+    <?= $form->field($model, 'post_meta_id')->dropDownList(
+        ArrayHelper::map(PostMeta::find()->all(), 'id', 'name'),
+        ['prompt'=>'选择一个分类']
+    ) ?>
 
     <div class="wmd-panel">
         <div id="wmd-button-bar"></div>

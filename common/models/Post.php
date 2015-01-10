@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use common\models\PostTag;
+use common\models\User;
 use common\components\db\ActiveRecord;
 use yii\data\ActiveDataProvider;
 
@@ -78,6 +79,11 @@ class Post extends ActiveRecord
             'created_at' => '创建时间',
             'updated_at' => '修改时间',
         ];
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     /**

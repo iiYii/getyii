@@ -18,12 +18,8 @@ use yii\widgets\ActiveForm;
             ]
         ]); ?>
             <div class="input-group">
-                <?= $form->field($model, 'title', ['template' => '<div class="input-group">{input}</div>'])->textInput([
-                    'class' => 'form-control',
-                    'autocomplete' => 'off',
-                    'placeholder' => 'Search'
-                ]) ?>
-
+                <?php $searchValue = isset(Yii::$app->request->queryParams['PostSearch']['title']) ? Yii::$app->request->queryParams['PostSearch']['title'] : '' ?>
+                <input type="text" class="form-control" name="PostSearch[title]"  value="<?= $searchValue; ?>" autocomplete="off" placeholder="Search">
                 <span class="input-group-btn">
                     <?= Html::submitButton('<i class="icon-search"></i>', ['class' => 'btn btn-danger']) ?>
                 </span>
@@ -80,7 +76,7 @@ use yii\widgets\ActiveForm;
             <?php foreach ($tags as $key => $value): ?>
                 <li><?= Html::a(
                     Html::encode($value->name),
-                    ['/post/index', 'PostSearch[post_meta_id]' => $value->id],
+                    ['/post/index', 'PostSearch[tags]' => $value->name],
                     ['class' => 'btn btn-xs btn-primary']
                 );?></li>
             <?php endforeach ?>

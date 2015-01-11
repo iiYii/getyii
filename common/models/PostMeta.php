@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\components\db\ActiveRecord;
 
 /**
  * This is the model class for table "post_meta".
@@ -16,7 +17,7 @@ use Yii;
  * @property string $created_at
  * @property string $updated_at
  */
-class PostMeta extends \yii\db\ActiveRecord
+class PostMeta extends ActiveRecord
 {
     /**
      * @inheritdoc

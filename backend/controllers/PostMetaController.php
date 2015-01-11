@@ -5,7 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\PostMeta;
 use common\models\PostMetaSearch;
-use yii\web\Controller;
+use common\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 

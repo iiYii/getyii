@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\components\db\ActiveRecord;
 
 /**
  * This is the model class for table "post_tag".
@@ -12,7 +13,7 @@ use Yii;
  * @property string $count
  * @property string $created_at
  */
-class PostTag extends \yii\db\ActiveRecord
+class PostTag extends ActiveRecord
 {
     /**
      * @inheritdoc

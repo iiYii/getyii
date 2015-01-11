@@ -25,7 +25,7 @@ class m150104_071047_init_blog extends Migration
             'created_at' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间'",
             'updated_at' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '修改时间'",
         ], $tableOptions);
-        $this->createIndex('type', $tableName, 'type', true);
+        $this->createIndex('type', $tableName, 'type');
 
         // 文章
         $tableName = '{{%post}}';

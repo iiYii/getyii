@@ -61,7 +61,7 @@ class PostMetaController extends Controller
     public function actionCreate()
     {
         $model = new PostMeta();
-
+        $model->order = 999;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

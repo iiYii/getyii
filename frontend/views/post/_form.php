@@ -6,14 +6,16 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use common\models\PostMeta;
 use frontend\assets\PageDownAsset;
-use frontend\assets\SelectizeAsset;
+use dosamigos\selectize\Selectize;
+use yii\web\JsExpression;
+// use frontend\assets\SelectizeAsset;
 
 /* @var $this yii\web\View */
 /* @var $model common\Models\Post */
 /* @var $form yii\widgets\ActiveForm */
 
 PageDownAsset::register($this);
-SelectizeAsset::register($this);
+// SelectizeAsset::register($this);
 ?>
 
 <div class="post-form">
@@ -52,11 +54,24 @@ SelectizeAsset::register($this);
             ]) ?>
     </div>
 
-    <?= Html::textInput('tags', '', [
-        'id' => 'topicTags',
-        'maxlength' => 255,
-        'placeholder' => '请点击选择标签',
+    <?= Selectize::widget([
+        'name' => 'tags',
+        'value' => $model->tags,
+        // 'items' => [],
+        'url' => ['/post-tag/index'],
+        'clientOptions' => [
+            'delimiter' => ',',
+            'valueField' => 'name',
+            'labelField' => 'name',
+            'searchField' => 'name',
+            'maxItems' => 5,
+            'plugins' => ['remove_button'],
+            'persist' => false,
+            'create' => true,
+            // 'create' => new JsExpression("function(input) { return { value: input, text: input }; }"),
+        ],
     ]) ?>
+
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -68,44 +83,44 @@ SelectizeAsset::register($this);
 
 </div>
 <?php
-$tagSearchApiUrl = Url::to(['/post-tag/index', 'name' => '{name}']);
+// $tagSearchApiUrl = Url::to(['/post-tag/index', 'name' => '{name}']);
+// $('#topicTags').selectize({
+//     valueField: 'name',
+//     labelField: 'name',
+//     searchField: 'name',
+//     plugins: ['remove_button'],
+//     maxItems: 5,
+//     persist: false,
+//     create: true,
+//     createFilter: function(value) {
+//         return !this.options.hasOwnProperty(value);
+//     },
+//     render: {
+//         option: function(item, escape) {
+//             return '<div>' +
+//                 (item.icon ? '<img srt="' + item.icon + '"/>' : '') +
+//                 '<strong>' + escape(item.name) + '</strong>' +
+//             '</div>';
+//         }
+//     },
+//     load: function(query, callback) {
+//         query = $.trim(query);
+//         if (!query.length) return callback();
+//         $.ajax({
+//             url: ('{$tagSearchApiUrl}').replace(encodeURIComponent('{name}'), encodeURIComponent(query)),
+//             type: 'GET',
+//             error: function() {
+//                 callback();
+//             },
+//             success: function(res) {
+//                 res.type == 'success' ? callback(res.message) : callback();
+//             }
+//         });
+//     },
+// });
 $script = <<<EOF
     var topicConverter = Markdown.getSanitizingConverter();
         topicEditor = new Markdown.Editor(topicConverter);
     topicEditor.run();
-    $('#topicTags').selectize({
-        valueField: 'name',
-        labelField: 'name',
-        searchField: 'name',
-        plugins: ['remove_button'],
-        maxItems: 5,
-        persist: false,
-        create: true,
-        createFilter: function(value) {
-            return !this.options.hasOwnProperty(value);
-        },
-        render: {
-            option: function(item, escape) {
-                return '<div>' +
-                    (item.icon ? '<img srt="' + item.icon + '"/>' : '') +
-                    '<strong>' + escape(item.name) + '</strong>' +
-                '</div>';
-            }
-        },
-        load: function(query, callback) {
-            query = $.trim(query);
-            if (!query.length) return callback();
-            $.ajax({
-                url: ('{$tagSearchApiUrl}').replace(encodeURIComponent('{name}'), encodeURIComponent(query)),
-                type: 'GET',
-                error: function() {
-                    callback();
-                },
-                success: function(res) {
-                    res.type == 'success' ? callback(res.message) : callback();
-                }
-            });
-        },
-    });
 EOF;
 $this->registerJs($script);

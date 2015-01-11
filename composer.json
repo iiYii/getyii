@@ -15,16 +15,13 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": "2.0.0",
+        "yiisoft/yii2": "*",
         "yiisoft/yii2-bootstrap": "*",
-        "callmez/yii2-wechat": "dev-master",
-        "callmez/yii2-wechat-sdk": "dev-master",
-        "mdmsoft/yii2-admin": "~1.0",
-        "callmez/yii2-storage": "*",
-        "callmez/yii2-file-system": "*",
+        "yiisoft/yii2-swiftmailer": "*",
+        "2amigos/yii2-selectize-widget": "*",
         "bower-asset/pagedown": "*",
         "bower-asset/selectize": "*",
-        "yiisoft/yii2-swiftmailer": "*"
+        "2amigos/yii2-selectize-widget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

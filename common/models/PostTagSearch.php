@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace common\Models;
 
 use Yii;
 use yii\base\Model;
@@ -18,7 +18,7 @@ class PostTagSearch extends PostTag
     public function rules()
     {
         return [
-            [['id', 'count', 'created_at'], 'integer'],
+            [['id', 'count', 'created_at', 'updated_at'], 'integer'],
             [['name'], 'safe'],
         ];
     }
@@ -47,7 +47,11 @@ class PostTagSearch extends PostTag
             'query' => $query,
         ]);
 
-        if (!($this->load($params) && $this->validate())) {
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to any records when validation fails
+            // $query->where('0=1');
             return $dataProvider;
         }
 
@@ -55,6 +59,7 @@ class PostTagSearch extends PostTag
             'id' => $this->id,
             'count' => $this->count,
             'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

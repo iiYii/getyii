@@ -8,14 +8,13 @@ use common\models\PostMeta;
 use frontend\assets\PageDownAsset;
 use dosamigos\selectize\Selectize;
 use yii\web\JsExpression;
-// use frontend\assets\SelectizeAsset;
 
 /* @var $this yii\web\View */
 /* @var $model common\Models\Post */
 /* @var $form yii\widgets\ActiveForm */
 
 PageDownAsset::register($this);
-// SelectizeAsset::register($this);
+Selectize::$theme ='dosamigos\selectize\SelectizeAsset';
 ?>
 
 <div class="post-form">
@@ -57,7 +56,6 @@ PageDownAsset::register($this);
     <?= Selectize::widget([
         'name' => 'tags',
         'value' => $model->tags,
-        // 'items' => [],
         'url' => ['/post-tag/index'],
         'clientOptions' => [
             'delimiter' => ',',
@@ -68,7 +66,6 @@ PageDownAsset::register($this);
             'plugins' => ['remove_button'],
             'persist' => false,
             'create' => true,
-            // 'create' => new JsExpression("function(input) { return { value: input, text: input }; }"),
         ],
     ]) ?>
 
@@ -83,41 +80,6 @@ PageDownAsset::register($this);
 
 </div>
 <?php
-// $tagSearchApiUrl = Url::to(['/post-tag/index', 'name' => '{name}']);
-// $('#topicTags').selectize({
-//     valueField: 'name',
-//     labelField: 'name',
-//     searchField: 'name',
-//     plugins: ['remove_button'],
-//     maxItems: 5,
-//     persist: false,
-//     create: true,
-//     createFilter: function(value) {
-//         return !this.options.hasOwnProperty(value);
-//     },
-//     render: {
-//         option: function(item, escape) {
-//             return '<div>' +
-//                 (item.icon ? '<img srt="' + item.icon + '"/>' : '') +
-//                 '<strong>' + escape(item.name) + '</strong>' +
-//             '</div>';
-//         }
-//     },
-//     load: function(query, callback) {
-//         query = $.trim(query);
-//         if (!query.length) return callback();
-//         $.ajax({
-//             url: ('{$tagSearchApiUrl}').replace(encodeURIComponent('{name}'), encodeURIComponent(query)),
-//             type: 'GET',
-//             error: function() {
-//                 callback();
-//             },
-//             success: function(res) {
-//                 res.type == 'success' ? callback(res.message) : callback();
-//             }
-//         });
-//     },
-// });
 $script = <<<EOF
     var topicConverter = Markdown.getSanitizingConverter();
         topicEditor = new Markdown.Editor(topicConverter);

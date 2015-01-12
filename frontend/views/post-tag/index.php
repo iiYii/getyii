@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\PostTagSearch */
+/* @var $searchModel common\Models\PostTagSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Post Tags';
@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'count',
             'created_at',
+            'updated_at',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

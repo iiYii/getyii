@@ -34,15 +34,14 @@ class PostTagController extends Controller
     public function actionIndex()
     {
         $searchModel = new PostTagSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $params = Yii::$app->request->queryParams;
+        $dataProvider = $searchModel->search($params);
 
         //ajax
         if (Yii::$app->request->getIsAjax()) {
-            // return json_encode(ArrayHelper::getColumn($dataProvider->getModels(), function($model){
-            //     return $model->getAttributes(['query']);
-            // }));
-            // return json_encode(['id' => [1,2],'name' => ["s", "小道"],'tags' => ["s", "小道"]]);
-            return json_encode([['id' => 1,'name' => "aaa",'tags' => "s"],['id' => 11,'name' => "bbb",'tags' => "s1"]]);
+            return json_encode(ArrayHelper::getColumn($dataProvider->getModels(), function($model){
+                return $model->getAttributes(['name']);
+            }));
         }
 
         return $this->render('index', [

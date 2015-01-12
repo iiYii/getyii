@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\PostTagSearch */
+/* @var $model common\Models\PostTagSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -22,6 +22,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'count') ?>
 
     <?= $form->field($model, 'created_at') ?>
+
+    <?= $form->field($model, 'updated_at') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

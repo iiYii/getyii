@@ -60,6 +60,7 @@ class m150104_071047_init_blog extends Migration
             'name' => Schema::TYPE_STRING . "(20) DEFAULT NULL COMMENT '名称'",
             'count' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '计数'",
             'created_at' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间'",
+            'updated_at' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '修改时间'",
         ], $tableOptions);
 
         // 评论表

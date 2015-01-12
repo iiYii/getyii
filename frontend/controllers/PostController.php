@@ -111,8 +111,13 @@ class PostController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->tags = Yii::$app->request->post('tags');
+            $model->addTags(explode(',', $model->tags));
+            if ($model->save()) {
+                $this->flash('发表更新成功!', 'success');
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,

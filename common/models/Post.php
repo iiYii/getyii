@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use common\models\PostTag;
 use common\models\User;
+use common\models\PostMeta;
 use common\components\db\ActiveRecord;
 use yii\data\ActiveDataProvider;
 
@@ -84,6 +85,11 @@ class Post extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function getCategory()
+    {
+        return $this->hasOne(PostMeta::className(), ['id' => 'post_meta_id']);
     }
 
     /**

@@ -26,8 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="blog-content">
                         <h3><?= $model->title ?></h3>
                         <div class="entry-meta">
-                            <span><i class="icon-user"></i> <a href="#"><?= $model->title ?></a></span>
-                            <span><i class="icon-folder-close"></i> <a href="#">Bootstrap</a></span>
+                            <span><i class="icon-user"></i> <a href="#"><?= $model->user->username ?></a></span>
+                            <span><i class="icon-folder-close"></i> <a href="#"><?= $model->category->name ?></a></span>
                             <span><i class="icon-calendar"></i> <?= date('Y-m-d H:i:s', $model->updated_at) ?></span>
                             <span><i class="icon-comment"></i>
                                 <?= Html::a(Html::encode($model->comment_count), ['/post/view', 'id' => $model->id, '#'=>'comments']);?>

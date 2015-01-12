@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 use frontend\widgets\PostRight;
 use yii\helpers\Markdown;
@@ -50,6 +51,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <p>&nbsp;</p>
 
+                        <div class="text-center">
+                            <button type="button" data-do="like" data-id="<?= $model->id ?>" data-type="post" class="btn btn-success">
+                                0 点赞
+                            </button>
+                            <button type="button" data-do="thanks" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default">
+                                感谢
+                            </button>
+                            <button type="button" data-do="favorite" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default">
+                                收藏
+                            </button>
+                            <button type="button" data-do="hate" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default">
+                                0 踩
+                            </button>
+                        </div>
+
+                        <p>&nbsp;</p>
+
                         <div class="author well">
                             <div class="media">
                                 <div class="pull-left">
@@ -70,3 +88,46 @@ $this->params['breadcrumbs'][] = $this->title;
         </div><!--/.col-md-8-->
     </div><!--/.row-->
 </section><!--/#blog-->
+<?php
+$apiUrl = Url::to(['api']);
+$script = <<<EOF
+//赞, 踩, 收藏
+$(document).on('click', '[data-do]', function(e){
+    var _this = $(this),
+        _id = _this.data('id'),
+        _do = _this.data('do'),
+        _type = _this.data('type');
+    if (_this.is('a')) e.preventDefault();
+    $.post('{$apiUrl}', {id: _id, do: _do, type: _type}, function(result){
+        if (result.type == 'success') {
+            //修改记数
+            var num = _this.find('.num'),
+                numValue = parseInt(num.html()),
+                active = _this.hasClass('active');
+            _this.toggleClass('active');
+            if (num.length) {
+                num.html(numValue + (active ? -1 : 1));
+            }
+            if ($.inArray(_do, ['like', 'hate']) >= 0) {
+                _this.siblings('[data-do=like],[data-do=hate]').each(function(){
+                    var __this = $(this),
+                        __do = __this.data('do'),
+                        __id = __this.data('id');
+                    if (__id == _id) { // 同一个话题或评论触发
+                        __this.toggleClass('active', __do == _do);
+
+                        var _num = __this.find('.num')
+                            _numValue = parseInt(_num.html());
+                        if (_num.length) {
+                            _num.html(_numValue + (__do != _do ? (_numValue > 0 ? -1 : 0): 1));
+                        }
+                    }
+                });
+            }
+        } else {
+            alert(result.message);
+        }
+    });
+});
+EOF;
+$this->registerJs($script);

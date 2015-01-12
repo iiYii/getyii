@@ -1,0 +1,9 @@
+/*屏蔽流氓宽带商强行插入的广告*/
+body > iframe{
+    opacity:0;
+    display:none;
+}
+
+.text-center {
+	text-align: center;
+}

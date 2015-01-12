@@ -193,9 +193,3 @@ a.desc:after {
     font-size: 0.8em;
     font-weight: bold;
 }
-
-/*屏蔽流氓宽带商强行插入的广告*/
-body > iframe{
-    opacity:0;
-    display:none;
-}

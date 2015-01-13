@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 收藏
                             </button>
                             <button type="button" data-do="hate" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default">
-                                0 踩
+                                0 喝倒彩
                             </button>
                         </div>
 

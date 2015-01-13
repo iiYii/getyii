@@ -36,7 +36,7 @@ class PostController extends Controller
                      // 登录用户才能提交评论或其他内容
                      [
                         'allow' => true,
-                        'actions' => ['view'],
+                        'actions' => ['view', 'api'],
                         'verbs' => ['POST'],
                         'roles' => ['@'],
                      ],
@@ -136,6 +136,28 @@ class PostController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * 收藏, 赞, 踩, 标签 接口
+     * @param $id
+     * @return json
+     */
+    public function actionApi()
+    {
+        $request = Yii::$app->request;
+        $model = $this->findModel($request->post('id'), $request->post('type'), function ($model) {
+            $model->active();
+        });
+        $opeartions = ['favorite', 'like', 'hate'];
+        if (!in_array($do = $request->post('do'), $opeartions)) {
+            return $this->message('错误的操作', 'error');
+        }
+        $result = $model->{'toggle' . $do}(Yii::$app->user->getId());
+        if ($result !== true) {
+            return $this->message($result === false ? '操作失败' : $result, 'error');
+        }
+        return $this->message('操作成功', 'success');
     }
 
     /**

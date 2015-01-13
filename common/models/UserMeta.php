@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "user_meta".
@@ -15,7 +16,7 @@ use Yii;
  * @property string $target_type
  * @property string $created_at
  */
-class UserMeta extends \yii\db\ActiveRecord
+class UserMeta extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -23,6 +24,18 @@ class UserMeta extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'user_meta';
+    }
+
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'created_at',
+                ],
+            ],
+        ];
     }
 
     /**
@@ -57,30 +70,33 @@ class UserMeta extends \yii\db\ActiveRecord
 
     /**
      * 赞 感谢 收藏 喝倒彩
-     * @param $uid
+     * @param $userId
      * @param $type string ['like', 'thanks', 'favorite', 'hate']
      * @return bool|string
      */
-    public function userAction($uid, $type='')
+    public function userAction($userId, $type='', $id)
     {
-        return $this->toggleLikeOrHate($uid, $type);
+        if (in_array($type, ['like', 'hate'])) {
+            return $this->_likeOrHate($userId, $type, $id);
+        }
+        return $this->toggleLikeOrHate($userId, $type);
     }
 
     /**
      * 喝倒彩或者赞
-     * @param $uid
+     * @param $userId
      * @param $type 操作类型, like 或 hate
      * @return bool|string string为错误提示, bool为操作成功还是失败
      */
-    protected function _likeOrHate($uid, $type)
+    protected function _likeOrHate($userId, $type, $id)
     {
         //查找数据库是否有记录
-        $model = $this->find()
+        $model = self::find()
             ->where(['or', ['type' => 'like'], ['type' => 'hate']])
             ->andWhere([
-                'uid' => $uid,
-                'target_id' => $this->id,
-                'target_type' => static::TYPE
+                'user_id' => $userId,
+                'target_id' => $id,
+                'target_type' => 'post'
             ])->one();
         $contrary = $return = $active = false;
         if ($model) {
@@ -93,33 +109,34 @@ class UserMeta extends \yii\db\ActiveRecord
             }
         }
         if (!$model) { //创建记录
-            $model = $type == Like::TYPE ? new Like() : new Hate();
-            $model->setAttributes(array(
-                'uid' => $uid,
-                'target_id' => $this->id,
-                'target_type' => static::TYPE,
+            $this->setAttributes(array(
+                'user_id' => $userId,
+                'target_id' => $id,
+                'type' => $type,
+                'target_type' => 'post',
             ));
-            if ($model->save()) {
+            if ($this->save()) {
                 $return = $active = true;
             } else {
-                $return = array_values($model->getFirstErrors())[0];
+                $return = array_values($this->getFirstErrors())[0];
             }
         }
         if ($return == true) { // 更新记数
+            $model = new Post();
             $attributeName1 = $type . '_count';
             if ($contrary) {
                 $attributeName2 = ($type == 'like' ? 'hate' : 'like') . '_count';
                 $attributes = [
-                    $attributeName1 => $active ? 1 : ($this->$attributeName1 > 0 ? -1 :0),
-                    $attributeName2 => $active ? ($this->$attributeName2 > 0 ? -1 :0) : 1
+                    $attributeName1 => $active ? 1 : ($model->$attributeName1 > 0 ? -1 :0),
+                    $attributeName2 => $active ? ($model->$attributeName2 > 0 ? -1 :0) : 1
                 ];
             } else {
                 $attributes = [
-                    $attributeName1 => $active ? 1 : ($this->$attributeName1 > 0 ? -1 :0)
+                    $attributeName1 => $active ? 1 : ($model->$attributeName1 > 0 ? -1 :0)
                 ];
             }
             //更新版块统计
-            $this->updateCounters($attributes);
+            $model->updateCounters($attributes);
         }
         return $return;
     }

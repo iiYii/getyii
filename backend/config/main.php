@@ -11,6 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
+    'language' => 'zh-CN',
     'modules' => [
         'wechat' => [
             'class' => 'callmez\wechat\Module',

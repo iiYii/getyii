@@ -1,30 +1,33 @@
 # yii console command
 /yii
 
-# phpstorm project files
+# phpstorm 项目文件
 .idea
 
-# netbeans project files
+# netbeans 项目文件
 nbproject
 
-# zend studio for eclipse project files
+# zend studio for eclipse 项目文件
 .buildpath
 .project
 .settings
 
-# windows thumbnail cache
+# windows 缩略图换成
 Thumbs.db
 
-# composer vendor dir
+# composer 供应商目录
 /vendor
 
-# composer itself is not needed
+# composer 它本身是不需要的（客户端自行升级最新版）
 composer.phar
+# composer.lock 我们想要最新版的类库，因此无需提交此文件
+/composer.lock
 
-# Mac DS_Store Files
+# Mac DS_Store 文件
 .DS_Store
 
-# phpunit itself is not needed
+# phpunit 它本身是不需要的
 phpunit.phar
-# local phpunit config
+# 本地 phpunit 配置文件
 /phpunit.xml
+

@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="text-center">
                             <button type="button" data-do="like" data-id="<?= $model->id ?>" data-type="post" class="btn btn-success">
-                                0 点赞
+                                <?= $model->like_count ?> 点赞
                             </button>
                             <button type="button" data-do="thanks" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default">
                                 感谢
@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 收藏
                             </button>
                             <button type="button" data-do="hate" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default">
-                                0 喝倒彩
+                                <?= $model->hate_count ?> 喝倒彩
                             </button>
                         </div>
 

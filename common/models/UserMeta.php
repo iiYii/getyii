@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\db\ActiveRecord;
 
+
 /**
  * This is the model class for table "user_meta".
  *
@@ -76,16 +77,23 @@ class UserMeta extends ActiveRecord
      */
     public function userAction($userId, $type='', $id)
     {
-        if (in_array($type, ['like', 'hate'])) {
-            return $this->_likeOrHate($userId, $type, $id);
+        switch ($type) {
+            case 'like':
+            case 'hate':
+                return $this->_likeOrHate($userId, $type, $id);
+                break;
+
+            default:
+                return $this->_actionLog($userId, $type, $id);
+                break;
         }
-        return $this->toggleLikeOrHate($userId, $type);
     }
 
     /**
      * 喝倒彩或者赞
      * @param $userId
-     * @param $type 操作类型, like 或 hate
+     * @param $type string 操作类型, like 或 hate
+     * @param $id int 文章ID
      * @return bool|string string为错误提示, bool为操作成功还是失败
      */
     protected function _likeOrHate($userId, $type, $id)
@@ -103,12 +111,8 @@ class UserMeta extends ActiveRecord
             $num = $model->delete();// 有记录(赞或踩)则取消记录
             if ($model->type == $type) { //相应记录删除后直接返回取消结果
                 $return = $num >= 0;
-            } else {
-                $model = null; // 相对记录需清空查询结果已经生成相应的记录
-                $contrary = true;
             }
-        }
-        if (!$model) { //创建记录
+        } else {
             $this->setAttributes(array(
                 'user_id' => $userId,
                 'target_id' => $id,
@@ -121,8 +125,9 @@ class UserMeta extends ActiveRecord
                 $return = array_values($this->getFirstErrors())[0];
             }
         }
+
         if ($return == true) { // 更新记数
-            $model = new Post();
+            $model = Post::findOne($id);
             $attributeName1 = $type . '_count';
             if ($contrary) {
                 $attributeName2 = ($type == 'like' ? 'hate' : 'like') . '_count';
@@ -135,6 +140,57 @@ class UserMeta extends ActiveRecord
                     $attributeName1 => $active ? 1 : ($model->$attributeName1 > 0 ? -1 :0)
                 ];
             }
+            //更新版块统计
+            $model->updateCounters($attributes);
+        }
+        return $return;
+    }
+
+
+    /**
+     * 收藏和感谢
+     * @param $userId
+     * @param $type string 操作类型, like 或 hate
+     * @param $id int 文章ID
+     * @return bool|string string为错误提示, bool为操作成功还是失败
+     */
+    protected function _actionLog($userId, $type, $id)
+    {
+        //查找数据库是否有记录
+        $model = self::find()
+            ->where([
+                'user_id' => $userId,
+                'type' => $type,
+                'target_id' => $id,
+                'target_type' => 'post'
+            ])->one();
+        $return = $active = false;
+        if ($model) {
+            $num = $model->delete();// 有记录则取消记录
+            if ($model->type == $type) { //相应记录删除后直接返回取消结果
+                $return = $num >= 0;
+            }
+        } else {
+            $this->setAttributes(array(
+                'user_id' => $userId,
+                'target_id' => $id,
+                'type' => $type,
+                'target_type' => 'post',
+            ));
+            if ($this->save()) {
+                $return = $active = true;
+            } else {
+                $return = array_values($this->getFirstErrors())[0];
+            }
+        }
+
+        if ($return == true) { // 更新记数
+            $model = Post::findOne($id);
+            $attributeName = $type . '_count';
+            $attributes = [
+                $attributeName => $active ? 1 : ($model->$attributeName > 0 ? -1 :0),
+            ];
+
             //更新版块统计
             $model->updateCounters($attributes);
         }

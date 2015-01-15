@@ -1,18 +1,12 @@
 <?php
 
 use yii\db\Schema;
-use yii\db\Migration;
+use common\components\db\Migration;
 
 class m150104_071047_init_blog extends Migration
 {
     public function up()
     {
-    	$tableOptions = null;
-        if ($this->db->driverName === 'mysql') {
-            // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
-            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
-        }
-
     	// 分类
         $tableName = '{{%post_meta}}';
         $this->createTable($tableName, [
@@ -24,7 +18,7 @@ class m150104_071047_init_blog extends Migration
             'order' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '项目排序'",
             'created_at' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间'",
             'updated_at' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '修改时间'",
-        ], $tableOptions);
+        ], $this->tableOptions);
         $this->createIndex('type', $tableName, 'type');
 
         // 文章
@@ -61,7 +55,7 @@ class m150104_071047_init_blog extends Migration
             'count' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '计数'",
             'created_at' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间'",
             'updated_at' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '修改时间'",
-        ], $tableOptions);
+        ], $this->tableOptions);
 
         // 评论表
         $tableName = '{{%post_comment}}';
@@ -74,7 +68,7 @@ class m150104_071047_init_blog extends Migration
             'user_id' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL COMMENT '用户ID'",
             'ip' => Schema::TYPE_STRING . " NOT NULL COMMENT '评论者ip地址'",
             'created_at' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间'",
-        ], $tableOptions);
+        ], $this->tableOptions);
         $this->createIndex('post_id', $tableName, 'post_id');
         $this->createIndex('user_id', $tableName, 'user_id');
     }

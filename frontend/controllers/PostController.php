@@ -87,7 +87,6 @@ class PostController extends Controller
     public function actionCreate()
     {
         $model = new Post();
-        echo $model->getFavorite();
         if ($model->load(Yii::$app->request->post())) {
             $model->user_id = Yii::$app->user->id;
             $model->tags = Yii::$app->request->post('tags');

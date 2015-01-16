@@ -78,6 +78,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            $model->updateUserInfo();
             return $this->goBack();
         } else {
             return $this->render('login', [

@@ -74,4 +74,16 @@ class LoginForm extends Model
 
         return $this->_user;
     }
+
+    public function updateUserInfo()
+    {
+        $model = UserInfo::findOne(['user_id' => Yii::$app->user->getId()]);
+        $model->login_count += 1;
+        $model->prev_login_time = $model->last_login_time;
+        $model->prev_login_ip = $model->last_login_ip;
+        $model->last_login_time = time();
+        $model->last_login_ip = Yii::$app->getRequest()->getUserIP();
+        $model->save();
+
+    }
 }

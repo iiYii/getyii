@@ -75,6 +75,10 @@ class LoginForm extends Model
         return $this->_user;
     }
 
+    /**
+     * 登陆之后更新用户资料
+     * @return bool
+     */
     public function updateUserInfo()
     {
         $model = UserInfo::findOne(['user_id' => Yii::$app->user->getId()]);
@@ -83,7 +87,10 @@ class LoginForm extends Model
         $model->prev_login_ip = $model->last_login_ip;
         $model->last_login_time = time();
         $model->last_login_ip = Yii::$app->getRequest()->getUserIP();
-        $model->save();
-
+        if ($model->save()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -87,6 +87,7 @@ class PostController extends Controller
     public function actionCreate()
     {
         $model = new Post();
+        echo $model->getFavorite();
         if ($model->load(Yii::$app->request->post())) {
             $model->user_id = Yii::$app->user->id;
             $model->tags = Yii::$app->request->post('tags');
@@ -153,7 +154,7 @@ class PostController extends Controller
             return $this->message('错误的操作', 'error');
         }
         $userMeta = new UserMeta();
-        $result = $userMeta->userAction(Yii::$app->user->getId(), $type, $id);
+        $result = $userMeta->userAction($type, $id);
         if ($result !== true) {
             return $this->message($result === false ? '操作失败' : $result, 'error');
         }

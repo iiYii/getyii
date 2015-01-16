@@ -69,41 +69,58 @@ class UserMeta extends ActiveRecord
     }
 
 
+
+    /**
+     * 判断操作是否存在
+     * @param  string  $type [description]
+     * @return boolean       [description]
+     */
+    public function isUserAction($type='', $targetId)
+    {
+        return $this->find()->where([
+                'target_id' => $targetId,
+                'user_id' => Yii::$app->user->getId(),
+                'target_type' => 'post',
+                'type' =>  $type,
+            ])->count();
+    }
+
+
     /**
      * 赞 感谢 收藏 喝倒彩
-     * @param $userId
      * @param $type string ['like', 'thanks', 'favorite', 'hate']
+     * @param $targetId int 文章ID
      * @return bool|string
      */
-    public function userAction($userId, $type='', $id)
+    public function userAction($type='', $targetId)
     {
         switch ($type) {
             case 'like':
             case 'hate':
-                return $this->_likeOrHate($userId, $type, $id);
+                return $this->_likeOrHate($type, $targetId);
                 break;
 
             default:
-                return $this->_actionLog($userId, $type, $id);
+                return $this->_actionLog($type, $targetId);
                 break;
         }
     }
 
+
     /**
      * 喝倒彩或者赞
-     * @param $userId
      * @param $type string 操作类型, like 或 hate
-     * @param $id int 文章ID
+     * @param $targetId int 文章ID
      * @return bool|string string为错误提示, bool为操作成功还是失败
      */
-    protected function _likeOrHate($userId, $type, $id)
+    protected function _likeOrHate($type, $targetId)
     {
         //查找数据库是否有记录
         $model = self::find()
             ->where(['or', ['type' => 'like'], ['type' => 'hate']])
             ->andWhere([
-                'user_id' => $userId,
-                'target_id' => $id,
+                'user_id' => Yii::$app->user->getId(),
+                'target_id' => $targetId,
                 'target_type' => 'post'
             ])->one();
         $contrary = $return = $active = false;
@@ -111,11 +128,15 @@ class UserMeta extends ActiveRecord
             $num = $model->delete();// 有记录(赞或踩)则取消记录
             if ($model->type == $type) { //相应记录删除后直接返回取消结果
                 $return = $num >= 0;
+            } else {
+                $model = null; // 相对记录需清空查询结果已经生成相应的记录
+               $contrary = true;
             }
-        } else {
+        }
+        if (!$model) { //创建记录
             $this->setAttributes(array(
-                'user_id' => $userId,
-                'target_id' => $id,
+                'user_id' => Yii::$app->user->getId(),
+                'target_id' => $targetId,
                 'type' => $type,
                 'target_type' => 'post',
             ));
@@ -127,7 +148,7 @@ class UserMeta extends ActiveRecord
         }
 
         if ($return == true) { // 更新记数
-            $model = Post::findOne($id);
+            $model = Post::findOne($targetId);
             $attributeName1 = $type . '_count';
             if ($contrary) {
                 $attributeName2 = ($type == 'like' ? 'hate' : 'like') . '_count';
@@ -149,19 +170,18 @@ class UserMeta extends ActiveRecord
 
     /**
      * 收藏和感谢
-     * @param $userId
      * @param $type string 操作类型, like 或 hate
-     * @param $id int 文章ID
+     * @param $targetId int 文章ID
      * @return bool|string string为错误提示, bool为操作成功还是失败
      */
-    protected function _actionLog($userId, $type, $id)
+    protected function _actionLog($type, $targetId)
     {
         //查找数据库是否有记录
         $model = self::find()
             ->where([
-                'user_id' => $userId,
+                'user_id' => Yii::$app->user->getId(),
                 'type' => $type,
-                'target_id' => $id,
+                'target_id' => $targetId,
                 'target_type' => 'post'
             ])->one();
         $return = $active = false;
@@ -172,8 +192,8 @@ class UserMeta extends ActiveRecord
             }
         } else {
             $this->setAttributes(array(
-                'user_id' => $userId,
-                'target_id' => $id,
+                'user_id' => Yii::$app->user->getId(),
+                'target_id' => $targetId,
                 'type' => $type,
                 'target_type' => 'post',
             ));
@@ -185,7 +205,7 @@ class UserMeta extends ActiveRecord
         }
 
         if ($return == true) { // 更新记数
-            $model = Post::findOne($id);
+            $model = Post::findOne($targetId);
             $attributeName = $type . '_count';
             $attributes = [
                 $attributeName => $active ? 1 : ($model->$attributeName > 0 ? -1 :0),

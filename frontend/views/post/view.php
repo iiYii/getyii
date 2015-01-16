@@ -53,16 +53,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="text-center">
                             <button type="button" data-do="like" data-id="<?= $model->id ?>" data-type="post" class="btn btn-success">
-                                <?= $model->like_count ?> 点赞
+                                <span class="num"><?= $model->like_count ?></span> 点赞
                             </button>
-                            <button type="button" data-do="thanks" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default">
+                            <button type="button" data-do="thanks" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default <?php if($model->thanks) echo 'active' ?>">
                                 感谢
                             </button>
-                            <button type="button" data-do="favorite" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default">
+                            <button type="button" data-do="favorite" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default <?php if($model->favorite) echo 'active' ?>">
                                 收藏
                             </button>
                             <button type="button" data-do="hate" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default">
-                                <?= $model->hate_count ?> 喝倒彩
+                                <span class="num"><?= $model->hate_count ?></span> 喝倒彩
                             </button>
                         </div>
 

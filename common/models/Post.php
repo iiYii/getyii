@@ -88,10 +88,24 @@ class Post extends ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    public function getFavorite()
+    {
+        $model = new UserMeta();
+        return $model->isUserAction('favorite', $this->id);
+    }
+
+    public function getThanks()
+    {
+        $model = new UserMeta();
+        return $model->isUserAction('thanks', $this->id);
+    }
+
     public function getCategory()
     {
         return $this->hasOne(PostMeta::className(), ['id' => 'post_meta_id']);
     }
+
+
 
     /**
      * 添加标签

@@ -31,20 +31,20 @@ class PostController extends Controller
                      // 默认只能Get方式访问
                      [
                         'allow' => true,
-                        'actions' => ['view'],
+                        'actions' => ['view', 'index'],
                         'verbs' => ['GET'],
                      ],
                      // 登录用户才能提交评论或其他内容
                      [
                         'allow' => true,
-                        'actions' => ['view', 'api'],
+                        'actions' => ['api'],
                         'verbs' => ['POST'],
                         'roles' => ['@'],
                      ],
                      // 登录用户才能使用API操作(赞,踩,收藏)
                      [
                         'allow' => true,
-                        'actions' => ['index', 'create', 'update'],
+                        'actions' => ['create', 'update'],
                         'roles' => ['@']
                      ],
                  ]

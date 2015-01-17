@@ -44,18 +44,18 @@ AppAsset::register($this);
             ],
         ]);
         $menuItems = [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Book', 'url' => ['/site/book']],
+            ['label' => '首页', 'url' => ['/site/index']],
+            // ['label' => 'About', 'url' => ['/site/about']],
+            ['label' => '手册', 'url' => ['/site/book'], 'linkOptions' =>['target' => '_banck']],
             // ['label' => 'Services', 'url' => ['/site/services']],
             // ['label' => 'Portfolio', 'url' => ['/site/portfolio']],
-            ['label' => 'Blog', 'url' => ['/post/index']],
-            ['label' => 'FAQ', 'url' => ['/site/faq']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => '博客', 'url' => ['/post/index']],
+            ['label' => 'FAQ', 'url' => ['/site/faq'], 'linkOptions' =>['target' => '_banck']],
+            // ['label' => 'Contact', 'url' => ['/site/contact']],
         ];
         if (Yii::$app->user->isGuest) {
-            $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-            $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+            $menuItems[] = ['label' => '注册', 'url' => ['/site/signup']];
+            $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
         } else {
             $menuItems[] = [
                 'label' => 'Logout (' . Yii::$app->user->identity->username . ')',

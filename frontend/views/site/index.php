@@ -219,7 +219,7 @@ $this->title = 'My Yii Application';
         <div class="row">
             <div class="col-lg-12">
                 <div class="center">
-                    <h2>开发者是这样说的……</h2>
+                    <h2>开发者如是说……</h2>
                     <!-- <p>用过都说好，你还在等什么呢？</p> -->
                 </div>
                 <div class="gap"></div>

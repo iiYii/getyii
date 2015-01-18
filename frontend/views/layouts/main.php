@@ -129,7 +129,7 @@ AppAsset::register($this);
                 <div>
                     <div class="media">
                         <div class="pull-left">
-                            <img src="images/blog/thumb1.jpg" alt="">
+                            <img src="/images/blog/thumb1.jpg" alt="">
                         </div>
                         <div class="media-body">
                             <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique
@@ -139,7 +139,7 @@ AppAsset::register($this);
                     </div>
                     <div class="media">
                         <div class="pull-left">
-                            <img src="images/blog/thumb2.jpg" alt="">
+                            <img src="/images/blog/thumb2.jpg" alt="">
                         </div>
                         <div class="media-body">
                             <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique

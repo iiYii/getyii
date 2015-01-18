@@ -1,0 +1,11 @@
+# use mod_rewrite for pretty URL support
+RewriteEngine on
+# If a directory or a file exists, use the request directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# Otherwise forward the request to index.php
+RewriteRule . index.php
+
+# 七牛云存储的回调会传送HTTP_AUTHORIZATION认证秘钥,一定要放在最rewrite的后面.防止影响
+# PHP在CGI模式下的认证信息的获取
+# RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]

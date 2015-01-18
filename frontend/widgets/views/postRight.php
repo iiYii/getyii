@@ -30,27 +30,27 @@ use yii\widgets\ActiveForm;
     <div class="widget ads">
         <div class="row">
             <div class="col-xs-6">
-                <a href="#"><img class="img-responsive img-rounded" src="images/ads/ad1.png" alt=""></a>
+                <a href="#"><img class="img-responsive img-rounded" src="/images/ads/ad1.png" alt=""></a>
             </div>
 
             <div class="col-xs-6">
-                <a href="#"><img class="img-responsive img-rounded" src="images/ads/ad2.png" alt=""></a>
+                <a href="#"><img class="img-responsive img-rounded" src="/images/ads/ad2.png" alt=""></a>
             </div>
         </div>
         <p> </p>
         <div class="row">
             <div class="col-xs-6">
-                <a href="#"><img class="img-responsive img-rounded" src="images/ads/ad3.png" alt=""></a>
+                <a href="#"><img class="img-responsive img-rounded" src="/images/ads/ad3.png" alt=""></a>
             </div>
 
             <div class="col-xs-6">
-                <a href="#"><img class="img-responsive img-rounded" src="images/ads/ad4.png" alt=""></a>
+                <a href="#"><img class="img-responsive img-rounded" src="/images/ads/ad4.png" alt=""></a>
             </div>
         </div>
     </div><!--/.ads-->
 
     <div class="widget categories">
-        <h3>Blog Categories</h3>
+        <h3>博客分类</h3>
         <div class="row">
             <div class="col-sm-6">
                 <ul class="arrow">
@@ -71,7 +71,7 @@ use yii\widgets\ActiveForm;
         </div>
     </div><!--/.categories-->
     <div class="widget tags">
-        <h3>Tag Cloud</h3>
+        <h3>标签云</h3>
         <ul class="tag-cloud">
             <?php foreach ($tags as $key => $value): ?>
                 <li><?= Html::a(

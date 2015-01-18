@@ -71,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="author well">
                             <div class="media">
                                 <div class="pull-left">
-                                    <img class="avatar img-thumbnail" src="images/blog/avatar.jpg" alt="">
+                                    <img class="avatar img-thumbnail" src="/images/blog/avatar.jpg" alt="">
                                 </div>
                                 <div class="media-body">
                                     <div class="media-heading">

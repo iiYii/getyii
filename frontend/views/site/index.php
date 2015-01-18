@@ -10,7 +10,7 @@ $this->title = 'My Yii Application';
             <li data-target="#main-slider" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-            <div class="item active" style="background-image: url(images/slider/bg1.jpg)">
+            <div class="item active" style="background-image: url(/images/slider/bg1.jpg)">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
@@ -22,7 +22,7 @@ $this->title = 'My Yii Application';
                     </div>
                 </div>
             </div><!--/.item-->
-            <div class="item" style="background-image: url(images/slider/bg2.jpg)">
+            <div class="item" style="background-image: url(/images/slider/bg2.jpg)">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
@@ -36,7 +36,7 @@ $this->title = 'My Yii Application';
                     </div>
                 </div>
             </div><!--/.item-->
-            <div class="item" style="background-image: url(images/slider/bg3.jpg)">
+            <div class="item" style="background-image: url(/images/slider/bg3.jpg)">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6">
@@ -126,7 +126,7 @@ $this->title = 'My Yii Application';
                                 <div class="col-xs-4">
                                     <div class="portfolio-item">
                                         <div class="item-inner">
-                                            <img class="img-responsive" src="images/portfolio/recent/item1.png" alt="">
+                                            <img class="img-responsive" src="/images/portfolio/recent/item1.png" alt="">
                                             <h5>
                                                 DCMS - 基于Yii2 开发的小型开源CMS
                                             </h5>
@@ -139,7 +139,7 @@ $this->title = 'My Yii Application';
                                 <div class="col-xs-4">
                                     <div class="portfolio-item">
                                         <div class="item-inner">
-                                            <img class="img-responsive" src="images/portfolio/recent/item2.png" alt="">
+                                            <img class="img-responsive" src="/images/portfolio/recent/item2.png" alt="">
                                             <h5>
                                                 Yincart - 基于Yii2 开发的电商系统
                                             </h5>
@@ -152,7 +152,7 @@ $this->title = 'My Yii Application';
                                 <div class="col-xs-4">
                                     <div class="portfolio-item">
                                         <div class="item-inner">
-                                            <img class="img-responsive" src="images/portfolio/recent/item3.png" alt="">
+                                            <img class="img-responsive" src="/images/portfolio/recent/item3.png" alt="">
                                             <h5>
                                                 Xunsearch - 免费开源的专业全文检索解决方案
                                             </h5>
@@ -169,7 +169,7 @@ $this->title = 'My Yii Application';
                                 <div class="col-xs-4">
                                     <div class="portfolio-item">
                                         <div class="item-inner">
-                                            <img class="img-responsive" src="images/portfolio/recent/item4.png" alt="">
+                                            <img class="img-responsive" src="/images/portfolio/recent/item4.png" alt="">
                                             <h5>
                                                 bageCMS - 基于 Yii1 的博客开源CMS
                                             </h5>
@@ -182,7 +182,7 @@ $this->title = 'My Yii Application';
                                 <div class="col-xs-4">
                                     <div class="portfolio-item">
                                         <div class="item-inner">
-                                            <img class="img-responsive" src="images/portfolio/recent/item5.png" alt="">
+                                            <img class="img-responsive" src="/images/portfolio/recent/item5.png" alt="">
                                             <h5>
                                                 yiifcms - 基于 Yii1框架开发的CMS
                                             </h5>
@@ -195,7 +195,7 @@ $this->title = 'My Yii Application';
                                 <div class="col-xs-4">
                                     <div class="portfolio-item">
                                         <div class="item-inner">
-                                            <img class="img-responsive" src="images/portfolio/recent/item6.png" alt="">
+                                            <img class="img-responsive" src="/images/portfolio/recent/item6.png" alt="">
                                             <h5>
                                                 24betacms - 基于 Yii1 的博客开源项目
                                             </h5>

@@ -16,6 +16,10 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<controller:\w+>/<id:\d+>'=>'<controller>',
+                '<controller:\w+Search[\w+]>'=>'<controller>/<action>',
+                '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
                 'GET,HEAD post/index/<name>' => 'post/tag', //tag 关键字检索
             ],
         ],

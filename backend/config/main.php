@@ -18,6 +18,19 @@ return [
         ]
     ],
     'components' => [
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                // '<controller:\w+>/<id:\d+>'=>'<controller>',
+                '<controller:\w+>' => 'post/index/<PostSearch[tags=\w+>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>'
+                // '<controller:\w+Search[\w+]>'=>'<controller>/<action>',
+                // '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                // '<controller:\w+>/<action:\w+>/<PostSearch[tags]:\w+>'=>'<controller>/',
+                // '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+            ],
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

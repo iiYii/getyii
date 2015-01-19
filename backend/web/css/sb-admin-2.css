@@ -21,7 +21,7 @@ body {
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
-        margin: 0 0 0 250px;
+        margin: 52px 0 0 250px;
         padding: 0 30px;
         border-left: 1px solid #e7e7e7;
     }
@@ -342,4 +342,10 @@ table.dataTable thead .sorting:after {
 
 .panel-yellow a:hover {
     color: #df8a13;
+}
+
+/*面包屑*/
+.breadcrumb {
+   background-color: #fff;
+    padding: 17px 0 0;
 }

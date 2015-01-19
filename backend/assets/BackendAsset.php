@@ -15,6 +15,5 @@ class BackendAsset extends AssetBundle
     ];
     public $js = [
         'metisMenu/dist/metisMenu.min.js',
-        'bootstrap/dist/js/bootstrap.min.js',
     ];
 }

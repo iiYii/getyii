@@ -89,3 +89,12 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+/*面包屑*/
+#page-wrapper {
+    margin: 52px 0 0 250px;
+}
+.breadcrumb {
+   background-color: #fff;
+    padding: 17px 0 0;
+}

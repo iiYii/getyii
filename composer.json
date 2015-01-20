@@ -19,6 +19,7 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "2amigos/yii2-selectize-widget": "*",
+        "bower-asset/sb-admin-2-assets": "*",
         "bower-asset/font-awesome": "*",
         "bower-asset/pagedown": "*",
         "bower-asset/metisMenu": "*"

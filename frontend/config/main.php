@@ -25,6 +25,11 @@ return [
                 // '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             ],
         ],
+        'modules' => [
+            'User' => [
+                'class' => 'frontend\modules\user\module',
+            ],
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

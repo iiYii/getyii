@@ -22,7 +22,8 @@
         "bower-asset/sb-admin-2-assets": "*",
         "bower-asset/font-awesome": "*",
         "bower-asset/pagedown": "*",
-        "bower-asset/metisMenu": "*"
+        "bower-asset/metisMenu": "*",
+        "yiisoft/yii2-authclient": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

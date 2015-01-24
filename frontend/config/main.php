@@ -29,6 +29,19 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
         ],
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'google' => [
+                    'class' => 'yii\authclient\clients\GoogleOpenId'
+                ],
+                'github' => [
+                    'class' => 'yii\authclient\clients\GitHub',
+                    'clientId' => 'github_client_id',
+                    'clientSecret' => 'github_client_secret',
+                ],
+            ],
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -43,7 +56,7 @@ return [
         ],
     ],
     'modules' => [
-        'User' => [
+        'user' => [
             'class' => 'frontend\modules\user\module',
         ],
     ],

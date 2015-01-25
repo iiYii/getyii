@@ -10,6 +10,23 @@ return [
             'thousandSeparator' => ' ',
             'currencyCode' => 'CNY',
         ],
+        'setting' => [
+           'class' => 'funson86\setting\Setting',
+        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => '@common/mail',
+            'useFileTransport' => true,
+            // 'transport' => [
+            //     'class' => 'Swift_SmtpTransport',
+            //     'host' => Yii::$app->setting->get('smtpHost'),
+            //     'username' => Yii::$app->setting->get('smtpUser'),
+            //     'password' => Yii::$app->setting->get('smtpPassword'),
+            //     'port' => Yii::$app->setting->get('smtpPort'),
+            //     'mail' => Yii::$app->setting->get('smtpMail'), // 显示地址
+            //     // 'encryption' => 'tls',
+            // ],
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

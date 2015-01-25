@@ -13,9 +13,10 @@ return [
     'bootstrap' => ['log'],
     'language' => 'zh-CN',
     'modules' => [
-        'wechat' => [
-            'class' => 'callmez\wechat\Module',
-        ]
+        'setting' => [
+            'class' => 'funson86\setting\Module',
+            'controllerNamespace' => 'funson86\setting\controllers'
+        ],
     ],
     'components' => [
         'urlManager' => [

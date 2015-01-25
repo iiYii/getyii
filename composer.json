@@ -23,7 +23,8 @@
         "bower-asset/font-awesome": "*",
         "bower-asset/pagedown": "*",
         "bower-asset/metisMenu": "*",
-        "yiisoft/yii2-authclient": "*"
+        "yiisoft/yii2-authclient": "*",
+        "funson86/yii2-setting": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

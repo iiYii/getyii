@@ -166,6 +166,8 @@ class SiteController extends Controller
 
     public function actionRequestPasswordReset()
     {
+        // var_dump(Yii::$app->setting->get('siteName'));
+        // die();
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {

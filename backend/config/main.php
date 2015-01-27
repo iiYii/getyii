@@ -15,7 +15,7 @@ return [
     'modules' => [
         'setting' => [
             'class' => 'funson86\setting\Module',
-            'controllerNamespace' => 'funson86\setting\controllers'
+            'controllerNamespace' => 'funson86\setting\controllers',
         ],
     ],
     'components' => [

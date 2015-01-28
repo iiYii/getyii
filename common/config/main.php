@@ -2,6 +2,7 @@
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'timeZone' => 'Asia/Shanghai', //time zone affect the formatter datetime format
+    'language' => 'zh-CN',
     'components' => [
         'formatter' => [ //for the showing of date datetime
             'dateFormat' => 'yyyy-MM-dd',

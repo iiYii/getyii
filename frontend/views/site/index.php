@@ -72,7 +72,7 @@ $this->title = 'My Yii Application';
             <div class="col-md-4 col-sm-6">
                 <div class="media">
                     <div class="pull-left">
-                        <i class="glyphicon glyphicon-flash"></i>
+                        <i class="icon-bolt icon-md"></i>
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">快速</h3>
@@ -83,7 +83,7 @@ $this->title = 'My Yii Application';
             <div class="col-md-4 col-sm-6">
                 <div class="media">
                     <div class="pull-left">
-                        <i class="glyphicon glyphicon-cloud"></i>
+                        <i class="icon-cloud icon-md"></i>
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">安全</h3>
@@ -94,7 +94,7 @@ $this->title = 'My Yii Application';
             <div class="col-md-4 col-sm-6">
                 <div class="media">
                     <div class="pull-left">
-                        <i class="glyphicon glyphicon-fire"></i>
+                        <i class="icon-fire icon-md"></i>
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading">专业</h3>

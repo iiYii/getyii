@@ -190,4 +190,23 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+     /**
+     * 根据 email 获取 gravatar 头像的地址
+     * @param $email
+     * @param int $size
+     * @return string
+     */
+    public function getGravatarUrl($email, $size = 64){
+        $gravatar = sprintf('http://gravatar.com/avatar/%s?s=%d', md5($email), $size);
+        return $gravatar;
+    }
+
+    /**
+     * @return gravatar 头像地址
+     */
+    public function getGravatar()
+    {
+        return $this->getGravatarUrl($this->email, 24);
+    }
 }

@@ -21,9 +21,9 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
                 'class' => 'nav nav-pills nav-stacked'
             ],
             'items' => [
-                ['label' => 'Profile',  'url' => ['/user/settings/profile']],
-                ['label' => 'Account',  'url' => ['/user/settings/account']],
-                ['label' => 'Networks', 'url' => ['/user/settings/networks'], 'visible' => $networksVisible],
+                ['label' => '个人资料',  'url' => ['/user/setting/profile']],
+                ['label' => '账号',  'url' => ['/user/setting/account']],
+                ['label' => 'Networks', 'url' => ['/user/setting/networks'], 'visible' => $networksVisible],
             ]
         ]) ?>
     </div>

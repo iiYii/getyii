@@ -59,7 +59,7 @@ AppAsset::register($this);
         } else {
             // 个人中心
             $menuItems[] = ['label' => Yii::$app->user->identity->username, 'url' => ['/user/default']];
-            $menuItems[] = ['label' => '设置', 'url' => ['/user/setting']];
+            $menuItems[] = ['label' => '设置', 'url' => ['/user/setting/profile']];
             $menuItems[] = [
                 'label' => '退出',
                 'url' => ['/site/logout'],

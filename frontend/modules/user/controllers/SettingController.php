@@ -28,10 +28,10 @@ class SettingController extends Controller
     }
 
     /**
-     * Lists all User models.
+     * 修改个人资料
      * @return mixed
      */
-    public function actionIndex()
+    public function actionProfile()
     {
         $model = new UserSettingForm();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -39,7 +39,7 @@ class SettingController extends Controller
             return $this->refresh();
         }
 
-        return $this->render('index', [
+        return $this->render('profile', [
             'model' => $model,
         ]);
     }

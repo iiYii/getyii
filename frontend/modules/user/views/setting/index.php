@@ -34,15 +34,15 @@ $this->title = 'Users';
 
                 <?= $form->field($model, 'username') ?>
                 <?= $form->field($model, 'email') ?>
-                <?= $form->field($model, 'info') ?>
+                <?= $form->field($model, 'info')->textarea(['rows' => 6]) ?>
 
-                <? //= $form->field($model, 'website') ?>
+                <?php // $form->field($model, 'website') ?>
 
-                <? //= $form->field($model, 'location') ?>
+                <?php // $form->field($model, 'location') ?>
 
-                <? //= $form->field($model, 'gravatar_email')->hint(\yii\helpers\Html::a(Yii::t('user', 'Change your avatar at Gravatar.com'), 'http://gravatar.com')) ?>
+                <?php // $form->field($model, 'gravatar_email')->hint(\yii\helpers\Html::a(Yii::t('user', 'Change your avatar at Gravatar.com'), 'http://gravatar.com')) ?>
 
-                <? //= $form->field($model, 'bio')->textarea() ?>
+                <?php // $form->field($model, 'bio')->textarea() ?>
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">

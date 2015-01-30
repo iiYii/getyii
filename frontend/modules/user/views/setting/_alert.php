@@ -3,7 +3,7 @@
  * @Author: forecho
  * @Date:   2015-01-29 23:01:08
  * @Last Modified by:   forecho
- * @Last Modified time: 2015-01-30 22:58:50
+ * @Last Modified time: 2015-01-30 22:33:08
  */
 
 use yii\widgets\Menu;
@@ -27,8 +27,8 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
             ],
             'items' => [
                 ['label' => '个人资料',  'url' => ['/user/setting/profile']],
-                ['label' => '账号设置',  'url' => ['/user/setting/account']],
-                ['label' => '账号绑定', 'url' => ['/user/setting/networks'], 'visible' => $networksVisible],
+                ['label' => '账号',  'url' => ['/user/setting/account']],
+                ['label' => 'Networks', 'url' => ['/user/setting/networks'], 'visible' => $networksVisible],
             ]
         ]) ?>
     </div>

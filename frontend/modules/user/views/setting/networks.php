@@ -1,15 +1,21 @@
 <?php
+/**
+ * @Author: forecho
+ * @Date:   2015-01-29 23:23:12
+ * @Last Modified by:   forecho
+ * @Last Modified time: 2015-01-30 22:56:49
+ */
 
-use dektrium\user\widgets\Connect;
+use frontend\widgets\Connect;
 use yii\helpers\Html;
 
-$this->title = Yii::t('user', 'Networks');
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Networks';
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
+<?php // $this->render('_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
-<div class="row">
+<section class="container">
     <div class="col-md-3">
         <?= $this->render('_menu') ?>
     </div>
@@ -36,11 +42,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             </td>
                             <td style="width: 120px">
                                 <?= $auth->isConnected($client) ?
-                                    Html::a(Yii::t('user', 'Disconnect'), $auth->createClientUrl($client), [
+                                    Html::a('Disconnect', $auth->createClientUrl($client), [
                                         'class' => 'btn btn-danger btn-block',
                                         'data-method' => 'post',
                                     ]) :
-                                    Html::a(Yii::t('user', 'Connect'), $auth->createClientUrl($client), [
+                                    Html::a('Connect', $auth->createClientUrl($client), [
                                         'class' => 'btn btn-success btn-block'
                                     ])
                                 ?>
@@ -52,4 +58,4 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-</div>
+</section>

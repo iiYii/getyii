@@ -1,13 +1,13 @@
 <?php
-namespace common\models;
+namespace frontend\modules\user\models;
 
 use Yii;
 use yii\base\Model;
 
 /**
- * User Setting form
+ * User Profile Form
  */
-class UserSettingForm extends Model
+class ProfileForm extends Model
 {
     public $username;
     public $email;

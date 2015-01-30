@@ -209,4 +209,20 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->getGravatarUrl($this->email, 24);
     }
+
+    /**
+     * @return Account[] Connected accounts ($provider => $account)
+     */
+    public function getAccounts()
+    {
+        $connected = [];
+        //$accounts  = $this->hasMany($this->module->modelMap['Account'], ['user_id' => 'id'])->all();
+
+        // @var Account $account
+        // foreach ($accounts as $account) {
+        //     $connected[$account->provider] = $account;
+        // }
+
+        return $connected;
+    }
 }

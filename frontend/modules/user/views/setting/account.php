@@ -1,30 +1,21 @@
 <?php
-
-/*
- * This file is part of the Dektrium project.
- *
- * (c) Dektrium project <http://github.com/dektrium>
- *
- * For the full copyright and license information, please view the LICENSE.md
- * file that was distributed with this source code.
+/**
+ * @Author: forecho
+ * @Date:   2015-01-29 23:26:54
+ * @Last Modified by:   forecho
+ * @Last Modified time: 2015-01-30 23:25:01
  */
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/**
- * @var $this  yii\web\View
- * @var $form  yii\widgets\ActiveForm
- * @var $model dektrium\user\models\SettingsForm
- */
-
-$this->title = Yii::t('user', 'Account settings');
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = '账号设置';
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
+<?php // $this->render('_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
-<div class="row">
+<section class="container">
     <div class="col-md-3">
         <?= $this->render('_menu') ?>
     </div>
@@ -57,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">
-                        <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?><br>
+                        <?= Html::submitButton('Save', ['class' => 'btn btn-block btn-success']) ?><br>
                     </div>
                 </div>
 
@@ -65,4 +56,4 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-</div>
+</section>

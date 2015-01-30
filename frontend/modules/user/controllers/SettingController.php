@@ -4,7 +4,8 @@ namespace frontend\modules\user\controllers;
 
 use Yii;
 use common\models\User;
-use common\models\UserSettingForm;
+use frontend\modules\user\models\ProfileForm;
+use frontend\modules\user\models\AccountForm;
 use yii\data\ActiveDataProvider;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
@@ -33,7 +34,7 @@ class SettingController extends Controller
      */
     public function actionProfile()
     {
-        $model = new UserSettingForm();
+        $model = new ProfileForm();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->flash('更新成功', 'success');
             return $this->refresh();
@@ -49,76 +50,47 @@ class SettingController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionAccount()
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
+        /** @var SettingsForm $model */
+        $model = Yii::createObject(AccountForm::className());
+        // var_dump($model);
+        $this->performAjaxValidation($model);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', '您的用户信息修改成功');
+            return $this->refresh();
+        }
+
+        return $this->render('account', [
+            'model' => $model,
         ]);
     }
 
+
     /**
-     * Creates a new User model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     *  第三方账号绑定
      * @return mixed
      */
-    public function actionCreate()
+    public function actionNetworks()
     {
-        $model = new User();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+        return $this->render('networks', [
+            'user' => Yii::$app->user->identity
+        ]);
     }
 
-    /**
-     * Updates an existing User model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
 
     /**
-     * Deletes an existing User model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
+     * Performs ajax validation.
+     * @param Model $model
+     * @throws \yii\base\ExitException
      */
-    public function actionDelete($id)
+    protected function performAjaxValidation($model)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the User model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return User the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = User::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            echo json_encode(ActiveForm::validate($model));
+            Yii::$app->end();
         }
     }
 }

@@ -10,6 +10,8 @@ use yii\data\ActiveDataProvider;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
  * SettingController implements the CRUD actions for User model.

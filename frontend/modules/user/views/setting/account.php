@@ -3,7 +3,7 @@
  * @Author: forecho
  * @Date:   2015-01-29 23:26:54
  * @Last Modified by:   forecho
- * @Last Modified time: 2015-01-30 23:25:01
+ * @Last Modified time: 2015-01-31 19:45:14
  */
 
 use yii\helpers\Html;
@@ -13,8 +13,7 @@ $this->title = '账号设置';
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?php // $this->render('_alert', ['module' => Yii::$app->getModule('user')]) ?>
-
+<?php //echo $this->render('_alert', ['module' => Yii::$app->getModule('user')]) ?>
 <section class="container">
     <div class="col-md-3">
         <?= $this->render('_menu') ?>

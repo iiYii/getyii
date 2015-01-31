@@ -3,7 +3,7 @@
  * @Author: forecho
  * @Date:   2015-01-30 23:01:28
  * @Last Modified by:   forecho
- * @Last Modified time: 2015-01-31 21:03:42
+ * @Last Modified time: 2015-01-31 21:08:34
  */
 
 namespace frontend\modules\user\models;
@@ -75,7 +75,7 @@ class AccountForm extends Model
             ['email', 'email'],
             [['email', 'username'], 'unique', 'when' => function ($model, $attribute) {
                 return $this->user->$attribute != $model->$attribute;
-            }, 'targetClass' => '\common\models\User'],
+            }, 'targetClass' => '\common\models\User', 'message' => '此{attribute}已经被使用。'],
             ['new_password', 'string', 'min' => 6],
             ['current_password', function ($attr) {
                 if (!\Yii::$app->security->validatePassword($this->$attr, $this->user->password_hash)) {

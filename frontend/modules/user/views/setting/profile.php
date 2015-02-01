@@ -3,7 +3,7 @@
  * @Author: forecho
  * @Date:   2015-01-29 23:01:08
  * @Last Modified by:   forecho
- * @Last Modified time: 2015-01-30 22:32:57
+ * @Last Modified time: 2015-02-01 22:54:20
  */
 
 use yii\helpers\Html;
@@ -38,8 +38,11 @@ $this->title = 'Users';
                     'validateOnBlur'         => false,
                 ]); ?>
 
-                <?= $form->field($model, 'username') ?>
-                <?= $form->field($model, 'email') ?>
+                <?= $form->field($model, 'location') ?>
+                <?= $form->field($model, 'company') ?>
+                <?= $form->field($model, 'website') ?>
+                <?= $form->field($model, 'github') ?>
+                <?= $form->field($model, 'tagline') ?>
                 <?= $form->field($model, 'info')->textarea(['rows' => 6]) ?>
 
                 <?php // $form->field($model, 'website') ?>

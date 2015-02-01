@@ -4,8 +4,8 @@ namespace frontend\modules\user\controllers;
 
 use Yii;
 use common\models\User;
-use frontend\modules\user\models\ProfileForm;
 use frontend\modules\user\models\AccountForm;
+use common\models\UserInfo;
 use yii\data\ActiveDataProvider;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
@@ -36,11 +36,16 @@ class SettingController extends Controller
      */
     public function actionProfile()
     {
-        $model = new ProfileForm();
+        $model = UserInfo::findOne(Yii::$app->user->id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $user = User::findOne(Yii::$app->user->id);
+            $user->tagline = $model->tagline;
+            $user->save();
+
             $this->flash('更新成功', 'success');
             return $this->refresh();
         }
+        // echo array_values($model->getFirstErrors())[0];
 
         return $this->render('profile', [
             'model' => $model,

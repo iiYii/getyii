@@ -25,6 +25,7 @@ use common\components\db\ActiveRecord;
  */
 class UserInfo extends ActiveRecord
 {
+    public $tagline;
     /**
      * @inheritdoc
      */
@@ -69,6 +70,7 @@ class UserInfo extends ActiveRecord
             'company' => '公司',
             'website' => '个人主页',
             'github' => 'GitHub 帐号',
+            'tagline' => '一句话介绍',
         ];
     }
 }

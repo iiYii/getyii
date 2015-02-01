@@ -203,14 +203,6 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @return gravatar 头像地址
-     */
-    public function getGravatar()
-    {
-        return $this->getGravatarUrl($this->email, 24);
-    }
-
-    /**
      * @return Account[] Connected accounts ($provider => $account)
      */
     public function getAccounts()

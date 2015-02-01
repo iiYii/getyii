@@ -3,7 +3,7 @@
  * @Author: forecho
  * @Date:   2015-01-29 23:01:08
  * @Last Modified by:   forecho
- * @Last Modified time: 2015-01-30 22:58:50
+ * @Last Modified time: 2015-02-01 17:08:08
  */
 
 use yii\widgets\Menu;
@@ -16,7 +16,7 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <img src="<?= $user->gravatar ?>" class="img-rounded" alt="<?= $user->username ?>"/>
+            <img src="http://gravatar.com/avatar/<?= md5($user->email) ?>?s=24" class="img-rounded" alt="<?= $user->username ?>"/>
             <?= $user->username ?>
         </h3>
     </div>

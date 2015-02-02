@@ -57,7 +57,7 @@ class UserInfo extends ActiveRecord
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
-            'info' => '会员简介',
+            'info' => '个人介绍',
             'login_count' => '登录次数',
             'prev_login_time' => '上次登录时间',
             'prev_login_ip' => '上次登录IP',

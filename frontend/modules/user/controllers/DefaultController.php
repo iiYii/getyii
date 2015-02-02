@@ -4,6 +4,7 @@ namespace frontend\modules\user\controllers;
 
 use yii\web\Controller;
 use common\models\User;
+use common\models\UserInfo;
 
 class DefaultController extends Controller
 {
@@ -20,14 +21,16 @@ class DefaultController extends Controller
      */
     public function actionShow($id)
     {
-        $profile = User::findOne($id);
+        $user = User::findOne($id);
 
-        if ($profile === null) {
+        if ($user === null) {
             throw new NotFoundHttpException;
         }
+        $profile = UserInfo::findOne($id);
 
         return $this->render('show', [
             'profile' => $profile,
+            'user' => $user,
         ]);
     }
 }

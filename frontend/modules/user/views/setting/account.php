@@ -39,9 +39,9 @@ $this->title = '账号设置';
 
                 <?= $form->field($model, 'username') ?>
 
-                <?= $form->field($model, 'new_password')->passwordInput() ?>
-
                 <?= $form->field($model, 'tagline') ?>
+
+                <?= $form->field($model, 'new_password')->passwordInput()->hint('不填写则不修改密码') ?>
 
                 <hr/>
 
@@ -49,7 +49,7 @@ $this->title = '账号设置';
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">
-                        <?= Html::submitButton('Save', ['class' => 'btn btn-block btn-success']) ?><br>
+                        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?><br>
                     </div>
                 </div>
 

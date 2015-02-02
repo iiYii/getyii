@@ -1,5 +1,6 @@
 <?php
 use frontend\assets\AppAsset;
+use frontend\assets\BowerAsset;
 use frontend\widgets\Alert;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -10,6 +11,7 @@ use yii\widgets\Breadcrumbs;
 /* @var $content string */
 
 AppAsset::register($this);
+BowerAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

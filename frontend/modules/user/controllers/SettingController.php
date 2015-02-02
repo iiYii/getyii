@@ -38,9 +38,6 @@ class SettingController extends Controller
     {
         $model = UserInfo::findOne(Yii::$app->user->id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $user = User::findOne(Yii::$app->user->id);
-            $user->tagline = $model->tagline;
-            $user->save();
 
             $this->flash('更新成功', 'success');
             return $this->refresh();

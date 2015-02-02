@@ -28,6 +28,9 @@ class AccountForm extends Model
     public $username;
 
     /** @var string */
+    public $tagline;
+
+    /** @var string */
     public $new_password;
 
     /** @var string */
@@ -59,7 +62,8 @@ class AccountForm extends Model
         $this->module = \Yii::$app->getModule('user');
         $this->setAttributes([
             'username' => $this->user->username,
-            'email'    => $this->user->email
+            'email'    => $this->user->email,
+            'tagline'  => $this->user->tagline,
         ], false);
         parent::__construct($config);
     }
@@ -77,6 +81,7 @@ class AccountForm extends Model
                 return $this->user->$attribute != $model->$attribute;
             }, 'targetClass' => '\common\models\User', 'message' => '此{attribute}已经被使用。'],
             ['new_password', 'string', 'min' => 6],
+            ['tagline', 'string', 'max' => 40],
             ['current_password', function ($attr) {
                 if (!\Yii::$app->security->validatePassword($this->$attr, $this->user->password_hash)) {
                     $this->addError($attr, '当前密码是输入错误');
@@ -92,6 +97,7 @@ class AccountForm extends Model
             'email'            => 'Email',
             'username'         => '用户名',
             'new_password'     => '新密码',
+            'tagline'          => '一句话介绍',
             'current_password' => '当前密码'
         ];
     }
@@ -111,7 +117,9 @@ class AccountForm extends Model
     {
         if ($this->validate()) {
             $this->user->username = $this->username;
-            $this->user->password = $this->new_password;
+            // 新密码没填写 则为不修改密码
+            ($this->new_password) ? $this->user->password = $this->new_password : '';
+            $this->user->tagline = $this->tagline;
             return $this->user->save();
         }
 

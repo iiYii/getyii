@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\UserSettingForm */
 /* @var $form ActiveForm */
 
-$this->title = 'Users';
+$this->title = '个人资料';
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
 <section class="container user-index">
@@ -39,10 +39,13 @@ $this->title = 'Users';
                 ]); ?>
 
                 <?= $form->field($model, 'location') ?>
+
                 <?= $form->field($model, 'company') ?>
+
                 <?= $form->field($model, 'website') ?>
+
                 <?= $form->field($model, 'github') ?>
-                <?= $form->field($model, 'tagline') ?>
+
                 <?= $form->field($model, 'info')->textarea(['rows' => 6]) ?>
 
                 <?php // $form->field($model, 'website') ?>

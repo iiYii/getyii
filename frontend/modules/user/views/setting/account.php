@@ -41,6 +41,8 @@ $this->title = '账号设置';
 
                 <?= $form->field($model, 'new_password')->passwordInput() ?>
 
+                <?= $form->field($model, 'tagline') ?>
+
                 <hr/>
 
                 <?= $form->field($model, 'current_password')->passwordInput() ?>

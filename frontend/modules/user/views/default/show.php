@@ -44,4 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+
+    <?php echo $this->render('_view', ['module' => Yii::$app->getModule('user')]) ?>
 </section>

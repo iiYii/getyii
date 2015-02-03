@@ -193,3 +193,9 @@ a.desc:after {
     font-size: 0.8em;
     font-weight: bold;
 }
+
+.User-default-index .list-group .list-group-item:first-child {
+    border-top: none;
+    border-top-left-radius:0;
+    border-top-right-radius:0;
+}

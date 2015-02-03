@@ -2,8 +2,8 @@
 
 use yii\helpers\Html;
 
-$this->title = Html::encode($user->username);
-$this->params['breadcrumbs'][] = $this->title;
+// $this->title = Html::encode($user->username);
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
 <section class="container User-default-index">
     <div class="col-xs-12 col-sm-6 col-md-6">

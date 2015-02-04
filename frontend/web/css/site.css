@@ -194,8 +194,16 @@ a.desc:after {
     font-weight: bold;
 }
 
-.User-default-index .list-group .list-group-item:first-child {
+.user-default-index .list-group .list-group-item:first-child {
     border-top: none;
     border-top-left-radius:0;
     border-top-right-radius:0;
+}
+
+.user-default-index .list-group-item-text{
+    font-size: 12px;
+}
+
+.user-default-index .list-group-item-text span {
+    color: #bbb;
 }

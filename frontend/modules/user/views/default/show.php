@@ -7,7 +7,7 @@ use yii\widgets\ListView;
 // $this->title = Html::encode($user->username);
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
-<section class="container User-default-index">
+<section class="container user-default-index">
     <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="row">
             <div class="col-sm-6 col-md-4">

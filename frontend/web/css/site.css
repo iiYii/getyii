@@ -204,6 +204,12 @@ a.desc:after {
     font-size: 12px;
 }
 
+.user-default-index .list-group-item:focus, .user-default-index .list-group-item:hover {
+  color: #555;
+  text-decoration: none;
+  background-color: #f5f5f5;
+}
+
 .user-default-index .list-group-item-text span {
     color: #bbb;
 }

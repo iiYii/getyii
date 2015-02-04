@@ -3,7 +3,6 @@
 namespace frontend\modules\user;
 
 use yii\base\Module as BaseModule;
-use yii\web\GroupUrlRule;
 
 class module extends BaseModule
 {
@@ -17,17 +16,5 @@ class module extends BaseModule
     {
         parent::init();
 
-    	$configUrlRule = [
-	        'prefix' => $this->urlPrefix,
-	        'rules'  => $this->urlRules
-	    ];
-	    \Yii::$app->get('urlManager')->rules[] = new GroupUrlRule($configUrlRule);
-
     }
-
-    public $urlPrefix = 'user';
-    public $urlRules = [
-    	'<username:\w+>' => 'default/show',
-    	'setting' => 'setting/profile',
-    ];
 }

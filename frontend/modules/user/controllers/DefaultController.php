@@ -4,7 +4,6 @@ namespace frontend\modules\user\controllers;
 
 use yii\web\Controller;
 use common\models\User;
-use common\models\UserInfo;
 use yii\web\NotFoundHttpException;
 
 class DefaultController extends Controller
@@ -12,7 +11,6 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         return $this->redirect(['show', 'username' => \Yii::$app->user->identity->username]);
-        // return $this->redirect(['show', 'id' => \Yii::$app->user->id]);
     }
 
     /**
@@ -33,17 +31,4 @@ class DefaultController extends Controller
             'user' => $user,
         ]);
     }
-
-    // public function actionShow($id=1)
-    // {
-    //     $user = User::findOne($id);
-
-    //     if ($user === null) {
-    //         throw new NotFoundHttpException;
-    //     }
-
-    //     return $this->render('show', [
-    //         'user' => $user,
-    //     ]);
-    // }
 }

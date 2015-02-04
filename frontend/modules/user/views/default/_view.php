@@ -13,68 +13,9 @@ use yii\widgets\ActiveForm;
 // $this->title = '账号设置';
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="col-md-9">
-    </br>
-    <?= Menu::widget([
-        'options' => [
-            'class' => 'nav nav-tabs nav-justified'
-        ],
-        'items' => [
-            ['label' => '最近主题',  'url' => ['/user/default/show', 'username'=> Yii::$app->getRequest()->getQueryParam('username')]],
-            ['label' => '最新评论',  'url' => ['/user/default/index']],
-            ['label' => '最新收藏',  'url' => ['/user/default/show?id=1']],
-        ]
-    ]) ?>
-
-    <div class="list-group">
-        <div class="list-group-item">
-            <a href="">
-                <h4 class="list-group-item-heading">List group item heading</h4>
-            </a>
-            <p class="list-group-item-text">...</p>
-        </div>
-       <div class="list-group-item">
-            <a href="">
-                <h4 class="list-group-item-heading">List group item heading</h4>
-            </a>
-            <p class="list-group-item-text">...</p>
-        </div>
-       <div class="list-group-item">
-            <a href="">
-                <h4 class="list-group-item-heading">List group item heading</h4>
-            </a>
-            <p class="list-group-item-text">...</p>
-        </div>
-       <div class="list-group-item">
-            <a href="">
-                <h4 class="list-group-item-heading">List group item heading</h4>
-            </a>
-            <p class="list-group-item-text">...</p>
-        </div>
-       <div class="list-group-item">
-            <a href="">
-                <h4 class="list-group-item-heading">List group item heading</h4>
-            </a>
-            <p class="list-group-item-text">...</p>
-        </div>
-       <div class="list-group-item">
-            <a href="">
-                <h4 class="list-group-item-heading">List group item heading</h4>
-            </a>
-            <p class="list-group-item-text">...</p>
-        </div>
-       <div class="list-group-item">
-            <a href="">
-                <h4 class="list-group-item-heading">List group item heading</h4>
-            </a>
-            <p class="list-group-item-text">...</p>
-        </div>
-       <div class="list-group-item">
-            <a href="">
-                <h4 class="list-group-item-heading">List group item heading</h4>
-            </a>
-            <p class="list-group-item-text">...</p>
-        </div>
-    </div>
+<div class="list-group-item">
+    <a href="">
+        <h4 class="list-group-item-heading"><?= $model->title?></h4>
+    </a>
+    <p class="list-group-item-text"><a href="">分类</a> 16 人喜欢 • 15 条回复</p>
 </div>
-

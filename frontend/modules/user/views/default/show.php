@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\Menu;
+use yii\widgets\ListView;
 
 // $this->title = Html::encode($user->username);
 // $this->params['breadcrumbs'][] = $this->title;
@@ -45,5 +47,32 @@ use yii\helpers\Html;
         </div>
     </div>
 
-    <?php echo $this->render('_view', ['module' => Yii::$app->getModule('user')]) ?>
+
+    <div class="col-md-9">
+        </br>
+        <?= Menu::widget([
+            'options' => [
+                'class' => 'nav nav-tabs nav-justified'
+            ],
+            'items' => [
+                ['label' => '最新评论',  'url' => ['/user/default/show', 'username'=> Yii::$app->getRequest()->getQueryParam('username')]],
+                ['label' => '最新主题',  'url' => ['/user/default/index']],
+                ['label' => '最新收藏',  'url' => ['/user/default/show?id=1']],
+            ]
+        ]) ?>
+
+        <div class="list-group">
+            <?= ListView::widget([
+                'dataProvider' => $dataProvider,
+                'itemOptions' => ['class' => 'item'],
+                'summary' => false,
+                'itemView' => '_view',
+                'pager' => [
+                    'options' => ['class'=>'pagination pagination-lg'],
+                    'prevPageLabel' => '<i class="icon-angle-left"></i>',
+                    'nextPageLabel' => '<i class="icon-angle-right"></i>',
+                ]
+            ]) ?>
+        </div>
+    </div>
 </section>

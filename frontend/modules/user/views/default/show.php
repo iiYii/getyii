@@ -15,31 +15,31 @@ use yii\helpers\Html;
                 <h4><?= Html::tag('b', $user->username), '，', $user->tagline ?></h4>
                 <ul style="padding: 0; list-style: none outside none;">
 
-                    <?php if (!empty($profile->location)): ?>
-                        <li><i class="fa fa-map-marker text-muted"></i> <?= Html::encode($profile->location) ?></li>
+                    <?php if (!empty($user->userInfo->location)): ?>
+                        <li><i class="fa fa-map-marker text-muted"></i> <?= Html::encode($user->userInfo->location) ?></li>
                     <?php endif; ?>
 
-                    <?php if (!empty($profile->company)): ?>
-                        <li><i class="fa fa-laptop"></i> <?= Html::a(Html::encode($profile->company), Html::encode($profile->company)) ?></li>
+                    <?php if (!empty($user->userInfo->company)): ?>
+                        <li><i class="fa fa-laptop"></i> <?= Html::a(Html::encode($user->userInfo->company), Html::encode($user->userInfo->company)) ?></li>
                     <?php endif; ?>
 
-                    <?php if (!empty($profile->website)): ?>
-                        <li><i class="fa fa-globe text-muted"></i> <?= Html::a(Html::encode($profile->website), Html::encode($profile->website)) ?></li>
+                    <?php if (!empty($user->userInfo->website)): ?>
+                        <li><i class="fa fa-globe text-muted"></i> <?= Html::a(Html::encode($user->userInfo->website), Html::encode($user->userInfo->website)) ?></li>
                     <?php endif; ?>
 
-                    <?php if (!empty($profile->github)): ?>
-                        <li><i class="fa fa-github text-muted"></i> <?= Html::a(Html::encode($profile->github), Html::encode($profile->github)) ?></li>
+                    <?php if (!empty($user->userInfo->github)): ?>
+                        <li><i class="fa fa-github text-muted"></i> <?= Html::a(Html::encode($user->userInfo->github), Html::encode($user->userInfo->github)) ?></li>
                     <?php endif; ?>
 
-                    <li><i class="fa fa-calendar text-muted"></i> <?= '加入于 ', Yii::$app->formatter->asDateTime($profile->created_at) ?></li>
+                    <li><i class="fa fa-calendar text-muted"></i> <?= '加入于 ', Yii::$app->formatter->asDateTime($user->userInfo->created_at) ?></li>
 
-                    <?php if (!empty($profile->info)): ?>
-                        <li><i class="fa fa-user text-muted"></i> <?= Html::a(Html::encode($profile->info), Html::encode($profile->info)) ?></li>
+                    <?php if (!empty($user->userInfo->info)): ?>
+                        <li><i class="fa fa-user text-muted"></i> <?= Html::a(Html::encode($user->userInfo->info), Html::encode($user->userInfo->info)) ?></li>
                     <?php endif; ?>
 
                 </ul>
-                <?php if (!empty($profile->bio)): ?>
-                    <p><?= Html::encode($profile->bio) ?></p>
+                <?php if (!empty($user->userInfo->bio)): ?>
+                    <p><?= Html::encode($user->userInfo->bio) ?></p>
                 <?php endif; ?>
             </div>
         </div>

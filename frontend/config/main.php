@@ -17,10 +17,10 @@ return [
             'showScriptName' => false,
             'rules' => [
                 // '<controller:\w+>/<id:\d+>'=>'<controller>',
-                '<controller:\w+>' => 'post/index/<PostSearch[tags=\w+>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>'
+                // '<controller:\w+>' => 'post/index/<PostSearch[tags=\w+>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 // '<controller:\w+Search[\w+]>'=>'<controller>/<action>',
-                // '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                '<module>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
                 // '<controller:\w+>/<action:\w+>/<PostSearch[tags]:\w+>'=>'<controller>/',
                 // '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             ],

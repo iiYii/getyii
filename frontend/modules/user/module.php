@@ -2,7 +2,10 @@
 
 namespace frontend\modules\user;
 
-class module extends \yii\base\Module
+use yii\base\Module as BaseModule;
+use yii\web\GroupUrlRule;
+
+class module extends BaseModule
 {
 	public $modelMap = [];
 	/** @var bool Whether to show flash messages. */
@@ -14,6 +17,17 @@ class module extends \yii\base\Module
     {
         parent::init();
 
-        // custom initialization code goes here
+    	$configUrlRule = [
+	        'prefix' => $this->urlPrefix,
+	        'rules'  => $this->urlRules
+	    ];
+	    \Yii::$app->get('urlManager')->rules[] = new GroupUrlRule($configUrlRule);
+
     }
+
+    public $urlPrefix = 'user';
+    public $urlRules = [
+    	'<username:\w+>' => 'default/show',
+    	'setting' => 'setting/profile',
+    ];
 }

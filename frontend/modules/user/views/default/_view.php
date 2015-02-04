@@ -20,8 +20,8 @@ use yii\widgets\ActiveForm;
             'class' => 'nav nav-tabs nav-justified'
         ],
         'items' => [
+            ['label' => '最近主题',  'url' => ['/user/default/show', 'username'=> Yii::$app->getRequest()->getQueryParam('username')]],
             ['label' => '最新评论',  'url' => ['/user/default/index']],
-            ['label' => '最近主题',  'url' => ['/user/setting/show']],
             ['label' => '最新收藏',  'url' => ['/user/default/show?id=1']],
         ]
     ]) ?>

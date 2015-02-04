@@ -5,6 +5,7 @@ use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use common\models\UserInfo;
 use yii\web\IdentityInterface;
 
 /**
@@ -202,6 +203,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function getGravatarUrl($email, $size = 64){
         $gravatar = sprintf('http://gravatar.com/avatar/%s?s=%d', md5($email), $size);
         return $gravatar;
+    }
+
+    public function getUserInfo()
+    {
+        return $this->hasOne(UserInfo::className(), ['user_id' => 'id']);
     }
 
     /**

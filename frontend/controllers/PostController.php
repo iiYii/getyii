@@ -6,10 +6,12 @@ use Yii;
 use common\Models\Post;
 use yii\filters\AccessControl;
 use common\Models\PostSearch;
+use common\Models\PostComment;
 use common\Models\UserMeta;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -74,8 +76,13 @@ class PostController extends Controller
      */
     public function actionView($id)
     {
+        $dataProvider = new ActiveDataProvider([
+            'query' => PostComment::find(['post_id' => $id]),
+        ]);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'dataProvider' => $dataProvider,
         ]);
     }
 

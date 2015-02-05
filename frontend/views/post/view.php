@@ -5,6 +5,7 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 use frontend\widgets\PostRight;
 use yii\helpers\Markdown;
+use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $model common\Models\Post */
@@ -81,6 +82,46 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
                             </div>
                         </div><!--/.author-->
+
+                        <div id="comments">
+                            <div id="comments-list">
+                                <h3>3 Comments</h3>
+                                <?= ListView::widget([
+                                    'dataProvider' => $dataProvider,
+                                    'itemOptions' => ['class' => 'item'],
+                                    'summary' => false,
+                                    'itemView' => '_comment',
+                                    'pager' => [
+                                        'options' => ['class'=>'pagination pagination-lg'],
+                                        'prevPageLabel' => '<i class="icon-angle-left"></i>',
+                                        'nextPageLabel' => '<i class="icon-angle-right"></i>',
+                                    ]
+                                ]) ?>
+
+                            </div><!--/#comments-list-->
+
+                            <div id="comment-form">
+                                <h3>Leave a comment</h3>
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" placeholder="Name">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="email" class="form-control" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <textarea rows="8" class="form-control" placeholder="Comment"></textarea>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-danger btn-lg">Submit Comment</button>
+                                </form>
+                            </div><!--/#comment-form-->
+                        </div><!--/#comments-->
+
+
 
                     </div>
                 </div><!--/.blog-item-->

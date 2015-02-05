@@ -6,6 +6,7 @@ return [
     'components' => [
         'formatter' => [ //for the showing of date datetime
             'dateFormat' => 'yyyy-MM-dd',
+            'locale' => 'zh-CN',
             'datetimeFormat' => 'yyyy-MM-dd HH:mm:ss',
             'decimalSeparator' => ',',
             'thousandSeparator' => ' ',

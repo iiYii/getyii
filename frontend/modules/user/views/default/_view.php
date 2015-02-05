@@ -10,12 +10,13 @@ use yii\helpers\Html;
 ?>
 <div class="list-group-item">
     <?= Html::a(
-        Html::tag('h4', $model->title, ['class' => 'list-group-item-heading']),
-        ['/post/view',
-        'id' => $model->id]
-    );?>
+        $model->title,
+        ['/post/view', 'id' => $model->id],
+        ['class' => 'list-group-item-heading']
+    )?>
+    <?=  Html::tag('em',Yii::$app->formatter->asRelativeTime($model->created_at)) ?>
     <p class="list-group-item-text">
-        <?= Html::a($model->category->name, ['/post/view', 'id' => $model->id]);?>
+        <?= Html::a($model->category->name, ['/post/view', 'id' => $model->id])?>
         <span>
             <?= $model->like_count ?> 人喜欢 • <?= $model->comment_count ?> 条回复
         </span>

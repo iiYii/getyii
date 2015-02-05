@@ -5,7 +5,7 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 use frontend\widgets\PostRight;
 use yii\helpers\Markdown;
-use yii\widgets\ListView;
+use frontend\assets\PageDownAsset;
 
 /* @var $this yii\web\View */
 /* @var $model common\Models\Post */
@@ -13,6 +13,7 @@ use yii\widgets\ListView;
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+PageDownAsset::register($this);
 ?>
 
 <section id="blog" class="container">
@@ -83,45 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                         </div><!--/.author-->
 
-                        <div id="comments">
-                            <div id="comments-list">
-                                <h3>3 Comments</h3>
-                                <?= ListView::widget([
-                                    'dataProvider' => $dataProvider,
-                                    'itemOptions' => ['class' => 'item'],
-                                    'summary' => false,
-                                    'itemView' => '_comment',
-                                    'pager' => [
-                                        'options' => ['class'=>'pagination pagination-lg'],
-                                        'prevPageLabel' => '<i class="icon-angle-left"></i>',
-                                        'nextPageLabel' => '<i class="icon-angle-right"></i>',
-                                    ]
-                                ]) ?>
-
-                            </div><!--/#comments-list-->
-
-                            <div id="comment-form">
-                                <h3>Leave a comment</h3>
-                                <form class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" placeholder="Name">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="email" class="form-control" placeholder="Email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <textarea rows="8" class="form-control" placeholder="Comment"></textarea>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-danger btn-lg">Submit Comment</button>
-                                </form>
-                            </div><!--/#comment-form-->
-                        </div><!--/#comments-->
-
-
+                        <?= $this->render('_commentView', ['model' => $comment, 'dataProvider' => $dataProvider]) ?>
 
                     </div>
                 </div><!--/.blog-item-->
@@ -130,8 +93,16 @@ $this->params['breadcrumbs'][] = $this->title;
     </div><!--/.row-->
 </section><!--/#blog-->
 <?php
-$apiUrl = Url::to(['api']);
-$script = <<<EOF
+if (!Yii::$app->user->getIsGuest()) {
+    $apiUrl = Url::to(['api']);
+    $script = <<<EOF
+$('#wmd-input').one('focus', function(){
+    var commentConverter = Markdown.getSanitizingConverter();
+        commentEditor = new Markdown.Editor(commentConverter);
+    commentEditor.run();
+    $('#wmd-preview').removeClass('hide');
+});
+
 //赞, 踩, 收藏
 $(document).on('click', '[data-do]', function(e){
     var _this = $(this),
@@ -171,4 +142,6 @@ $(document).on('click', '[data-do]', function(e){
     });
 });
 EOF;
-$this->registerJs($script);
+
+    $this->registerJs($script);
+}

@@ -39,7 +39,7 @@ class PostController extends Controller
                      // 登录用户才能提交评论或其他内容
                      [
                         'allow' => true,
-                        'actions' => ['api'],
+                        'actions' => ['api', 'view'],
                         'verbs' => ['POST'],
                         'roles' => ['@'],
                      ],
@@ -76,13 +76,16 @@ class PostController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $comment = $this->newComment($model);
         $dataProvider = new ActiveDataProvider([
             'query' => PostComment::find(['post_id' => $id]),
         ]);
 
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
             'dataProvider' => $dataProvider,
+            'comment' => $comment,
         ]);
     }
 
@@ -144,6 +147,25 @@ class PostController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * 创建新回答
+     * @param $question
+     * @return PostComment
+     */
+    protected function newComment(Post $post)
+    {
+        $model = new PostComment();
+        if ($model->load(Yii::$app->request->post())) {
+            $model->user_id = Yii::$app->user->id;
+            $model->post_id = $post->id;
+            $model->ip = Yii::$app->getRequest()->getUserIP();
+            if ($model ->save()) {
+                return $this->message('回答发表成功!', 'success', $this->refresh(), 'flash');
+            }
+        }
+        return $model;
     }
 
     /**

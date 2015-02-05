@@ -17,6 +17,8 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'people/<username:\w+>' => 'user/default/show',
+                'people/<username:\w+>/post' => 'user/default/post',
+                'people/<username:\w+>/favorite' => 'user/default/favorite',
                 '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
                 '<module>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
             ],

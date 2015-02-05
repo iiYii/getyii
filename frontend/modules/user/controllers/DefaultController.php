@@ -23,33 +23,66 @@ class DefaultController extends Controller
      */
     public function actionShow($username='')
     {
-        $user = User::findOne(['username' => $username]);
-
-        if ($user === null) {
-            throw new NotFoundHttpException;
-        }
+        $user = $this->user($username);
 
         return $this->render('show', [
             'user' => $user,
-            'dataProvider' =>$this->post($username),
+            'dataProvider' =>$this->comment($username),
         ]);
     }
 
-
-    public function comment($username='')
-    {
-        # code...
-    }
-
-    public function post($username='')
+    protected function comment($username='')
     {
         return new ActiveDataProvider([
             'query' => Post::find(['username' => $username]),
         ]);
     }
 
-    public function favorite($username='')
+    /**
+     * 最近主题
+     * @param  string $username [description]
+     * @return [type]           [description]
+     */
+    public function actionPost($username='')
     {
-        # code...
+        $user = $this->user($username);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Post::find(['username' => $username]),
+        ]);
+
+        return $this->render('show', [
+            'user' => $user,
+            'dataProvider' =>$dataProvider,
+        ]);
+    }
+
+    /**
+     * 最新收藏
+     * @param  string $username [description]
+     * @return [type]           [description]
+     */
+    public function actionFavorite($username='')
+    {
+        $user = $this->user($username);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Post::find(['username' => $username]),
+        ]);
+
+        return $this->render('show', [
+            'user' => $user,
+            'dataProvider' =>$dataProvider,
+        ]);
+    }
+
+    protected function user($username='')
+    {
+        $user = User::findOne(['username' => $username]);
+
+        if ($user === null) {
+            throw new NotFoundHttpException;
+        }
+        return $user;
     }
 }

@@ -6,6 +6,7 @@ use yii\widgets\ListView;
 
 // $this->title = Html::encode($user->username);
 // $this->params['breadcrumbs'][] = $this->title;
+$username = Yii::$app->getRequest()->getQueryParam('username');
 ?>
 <section class="container user-default-index">
     <div class="col-xs-12 col-sm-6 col-md-6">
@@ -55,9 +56,9 @@ use yii\widgets\ListView;
                 'class' => 'nav nav-tabs nav-justified'
             ],
             'items' => [
-                ['label' => '最新评论',  'url' => ['/user/default/show', 'username'=> Yii::$app->getRequest()->getQueryParam('username')]],
-                ['label' => '最新主题',  'url' => ['/user/default/index']],
-                ['label' => '最新收藏',  'url' => ['/user/default/show?id=1']],
+                ['label' => '最新评论',  'url' => ['/user/default/show', 'username'=> $username]],
+                ['label' => '最新主题',  'url' => ['/user/default/post', 'username'=> $username]],
+                ['label' => '最新收藏',  'url' => ['/user/default/favorite', 'username'=> $username]],
             ]
         ]) ?>
 

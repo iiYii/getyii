@@ -15,7 +15,7 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
                 <img src="http://gravatar.com/avatar/<?= md5($user->email) ?>?s=230" alt="" class="img-rounded img-responsive" />
             </div>
             <div class="col-sm-6 col-md-8">
-                <h4><?= Html::tag('b', $user->username), '，', $user->tagline ?></h4>
+                <h4><?= Html::tag('strong', $user->username), '，', $user->tagline ?></h4>
                 <ul style="padding: 0; list-style: none outside none;">
 
                     <?php if (!empty($user->userInfo->location)): ?>

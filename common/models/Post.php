@@ -88,6 +88,12 @@ class Post extends ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+
+    public function getUserInfo()
+    {
+        return $this->hasOne(UserInfo::className(), ['user_id' => 'user_id']);
+    }
+
     public function getFavorite()
     {
         $model = new UserMeta();

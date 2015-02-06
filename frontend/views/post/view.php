@@ -73,13 +73,13 @@ PageDownAsset::register($this);
                         <div class="author well">
                             <div class="media">
                                 <div class="pull-left">
-                                    <img class="avatar img-thumbnail" src="/images/blog/avatar.jpg" alt="">
+                                    <img src="http://gravatar.com/avatar/<?= md5($model->user->email) ?>?s=75" alt="" class="avatar img-thumbnail" />
                                 </div>
                                 <div class="media-body">
                                     <div class="media-heading">
-                                        <strong><?= $model->user->username ?></strong>
+                                        <?= Html::tag('strong', $model->user->username), '，', $model->user->tagline ?>
                                     </div>
-                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
+                                    <p><?= $model->userInfo->info ?></p>
                                 </div>
                             </div>
                         </div><!--/.author-->

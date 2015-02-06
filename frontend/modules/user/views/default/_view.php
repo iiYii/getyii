@@ -11,6 +11,7 @@ use yii\helpers\Markdown;
 ?>
 <div class="list-group-item">
     <?php if ($this->context->action->id == 'show'): ?>
+        <!-- 评论 -->
         <?= Html::a(
             $model->post->title,
             ['/post/view', 'id' => $model->id],
@@ -19,6 +20,10 @@ use yii\helpers\Markdown;
         <?=  Html::tag('em',Yii::$app->formatter->asRelativeTime($model->created_at)) ?>
         <p><?= Markdown::process($model->comment, 'gfm') ?></p>
     <?php else: ?>
+        <?php if ($this->context->action->id == 'favorite'): ?>
+            <i class="icon-bookmark"></i>
+        <?php endif ?>
+        <!-- 文章 -->
         <?= Html::a(
             $model->title,
             ['/post/view', 'id' => $model->id],

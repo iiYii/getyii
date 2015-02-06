@@ -7,8 +7,8 @@
  */
 
 use yii\helpers\Html;
+use yii\helpers\Markdown;
 ?>
-
 <div class="media">
     <div class="pull-left">
         <img src="http://gravatar.com/avatar/<?= md5($model->user['email']) ?>?s=80" alt="" class="avatar img-circle" />
@@ -16,10 +16,13 @@ use yii\helpers\Html;
     <div class="media-body">
         <div class="well">
             <div class="media-heading">
-                <strong>John Doe</strong>&nbsp; <small>27 Aug 2013</small>
-                <a class="pull-right" href="#"><i class="icon-repeat"></i> Reply</a>
+                <strong><?= $model->user['username'] ?></strong>&nbsp; <small><?= Yii::$app->formatter->asRelativeTime($model->created_at) ?></small>
+                <a class="pull-right comment-reply" href="#" data-floor="" data-username="<?= $model->user['username'] ?>"><i class="icon-repeat"></i>回复</a>
             </div>
-            <p><?= $model->comment ?></p>
+            <p><?= Markdown::process($model->comment, 'gfm') ?></p>
         </div>
     </div>
 </div><!--/.media-->
+<script>
+
+</script>

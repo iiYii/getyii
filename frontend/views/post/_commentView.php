@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-use yii\helpers\Markdown;
 use yii\widgets\ListView;
 ?>
 <div id="comments">

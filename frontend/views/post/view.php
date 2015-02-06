@@ -103,6 +103,13 @@ $('#wmd-input').one('focus', function(){
     $('#wmd-preview').removeClass('hide');
 });
 
+$(".comment-reply").on('click', function(e){
+    e.preventDefault();
+    var comment = $("#wmd-input").html(),
+        username = "@" + $(this).attr("data-username") + " ";
+    $("#wmd-input").html(comment + username);
+});
+
 //赞, 踩, 收藏
 $(document).on('click', '[data-do]', function(e){
     var _this = $(this),

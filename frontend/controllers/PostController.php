@@ -79,7 +79,7 @@ class PostController extends Controller
         $model = $this->findModel($id);
         $comment = $this->newComment($model);
         $dataProvider = new ActiveDataProvider([
-            'query' => PostComment::find(['post_id' => $id]),
+            'query' => PostComment::find()->where(['post_id' => $id]),
         ]);
 
         return $this->render('view', [
@@ -162,6 +162,8 @@ class PostController extends Controller
             $model->post_id = $post->id;
             $model->ip = Yii::$app->getRequest()->getUserIP();
             if ($model ->save()) {
+                // 评论计数器
+                Post::updateAllCounters(['comment_count' =>1], ['id' => $post->id]);
                 return $this->message('回答发表成功!', 'success', $this->refresh(), 'flash');
             }
         }

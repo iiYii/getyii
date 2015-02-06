@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\Models\PostTag;
+use common\models\PostTag;
 use yii\helpers\ArrayHelper;
 use common\models\PostTagSearch;
 use common\components\Controller;

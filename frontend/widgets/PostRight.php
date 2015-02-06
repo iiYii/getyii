@@ -8,8 +8,8 @@
 
 namespace frontend\widgets;
 
-use common\Models\PostTag;
-use common\Models\PostMeta;
+use common\models\PostTag;
+use common\models\PostMeta;
 
 class PostRight extends \yii\bootstrap\Widget
 {

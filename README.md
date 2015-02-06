@@ -7,7 +7,8 @@
 1. 手动新建一个数据库名为 vfanr，然后更该 `common/config/main-local.php` 里面的 `dbname=vfanr`。
 1. 在终端输入命令 `yii migrate` (windows下面可能是 `php yii migrate` 命令)初始化数据。
 1. 在终端输入命令 `curl -sS https://getcomposer.org/installer | php` 安装 PHP 的 [Composer](http://docs.phpcomposer.com/download/)。
-1. 在终端输入命令 `php composer.phar global require "fxp/composer-asset-plugin:~1.0""` 安装 [composer-asset-plugin](https://github.com/francoispluchino/composer-asset-plugin) 来管理静态资源文件。
+1. 在终端输入命令 `mv composer.phar /usr/local/bin/composer` 添加环境变量。
+1. 在终端输入命令 `composer global require "fxp/composer-asset-plugin:~1.0"` 安装 [composer-asset-plugin](https://github.com/francoispluchino/composer-asset-plugin) 来管理静态资源文件。
 
 
 ## 文档和手册

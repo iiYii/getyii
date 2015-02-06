@@ -7,18 +7,29 @@
  */
 
 use yii\helpers\Html;
+use yii\helpers\Markdown;
 ?>
 <div class="list-group-item">
-    <?= Html::a(
-        $model->title,
-        ['/post/view', 'id' => $model->id],
-        ['class' => 'list-group-item-heading']
-    )?>
-    <?=  Html::tag('em',Yii::$app->formatter->asRelativeTime($model->created_at)) ?>
-    <p class="list-group-item-text">
-        <?= Html::a($model->category->name, ['/post/view', 'id' => $model->id])?>
-        <span>
-            <?= $model->like_count ?> 人喜欢 • <?= $model->comment_count ?> 条回复
-        </span>
-    </p>
+    <?php if ($this->context->action->id == 'show'): ?>
+        <?= Html::a(
+            $model->post->title,
+            ['/post/view', 'id' => $model->id],
+            ['class' => 'list-group-item-heading']
+        )?>
+        <?=  Html::tag('em',Yii::$app->formatter->asRelativeTime($model->created_at)) ?>
+        <p><?= Markdown::process($model->comment, 'gfm') ?></p>
+    <?php else: ?>
+        <?= Html::a(
+            $model->title,
+            ['/post/view', 'id' => $model->id],
+            ['class' => 'list-group-item-heading']
+        )?>
+        <?=  Html::tag('em',Yii::$app->formatter->asRelativeTime($model->created_at)) ?>
+        <p class="list-group-item-text">
+            <?= Html::a($model->category->name, ['/post/view', 'id' => $model->id])?>
+            <span>
+                <?= $model->like_count ?> 人喜欢 • <?= $model->comment_count ?> 条回复
+            </span>
+        </p>
+    <?php endif ?>
 </div>

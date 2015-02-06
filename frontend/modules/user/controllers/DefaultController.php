@@ -5,6 +5,7 @@ namespace frontend\modules\user\controllers;
 use yii\web\Controller;
 use common\models\User;
 use common\models\Post;
+use common\models\PostComment;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 
@@ -27,14 +28,14 @@ class DefaultController extends Controller
 
         return $this->render('show', [
             'user' => $user,
-            'dataProvider' =>$this->comment($username),
+            'dataProvider' =>$this->comment($user->id),
         ]);
     }
 
-    protected function comment($username='')
+    protected function comment($userId)
     {
         return new ActiveDataProvider([
-            'query' => Post::find(['username' => $username]),
+            'query' => PostComment::find()->where(['user_id' => $userId]),
         ]);
     }
 

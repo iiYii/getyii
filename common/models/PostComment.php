@@ -48,6 +48,11 @@ class PostComment extends ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    public function getPost()
+    {
+        return $this->hasOne(Post::className(), ['id' => 'post_id']);
+    }
+
     /**
      * @inheritdoc
      */

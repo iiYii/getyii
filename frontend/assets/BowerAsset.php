@@ -13,5 +13,6 @@ class BowerAsset extends AssetBundle
         'font-awesome/css/font-awesome.min.css',
     ];
     public $js = [
+    	'bootstrap/dist/js/bootstrap.min.js',
     ];
 }

@@ -59,22 +59,23 @@ BowerAsset::register($this);
             $menuItems[] = ['label' => '注册', 'url' => ['/site/signup']];
             $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
         } else {
+            // 撰写
+            $menuItems[] = [
+                'label' => '撰写',
+                'items' => [
+                    ['label' => '写教程', 'url' => ['/post/create']],
+                ]
+            ];
+
             // 个人中心
             $menuItems[] = [
                 'label' => Yii::$app->user->identity->username,
                 'items' => [
-                    ['label' => '个人中心', 'url' => ['/user/default']],
-                    ['label' => '设置', 'url' => ['/user/setting/profile']],
+                    ['label' => '我的主页', 'url' => ['/user/default']],
+                    ['label' => '帐号设置', 'url' => ['/user/setting/profile']],
                     ['label' => '退出','url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']]
                 ]
             ];
-            // $menuItems[] = ['label' => Yii::$app->user->identity->username, 'url' => ['/user/default']];
-            // $menuItems[] = ['label' => '设置', 'url' => ['/user/setting/profile']];
-            // $menuItems[] = [
-            //     'label' => '退出',
-            //     'url' => ['/site/logout'],
-            //     'linkOptions' => ['data-method' => 'post']
-            // ];
         }
         echo Nav::widget([
             'options' => ['class' => 'nav navbar-nav navbar-right'],

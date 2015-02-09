@@ -9,7 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use frontend\modules\user\models\UserAccount;
-use frontend\modules\user\models\User;
+use common\models\User;
 
 class RegistrationController extends Controller
 {
@@ -73,8 +73,7 @@ class RegistrationController extends Controller
 
         /** @var User $user */
         $user = \Yii::createObject([
-            'class'    => User::className(),
-            // 'scenario' => 'connect'
+            'class' => User::className(),
         ]);
 
         if ($user->create($account->data)) {

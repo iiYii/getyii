@@ -42,23 +42,23 @@ class SecurityController extends Controller
         ];
     }
 
-    // public function init()
-    // {
-    //     parent::init();
-    //     Yii::$app->set('authClientCollection', [
-    //         'class' => 'yii\authclient\Collection',
-    //         'clients' => [
-    //             'google' => [
-    //                 'class' => 'yii\authclient\clients\GoogleOpenId'
-    //             ],
-    //             'github' => [
-    //                 'class' => 'yii\authclient\clients\GitHub',
-    //                 'clientId' => \Yii::$app->setting->get('githubClientId'),
-    //                 'clientSecret' => \Yii::$app->setting->get('githubClientSecret'),
-    //             ],
-    //         ],
-    //     ]);
-    // }
+    public function init()
+    {
+        parent::init();
+        \Yii::$app->set('authClientCollection', [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'google' => [
+                    'class' => 'yii\authclient\clients\GoogleOpenId'
+                ],
+                'github' => [
+                    'class' => 'yii\authclient\clients\GitHub',
+                    'clientId' => \Yii::$app->setting->get('githubClientId'),
+                    'clientSecret' => \Yii::$app->setting->get('githubClientSecret'),
+                ],
+            ],
+        ]);
+    }
 
     /** @inheritdoc */
     public function actions()
@@ -67,16 +67,6 @@ class SecurityController extends Controller
             'auth' => [
                 'class' => 'yii\authclient\AuthAction',
                 'successCallback' => [$this, 'authenticate'],
-                'clients' => [
-                    'google' => [
-                        'class' => 'yii\authclient\clients\GoogleOpenId'
-                    ],
-                    'github' => [
-                        'class' => 'yii\authclient\clients\GitHub',
-                        'clientId' => \Yii::$app->setting->get('githubClientId'),
-                        'clientSecret' => \Yii::$app->setting->get('githubClientSecret'),
-                    ],
-                ],
             ]
         ];
     }

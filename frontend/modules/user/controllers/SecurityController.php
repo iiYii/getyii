@@ -83,16 +83,16 @@ class SecurityController extends Controller
         $clientId   = $attributes['id'];
 
         $account =  UserAuth::find()->where([
-            'provider'  => $provider,
-            'client_id' => $clientId
+            'type'  => $provider,
+            'openid' => $clientId
         ])->one();
 
         if ($account === null) {
             $account = \Yii::createObject([
                 'class'      => UserAuth::className(),
                 'type'       => $provider,
-                'token'      => $clientId,
-                'openid'     => json_encode($attributes),
+                'openid'      => $clientId,
+                'token'     => json_encode($attributes),
                 'created_at' => time()
             ]);
             $account->save(false);

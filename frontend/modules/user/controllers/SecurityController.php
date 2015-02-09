@@ -16,7 +16,7 @@ use yii\filters\VerbFilter;
 use yii\authclient\ClientInterface;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
-use frontend\models\UserAuth;
+use frontend\models\UserAccount;
 
 class SecurityController extends Controller
 {
@@ -82,17 +82,17 @@ class SecurityController extends Controller
         $provider   = $client->getId();
         $clientId   = $attributes['id'];
 
-        $account =  UserAuth::find()->where([
-            'type'  => $provider,
-            'openid' => $clientId
+        $account =  UserAccount::find()->where([
+            'provider'  => $provider,
+            'client_id' => $clientId
         ])->one();
 
         if ($account === null) {
             $account = \Yii::createObject([
-                'class'      => UserAuth::className(),
-                'type'       => $provider,
-                'openid'      => $clientId,
-                'token'     => json_encode($attributes),
+                'class'      => UserAccount::className(),
+                'provider'   => $provider,
+                'client_id'  => $clientId,
+                'data'       => json_encode($attributes),
                 'created_at' => time()
             ]);
             $account->save(false);

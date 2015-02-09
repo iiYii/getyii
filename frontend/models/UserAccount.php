@@ -6,23 +6,23 @@ use Yii;
 use common\models\User;
 
 /**
- * This is the model class for table "user_auth".
+ * This is the model class for table "user_account".
  *
  * @property integer $id
  * @property string $user_id
- * @property string $type
- * @property string $token
- * @property string $openid
+ * @property string $provider
+ * @property string $client_id
+ * @property string $data
  * @property string $created_at
  */
-class UserAuth extends \yii\db\ActiveRecord
+class UserAccount extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'user_auth';
+        return 'user_account';
     }
 
     /**
@@ -31,13 +31,13 @@ class UserAuth extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'token', 'openid'], 'required'],
             [['user_id', 'created_at'], 'integer'],
-            [['type'], 'string', 'max' => 100],
-            [['token', 'openid'], 'string', 'max' => 255]
+            [['client_id', 'data'], 'required'],
+            [['data'], 'string'],
+            [['provider'], 'string', 'max' => 100],
+            [['client_id'], 'string', 'max' => 255]
         ];
     }
-
 
     /**
      * @return User
@@ -55,9 +55,9 @@ class UserAuth extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'user_id' => '用户ID',
-            'type' => '联合登录类型',
-            'token' => 'Token',
-            'openid' => 'Openid',
+            'provider' => '授权提供商',
+            'client_id' => 'Client ID',
+            'data' => 'Data',
             'created_at' => '创建时间',
         ];
     }

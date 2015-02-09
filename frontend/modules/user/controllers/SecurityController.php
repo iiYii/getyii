@@ -16,7 +16,7 @@ use yii\filters\VerbFilter;
 use yii\authclient\ClientInterface;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
-use frontend\models\UserAccount;
+use frontend\modules\user\models\UserAccount;
 
 class SecurityController extends Controller
 {
@@ -99,7 +99,7 @@ class SecurityController extends Controller
         }
 
         if (null === ($user = $account->user)) {
-            //$this->action->successUrl = Url::to(['/user/registration/connect', 'account_id' => $account->id]);
+            $this->action->successUrl = Url::to(['/user/registration/connect', 'account_id' => $account->id]);
         } else {
             //\Yii::$app->user->login($user, $this->module->rememberFor);
         }

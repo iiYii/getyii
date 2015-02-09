@@ -134,12 +134,12 @@ class UserMeta extends ActiveRecord
             }
         }
         if (!$model) { //创建记录
-            $this->setAttributes(array(
+            $this->setAttributes([
                 'user_id' => Yii::$app->user->getId(),
                 'target_id' => $targetId,
                 'type' => $type,
                 'target_type' => 'post',
-            ));
+            ]);
             if ($this->save()) {
                 $return = $active = true;
             } else {
@@ -191,12 +191,12 @@ class UserMeta extends ActiveRecord
                 $return = $num >= 0;
             }
         } else {
-            $this->setAttributes(array(
+            $this->setAttributes([
                 'user_id' => Yii::$app->user->getId(),
                 'target_id' => $targetId,
                 'type' => $type,
                 'target_type' => 'post',
-            ));
+            ]);
             if ($this->save()) {
                 $return = $active = true;
             } else {

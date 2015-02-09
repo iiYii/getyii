@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models;
+namespace frontend\modules\user\models;
 
 use Yii;
 use common\models\User;
@@ -37,6 +37,11 @@ class UserAccount extends \yii\db\ActiveRecord
             [['provider'], 'string', 'max' => 100],
             [['client_id'], 'string', 'max' => 255]
         ];
+    }
+
+    public function getIsConnected()
+    {
+        return $this->user_id != null;
     }
 
     /**

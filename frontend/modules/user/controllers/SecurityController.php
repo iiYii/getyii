@@ -52,8 +52,8 @@ class SecurityController extends Controller
                 ],
                 'github' => [
                     'class' => 'yii\authclient\clients\GitHub',
-                    'clientId' => \Yii::$app->setting->get('smtpHost'),,
-                    'clientSecret' => \Yii::$app->setting->get('smtpHost'),,
+                    'clientId' => \Yii::$app->setting->get('githubClientId'),
+                    'clientSecret' => \Yii::$app->setting->get('githubClientSecret'),
                 ],
             ],
         ]);

@@ -16,6 +16,7 @@ use yii\filters\VerbFilter;
 use yii\authclient\ClientInterface;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use frontend\models\UserAuth;
 
 class SecurityController extends Controller
 {
@@ -81,22 +82,26 @@ class SecurityController extends Controller
         $provider   = $client->getId();
         $clientId   = $attributes['id'];
 
-        $account = $this->finder->findAccountByProviderAndClientId($provider, $clientId);
+        $account =  UserAuth::find()->where([
+            'provider'  => $provider,
+            'client_id' => $clientId
+        ])->one();
 
         if ($account === null) {
             $account = \Yii::createObject([
-                'class'      => Account::className(),
-                'provider'   => $provider,
-                'client_id'  => $clientId,
-                'data'       => json_encode($attributes),
+                'class'      => UserAuth::className(),
+                'type'       => $provider,
+                'token'      => $clientId,
+                'openid'     => json_encode($attributes),
+                'created_at' => time()
             ]);
             $account->save(false);
         }
 
         if (null === ($user = $account->user)) {
-            $this->action->successUrl = Url::to(['/user/registration/connect', 'account_id' => $account->id]);
+            //$this->action->successUrl = Url::to(['/user/registration/connect', 'account_id' => $account->id]);
         } else {
-            \Yii::$app->user->login($user, $this->module->rememberFor);
+            //\Yii::$app->user->login($user, $this->module->rememberFor);
         }
     }
 }

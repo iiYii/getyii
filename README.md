@@ -9,7 +9,7 @@
 7. 在终端输入命令 `curl -sS https://getcomposer.org/installer | php` 安装 PHP 的 [Composer](http://docs.phpcomposer.com/download/)。
 8. 在终端输入命令 `mv composer.phar /usr/local/bin/composer` 添加环境变量。
 9. 在终端输入命令 `composer global require "fxp/composer-asset-plugin:~1.0"` 安装 [composer-asset-plugin](https://github.com/francoispluchino/composer-asset-plugin) 来管理静态资源文件。
-1. 在终端输入命令 `yii migrate --migrationPath=@funson86/setting/migrations` 初始化数据。
+~~1. 在终端输入命令 `yii migrate --migrationPath=@funson86/setting/migrations` 初始化数据。~~
 
 
 ## 文档和手册

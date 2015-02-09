@@ -41,6 +41,24 @@ class SecurityController extends Controller
         ];
     }
 
+    public function init()
+    {
+        parent::init();
+        Yii::$app->set('authClientCollection', [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'google' => [
+                    'class' => 'yii\authclient\clients\GoogleOpenId'
+                ],
+                'github' => [
+                    'class' => 'yii\authclient\clients\GitHub',
+                    'clientId' => \Yii::$app->setting->get('smtpHost'),,
+                    'clientSecret' => \Yii::$app->setting->get('smtpHost'),,
+                ],
+            ],
+        ]);
+    }
+
     /** @inheritdoc */
     public function actions()
     {

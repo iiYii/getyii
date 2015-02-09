@@ -51,11 +51,11 @@ class m150209_015931_setting_init extends Migration
                 (3114, 31, 'smtpPassword', 'password', '', '', '', '50'),
                 (3115, 31, 'smtpMail', 'text', '', '', '', '50'),
                 (4111, 41, 'githubLogin', 'select', '0,1', '', '1', '50'),
-                (4112, 41, 'clientId', 'text', '', '', '', '50'),
-                (4113, 41, 'clientSecret', 'text', '', '', '', '50'),
+                (4112, 41, 'githubClientId', 'text', '', '', '', '50'),
+                (4113, 41, 'githubClientSecret', 'text', '', '', '', '50'),
                 (5111, 51, 'googleLogin', 'select', '0,1', '', '1', '50'),
-                (5112, 51, 'clientId', 'text', '', '', '', '50'),
-                (5113, 51, 'clientSecret', 'text', '', '', '', '50')
+                (5112, 51, 'googleCientId', 'text', '', '', '', '50'),
+                (5113, 51, 'googleCSecret', 'text', '', '', '', '50')
                 ";
     }
 

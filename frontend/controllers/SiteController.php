@@ -144,7 +144,7 @@ class SiteController extends Controller
 
         $model = new SignupForm();
         $model->username = $accountData['login'];
-        $model->email = $accountData['email'];
+        $model->email = empty($accountData['email']) ? '' : $accountData['email'];
 
         $this->performAjaxValidation($model);
 

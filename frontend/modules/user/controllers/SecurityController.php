@@ -49,7 +49,9 @@ class SecurityController extends Controller
             'class' => 'yii\authclient\Collection',
             'clients' => [
                 'google' => [
-                    'class' => 'yii\authclient\clients\GoogleOpenId'
+                    'class' => 'yii\authclient\clients\GoogleOAuth',
+                    'clientId' => \Yii::$app->setting->get('googleClientId'),
+                    'clientSecret' => \Yii::$app->setting->get('googleClientSecret'),
                 ],
                 'github' => [
                     'class' => 'yii\authclient\clients\GitHub',

@@ -36,13 +36,12 @@ class SettingController extends Controller
      */
     public function actionProfile()
     {
-        $model = UserInfo::findOne(Yii::$app->user->id);
+        $model = UserInfo::findOne(['user_id'=>Yii::$app->user->id]);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
             $this->flash('更新成功', 'success');
             return $this->refresh();
         }
-        // echo array_values($model->getFirstErrors())[0];
 
         return $this->render('profile', [
             'model' => $model,

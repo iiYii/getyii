@@ -12,6 +12,9 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use common\models\User;
+use yii\web\NotFoundHttpException;
+use frontend\modules\user\models\UserAccount;
 
 /**
  * Site controller
@@ -26,25 +29,15 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
+                'only' => ['logout', 'signup', 'connect'],
                 'rules' => [
-                    [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
+                    ['actions' => ['signup', 'connect'], 'allow' => true, 'roles' => ['?']],
+                    ['actions' => ['logout'], 'allow' => true, 'roles' => ['@']],
                 ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
+                'actions' => ['logout' => ['post']],
             ],
         ];
     }
@@ -133,14 +126,31 @@ class SiteController extends Controller
         return $this->render('portfolio');
     }
 
-    public function actionBlog()
+    /**
+     * Displays page where user can create new account that will be connected to social account.
+     * @param  integer $account_id
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionConnect($account_id)
     {
-        return $this->render('blog');
-    }
+        $account = UserAccount::find()->where(['id' => $account_id])->one();
 
-    public function actionBlogItem()
-    {
-        return $this->render('blog-item');
+        if ($account === null || $account->getIsConnected()) {
+            throw new NotFoundHttpException;
+        }
+
+        /** @var User $user */
+        $user = Yii::createObject([
+            'class' => User::className(),
+        ]);
+
+        if ($user->create($account->data)) {
+            $account->user_id = $user->id;
+            $account->save(false);
+            Yii::$app->user->login($user, 1209600); // two weeks
+            return $this->goBack();
+        }
     }
 
     public function actionFaq()
@@ -166,8 +176,6 @@ class SiteController extends Controller
 
     public function actionRequestPasswordReset()
     {
-        // var_dump(Yii::$app->setting->get('siteName'));
-        // die();
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {

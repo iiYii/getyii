@@ -243,17 +243,6 @@ class User extends ActiveRecord implements IdentityInterface
         $password_hash = Yii::$app->security->generatePasswordHash('123456');
         $auth_key = Yii::$app->security->generateRandomString();
         $time = time();
-        // $this->setAttributes([
-        //     'username' => $account['login'],
-        //     'avatar' => $account['avatar_url'],
-        //     'password_hash' => $password_hash,
-        //     'auth_key' => $auth_key,
-        //     'password_reset_token' => '',
-        //     'email' => $account['email'],
-        //     'created_at' => $time,
-        //     'updated_at' => $time,
-        // ]);
-
         $this->username = $account['login'];
         $this->avatar = $account['avatar_url'];
         $this->password_hash = $password_hash;
@@ -265,12 +254,32 @@ class User extends ActiveRecord implements IdentityInterface
 
         if ($this->save()) {
             // $this->mailer->sendWelcomeMessage($this);
-            \Yii::getLogger()->log('User has been created', Logger::LEVEL_INFO);
+            Yii::getLogger()->log('User has been created', Logger::LEVEL_INFO);
             return true;
         }
 
-        \Yii::getLogger()->log('An error occurred while creating user account', Logger::LEVEL_ERROR);
+        Yii::getLogger()->log('An error occurred while creating user account', Logger::LEVEL_ERROR);
 
         return false;
+    }
+
+    /** @inheritdoc */
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert) {
+            $time = time();
+            $userInfo = Yii::createObject([
+                'class'           => UserInfo::className(),
+                'user_id'         => $this->id,
+                'prev_login_time' => $time,
+                'prev_login_ip'   => Yii::$app->request->userIP,
+                'last_login_time' => $time,
+                'last_login_ip'   => Yii::$app->request->userIP,
+                'created_at'      => $time,
+                'updated_at'      => $time,
+            ]);
+            $userInfo->save();
+        }
+        parent::afterSave($insert, $changedAttributes);
     }
 }

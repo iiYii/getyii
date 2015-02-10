@@ -13,7 +13,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\User;
-use yii\helpers\Json;
+use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use frontend\modules\user\models\UserAccount;
 
@@ -140,11 +140,13 @@ class SiteController extends Controller
         if ($account === null || $account->getIsConnected()) {
             throw new NotFoundHttpException;
         }
-        $accountData = Json::decode($account->data);
+        $accountData = \yii\helpers\Json::decode($account->data);
 
         $model = new SignupForm();
         $model->username = $accountData['login'];
         $model->email = $accountData['email'];
+
+        $this->performAjaxValidation($model);
 
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
@@ -169,6 +171,9 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
+
+        $this->performAjaxValidation($model);
+
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
@@ -217,5 +222,19 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * Performs ajax validation.
+     * @param Model $model
+     * @throws \yii\base\ExitException
+     */
+    protected function performAjaxValidation($model)
+    {
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            echo json_encode(\yii\widgets\ActiveForm::validate($model));
+            Yii::$app->end();
+        }
     }
 }

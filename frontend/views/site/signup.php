@@ -18,7 +18,11 @@ $this->title = 'Signup';
 
     <div class="row">
         <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+            <?php $form = ActiveForm::begin([
+                'id' => 'form-signup',
+                'enableAjaxValidation'   => true,
+                'enableClientValidation' => false
+            ]); ?>
                 <?= $form->field($model, 'username') ?>
                 <?= $form->field($model, 'email') ?>
                 <?= $form->field($model, 'password')->passwordInput() ?>

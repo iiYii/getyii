@@ -32,7 +32,4 @@ $this->title = 'Signup';
             <?php ActiveForm::end(); ?>
         </div>
     </div>
-    <?= Connect::widget([
-        'baseAuthUrl' => ['/user/security/auth']
-    ]) ?>
 </section>

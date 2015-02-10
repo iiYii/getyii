@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-
+use frontend\widgets\Connect;
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \common\models\LoginForm */
@@ -26,5 +26,7 @@ $this->title = 'Login';
             <?php ActiveForm::end(); ?>
         </div>
     </div>
-
+    <?= Connect::widget([
+        'baseAuthUrl' => ['/user/security/auth']
+    ]) ?>
 </section>

@@ -57,7 +57,7 @@ class SettingController extends Controller
     {
         /** @var SettingsForm $model */
         $model = Yii::createObject(AccountForm::className());
-        // var_dump($model);
+
         $this->performAjaxValidation($model);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

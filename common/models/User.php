@@ -233,24 +233,17 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $account = Json::decode($accountData);
 
-        \Yii::getLogger()->log('用户数据'.$accountData, Logger::LEVEL_INFO);
-
-
         if ($this->getIsNewRecord() == false) {
             throw new \RuntimeException('Calling "' . __CLASS__ . '::' . __METHOD__ . '" on existing user');
         }
 
-        $password_hash = Yii::$app->security->generatePasswordHash('123456');
-        $auth_key = Yii::$app->security->generateRandomString();
+        $password = Yii::$app->security->generateRandomString('8');
         $time = time();
         $this->username = $account['login'];
         $this->avatar = $account['avatar_url'];
-        $this->password_hash = $password_hash;
-        $this->auth_key = $auth_key;
-        $this->password_reset_token = '';
+        $this->setPassword($password);
+        $this->generateAuthKey();
         $this->email = $account['email'];
-        $this->created_at = $time;
-        $this->updated_at = $time;
 
         if ($this->save()) {
             // $this->mailer->sendWelcomeMessage($this);

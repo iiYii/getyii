@@ -13,6 +13,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\User;
+use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use frontend\modules\user\models\UserAccount;
 
@@ -139,18 +140,25 @@ class SiteController extends Controller
         if ($account === null || $account->getIsConnected()) {
             throw new NotFoundHttpException;
         }
+        $accountData = Json::decode($account->data);
 
-        /** @var User $user */
-        $user = Yii::createObject([
-            'class' => User::className(),
-        ]);
+        $model = new SignupForm();
+        $model->username = $accountData['login'];
+        $model->email = $accountData['email'];
 
-        if ($user->create($account->data)) {
-            $account->user_id = $user->id;
-            $account->save(false);
-            Yii::$app->user->login($user, 1209600); // two weeks
-            return $this->goBack();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                $account->user_id = $user->id;
+                $account->save(false);
+                if (Yii::$app->getUser()->login($user, 1209600)) {
+                    return $this->goHome();
+                }
+            }
         }
+
+        return $this->render('signup', [
+            'model'   => $model,
+        ]);
     }
 
     public function actionFaq()

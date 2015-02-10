@@ -82,6 +82,9 @@ class PostController extends Controller
             'query' => PostComment::find()->where(['post_id' => $id]),
         ]);
 
+        // 文章浏览次数
+        Post::updateAllCounters(['view_count' =>1], ['id' => $id]);
+
         return $this->render('view', [
             'model' => $model,
             'dataProvider' => $dataProvider,

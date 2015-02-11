@@ -3,7 +3,6 @@
 namespace common\models;
 
 use Yii;
-use common\models\User;
 use common\components\db\ActiveRecord;
 
 /**

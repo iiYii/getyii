@@ -5,7 +5,6 @@ use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use common\models\UserInfo;
 use yii\web\IdentityInterface;
 use yii\helpers\Json;
 use common\components\db\Mailer;

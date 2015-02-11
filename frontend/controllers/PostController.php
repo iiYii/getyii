@@ -8,6 +8,7 @@ use yii\filters\AccessControl;
 use common\models\PostSearch;
 use common\models\PostComment;
 use common\models\UserMeta;
+use common\models\UserInfo;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -105,6 +106,8 @@ class PostController extends Controller
             $model->tags = Yii::$app->request->post('tags');
             $model->addTags(explode(',', $model->tags));
             if ($model->save()) {
+                // 更新个人总统计
+                UserInfo::updateAllCounters(['post_count' =>1], ['user_id' => $model->user_id]);
                 $this->flash('发表文章成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -167,6 +170,8 @@ class PostController extends Controller
             if ($model ->save()) {
                 // 评论计数器
                 Post::updateAllCounters(['comment_count' =>1], ['id' => $post->id]);
+                // 更新个人总统计
+                UserInfo::updateAllCounters(['comment_count' =>1], ['user_id' => $model->user_id]);
                 return $this->message('回答发表成功!', 'success', $this->refresh(), 'flash');
             }
         }

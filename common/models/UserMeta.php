@@ -115,11 +115,12 @@ class UserMeta extends ActiveRecord
      */
     protected function _likeOrHate($type, $targetId)
     {
+        $userId = Yii::$app->user->getId();
         //查找数据库是否有记录
         $model = self::find()
             ->where(['or', ['type' => 'like'], ['type' => 'hate']])
             ->andWhere([
-                'user_id' => Yii::$app->user->getId(),
+                'user_id' => $userId,
                 'target_id' => $targetId,
                 'target_type' => 'post'
             ])->one();
@@ -135,7 +136,7 @@ class UserMeta extends ActiveRecord
         }
         if (!$model) { //创建记录
             $this->setAttributes([
-                'user_id' => Yii::$app->user->getId(),
+                'user_id' => $userId,
                 'target_id' => $targetId,
                 'type' => $type,
                 'target_type' => 'post',
@@ -163,6 +164,8 @@ class UserMeta extends ActiveRecord
             }
             //更新版块统计
             $model->updateCounters($attributes);
+            // 更新个人总统计
+            UserInfo::updateAllCounters($attributes, ['user_id' => $userId]);
         }
         return $return;
     }
@@ -176,10 +179,11 @@ class UserMeta extends ActiveRecord
      */
     protected function _actionLog($type, $targetId)
     {
+        $userId = Yii::$app->user->getId();
         //查找数据库是否有记录
         $model = self::find()
             ->where([
-                'user_id' => Yii::$app->user->getId(),
+                'user_id' => $userId,
                 'type' => $type,
                 'target_id' => $targetId,
                 'target_type' => 'post'
@@ -192,7 +196,7 @@ class UserMeta extends ActiveRecord
             }
         } else {
             $this->setAttributes([
-                'user_id' => Yii::$app->user->getId(),
+                'user_id' => $userId,
                 'target_id' => $targetId,
                 'type' => $type,
                 'target_type' => 'post',
@@ -213,6 +217,8 @@ class UserMeta extends ActiveRecord
 
             //更新版块统计
             $model->updateCounters($attributes);
+            // 更新个人总统计
+            UserInfo::updateAllCounters($attributes, ['user_id' => $userId]);
         }
         return $return;
     }

@@ -3,10 +3,6 @@
 namespace common\models;
 
 use Yii;
-use common\models\PostTag;
-use common\models\User;
-use common\models\UserMeta;
-use common\models\PostMeta;
 use common\components\db\ActiveRecord;
 use yii\data\ActiveDataProvider;
 

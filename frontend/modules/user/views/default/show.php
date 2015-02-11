@@ -67,7 +67,7 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading"><i class="fa fa-dashboard"></i>个人统计</div>
+            <div class="panel-heading"><i class="fa fa-dashboard"></i>个人成就</div>
             <ul class="list-group">
                 <li class="list-group-item text-right">
                     <span class="pull-left"><strong class="">被感谢</strong></span> 125

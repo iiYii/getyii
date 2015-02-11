@@ -96,32 +96,30 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
     </div>
     <!--/col-3-->
     <div class="col-sm-9" contenteditable="false" style="">
-        <!-- <div class="panel panel-default"> -->
-            <nav class="navbar navbar-default">
-            <?= Menu::widget([
-                'options' => [
-                    'class' => 'nav navbar-nav',
-                ],
-                'items' => [
-                    ['label' => '最新评论',  'url' => ['/user/default/show', 'username'=> $username]],
-                    ['label' => '最新主题',  'url' => ['/user/default/post', 'username'=> $username]],
-                    ['label' => '最新收藏',  'url' => ['/user/default/favorite', 'username'=> $username]],
-                ]
-            ]) ?>
-            </nav>
+        <nav class="navbar navbar-default">
+        <?= Menu::widget([
+            'options' => [
+                'class' => 'nav navbar-nav',
+            ],
+            'items' => [
+                ['label' => '最新评论',  'url' => ['/user/default/show', 'username'=> $username]],
+                ['label' => '最新主题',  'url' => ['/user/default/post', 'username'=> $username]],
+                ['label' => '最新收藏',  'url' => ['/user/default/favorite', 'username'=> $username]],
+            ]
+        ]) ?>
+        </nav>
 
-            <?= ListView::widget([
-                'dataProvider' => $dataProvider,
-                'itemOptions' => ['class' => 'list-group-item'],
-                'summary' => false,
-                'itemView' => '_view',
-                'options' => ['class' => 'list-group'],
-                'pager' => [
-                    'options' => ['class'=>'pagination pagination-lg'],
-                    'prevPageLabel' => '<i class="icon-angle-left"></i>',
-                    'nextPageLabel' => '<i class="icon-angle-right"></i>',
-                ]
-            ]) ?>
-        <!-- </div> -->
+        <?= ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemOptions' => ['class' => 'list-group-item'],
+            'summary' => false,
+            'itemView' => '_view',
+            'options' => ['class' => 'list-group'],
+            'pager' => [
+                'options' => ['class'=>'pagination pagination-lg'],
+                'prevPageLabel' => '<i class="icon-angle-left"></i>',
+                'nextPageLabel' => '<i class="icon-angle-right"></i>',
+            ]
+        ]) ?>
     </div>
 </section>

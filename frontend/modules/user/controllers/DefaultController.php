@@ -5,6 +5,7 @@ namespace frontend\modules\user\controllers;
 use yii\web\Controller;
 use common\models\User;
 use common\models\Post;
+use common\models\UserInfo;
 use common\models\PostComment;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
@@ -25,6 +26,8 @@ class DefaultController extends Controller
     public function actionShow($username='')
     {
         $user = $this->user($username);
+        // 个人主页浏览次数
+        UserInfo::updateAllCounters(['view_count' =>1], ['user_id' => $user->id]);
 
         return $this->render('show', [
             'user' => $user,

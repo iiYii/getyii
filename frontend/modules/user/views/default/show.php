@@ -70,16 +70,24 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
             <div class="panel-heading"><i class="fa fa-dashboard"></i>个人成就</div>
             <ul class="list-group">
                 <li class="list-group-item text-right">
-                    <span class="pull-left"><strong class="">被感谢</strong></span> 125
+                    <span class="pull-left"><strong class="">被感谢次数</strong></span>
+                    <?= $user->userInfo->thanks_count ?>
                 </li>
                 <li class="list-group-item text-right">
-                    <span class="pull-left"><strong class="">被赞同</strong></span> 13
+                    <span class="pull-left"><strong class="">被赞同次数</strong></span>
+                    <?= $user->userInfo->like_count ?>
                 </li>
                 <li class="list-group-item text-right">
-                    <span class="pull-left"><strong class="">发表文章</strong></span> 37
+                    <span class="pull-left"><strong class="">发表文章次数</strong></span>
+                    <?= $user->userInfo->post_count ?>
                 </li>
                 <li class="list-group-item text-right">
-                    <span class="pull-left"><strong class="">发布评论</strong></span> 78
+                    <span class="pull-left"><strong class="">发布评论次数</strong></span>
+                    <?= $user->userInfo->comment_count ?>
+                </li>
+                <li class="list-group-item text-right">
+                    <span class="pull-left"><strong class="">个人主页浏览次数</strong></span>
+                    <?= $user->userInfo->view_count ?>
                 </li>
             </ul>
         </div>

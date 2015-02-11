@@ -14,7 +14,7 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
         <!--left col-->
         <div class="panel panel-default thumbnail center">
             <br>
-            <img src="http://gravatar.com/avatar/<?= md5($user->email) ?>?s=230" alt="用户头像" title="用户头像" class="img-circle img-responsive" />
+            <img src="http://gravatar.com/avatar/<?= md5($user->email) ?>?s=200" alt="用户头像" title="用户头像" class="img-circle img-responsive" />
             <h1 class=""><?= Html::tag('strong', $user->username) ?></h1>
             <p><?= $user->tagline ?></p>
             <!-- <button type="button" class="btn btn-success">Book me!</button> -->

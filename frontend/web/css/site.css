@@ -194,28 +194,14 @@ a.desc:after {
     font-weight: bold;
 }
 
-.user-default-index .list-group .list-group-item:first-child {
-    border-top: none;
-    border-top-left-radius:0;
-    border-top-right-radius:0;
+/*个人主页*/
+.user-default-index .col-sm-9 .navbar {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
-.user-default-index .list-group-item em, .user-default-index .list-group-item-text{
-    font-size: 12px;
-}
-
-.user-default-index .list-group-item-heading{
-    font-weight: 400;
-    font-size: 18px;
-}
-
-.user-default-index .list-group-item:focus, .user-default-index .list-group-item:hover {
-  color: #555;
-  text-decoration: none;
-  background-color: #f5f5f5;
-}
-
-.user-default-index .list-group-item em, .user-default-index .list-group-item-text span {
-    margin-left: 5px;
-    color: #bbb;
+.user-default-index .col-sm-9 .list-group-item:first-child {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }

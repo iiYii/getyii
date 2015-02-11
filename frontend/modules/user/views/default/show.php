@@ -11,152 +11,117 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
 <section class="container user-default-index">
 
     <div class="col-sm-3">
+        <!--left col-->
         <div class="panel panel-default thumbnail center">
             <br>
             <img src="http://gravatar.com/avatar/<?= md5($user->email) ?>?s=230" alt="用户头像" title="用户头像" class="img-circle img-responsive" />
             <h1 class=""><?= Html::tag('strong', $user->username) ?></h1>
+            <p><?= $user->tagline ?></p>
             <!-- <button type="button" class="btn btn-success">Book me!</button> -->
             <!-- <button type="button" class="btn btn-info">Send me a message</button> -->
             <!-- <br> -->
         </div>
 
-        <!--left col-->
-        <ul class="list-group">
-            <li class="list-group-item text-muted" contenteditable="false">Profile</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span>
-                2.13.2014
-            </li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span>
-                Yesterday
-            </li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Real name</strong></span>
-                Joseph
-                Doe
-            </li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Role: </strong></span> Pet
-                Sitter
-            </li>
-        </ul>
         <div class="panel panel-default">
-            <div class="panel-heading">Insured / Bonded?
+            <div class="panel-heading"><i class="fa fa-user"></i>个人信息</div>
+            <ul class="list-group">
+                <li class="list-group-item text-right">
+                    <span class="pull-left"><strong class="">排位</strong></span>
+                    <?= $user->id ?>
+                </li>
+                <li class="list-group-item text-right">
+                    <span class="pull-left"><strong class="">加入于</strong></span>
+                    <?= Yii::$app->formatter->asDateTime($user->userInfo->created_at) ?>
+                </li>
+                <li class="list-group-item text-right">
+                    <span class="pull-left"><strong class="">城市</strong></span>
+                    <?= Html::encode($user->userInfo->location) ?>
+                </li>
+                <li class="list-group-item text-right">
+                    <span class="pull-left"><strong class="">公司</strong></span>
+                    <?= $user->userInfo->company ?>
+                </li>
+                <li class="list-group-item text-right">
+                    <span class="pull-left"><strong class="">GitHub</strong></span>
+                    <?= Html::a(Html::encode($user->userInfo->github), Html::encode($user->userInfo->github)) ?>
+                </li>
+                <li class="list-group-item text-right">
+                    <span class="pull-left"><strong class="">最后登录时间</strong></span>
+                    <?= Yii::$app->formatter->asRelativeTime($user->userInfo->last_login_time) ?>
+                </li>
+            </ul>
+        </div>
 
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-user"></i>个人简介</div>
+            <div class="panel-body">
+                <?= $user->userInfo->info ?>
             </div>
-            <div class="panel-body"><i style="color:green" class="fa fa-check-square"></i> Yes, I am insured and bonded.
+        </div>
 
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-link"></i>个人网站</div>
+            <div class="panel-body">
+                <?= Html::a(Html::encode($user->userInfo->website), Html::encode($user->userInfo->website)) ?>
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i>
-
-            </div>
-            <div class="panel-body"><a href="http://bootply.com" class="">bootply.com</a>
-
-            </div>
+            <div class="panel-heading"><i class="fa fa-dashboard"></i>个人统计</div>
+            <ul class="list-group">
+                <li class="list-group-item text-right">
+                    <span class="pull-left"><strong class="">被感谢</strong></span> 125
+                </li>
+                <li class="list-group-item text-right">
+                    <span class="pull-left"><strong class="">被赞同</strong></span> 13
+                </li>
+                <li class="list-group-item text-right">
+                    <span class="pull-left"><strong class="">发表文章</strong></span> 37
+                </li>
+                <li class="list-group-item text-right">
+                    <span class="pull-left"><strong class="">发布评论</strong></span> 78
+                </li>
+            </ul>
         </div>
-
-        <ul class="list-group">
-            <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i>
-
-            </li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Shares</strong></span> 125
-            </li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Likes</strong></span> 13
-            </li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> 37
-            </li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Followers</strong></span> 78
-            </li>
-        </ul>
-        <div class="panel panel-default">
-            <div class="panel-heading">Social Media</div>
-            <div class="panel-body"><i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i>
-                <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i
-                    class="fa fa-google-plus fa-2x"></i>
-
+        <!-- <div class="panel panel-default">
+            <div class="panel-heading">社交网络</div>
+            <div class="panel-body">
+                <i class="fa fa-facebook fa-2x"></i>
+                <i class="fa fa-github fa-2x"></i>
+                <i class="fa fa-twitter fa-2x"></i>
+                <i class="fa fa-pinterest fa-2x"></i>
+                <i class="fa fa-google-plus fa-2x"></i>
             </div>
-        </div>
+        </div> -->
     </div>
     <!--/col-3-->
     <div class="col-sm-9" contenteditable="false" style="">
-        <div class="panel panel-default">
-            <div class="panel-heading">Starfox221's Bio</div>
-            <div class="panel-body"> A long description about me.
+        <!-- <div class="panel panel-default"> -->
+            <nav class="navbar navbar-default">
+            <?= Menu::widget([
+                'options' => [
+                    'class' => 'nav navbar-nav',
+                ],
+                'items' => [
+                    ['label' => '最新评论',  'url' => ['/user/default/show', 'username'=> $username]],
+                    ['label' => '最新主题',  'url' => ['/user/default/post', 'username'=> $username]],
+                    ['label' => '最新收藏',  'url' => ['/user/default/favorite', 'username'=> $username]],
+                ]
+            ]) ?>
+            </nav>
 
-            </div>
-        </div>
-        <div class="panel panel-default target">
-            <div class="panel-heading" contenteditable="false">Pets I Own</div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="thumbnail">
-                            <img alt="300x200" src="http://lorempixel.com/600/200/people">
-
-                            <div class="caption">
-                                <h3>
-                                    Rover
-                                </h3>
-
-                                <p>
-                                    Cocker Spaniel who loves treats.
-                                </p>
-
-                                <p>
-
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="thumbnail">
-                            <img alt="300x200" src="http://lorempixel.com/600/200/city">
-
-                            <div class="caption">
-                                <h3>
-                                    Marmaduke
-                                </h3>
-
-                                <p>
-                                    Is just another friendly dog.
-                                </p>
-
-                                <p>
-
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="thumbnail">
-                            <img alt="300x200" src="http://lorempixel.com/600/200/sports">
-
-                            <div class="caption">
-                                <h3>
-                                    Rocky
-                                </h3>
-
-                                <p>
-                                    Loves catnip and naps. Not fond of children.
-                                </p>
-
-                                <p>
-
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">Starfox221's Bio</div>
-            <div class="panel-body"> A long description about me.
-
-            </div>
-        </div>
+            <?= ListView::widget([
+                'dataProvider' => $dataProvider,
+                'itemOptions' => ['class' => 'list-group-item'],
+                'summary' => false,
+                'itemView' => '_view',
+                'options' => ['class' => 'list-group'],
+                'pager' => [
+                    'options' => ['class'=>'pagination pagination-lg'],
+                    'prevPageLabel' => '<i class="icon-angle-left"></i>',
+                    'nextPageLabel' => '<i class="icon-angle-right"></i>',
+                ]
+            ]) ?>
+        <!-- </div> -->
     </div>
 </section>

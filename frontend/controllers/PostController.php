@@ -29,28 +29,15 @@ class PostController extends Controller
                 ],
             ],
             'access' => [
-                 'class' => AccessControl::className(),
-                 'rules' => [
-                     // 默认只能Get方式访问
-                     [
-                        'allow' => true,
-                        'actions' => ['view', 'index'],
-                        'verbs' => ['GET'],
-                     ],
-                     // 登录用户才能提交评论或其他内容
-                     [
-                        'allow' => true,
-                        'actions' => ['api', 'view'],
-                        'verbs' => ['POST'],
-                        'roles' => ['@'],
-                     ],
-                     // 登录用户才能使用API操作(赞,踩,收藏)
-                     [
-                        'allow' => true,
-                        'actions' => ['create', 'update'],
-                        'roles' => ['@']
-                     ],
-                 ]
+                'class' => AccessControl::className(),
+                'rules' => [
+                    // 默认只能Get方式访问
+                    ['allow' => true, 'actions' => ['view', 'index'], 'verbs' => ['GET']],
+                    // 登录用户才能提交评论或其他内容
+                    ['allow' => true, 'actions' => ['api', 'view'], 'verbs' => ['POST'], 'roles' => ['@']],
+                    // 登录用户才能使用API操作(赞,踩,收藏)
+                    ['allow' => true, 'actions' => ['create', 'update'], 'roles' => ['@']],
+                ]
             ]
         ];
     }
@@ -90,6 +77,7 @@ class PostController extends Controller
             'model' => $model,
             'dataProvider' => $dataProvider,
             'comment' => $comment,
+            'isCurrent' => $model->getIsCurrent(),
         ]);
     }
 
@@ -128,6 +116,10 @@ class PostController extends Controller
     {
         $model = $this->findModel($id);
 
+        if ($model === null || !$model->getIsCurrent()) {
+            throw new NotFoundHttpException;
+        }
+
         if ($model->load(Yii::$app->request->post())) {
             $model->tags = Yii::$app->request->post('tags');
             $model->addTags(explode(',', $model->tags));
@@ -143,15 +135,14 @@ class PostController extends Controller
     }
 
     /**
-     * Deletes an existing Post model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * 伪删除
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $model = $this->findModel($id);
+        $model->updateCounters(['status' => 1]);
         return $this->redirect(['index']);
     }
 
@@ -187,6 +178,9 @@ class PostController extends Controller
     {
         $request = Yii::$app->request;
         $model = $this->findModel($id = $request->post('id'));
+        if ($model === null || $model->getIsCurrent()) {
+            return $this->message('错误的操作', 'error');
+        }
         $opeartions = ['like', 'thanks', 'favorite', 'hate'];
         if (!in_array($type = $request->post('do'), $opeartions)) {
             return $this->message('错误的操作', 'error');

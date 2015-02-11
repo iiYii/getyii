@@ -107,7 +107,10 @@ class Post extends ActiveRecord
         return $this->hasOne(PostMeta::className(), ['id' => 'post_meta_id']);
     }
 
-
+    public function getIsCurrent()
+    {
+        return $this->user_id == Yii::$app->user->id;
+    }
 
     /**
      * 添加标签

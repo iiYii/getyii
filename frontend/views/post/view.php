@@ -55,18 +55,33 @@ PageDownAsset::register($this);
                         <p>&nbsp;</p>
 
                         <div class="text-center">
-                            <button type="button" data-do="like" data-id="<?= $model->id ?>" data-type="post" class="btn btn-success">
-                                <span class="num"><?= $model->like_count ?></span> 点赞
-                            </button>
-                            <button type="button" data-do="thanks" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default <?php if($model->thanks) echo 'active' ?>">
-                                感谢
-                            </button>
-                            <button type="button" data-do="favorite" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default <?php if($model->favorite) echo 'active' ?>">
-                                收藏
-                            </button>
-                            <button type="button" data-do="hate" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default">
-                                <span class="num"><?= $model->hate_count ?></span> 喝倒彩
-                            </button>
+                            <?php if ($isCurrent): ?>
+                                <?= Html::a('编辑',['/post/update', 'id' => $model->id], ['class' => 'btn btn-success']); ?>
+                                <?= Html::a('删除',['/post/delete', 'id' => $model->id], [
+                                    'class' => 'btn btn-default',
+                                    'data' => [
+                                        'confirm' => "您确认要删除文章「{$model->title}」吗？",
+                                        'method' => 'post',
+                                    ],
+                                ]); ?>
+                            <?php else: ?>
+                                <button type="button" data-do="like" data-id="<?= $model->id ?>" data-type="post" class="btn btn-success">
+                                    <span class="num"><?= $model->like_count ?></span> 点赞
+                                </button>
+
+                                <button type="button" data-do="like" data-id="<?= $model->id ?>" data-type="post" class="btn btn-success">
+                                    <span class="num"><?= $model->like_count ?></span> 点赞
+                                </button>
+                                <button type="button" data-do="thanks" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default <?php if($model->thanks) echo 'active' ?>">
+                                    感谢
+                                </button>
+                                <button type="button" data-do="favorite" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default <?php if($model->favorite) echo 'active' ?>">
+                                    收藏
+                                </button>
+                                <button type="button" data-do="hate" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default">
+                                    <span class="num"><?= $model->hate_count ?></span> 喝倒彩
+                                </button>
+                            <?php endif ?>
                         </div>
 
                         <p>&nbsp;</p>

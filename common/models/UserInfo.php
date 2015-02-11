@@ -15,10 +15,11 @@ use common\components\db\ActiveRecord;
  * @property string $website
  * @property string $company
  * @property string $location
- * @property string $comment_count
- * @property string $post_count
- * @property string $thanks_count
- * @property string $like_count
+ * @property integer $view_count
+ * @property integer $comment_count
+ * @property integer $post_count
+ * @property integer $thanks_count
+ * @property integer $like_count
  * @property integer $login_count
  * @property string $prev_login_time
  * @property string $prev_login_ip
@@ -44,10 +45,10 @@ class UserInfo extends ActiveRecord
     {
         return [
             [['user_id', 'prev_login_time', 'prev_login_ip', 'last_login_time', 'last_login_ip', 'created_at', 'updated_at'], 'required'],
-            [['user_id', 'login_count', 'prev_login_time', 'last_login_time', 'created_at', 'updated_at'], 'integer'],
+            [['user_id', 'view_count', 'comment_count', 'post_count', 'thanks_count', 'like_count', 'login_count', 'prev_login_time', 'last_login_time', 'created_at', 'updated_at'], 'integer'],
             [['info'], 'string', 'max' => 255],
-            [['github', 'website', 'comment_count', 'post_count', 'thanks_count'], 'string', 'max' => 100],
-            [['company', 'like_count'], 'string', 'max' => 40],
+            [['github', 'website'], 'string', 'max' => 100],
+            [['company'], 'string', 'max' => 40],
             [['location'], 'string', 'max' => 10],
             [['prev_login_ip', 'last_login_ip'], 'string', 'max' => 32]
         ];
@@ -66,10 +67,11 @@ class UserInfo extends ActiveRecord
             'website' => '个人主页',
             'company' => '公司',
             'location' => '城市',
-            'comment_count' => 'GitHub 帐号',
-            'post_count' => 'GitHub 帐号',
-            'thanks_count' => '个人主页',
-            'like_count' => '公司',
+            'view_count' => '个人主页浏览次数',
+            'comment_count' => '发布评论数',
+            'post_count' => '发布文章数',
+            'thanks_count' => '被感谢次数',
+            'like_count' => '被赞次数',
             'login_count' => '登录次数',
             'prev_login_time' => '上次登录时间',
             'prev_login_ip' => '上次登录IP',

@@ -6,6 +6,8 @@ use Yii;
 use common\models\User;
 use frontend\modules\user\models\AccountForm;
 use common\models\UserInfo;
+use yii\filters\AccessControl;
+use frontend\modules\user\models\UserAccount;
 use yii\data\ActiveDataProvider;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
@@ -18,15 +20,40 @@ use yii\widgets\ActiveForm;
  */
 class SettingController extends Controller
 {
+    /** @inheritdoc */
+    public $defaultAction = 'profile';
+
+    /** @inheritdoc */
     public function behaviors()
     {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                    'disconnect' => ['post']
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow'   => true,
+                        'actions' => ['profile', 'account', 'confirm', 'networks', 'connect', 'disconnect'],
+                        'roles'   => ['@']
+                    ],
+                ]
+            ],
+        ];
+    }
+
+    /** @inheritdoc */
+    public function actions()
+    {
+        return [
+            'connect' => [
+                'class'           => 'yii\authclient\AuthAction',
+                'successCallback' => [$this, 'connect'],
+            ]
         ];
     }
 
@@ -82,6 +109,37 @@ class SettingController extends Controller
         ]);
     }
 
+
+    /**
+     * Connects social account to user.
+     * @param  ClientInterface $client
+     * @return \yii\web\Response
+     */
+    public function connect(ClientInterface $client)
+    {
+        $attributes = $client->getUserAttributes();
+        $provider   = $client->getId();
+        $clientId   = $attributes['id'];
+
+        $account = $this->finder->findAccountByProviderAndClientId($provider, $clientId);
+
+        if ($account === null) {
+            $account = Yii::createObject([
+                'class'     => UserAccount::className(),
+                'provider'  => $provider,
+                'client_id' => $clientId,
+                'data'      => json_encode($attributes),
+                'user_id'   => Yii::$app->user->id,
+                'created_at' => time(),
+            ]);
+            $account->save(false);
+            Yii::$app->session->setFlash('success', '账号绑定成功');
+        } else {
+            Yii::$app->session->setFlash('error', '绑定失败，此账号已经绑定过了');
+        }
+
+        $this->action->successUrl = Url::to(['/user/setting/networks']);
+    }
 
     /**
      * Performs ajax validation.

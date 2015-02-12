@@ -26,7 +26,7 @@ $this->title = 'Networks';
             </div>
             <div class="panel-body">
                 <?php $auth = Connect::begin([
-                    'baseAuthUrl' => ['/user/settings/connect'],
+                    'baseAuthUrl' => ['/user/setting/connect'],
                     'accounts'    => $user->accounts,
                     'autoRender'  => false,
                     'popupMode'   => false

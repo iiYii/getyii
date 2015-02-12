@@ -13,6 +13,7 @@ use common\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
+use yii\helpers\Html;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -34,9 +35,9 @@ class PostController extends Controller
                     // 默认只能Get方式访问
                     ['allow' => true, 'actions' => ['view', 'index'], 'verbs' => ['GET']],
                     // 登录用户才能提交评论或其他内容
-                    ['allow' => true, 'actions' => ['api', 'view'], 'verbs' => ['POST'], 'roles' => ['@']],
+                    ['allow' => true, 'actions' => ['api', 'view', 'delete'], 'verbs' => ['POST'], 'roles' => ['@']],
                     // 登录用户才能使用API操作(赞,踩,收藏)
-                    ['allow' => true, 'actions' => ['create', 'update'], 'roles' => ['@']],
+                    ['allow' => true, 'actions' => ['create', 'update', 'revoke'], 'roles' => ['@']],
                 ]
             ]
         ];
@@ -49,7 +50,9 @@ class PostController extends Controller
     public function actionIndex()
     {
         $searchModel = new PostSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $params = Yii::$app->request->queryParams;
+        $params['PostSearch']['status'] = 1;
+        $dataProvider = $searchModel->search($params);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -143,7 +146,22 @@ class PostController extends Controller
     {
         $model = $this->findModel($id);
         $model->updateCounters(['status' => 1]);
+        $revoke = Html::a('撤消',['/post/revoke', 'id' => $model->id]);
+        $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
         return $this->redirect(['index']);
+    }
+
+    /**
+     * 撤消删除
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionRevoke($id)
+    {
+        $model = $this->findModel($id, 2);
+        $model->updateCounters(['status' => -1]);
+        $this->flash("「{$model->title}」文章撤销删除成功。", 'success');
+        return $this->redirect(['view', 'id' => $model->id]);
     }
 
     /**
@@ -197,12 +215,13 @@ class PostController extends Controller
      * Finds the Post model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
+     * @param integer $status
      * @return Post the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($id, $status=1)
     {
-        if (($model = Post::findOne($id)) !== null) {
+        if (($model = Post::findOne(['id' => $id, 'status' => $status])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

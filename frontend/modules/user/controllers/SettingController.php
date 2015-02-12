@@ -46,6 +46,26 @@ class SettingController extends Controller
         ];
     }
 
+    public function init()
+    {
+        parent::init();
+        Yii::$app->set('authClientCollection', [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'google' => [
+                    'class' => 'yii\authclient\clients\GoogleOAuth',
+                    'clientId' => Yii::$app->setting->get('googleClientId'),
+                    'clientSecret' => Yii::$app->setting->get('googleClientSecret'),
+                ],
+                'github' => [
+                    'class' => 'yii\authclient\clients\GitHub',
+                    'clientId' => Yii::$app->setting->get('githubClientId'),
+                    'clientSecret' => Yii::$app->setting->get('githubClientSecret'),
+                ],
+            ],
+        ]);
+    }
+
     /** @inheritdoc */
     public function actions()
     {

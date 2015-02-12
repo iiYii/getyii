@@ -5,20 +5,17 @@ use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use common\models\PostMeta;
+use common\models\PostTag;
 use frontend\assets\PageDownAsset;
 use dosamigos\selectize\Selectize;
 use yii\web\JsExpression;
-
-/* @var $this yii\web\View */
-/* @var $model common\Models\Post */
-/* @var $form yii\widgets\ActiveForm */
+use app\models\Product;
 
 PageDownAsset::register($this);
-Selectize::$theme ='dosamigos\selectize\SelectizeAsset';
+// Selectize::$theme ='dosamigos\selectize\SelectizeAsset';
 ?>
 
 <div class="post-form">
-
     <?php $form = ActiveForm::begin([
         'fieldConfig' => [
             'template' => "{input}\n{hint}\n{error}"
@@ -54,10 +51,12 @@ Selectize::$theme ='dosamigos\selectize\SelectizeAsset';
     </div>
 
     <?= Selectize::widget([
-        'name' => 'tags',
-        'value' => $model->tags,
-        'url' => ['/post-tag/index'],
-        'clientOptions' => [
+         'name' => 'Post[tags]',
+         // 'items' => ArrayHelper::map(PostTag::find()->all(), 'id', 'name'),
+         'value' => $model->tags,
+         'url' => ['/post-tag/index'],
+         'clientOptions' => [
+            'allowEmptyOption' => false,
             'delimiter' => ',',
             'valueField' => 'name',
             'labelField' => 'name',
@@ -66,8 +65,8 @@ Selectize::$theme ='dosamigos\selectize\SelectizeAsset';
             'plugins' => ['remove_button'],
             'persist' => false,
             'create' => true,
-        ],
-    ]) ?>
+         ],
+     ]) ?>
 
 
     <div class="form-group">

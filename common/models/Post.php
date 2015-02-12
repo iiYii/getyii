@@ -45,7 +45,7 @@ class Post extends ActiveRecord
     {
         return [
             [['post_meta_id', 'user_id', 'view_count', 'comment_count', 'favorite_count', 'like_count', 'hate_count', 'status', 'order', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'content', 'tags'], 'required'],
+            [['title', 'content', 'post_meta_id', 'tags'], 'required'],
             [['content'], 'string'],
             [['title', 'excerpt', 'image', 'tags'], 'string', 'max' => 255],
             [['author'], 'string', 'max' => 100]
@@ -59,7 +59,7 @@ class Post extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'post_meta_id' => '版块ID',
+            'post_meta_id' => '文章分类',
             'user_id' => '作者ID',
             'title' => '标题',
             'author' => '作者',

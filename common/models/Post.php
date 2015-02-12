@@ -90,6 +90,19 @@ class Post extends ActiveRecord
         return $this->hasOne(UserInfo::className(), ['user_id' => 'user_id']);
     }
 
+
+    public function getLike()
+    {
+        $model = new UserMeta();
+        return $model->isUserAction('like', $this->id);
+    }
+
+    public function getHate()
+    {
+        $model = new UserMeta();
+        return $model->isUserAction('hate', $this->id);
+    }
+
     public function getFavorite()
     {
         $model = new UserMeta();

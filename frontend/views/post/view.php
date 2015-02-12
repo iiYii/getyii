@@ -65,20 +65,16 @@ PageDownAsset::register($this);
                                     ],
                                 ]); ?>
                             <?php else: ?>
-                                <button type="button" data-do="like" data-id="<?= $model->id ?>" data-type="post" class="btn btn-success">
+                                <button type="button" data-do="like" data-id="<?= $model->id ?>" data-type="post" class="btn btn-success <?= ($model->like) ? 'active': ''; ?>">
                                     <span class="num"><?= $model->like_count ?></span> 点赞
                                 </button>
-
-                                <button type="button" data-do="like" data-id="<?= $model->id ?>" data-type="post" class="btn btn-success">
-                                    <span class="num"><?= $model->like_count ?></span> 点赞
-                                </button>
-                                <button type="button" data-do="thanks" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default <?php if($model->thanks) echo 'active' ?>">
+                                <button type="button" data-do="thanks" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default <?= ($model->thanks) ? 'active': ''; ?>">
                                     感谢
                                 </button>
-                                <button type="button" data-do="favorite" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default <?php if($model->favorite) echo 'active' ?>">
+                                <button type="button" data-do="favorite" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default <?= ($model->favorite) ? 'active': ''; ?>">
                                     收藏
                                 </button>
-                                <button type="button" data-do="hate" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default">
+                                <button type="button" data-do="hate" data-id="<?= $model->id ?>" data-type="post" class="btn btn-default <?= ($model->hate) ? 'active': ''; ?>">
                                     <span class="num"><?= $model->hate_count ?></span> 喝倒彩
                                 </button>
                             <?php endif ?>

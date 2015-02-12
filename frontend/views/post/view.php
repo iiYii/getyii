@@ -40,17 +40,16 @@ PageDownAsset::register($this);
                         <p><?= Markdown::process($model->content, 'gfm') ?></p>
 
                         <hr>
-
-                        <div class="tags">
-                            <i class="icon-tags"></i> Tags
-                            <?php foreach (explode(',', $model->tags) as $key => $value){
-                                echo Html::a(
-                                        Html::encode($value),
+                        <?php if ($tags = $model->tags): ?>
+                            <div class="tags">
+                                <i class="icon-tags"></i> Tags
+                                <?php foreach (explode(',', $tags) as $key => $value){
+                                    echo Html::a(Html::encode($value),
                                         ['/post/index', 'PostSearch[tags]' => $value],
                                         ['class' => 'btn btn-xs btn-primary']
-                                    ), ' ';
-                            } ?>
-                        </div>
+                                    ), ' ';} ?>
+                            </div>
+                        <?php endif ?>
 
                         <p>&nbsp;</p>
 

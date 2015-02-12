@@ -94,8 +94,9 @@ class PostController extends Controller
         $model = new Post();
         if ($model->load(Yii::$app->request->post())) {
             $model->user_id = Yii::$app->user->id;
-            $model->tags = Yii::$app->request->post('tags');
-            $model->addTags(explode(',', $model->tags));
+            if ($model->tags = Yii::$app->request->post('tags')) {
+                $model->addTags(explode(',', $model->tags));
+            }
             if ($model->save()) {
                 // 更新个人总统计
                 UserInfo::updateAllCounters(['post_count' =>1], ['user_id' => $model->user_id]);

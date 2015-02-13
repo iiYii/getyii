@@ -17,7 +17,7 @@ use yii\helpers\Markdown;
         <div class="well">
             <div class="media-heading">
                 <strong><?= $model->user['username'] ?></strong>&nbsp; <small><?= Yii::$app->formatter->asRelativeTime($model->created_at) ?></small>
-                <!-- <a class="pull-right comment-reply" href="#" data-floor="" data-username="<?= $model->user['username'] ?>"><i class="icon-repeat"></i>回复</a> -->
+                <a class="pull-right comment-reply" href="#" data-floor="" data-username="<?= $model->user['username'] ?>"><i class="icon-repeat"></i>回复</a>
             </div>
             <p><?= Markdown::process($model->comment, 'gfm') ?></p>
         </div>

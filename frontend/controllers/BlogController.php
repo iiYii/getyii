@@ -16,7 +16,7 @@ use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 
 /**
- * PostController implements the CRUD actions for Post model.
+ * BlogController implements the CRUD actions for Post model.
  */
 class BlogController extends Controller
 {

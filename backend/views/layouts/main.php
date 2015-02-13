@@ -69,10 +69,8 @@ AppAsset::register($this);
                         'options'=>['class'=>'nav', 'id'=>'side-menu'],
                         'submenuTemplate' => "\n<ul class='nav nav-second-level collapse'>\n{items}\n</ul>\n",
                         'items' => [
-                            // Important: you need to specify url as 'controller/action',
-                            // not just as 'controller' even if default action is used.
-                            ['label' => 'Home', 'url' => ['site/index']],
-                            // 'Products' menu item will be selected as long as the route is 'product/index'
+                            ['label' => '文章管理', 'url' => ['/post/index']],
+                            ['label' => '分类管理', 'url' => ['/post-meta']],
                             [
                                 'label' => 'Products', 'url' => ['product/index'],
                                 'items' => [

@@ -7,3 +7,23 @@ body > iframe{
 .text-center {
 	text-align: center;
 }
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+.mt10 {
+	margin-top: 10px;
+}
+
+.mt15 {
+	margin-top: 15px;
+}
+
+.mr15 {
+	margin-right: 15px;
+}
+

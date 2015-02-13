@@ -195,13 +195,20 @@ a.desc:after {
 }
 
 /*个人主页*/
-.user-default-index .col-sm-9 .navbar {
+.list-nav .navbar {
     margin-bottom: -1px;
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
 }
 
-.user-default-index .col-sm-9 .list-group-item:first-child {
+.list-nav .list-group-item:first-child {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+}
+
+#new-topic {
+    background: #5677fc;
+}
+#new-topic a {
+    color: white;
 }

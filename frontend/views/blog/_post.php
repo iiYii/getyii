@@ -14,7 +14,7 @@ use yii\helpers\Markdown;
         <div class="entry-meta">
             <span><i class="fa fa-user"></i> <a href="#"><?= $model->user->username ?></a></span>
             <span><i class="fa fa-folder"></i> <a href="#"><?= $model->category->name ?></a></span>
-            <span><i class="fa fa-calendar"></i> <?= date('Y-m-d H:i:s', $model->updated_at) ?></span>
+            <span><i class="fa fa-calendar"></i> <?= Yii::$app->formatter->asRelativeTime($model->created_at) ?></span>
             <span><i class="fa fa-eye"></i><?= Html::encode($model->view_count);?></span>
             <span><i class="fa fa-comment"></i>
                 <?= Html::a(Html::encode($model->comment_count), ['/blog/view', 'id' => $model->id, '#'=>'comments']);?>

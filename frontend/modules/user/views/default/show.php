@@ -33,18 +33,24 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
                     <span class="pull-left"><strong class="">加入于</strong></span>
                     <?= Yii::$app->formatter->asDateTime($user->userInfo->created_at) ?>
                 </li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left"><strong class="">城市</strong></span>
-                    <?= Html::encode($user->userInfo->location) ?>
-                </li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left"><strong class="">公司</strong></span>
-                    <?= $user->userInfo->company ?>
-                </li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left"><strong class="">GitHub</strong></span>
-                    <?= Html::a(Html::encode($user->userInfo->github), Html::encode($user->userInfo->github)) ?>
-                </li>
+                <?php if ($user->userInfo->location): ?>
+                    <li class="list-group-item text-right">
+                        <span class="pull-left"><strong class="">城市</strong></span>
+                        <?= Html::encode($user->userInfo->location) ?>
+                    </li>
+                <?php endif ?>
+                <?php if ($user->userInfo->company): ?>
+                    <li class="list-group-item text-right">
+                        <span class="pull-left"><strong class="">公司</strong></span>
+                        <?= $user->userInfo->company ?>
+                    </li>
+                <?php endif ?>
+                <?php if ($user->userInfo->github): ?>
+                    <li class="list-group-item text-right">
+                        <span class="pull-left"><strong class="">GitHub</strong></span>
+                        <?= Html::a(Html::encode($user->userInfo->github), Html::encode($user->userInfo->github)) ?>
+                    </li>
+                <?php endif ?>
                 <li class="list-group-item text-right">
                     <span class="pull-left"><strong class="">最后登录时间</strong></span>
                     <?= Yii::$app->formatter->asRelativeTime($user->userInfo->last_login_time) ?>
@@ -52,20 +58,24 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
             </ul>
         </div>
 
-
-        <div class="panel panel-default">
-            <div class="panel-heading"><i class="fa fa-user"></i>个人简介</div>
-            <div class="panel-body">
-                <?= $user->userInfo->info ?>
+        <?php if ($user->userInfo->info): ?>
+            <div class="panel panel-default">
+                <div class="panel-heading"><i class="fa fa-user"></i>个人简介</div>
+                <div class="panel-body">
+                    <?= $user->userInfo->info ?>
+                </div>
             </div>
-        </div>
+        <?php endif ?>
 
-        <div class="panel panel-default">
-            <div class="panel-heading"><i class="fa fa-link"></i>个人网站</div>
-            <div class="panel-body">
-                <?= Html::a(Html::encode($user->userInfo->website), Html::encode($user->userInfo->website)) ?>
+        <?php if ($user->userInfo->website): ?>
+            <div class="panel panel-default">
+                <div class="panel-heading"><i class="fa fa-link"></i>个人网站</div>
+                <div class="panel-body">
+                    <?= Html::a(Html::encode($user->userInfo->website), Html::encode($user->userInfo->website)) ?>
+                </div>
             </div>
-        </div>
+        <?php endif ?>
+
         <div class="panel panel-default">
             <div class="panel-heading"><i class="fa fa-dashboard"></i>个人成就</div>
             <ul class="list-group">
@@ -103,7 +113,7 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
         </div> -->
     </div>
     <!--/col-3-->
-    <div class="col-sm-9" contenteditable="false" style="">
+    <div class="col-sm-9 list-nav" contenteditable="false" style="">
         <nav class="navbar navbar-default">
         <?= Menu::widget([
             'options' => [

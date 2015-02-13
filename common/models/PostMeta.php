@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use common\components\db\ActiveRecord;
 
 /**
@@ -55,5 +56,15 @@ class PostMeta extends ActiveRecord
             'created_at' => '创建时间',
             'updated_at' => '修改时间',
         ];
+    }
+
+    public static function blogCategory()
+    {
+        return ArrayHelper::map(static::find()->where(['type'=>'blog_category'])->all(), 'id', 'name');
+    }
+
+    public static function topicCategory()
+    {
+        return ArrayHelper::map(static::find()->where(['type'=>'topic_category'])->all(), 'id', 'name');
     }
 }

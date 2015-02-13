@@ -52,6 +52,7 @@ class BlogController extends Controller
         $searchModel = new PostSearch();
         $params = Yii::$app->request->queryParams;
         $params['PostSearch']['status'] = 1;
+        $params['PostSearch']['type'] = 'blog';
         $dataProvider = $searchModel->search($params);
 
         return $this->render('index', [
@@ -222,7 +223,7 @@ class BlogController extends Controller
      */
     protected function findModel($id, $status=1)
     {
-        if (($model = Post::findOne(['id' => $id, 'status' => $status])) !== null) {
+        if (($model = Post::findOne(['id' => $id, 'status' => $status, 'type' => 'blog'])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

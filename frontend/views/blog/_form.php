@@ -32,7 +32,7 @@ PageDownAsset::register($this);
     ]) ?>
 
     <?= $form->field($model, 'post_meta_id')->dropDownList(
-        ArrayHelper::map(PostMeta::find()->all(), 'id', 'name'),
+        PostMeta::blogCategory(),
         ['prompt'=>'选择一个分类']
     ) ?>
 

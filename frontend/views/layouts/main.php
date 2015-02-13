@@ -46,13 +46,14 @@ BowerAsset::register($this);
             ],
         ]);
         $menuItems = [
-            ['label' => '首页', 'url' => ['/site/index']],
+            ['label' => '首页', 'url' => ['/site']],
             // ['label' => 'About', 'url' => ['/site/about']],
             ['label' => '手册', 'url' => ['/site/book'], 'linkOptions' =>['target' => '_banck']],
             // ['label' => 'Services', 'url' => ['/site/services']],
             // ['label' => 'Portfolio', 'url' => ['/site/portfolio']],
-            ['label' => '博客', 'url' => ['/blog/index']],
-            ['label' => 'FAQ', 'url' => ['/site/faq'], 'linkOptions' =>['target' => '_banck']],
+            ['label' => '博客', 'url' => ['/blog']],
+            ['label' => '社区', 'url' => ['/topic']],
+            // ['label' => 'FAQ', 'url' => ['/site/faq'], 'linkOptions' =>['target' => '_banck']],
             // ['label' => 'Contact', 'url' => ['/site/contact']],
         ];
         if (Yii::$app->user->isGuest) {

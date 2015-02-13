@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use common\Models\Post;
 
 /**
  * PostSearch represents the model behind the search form about `common\Models\Post`.
@@ -17,8 +18,8 @@ class PostSearch extends Post
     public function rules()
     {
         return [
-            [['id', 'post_meta_id', 'user_id', 'view_count', 'comment_count', 'favorite_count', 'like_count', 'hate_count', 'status', 'order', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'author', 'excerpt', 'image', 'content', 'tags'], 'safe'],
+            [['id', 'post_meta_id', 'user_id', 'view_count', 'comment_count', 'favorite_count', 'like_count', 'thanks_count', 'hate_count', 'status', 'order', 'created_at', 'updated_at'], 'integer'],
+            [['type', 'title', 'author', 'excerpt', 'image', 'content', 'tags'], 'safe'],
         ];
     }
 
@@ -45,11 +46,11 @@ class PostSearch extends Post
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 10,
+               'pageSize' => 10,
             ],
             'sort'=> ['defaultOrder' => [
-                'order' => SORT_ASC,
-                'updated_at' => SORT_DESC,
+               'order' => SORT_ASC,
+               'created_at' => SORT_DESC,
             ]]
         ]);
 
@@ -65,6 +66,7 @@ class PostSearch extends Post
             'comment_count' => $this->comment_count,
             'favorite_count' => $this->favorite_count,
             'like_count' => $this->like_count,
+            'thanks_count' => $this->thanks_count,
             'hate_count' => $this->hate_count,
             'status' => $this->status,
             'order' => $this->order,
@@ -72,7 +74,8 @@ class PostSearch extends Post
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
+        $query->andFilterWhere(['like', 'type', $this->type])
+            ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'author', $this->author])
             ->andFilterWhere(['like', 'excerpt', $this->excerpt])
             ->andFilterWhere(['like', 'image', $this->image])

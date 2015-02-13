@@ -51,7 +51,7 @@ BowerAsset::register($this);
             ['label' => '手册', 'url' => ['/site/book'], 'linkOptions' =>['target' => '_banck']],
             // ['label' => 'Services', 'url' => ['/site/services']],
             // ['label' => 'Portfolio', 'url' => ['/site/portfolio']],
-            ['label' => '博客', 'url' => ['/post/index']],
+            ['label' => '博客', 'url' => ['/blog/index']],
             ['label' => 'FAQ', 'url' => ['/site/faq'], 'linkOptions' =>['target' => '_banck']],
             // ['label' => 'Contact', 'url' => ['/site/contact']],
         ];
@@ -63,7 +63,7 @@ BowerAsset::register($this);
             $menuItems[] = [
                 'label' => '撰写',
                 'items' => [
-                    ['label' => '写教程', 'url' => ['/post/create']],
+                    ['label' => '写教程', 'url' => ['/blog/create']],
                 ]
             ];
 

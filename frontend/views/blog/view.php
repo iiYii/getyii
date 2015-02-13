@@ -34,7 +34,7 @@ PageDownAsset::register($this);
                             <span><i class="fa fa-calendar"></i> <?= date('Y-m-d H:i:s', $model->updated_at) ?></span>
                             <span><i class="fa fa-eye"></i><?= Html::encode($model->view_count);?></span>
                             <span><i class="fa fa-comment"></i>
-                                <?= Html::a(Html::encode($model->comment_count), ['/post/view', 'id' => $model->id, '#'=>'comments']);?>
+                                <?= Html::a(Html::encode($model->comment_count), ['/blog/view', 'id' => $model->id, '#'=>'comments']);?>
                             </span>
                         </div>
                         <p><?= Markdown::process($model->content, 'gfm') ?></p>
@@ -45,7 +45,7 @@ PageDownAsset::register($this);
                                 <i class="icon-tags"></i> Tags
                                 <?php foreach (explode(',', $tags) as $key => $value){
                                     echo Html::a(Html::encode($value),
-                                        ['/post/index', 'PostSearch[tags]' => $value],
+                                        ['/blog/index', 'PostSearch[tags]' => $value],
                                         ['class' => 'btn btn-xs btn-primary']
                                     ), ' ';} ?>
                             </div>
@@ -55,8 +55,8 @@ PageDownAsset::register($this);
 
                         <div class="text-center">
                             <?php if ($isCurrent): ?>
-                                <?= Html::a('编辑',['/post/update', 'id' => $model->id], ['class' => 'btn btn-success']); ?>
-                                <?= Html::a('删除',['/post/delete', 'id' => $model->id], [
+                                <?= Html::a('编辑',['/blog/update', 'id' => $model->id], ['class' => 'btn btn-success']); ?>
+                                <?= Html::a('删除',['/blog/delete', 'id' => $model->id], [
                                     'class' => 'btn btn-default',
                                     'data' => [
                                         'confirm' => "您确认要删除文章「{$model->title}」吗？",

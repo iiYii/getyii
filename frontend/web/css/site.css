@@ -212,3 +212,10 @@ a.desc:after {
 #new-topic a {
     color: white;
 }
+.list-nav .breadcrumb{
+    margin: 0;
+    padding: 0;
+}
+.list-nav .breadcrumb a{
+    padding-right: 0;
+}

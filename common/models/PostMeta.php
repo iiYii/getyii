@@ -67,4 +67,12 @@ class PostMeta extends ActiveRecord
     {
         return ArrayHelper::map(static::find()->where(['type'=>'topic_category'])->all(), 'id', 'name');
     }
+
+    public function getTypes()
+    {
+        return [
+            'blog_category' => '文章分类',
+            'topic_category' => '社区分类',
+        ];
+    }
 }

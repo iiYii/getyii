@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 100]) ?>
 
-    <?= $form->field($model, 'type')->dropDownList(['category' => '文章分类']) ?>
+    <?= $form->field($model, 'type')->dropDownList($model->types) ?>
 
     <?= $form->field($model, 'description')->textarea(['row' => 6]) ?>
 

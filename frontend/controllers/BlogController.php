@@ -53,6 +53,9 @@ class BlogController extends Controller
         $params = Yii::$app->request->queryParams;
         $params['PostSearch']['status'] = 1;
         $params['PostSearch']['type'] = 'blog';
+        isset($params['category']) ? $params['PostSearch']['post_meta_id'] = $params['category'] : '' ;
+        isset($params['tag']) ? $params['PostSearch']['tags'] = $params['tag'] : '' ;
+
         $dataProvider = $searchModel->search($params);
 
         return $this->render('index', [

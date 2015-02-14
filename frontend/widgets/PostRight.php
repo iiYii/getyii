@@ -15,11 +15,10 @@ class PostRight extends \yii\bootstrap\Widget
 {
     public function run()
     {
-        $category = PostMeta::findAll(['type' => 'category']);
         $tags = PostTag::find()->orderBy('count DESC')->all();
 
         return $this->render('postRight', [
-            'category' => $category,
+            'category' => PostMeta::blogCategory(),
             'tags' => $tags,
         ]);
     }

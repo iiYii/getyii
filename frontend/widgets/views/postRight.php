@@ -55,7 +55,7 @@ use yii\widgets\ActiveForm;
             <div class="col-sm-6">
                 <ul class="arrow">
                     <?php foreach ($category as $key => $value): ?>
-                        <li><?= Html::a(Html::encode($value->name), ['/blog/index', 'PostSearch[post_meta_id]' => $value->id]);?></li>
+                        <li><?= Html::a(Html::encode($value), ['/blog/index', 'category' => $key]);?></li>
                     <?php endforeach ?>
                 </ul>
             </div>
@@ -76,7 +76,7 @@ use yii\widgets\ActiveForm;
             <?php foreach ($tags as $key => $value): ?>
                 <li><?= Html::a(
                     Html::encode($value->name),
-                    ['/blog/index', 'PostSearch[tags]' => $value->name],
+                    ['/blog/index', 'tag' => $value->name],
                     ['class' => 'btn btn-xs btn-primary']
                 );?></li>
             <?php endforeach ?>

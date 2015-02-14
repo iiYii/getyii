@@ -106,4 +106,17 @@ class LoginForm extends Model
             return false;
         }
     }
+
+    public function loginAdmin()
+    {
+        if ($this->validate()) {
+            if (User::isUserAdmin($this->username)) {
+                return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+            }
+            $this->addError('username', '你没有权限登录');
+        } else {
+            $this->addError('password', 'Incorrect username or password.');
+        }
+        return false;
+    }
 }

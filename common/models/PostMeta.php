@@ -11,6 +11,7 @@ use common\components\db\ActiveRecord;
  *
  * @property integer $id
  * @property string $name
+ * @property string $alias
  * @property string $type
  * @property string $description
  * @property string $count
@@ -36,8 +37,8 @@ class PostMeta extends ActiveRecord
         return [
             [['count', 'order', 'created_at', 'updated_at'], 'integer'],
             [['name'], 'string', 'max' => 100],
-            [['type'], 'string', 'max' => 32],
-            [['description'], 'string', 'max' => 255],
+            [['alias', 'type'], 'string', 'max' => 32],
+            [['description'], 'string', 'max' => 255]
         ];
     }
 
@@ -49,6 +50,7 @@ class PostMeta extends ActiveRecord
         return [
             'id' => 'ID',
             'name' => '名称',
+            'alias' => '变量（别名）',
             'type' => '项目类型',
             'description' => '选项描述',
             'count' => '项目所属内容个数',
@@ -74,5 +76,10 @@ class PostMeta extends ActiveRecord
             'blog_category' => '文章分类',
             'topic_category' => '社区分类',
         ];
+    }
+
+    public static function topic()
+    {
+        return ArrayHelper::map(static::find()->where(['type'=>'topic_category'])->all(), 'alias', 'name');
     }
 }

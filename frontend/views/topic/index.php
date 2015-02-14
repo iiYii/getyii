@@ -6,8 +6,7 @@ use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 use yii\bootstrap\Nav;
 use frontend\widgets\PostRight;
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+use common\models\PostMeta;
 
 // $this->title = 'Blog';
 // $this->params['breadcrumbs'][] = $this->title;
@@ -25,6 +24,9 @@ use frontend\widgets\PostRight;
                 ['label' => '社区',  'url' => false],
             ]
         ]) ?>
+        <?php foreach (PostMeta::topic() as $key => $value) {
+            $navItems[] = ['label' => $value, 'url' => ['/topic/index', 'type' => $key]];
+        } ?>
         <?= Nav::widget([
             'options' => [
                 'class' => 'nav navbar-nav navbar-right',
@@ -32,11 +34,7 @@ use frontend\widgets\PostRight;
             'items' => [
                 [
                     'label' => '全部话题',
-                    'items' => [
-                        ['label' => '我的主页', 'url' => ['/user/default']],
-                        ['label' => '帐号设置', 'url' => ['/user/setting/profile']],
-                        ['label' => '退出','url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']]
-                    ]
+                    'items' => $navItems,
                 ],
                 ['label' => '最新主题',  'url' => ['/topic/index', 'tab' => 'newest']],
                 ['label' => '热门主题',  'url' => ['/topic/index', 'tab' => 'hot']],

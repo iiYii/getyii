@@ -69,6 +69,7 @@ AppAsset::register($this);
                         'options'=>['class'=>'nav', 'id'=>'side-menu'],
                         'submenuTemplate' => "\n<ul class='nav nav-second-level collapse'>\n{items}\n</ul>\n",
                         'items' => [
+                            ['label' => '用户管理', 'url' => ['/user/index']],
                             ['label' => '文章管理', 'url' => ['/post/index']],
                             ['label' => '分类管理', 'url' => ['/post-meta']],
                             [

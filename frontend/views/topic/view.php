@@ -31,11 +31,68 @@ PageDownAsset::register($this);
         ]) ?>
         </nav>
         <div class="list-group-item">
-            <?= Markdown::process($model->content, 'gfm') ?>
+            <div class="media">
+                <div class="media-left">
+                    <?php $img = "http://gravatar.com/avatar/" . md5($model->user['email']) . "?s=48"; ?>
+                    <?= Html::a(Html::img($img, ['class' => 'media-object']),
+                        ['/user/default/show', 'username' => $model->user['username']]
+                    );?>
+                </div>
+                <div class="media-body">
+                    <a href="">
+                        <?= Html::tag('h3',
+                            Html::a($model->title, ['/topic/view', 'id' => $model->id]),
+                            ['class' => 'media-heading']
+                        );?>
+                        <?= Html::tag('strong', Html::tag('span', $model->user['username'])) ?> •
+                        <?= Html::tag('span', Yii::$app->formatter->asRelativeTime($model->created_at)) ?>
+                    </a>
+                    <?= Markdown::process($model->content, 'gfm') ?>
+
+                    <?php if ($isCurrent): ?>
+                        <?= Nav::widget([
+                            'options' => [
+                                'class' => 'nav nav-pills',
+                            ],
+                            'items' => [
+                                ['label' => '编辑',  'url' => ['/topic/update', 'id' => $model->id]],
+                                ['label' => '删除',  'url' => ['/topic/delete', 'id' => $model->id], 'options' => [
+                                    'data' => [
+                                        'confirm' => "您确认要删除话题「{$model->title}」吗？",
+                                        'method' => 'post',
+                                    ],
+                                ]],
+                            ]
+                        ]) ?>
+                    <?php else: ?>
+                        <?= Nav::widget([
+                            'options' => [
+                                'class' => 'nav nav-pills',
+                            ],
+                            'items' => [
+                                // ['label' => '回复',  'url' => [
+                                //     '/topic/view',
+                                //     'id' => $model->id,
+                                //     '#' => 'comment-form'
+                                // ]],
+                                ['label' => '点赞',  'url' => false, 'options' => [
+                                    'class' => ($model->like) ? 'active': '',
+                                    'data' => [
+                                        'do' => "like",
+                                        'id' => $model->id,
+                                        'type' => 'post',
+                                    ],
+                                ]],
+                            ]
+                        ]) ?>
+                    <?php endif ?>
+                </div>
+            </div>
         </div>
         <div class="list-group-item">
             <?= $this->render('_commentView', ['model' => $comment, 'dataProvider' => $dataProvider]) ?>
         </div>
+
 
     </div>
 </section><!--/#blog-->

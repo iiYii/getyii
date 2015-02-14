@@ -7,6 +7,7 @@ use common\models\Post;
 use yii\filters\AccessControl;
 use common\models\PostSearch;
 use common\models\PostComment;
+use common\models\PostMeta;
 use common\models\UserMeta;
 use common\models\UserInfo;
 use common\components\Controller;
@@ -53,6 +54,12 @@ class TopicController extends Controller
         $params = Yii::$app->request->queryParams;
         $params['PostSearch']['type'] = 'topic';
         $params['PostSearch']['status'] = 1;
+        // 话题筛选
+        if (isset($params['tag']) && $params['tag'] != 'index') {
+            $postMeta = PostMeta::findOne(['alias' => $params['tag']]);
+            $params['PostSearch']['post_meta_id'] = $postMeta->id;
+        }
+
         $dataProvider = $searchModel->search($params);
 
         return $this->render('index', [

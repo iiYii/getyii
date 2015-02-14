@@ -14,7 +14,7 @@ use yii\helpers\Markdown;
     <!-- 评论 -->
     <?= Html::a(
         $model->post->title,
-        ['/post/view', 'id' => $model->id],
+        ['/blog/view', 'id' => $model->id],
         ['class' => 'list-group-item-heading']
     )?>
     <?=  Html::tag('em',Yii::$app->formatter->asRelativeTime($model->created_at)) ?>
@@ -26,12 +26,12 @@ use yii\helpers\Markdown;
     <!-- 文章 -->
     <?= Html::a(
         $model->title,
-        ['/post/view', 'id' => $model->id],
+        ['/blog/view', 'id' => $model->id],
         ['class' => 'list-group-item-heading']
     )?>
     <?=  Html::tag('em',Yii::$app->formatter->asRelativeTime($model->created_at)) ?>
     <p class="list-group-item-text">
-        <?= Html::a($model->category->name, ['/post/view', 'id' => $model->id])?>
+        <?= Html::a($model->category->name, ['/blog/view', 'id' => $model->id])?>
         <span>
             <?= $model->like_count ?> 人喜欢 • <?= $model->comment_count ?> 条回复
         </span>

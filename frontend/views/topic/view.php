@@ -56,7 +56,7 @@ PageDownAsset::register($this);
                             ],
                             'items' => [
                                 ['label' => '编辑',  'url' => ['/topic/update', 'id' => $model->id]],
-                                ['label' => '删除',  'url' => ['/topic/delete', 'id' => $model->id], 'options' => [
+                                ['label' => '删除',  'url' => ['/topic/delete', 'id' => $model->id], 'linkOptions' => [
                                     'data' => [
                                         'confirm' => "您确认要删除话题「{$model->title}」吗？",
                                         'method' => 'post',

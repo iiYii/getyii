@@ -6,7 +6,7 @@ use yii\helpers\Markdown;
 /* @var $this yii\web\View */
 ?>
 <div class="media">
-    <span class="badge fr mt15">14</span>
+    <span class="badge fr mt15"><?= $model->comment_count ?></span>
     <div class="media-left">
         <?php $img = "http://gravatar.com/avatar/" . md5($model->user['email']) . "?s=48"; ?>
         <?= Html::a(Html::img($img, ['class' => 'media-object']),

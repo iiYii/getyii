@@ -149,7 +149,7 @@ class TopicController extends Controller
     {
         $model = $this->findModel($id);
         $model->updateCounters(['status' => 1]);
-        $revoke = Html::a('撤消',['/post/revoke', 'id' => $model->id]);
+        $revoke = Html::a('撤消',['/topic/revoke', 'id' => $model->id]);
         $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
         return $this->redirect(['index']);
     }

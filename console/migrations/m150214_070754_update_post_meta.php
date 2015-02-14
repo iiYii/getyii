@@ -8,6 +8,7 @@ class m150214_070754_update_post_meta extends Migration
     public function up()
     {
     	$this->addColumn('{{%post_meta}}', 'alias' , Schema::TYPE_STRING . "(32) DEFAULT NULL COMMENT '变量（别名）' AFTER `name`");
+        $this->createIndex('alias', '{{%post_meta}}', 'alias', true);
     }
 
     public function down()

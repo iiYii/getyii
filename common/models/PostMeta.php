@@ -38,7 +38,8 @@ class PostMeta extends ActiveRecord
             [['count', 'order', 'created_at', 'updated_at'], 'integer'],
             [['name'], 'string', 'max' => 100],
             [['alias', 'type'], 'string', 'max' => 32],
-            [['description'], 'string', 'max' => 255]
+            [['description'], 'string', 'max' => 255],
+            [['alias'], 'unique']
         ];
     }
 

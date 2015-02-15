@@ -15,8 +15,9 @@ $this->title = 'My Yii Application';
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="carousel-content centered">
-                                <h2 class="animation animated-item-1">快速，安全，专业的 PHP 框架</h2>
-                                <p class="animation animated-item-2">Yii 是一个高性能的，适用于开发 WEB2.0 应用的 PHP 框架。</p>
+                                <h2 class="boxed animation animated-item-1">快速，安全，专业的 PHP 框架</h2>
+                                <br>
+                                <p class="boxed animation animated-item-2">Yii 是一个高性能的，适用于开发 WEB2.0 应用的 PHP 框架。</p>
                             </div>
                         </div>
                     </div>
@@ -41,8 +42,8 @@ $this->title = 'My Yii Application';
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="carousel-content centered">
-                                <h2 class="animation animated-item-1">约定大于配置</h2>
-                                <p class="animation animated-item-2">Yii 采用严格的 OOP 编写，Yii 使用简单，非常灵活，具有很好的可扩展性。</p>
+                                <h2 class="boxed animation animated-item-1">约定大于配置</h2>
+                                <p class="boxed animation animated-item-2">Yii 采用严格的 OOP 编写，Yii 使用简单，非常灵活，具有很好的可扩展性。</p>
                                 <a class="btn btn-md animation animated-item-3" href="#">Learn More</a>
                             </div>
                         </div>

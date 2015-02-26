@@ -52,7 +52,7 @@ class DefaultController extends Controller
         $user = $this->user($username);
 
         $dataProvider = new ActiveDataProvider([
-            'query' => Post::find(['username' => $username]),
+            'query' => Post::find()->where(['user_id' => $user->id]),
         ]);
 
         return $this->render('show', [
@@ -71,7 +71,7 @@ class DefaultController extends Controller
         $user = $this->user($username);
 
         $dataProvider = new ActiveDataProvider([
-            'query' => Post::find(['username' => $username]),
+            'query' => Post::find()->where(['user_id' => $user->id]),
         ]);
 
         return $this->render('show', [

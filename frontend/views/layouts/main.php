@@ -185,7 +185,7 @@ BowerAsset::register($this);
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                &copy; 2015 <a target="_blank" href="http://www.getyii.net/">GetYii</a>.
+                &copy; 2015 <a target="_blank" href="http://www.getyii.com/">GetYii</a>.
                 All Rights Reserved.
             </div>
             <div class="col-sm-6">
@@ -194,7 +194,7 @@ BowerAsset::register($this);
                     <?= Html::tag('li', Html::a('关于', ['/']));?>
                     <?= Html::tag('li', Html::a('活跃用户', ['/']));?>
                     <?= Html::tag('li', Html::a('贡献者', ['/']));?>
-                    <?= Html::tag('li', Html::a('反馈', ['/topic/index', 'tag' => 'suggestion']));?>>
+                    <?= Html::tag('li', Html::a('反馈', ['/topic/index', 'tag' => 'suggestion']));?>
                     <li><a href="https://github.com/iiYii/getyii" target="_blank">GitHub</a></li>
                     <li><a id="gototop" class="gototop" href="#"><i class="icon-chevron-up"></i></a></li>
                     <!--#gototop-->

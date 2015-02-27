@@ -123,6 +123,28 @@ BowerAsset::register($this);
             <!--/.col-md-3-->
 
             <div class="col-md-3 col-sm-6">
+                <h4>最新文章</h4>
+
+                <div>
+                    <div class="media">
+                        <div class="media-body">
+                            <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique
+                                    senectus</a></span>
+                            <small class="muted">Posted 17 Aug 2013</small>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-body">
+                            <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique
+                                    senectus</a></span>
+                            <small class="muted">Posted 13 Sep 2013</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/.col-md-3-->
+
+            <div class="col-md-2 col-sm-6">
                 <h4>友情链接</h4>
 
                 <div>
@@ -139,41 +161,14 @@ BowerAsset::register($this);
             <!--/.col-md-3-->
 
             <div class="col-md-3 col-sm-6">
-                <h4>最新文章</h4>
-
-                <div>
-                    <div class="media">
-                        <div class="pull-left">
-                            <img src="/images/blog/thumb1.jpg" alt="">
-                        </div>
-                        <div class="media-body">
-                            <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique
-                                    senectus</a></span>
-                            <small class="muted">Posted 17 Aug 2013</small>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="pull-left">
-                            <img src="/images/blog/thumb2.jpg" alt="">
-                        </div>
-                        <div class="media-body">
-                            <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique
-                                    senectus</a></span>
-                            <small class="muted">Posted 13 Sep 2013</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/.col-md-3-->
-
-            <div class="col-md-3 col-sm-6">
                 <h4>联系我们</h4>
                 <address>
                     <strong>深圳.中国</strong><br>
                 </address>
                 <h4>QQ群</h4>
-                    321493381
-
+                    Yii2 中国交流群：343188481
+                    <br>
+                    Get√Yii 开源交流群：321493381
             </div>
             <!--/.col-md-3-->
         </div>
@@ -192,8 +187,10 @@ BowerAsset::register($this);
                 <ul class="pull-right">
                     <?= Html::tag('li', Html::a('首页', ['/']));?>
                     <?= Html::tag('li', Html::a('关于', ['/']));?>
+                    <?= Html::tag('li', Html::a('FAQ', ['/']));?>
                     <?= Html::tag('li', Html::a('活跃用户', ['/']));?>
                     <?= Html::tag('li', Html::a('贡献者', ['/']));?>
+                    <?= Html::tag('li', Html::a('广告投放', ['/']));?>
                     <?= Html::tag('li', Html::a('反馈', ['/topic/index', 'tag' => 'suggestion']));?>
                     <li><a href="https://github.com/iiYii/getyii" target="_blank">GitHub</a></li>
                     <li><a id="gototop" class="gototop" href="#"><i class="icon-chevron-up"></i></a></li>

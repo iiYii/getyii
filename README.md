@@ -10,6 +10,8 @@
 8. 在终端输入命令 `mv composer.phar /usr/local/bin/composer` 添加环境变量。
 9. 在终端输入命令 `composer global require "fxp/composer-asset-plugin:~1.0"` 安装 [composer-asset-plugin](https://github.com/francoispluchino/composer-asset-plugin) 来管理静态资源文件。
 10. 把 user 表中的某用户值 role 字段值改为20，即可登录后台。
+
+
 ~~1. 在终端输入命令 `yii migrate --migrationPath=@funson86/setting/migrations` 初始化数据。~~
 
 
@@ -17,3 +19,8 @@
 
 1. [Yii2手册](http://book.getyii.com)
 2. [中文 Composer 手册](http://docs.phpcomposer.com/)
+
+## 交流群
+
+- Yii2 中国交流群：343188481
+- Get√Yii 开源交流群：321493381

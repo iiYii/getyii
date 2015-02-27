@@ -18,6 +18,8 @@ $this->title = 'My Yii Application';
                                 <h2 class="boxed animation animated-item-1">快速，安全，专业的 PHP 框架</h2>
                                 <br>
                                 <p class="boxed animation animated-item-2">Yii 是一个高性能的，适用于开发 WEB2.0 应用的 PHP 框架。</p>
+                                <br>
+                                <a class="btn btn-md animation animated-item-3" href="http://www.yiiframework.com/" target="_blank">Learn More</a>
                             </div>
                         </div>
                     </div>
@@ -31,7 +33,7 @@ $this->title = 'My Yii Application';
                                 <h2 class="boxed animation animated-item-1">基于组件、用于开发大型 Web 应用的高性能 PHP 框架</h2>
                                 <p class="boxed animation animated-item-2">Yii 几乎拥有了 所有的特性 ，包括 MVC、DAO/ActiveRecord、I18N/L10N、caching、基于 JQuery 的 AJAX 支持、用户认证和基于角色的访问控制、脚手架、输入验证、部件、事件、主题化以及 Web 服务等等。</p>
                                 <br>
-                                <a class="btn btn-md animation animated-item-3" href="#">Learn More</a>
+                                <a class="btn btn-md animation animated-item-3" href="http://www.yiiframework.com/" target="_blank">Learn More</a>
                             </div>
                         </div>
                     </div>
@@ -44,7 +46,7 @@ $this->title = 'My Yii Application';
                             <div class="carousel-content centered">
                                 <h2 class="boxed animation animated-item-1">约定大于配置</h2>
                                 <p class="boxed animation animated-item-2">Yii 采用严格的 OOP 编写，Yii 使用简单，非常灵活，具有很好的可扩展性。</p>
-                                <a class="btn btn-md animation animated-item-3" href="#">Learn More</a>
+                                <a class="btn btn-md animation animated-item-3" href="http://www.yiiframework.com/" target="_blank">Learn More</a>
                             </div>
                         </div>
                         <!-- <div class="col-sm-6 hidden-xs animation animated-item-4">

@@ -190,10 +190,12 @@ BowerAsset::register($this);
             </div>
             <div class="col-sm-6">
                 <ul class="pull-right">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Faq</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <?= Html::tag('li', Html::a('首页', ['/']));?>
+                    <?= Html::tag('li', Html::a('关于', ['/']));?>
+                    <?= Html::tag('li', Html::a('活跃用户', ['/']));?>
+                    <?= Html::tag('li', Html::a('贡献者', ['/']));?>
+                    <?= Html::tag('li', Html::a('反馈', ['/topic/index', 'tag' => 'suggestion']));?>>
+                    <li><a href="https://github.com/iiYii/getyii" target="_blank">GitHub</a></li>
                     <li><a id="gototop" class="gototop" href="#"><i class="icon-chevron-up"></i></a></li>
                     <!--#gototop-->
                 </ul>

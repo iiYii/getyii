@@ -72,6 +72,7 @@ AppAsset::register($this);
                             ['label' => '用户管理', 'url' => ['/user/index']],
                             ['label' => '文章管理', 'url' => ['/post/index']],
                             ['label' => '分类管理', 'url' => ['/post-meta']],
+                            ['label' => '网站配置', 'url' => ['/setting/default']],
                             [
                                 'label' => 'Products', 'url' => ['product/index'],
                                 'items' => [

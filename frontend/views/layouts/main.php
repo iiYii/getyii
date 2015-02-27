@@ -6,6 +6,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
+use frontend\widgets\NewestPost;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -124,23 +125,24 @@ BowerAsset::register($this);
 
             <div class="col-md-3 col-sm-6">
                 <h4>最新文章</h4>
+                <?php $post = NewestPost::begin() ?>
+                <?php foreach ($post->post as $key => $value): ?>
+                    <div class="media">
+                        <div class="media-body">
+                            <?php switch ($value->type) {
+                                case 'blog':
+                                    echo Html::tag('span', Html::a($value->title, ['/blog/view', 'id' => $value->id]), ['class' => 'media-heading']);
+                                    break;
 
-                <div>
-                    <div class="media">
-                        <div class="media-body">
-                            <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique
-                                    senectus</a></span>
-                            <small class="muted">Posted 17 Aug 2013</small>
+                                default:
+                                    echo Html::tag('span', Html::a($value->title, ['/topic/view', 'id' => $value->id]), ['class' => 'media-heading']);
+                                    break;
+                            } ?>
+                            <?= Html::tag('small', Yii::$app->formatter->asRelativeTime($value->created_at), ['class' => 'muted']);?>
                         </div>
                     </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique
-                                    senectus</a></span>
-                            <small class="muted">Posted 13 Sep 2013</small>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach ?>
+                <?php NewestPost::end() ?>
             </div>
             <!--/.col-md-3-->
 

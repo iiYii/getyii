@@ -20,7 +20,7 @@ BowerAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode($this->title) ?> - <?= \Yii::$app->setting->get('siteTitle') ?></title>
     <?php $this->head() ?>
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>

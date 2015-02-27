@@ -1,6 +1,6 @@
 <?php
-/* @var $this yii\web\View */
-$this->title = 'My Yii Application';
+use yii\helpers\Html;
+$this->title = \Yii::$app->setting->get('siteName');
 ?>
 <section id="main-slider" class="no-margin">
     <div class="carousel slide wet-asphalt">
@@ -229,22 +229,22 @@ $this->title = 'My Yii Application';
                 <div class="row">
                     <div class="col-md-6">
                         <blockquote>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                            <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                            <p>Talk is cheap. Show me the code!</p>
+                            <small>来自 <?= Html::tag('cite', Html::a('Simon', ['/people/Simon']));?></small>
                         </blockquote>
                         <blockquote>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                            <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                            <small>来自 <cite title="Source Title">Source Title</cite></small>
                         </blockquote>
                     </div>
                     <div class="col-md-6">
                         <blockquote>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                            <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                            <small>来自 <cite title="Source Title">Source Title</cite></small>
                         </blockquote>
                         <blockquote>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                            <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                            <small>来自 <cite title="Source Title">Source Title</cite></small>
                         </blockquote>
                     </div>
                 </div>

@@ -23,6 +23,7 @@
         "bower-asset/font-awesome": "*",
         "bower-asset/pagedown": "*",
         "bower-asset/metisMenu": "*",
+        "bower-asset/editor.md": "*",
         "yiisoft/yii2-authclient": "*",
         "funson86/yii2-setting": "dev-master"
     },
@@ -40,9 +41,5 @@
             "npm-asset-library": "vendor/npm",
             "bower-asset-library": "vendor/bower"
         }
-    },
-    "repositories": [
-        {"type": "composer", "url": "http://packagist.imzsy.com/"},
-        {"packagist": false}
-    ]
+    }
 }

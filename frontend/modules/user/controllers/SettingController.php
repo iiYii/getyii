@@ -131,7 +131,29 @@ class SettingController extends Controller
 
 
     /**
-     * Connects social account to user.
+     * 解除绑定第三方账号
+     * @param  integer $id
+     * @return \yii\web\Response
+     * @throws \yii\web\NotFoundHttpException
+     * @throws \yii\web\ForbiddenHttpException
+     */
+    public function actionDisconnect($id)
+    {
+        $account = UserAccount::findOne(['id' => $id]);
+        if ($account === null) {
+            throw new NotFoundHttpException;
+        }
+        if ($account->user_id != \Yii::$app->user->id) {
+            throw new ForbiddenHttpException;
+        }
+        $account->delete();
+
+        return $this->redirect(['networks']);
+    }
+
+
+    /**
+     * 绑定第三方账号
      * @param  ClientInterface $client
      * @return \yii\web\Response
      */

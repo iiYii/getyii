@@ -8,6 +8,7 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use yii\helpers\Json;
 use common\components\db\Mailer;
+use frontend\modules\user\models\UserAccount;
 use yii\log\Logger;
 
 /**
@@ -219,12 +220,12 @@ class User extends ActiveRecord implements IdentityInterface
     public function getAccounts()
     {
         $connected = [];
-        //$accounts  = $this->hasMany($this->module->modelMap['Account'], ['user_id' => 'id'])->all();
+        $accounts  = $this->hasMany(UserAccount::className(), ['user_id' => 'id'])->all();
 
         // @var Account $account
-        // foreach ($accounts as $account) {
-        //     $connected[$account->provider] = $account;
-        // }
+        foreach ($accounts as $account) {
+            $connected[$account->provider] = $account;
+        }
 
         return $connected;
     }

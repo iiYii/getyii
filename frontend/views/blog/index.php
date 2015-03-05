@@ -8,7 +8,7 @@ use frontend\widgets\PostRight;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Blog';
+$this->title = '博客';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

@@ -8,7 +8,7 @@ use yii\bootstrap\Nav;
 use frontend\widgets\PostRight;
 use common\models\PostMeta;
 
-// $this->title = 'Blog';
+$this->title = '社区';
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
 

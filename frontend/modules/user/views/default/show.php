@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\Menu;
 use yii\widgets\ListView;
 
-// $this->title = Html::encode($user->username);
+$this->title = Html::encode($user->username);
 // $this->params['breadcrumbs'][] = $this->title;
 $username = Yii::$app->getRequest()->getQueryParam('username');
 ?>

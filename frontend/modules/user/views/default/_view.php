@@ -14,7 +14,7 @@ use yii\helpers\Markdown;
     <!-- 评论 -->
     <?= Html::a(
         $model->post->title,
-        ['/blog/view', 'id' => $model->id],
+        ["/{$model->post->type}/view", 'id' => $model->post->id],
         ['class' => 'list-group-item-heading']
     )?>
     <?=  Html::tag('em',Yii::$app->formatter->asRelativeTime($model->created_at)) ?>

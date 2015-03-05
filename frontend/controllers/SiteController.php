@@ -111,6 +111,11 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+    public function actionContributors()
+    {
+        return $this->render('contributors');
+    }
+
     public function actionUsers()
     {
         $model = User::find()->where(['status'=>10])->limit(100)->all();

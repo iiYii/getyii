@@ -191,7 +191,7 @@ BowerAsset::register($this);
                     <?= Html::tag('li', Html::a('关于', ['/site/about']));?>
                     <?= Html::tag('li', Html::a('FAQ', ['/']));?>
                     <?= Html::tag('li', Html::a('活跃用户', ['/site/users']));?>
-                    <?= Html::tag('li', Html::a('贡献者', ['/']));?>
+                    <?= Html::tag('li', Html::a('贡献者', ['/site/contributors']));?>
                     <?= Html::tag('li', Html::a('广告投放', ['/']));?>
                     <?= Html::tag('li', Html::a('反馈', ['/topic/index', 'tag' => 'suggestion']));?>
                     <li><a href="https://github.com/iiYii/getyii" target="_blank">GitHub</a></li>

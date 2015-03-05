@@ -48,8 +48,8 @@ BowerAsset::register($this);
         ]);
         $menuItems = [
             ['label' => '首页', 'url' => ['/site']],
-            // ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => '手册', 'url' => ['/site/book'], 'linkOptions' =>['target' => '_banck']],
+            ['label' => '新手入门', 'url' => ['/site/getstart']],
+            // ['label' => '手册', 'url' => ['/site/book'], 'linkOptions' =>['target' => '_banck']],
             // ['label' => 'Services', 'url' => ['/site/services']],
             // ['label' => 'Portfolio', 'url' => ['/site/portfolio']],
             ['label' => '博客', 'url' => ['/blog']],
@@ -170,7 +170,7 @@ BowerAsset::register($this);
                 <h4>QQ群</h4>
                     Yii2 中国交流群：343188481
                     <br>
-                    Get√Yii 开源交流群：321493381
+                    Get√Yii 核心开发者群：321493381（本群只接受参与本站开发的 Yiier）
             </div>
             <!--/.col-md-3-->
         </div>

@@ -188,9 +188,9 @@ BowerAsset::register($this);
             <div class="col-sm-6">
                 <ul class="pull-right">
                     <?= Html::tag('li', Html::a('首页', ['/']));?>
-                    <?= Html::tag('li', Html::a('关于', ['/']));?>
+                    <?= Html::tag('li', Html::a('关于', ['/site/about']));?>
                     <?= Html::tag('li', Html::a('FAQ', ['/']));?>
-                    <?= Html::tag('li', Html::a('活跃用户', ['/']));?>
+                    <?= Html::tag('li', Html::a('活跃用户', ['/site/users']));?>
                     <?= Html::tag('li', Html::a('贡献者', ['/']));?>
                     <?= Html::tag('li', Html::a('广告投放', ['/']));?>
                     <?= Html::tag('li', Html::a('反馈', ['/topic/index', 'tag' => 'suggestion']));?>

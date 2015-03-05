@@ -111,6 +111,14 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+    public function actionUsers()
+    {
+        $model = User::find()->where(['status'=>10])->limit(100)->all();
+        return $this->render('users', [
+            'model' => $model,
+        ]);
+    }
+
     public function actionBook()
     {
         return $this->redirect('http://book.getyii.com');

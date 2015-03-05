@@ -124,8 +124,10 @@ class SiteController extends Controller
     public function actionUsers()
     {
         $model = User::find()->where(['status'=>10])->limit(100)->all();
+        $count = User::find()->where(['status'=>10])->count();
         return $this->render('users', [
             'model' => $model,
+            'count' => $count,
         ]);
     }
 

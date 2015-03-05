@@ -8,7 +8,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <section id="about-us" class="container">
     <div class="gap"></div>
     <h1 class="center">TOP 100 活跃会员</h1>
-    <p class="lead center">目前已经有 17458 位会员加入了 Get Yii。</p>
+    <p class="lead center">目前已经有 <?= $count ?> 位会员加入了 Get Yii。</p>
     <div class="gap"></div>
 
     <div id="meet-the-team" class="row">

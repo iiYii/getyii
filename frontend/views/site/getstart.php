@@ -28,6 +28,7 @@ $content = '
 - [Yii2 Api 英文版](http://www.yiiframework.com/doc-2.0/index.html)
 - [Yii 2.0权威指南中文版](http://yii2.techbrood.com/guide-index.html)
 - [Yii 2.0权威指南中文版](http://guide.yiibar.com/guide-index.html)
+- [Yii 2.0权威指南中文版](http://www.yiifans.com/yii2/guide/index.html)
 - [深入理解Yii2.0](http://www.digpage.com)
 - [Krajee Yii Extensions](http://demos.krajee.com/)
 
@@ -63,6 +64,7 @@ $content = '
 - [dcms2](https://github.com/djfly/dcms2)
 - [yii2-adminlte](https://github.com/funson86/yii2-adminlte)
 - [yii2-simple](https://github.com/azraf/yii2-simple)
+- [dotplant2](https://github.com/DevGroup-ru/dotplant2)
 
 
 ### 贡献者

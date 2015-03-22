@@ -220,6 +220,10 @@ a.desc:after {
     padding-right: 0;
 }
 
+.blog-content a {
+    color: #008E59;
+}
+
 #about-us h5 {
     font-size: 13px;
 }

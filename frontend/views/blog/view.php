@@ -37,7 +37,9 @@ PageDownAsset::register($this);
                                 <?= Html::a(Html::encode($model->comment_count), ['/blog/view', 'id' => $model->id, '#'=>'comments']);?>
                             </span>
                         </div>
-                        <p><?= Markdown::process($model->content, 'gfm') ?></p>
+                        <div class="article">
+                            <?= Markdown::process($model->content, 'gfm') ?>
+                        </div>
 
                         <hr>
                         <?php if ($tags = $model->tags): ?>

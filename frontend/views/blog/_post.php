@@ -22,8 +22,8 @@ use yii\helpers\Markdown;
         </div>
         <div class="article">
             <?php $content = explode('<!--more-->', $model->content) ?>
+            <?= Markdown::process($content[0], 'gfm') ?>
         </div>
-        <?= Markdown::process($content[0], 'gfm') ?>
         <a class="btn btn-default" href="<?= Url::to(['blog/view', 'id' => $model->id]) ?>">继续阅读 <i class="icon-angle-right"></i></a>
     </div>
 </div><!--/.blog-item-->

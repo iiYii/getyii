@@ -216,6 +216,10 @@ a.desc:after {
     margin: 0;
     padding: 0;
 }
-.list-nav .breadcrumb a{
+.list-nav .breadcrumb a {
     padding-right: 0;
+}
+
+#about-us h5 {
+    font-size: 13px;
 }

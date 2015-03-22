@@ -20,7 +20,9 @@ use yii\helpers\Markdown;
                 <?= Html::a(Html::encode($model->comment_count), ['/blog/view', 'id' => $model->id, '#'=>'comments']);?>
             </span>
         </div>
-        <?php $content = explode('<!--more-->', $model->content) ?>
+        <div class="article">
+            <?php $content = explode('<!--more-->', $model->content) ?>
+        </div>
         <?= Markdown::process($content[0], 'gfm') ?>
         <a class="btn btn-default" href="<?= Url::to(['blog/view', 'id' => $model->id]) ?>">继续阅读 <i class="icon-angle-right"></i></a>
     </div>

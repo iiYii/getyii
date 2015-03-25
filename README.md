@@ -9,6 +9,7 @@
 7. 在终端输入命令 `curl -sS https://getcomposer.org/installer | php` 安装 PHP 的 [Composer](http://docs.phpcomposer.com/download/)。
 8. 在终端输入命令 `mv composer.phar /usr/local/bin/composer` 添加环境变量。
 9. 在终端输入命令 `composer global require "fxp/composer-asset-plugin:~1.0"` 安装 [composer-asset-plugin](https://github.com/francoispluchino/composer-asset-plugin) 来管理静态资源文件。
+10. 最后在终端输入命令 `composer update` 更新包。
 10. 把 user 表中的某用户值 role 字段值改为20，即可登录后台。
 
 
@@ -19,6 +20,11 @@
 
 1. [Yii2手册](http://book.getyii.com)
 2. [中文 Composer 手册](http://docs.phpcomposer.com/)
+
+
+## 安装遇到问题怎么办?
+
+建议在官网的[社区版块](http://www.getyii.com/topic/create)**新手提问**下面提问，我会抽空亲自回答。请最大可能的把问题描述清楚，以免浪费我们彼此的时间。
 
 ## 交流群
 

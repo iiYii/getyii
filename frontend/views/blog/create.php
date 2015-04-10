@@ -10,6 +10,7 @@ $this->title = 'Create Post';
 $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <section id="blog" class="container">
 	<div class="post-create">
 
@@ -21,3 +22,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	</div>
 </section>
+

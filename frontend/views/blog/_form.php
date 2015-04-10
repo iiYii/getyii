@@ -8,7 +8,6 @@ use app\models\Product;
 
 // Selectize::$theme ='dosamigos\selectize\SelectizeAsset';
 ?>
-
 <div class="post-form">
     <?php $form = ActiveForm::begin([
         'fieldConfig' => [
@@ -63,3 +62,10 @@ use app\models\Product;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php
+$script = <<<EOF
+// hljs.initHighlightingOnLoad();
+EOF;
+$this->registerJs($script);
+

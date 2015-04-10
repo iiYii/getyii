@@ -62,7 +62,7 @@ jQuery(function ($) {
     /**
      * 监听键盘
      */
-    $('#post-content').keyup(function(){
+    $('#post-content').keyup(function () {
         runPreview();
     });
 
@@ -73,8 +73,13 @@ jQuery(function ($) {
         var replyContent = $("#post-content");
         var oldContent = replyContent.val();
         if (oldContent) {
+
             marked(oldContent, function (err, content) {
                 $('#preview-box').html(content);
+
+                $('pre code').each(function (i, block) {
+                    hljs.highlightBlock(block);
+                });
                 //emojify.run(document.getElementById('preview-box'));
             });
         }

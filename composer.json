@@ -22,7 +22,7 @@
         "bower-asset/sb-admin-2-assets": "*",
         "bower-asset/font-awesome": "*",
         "bower-asset/marked": "*",
-        "bower-asset/SyntaxHighlighter": "*",
+        "bower-asset/highlightjs": "*",
         "bower-asset/metisMenu": "*",
         "yiisoft/yii2-authclient": "*",
         "funson86/yii2-setting": "dev-master"

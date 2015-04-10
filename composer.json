@@ -21,9 +21,9 @@
         "2amigos/yii2-selectize-widget": "*",
         "bower-asset/sb-admin-2-assets": "*",
         "bower-asset/font-awesome": "*",
-        "bower-asset/pagedown": "*",
+        "bower-asset/marked": "*",
+        "bower-asset/SyntaxHighlighter": "*",
         "bower-asset/metisMenu": "*",
-        "bower-asset/editor.md": "*",
         "yiisoft/yii2-authclient": "*",
         "funson86/yii2-setting": "dev-master"
     },

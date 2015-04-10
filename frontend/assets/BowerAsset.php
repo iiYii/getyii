@@ -14,5 +14,7 @@ class BowerAsset extends AssetBundle
     ];
     public $js = [
     	'bootstrap/dist/js/bootstrap.min.js',
+    	//'marked/index.js',
+    	'marked/lib/marked.js',
     ];
 }

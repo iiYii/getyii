@@ -59,10 +59,12 @@ jQuery(function ($) {
         social_tools: false
     });
 
+    hljs.initHighlightingOnLoad();
+
     /**
      * 监听键盘
      */
-    $('#post-content').keyup(function () {
+    $('#md-input').keyup(function () {
         runPreview();
     });
 
@@ -70,12 +72,12 @@ jQuery(function ($) {
      * markdown预览
      */
     function runPreview() {
-        var replyContent = $("#post-content");
+        var replyContent = $("#md-input");
         var oldContent = replyContent.val();
         if (oldContent) {
 
             marked(oldContent, function (err, content) {
-                $('#preview-box').html(content);
+                $('#md-preview').html(content);
 
                 $('pre code').each(function (i, block) {
                     hljs.highlightBlock(block);

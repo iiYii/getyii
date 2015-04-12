@@ -95,7 +95,7 @@ a.desc:after {
 }
 
 /* markdown 编辑器 */
-#preview-box {
+#md-preview {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px dashed #ccc;
@@ -131,6 +131,10 @@ a.desc:after {
     color: #008E59;
 }
 
+/*代码高亮*/
+#md-preview pre, .article pre {
+    padding: 0;
+}
 #about-us h5 {
     font-size: 13px;
 }

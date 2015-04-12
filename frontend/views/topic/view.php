@@ -6,7 +6,6 @@ use yii\widgets\DetailView;
 use frontend\widgets\PostRight;
 use yii\helpers\Markdown;
 use yii\bootstrap\Nav;
-use frontend\assets\PageDownAsset;
 
 /* @var $this yii\web\View */
 /* @var $model common\Models\Post */
@@ -14,7 +13,6 @@ use frontend\assets\PageDownAsset;
 $this->title = $model->title;
 // $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
 // $this->params['breadcrumbs'][] = $this->title;
-PageDownAsset::register($this);
 ?>
 
 <section class="container">
@@ -47,7 +45,9 @@ PageDownAsset::register($this);
                         <?= Html::tag('strong', Html::tag('span', $model->user['username'])) ?> •
                         <?= Html::tag('span', Yii::$app->formatter->asRelativeTime($model->created_at)) ?>
                     </a>
-                    <?= Markdown::process($model->content, 'gfm') ?>
+                    <div class="article">
+                        <?= Markdown::process($model->content, 'gfm') ?>
+                    </div>
 
                     <?php if ($isCurrent): ?>
                         <?= Nav::widget([

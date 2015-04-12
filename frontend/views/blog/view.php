@@ -5,7 +5,6 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 use frontend\widgets\PostRight;
 use yii\helpers\Markdown;
-use frontend\assets\PageDownAsset;
 
 /* @var $this yii\web\View */
 /* @var $model common\Models\Post */
@@ -13,7 +12,6 @@ use frontend\assets\PageDownAsset;
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-PageDownAsset::register($this);
 ?>
 
 <section id="blog" class="container">
@@ -109,12 +107,6 @@ PageDownAsset::register($this);
 if (!Yii::$app->user->getIsGuest()) {
     $apiUrl = Url::to(['api']);
     $script = <<<EOF
-$('#wmd-input').one('focus', function(){
-    var commentConverter = Markdown.getSanitizingConverter();
-        commentEditor = new Markdown.Editor(commentConverter);
-    commentEditor.run();
-    $('#wmd-preview').removeClass('hide');
-});
 
 $(".comment-reply").on('click', function(e){
     e.preventDefault();

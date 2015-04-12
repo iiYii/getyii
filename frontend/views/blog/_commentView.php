@@ -34,26 +34,21 @@ use yii\widgets\ListView;
             'class' => 'alert alert-danger'
         ]) ?>
 
-        <div class="wmd-panel">
-            <div id="wmd-button-bar"></div>
-            <?= $form->field($model, 'comment', [
-                'selectors' => [
-                    'input' => '#wmd-input'
-                ],
-            ])->textarea([
-                    'id' => 'wmd-input',
-                    'disabled' => Yii::$app->user->getIsGuest(),
-                    'class' => 'form-control input-lg wmd-input',
-                    'placeholder' => '内容',
-                    'rows' => 5
-                ]) ?>
-        </div>
+        <?= $form->field($model, 'comment', [
+            'selectors' => [
+                'input' => '#md-input'
+            ],
+        ])->textarea([
+            'placeholder' => '内容',
+            'id' => 'md-input',
+            'rows'        => 10
+        ]) ?>
 
         <div class="form-group">
             <?= Html::submitButton('提交评论', ['class' => 'btn btn-danger btn-lg']) ?>
         </div>
 
-        <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+        <div id="md-preview"></div>
 
         <?php ActiveForm::end(); ?>
 

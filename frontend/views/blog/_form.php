@@ -29,8 +29,13 @@ use app\models\Product;
         ['prompt' => '选择一个分类']
     ) ?>
 
-    <?= $form->field($model, 'content')->textarea([
+    <?= $form->field($model, 'content', [
+        'selectors' => [
+            'input' => '#md-input'
+        ],
+    ])->textarea([
         'placeholder' => '内容',
+        'id' => 'md-input',
         'rows'        => 10
     ]) ?>
 
@@ -57,15 +62,8 @@ use app\models\Product;
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
-    <div id="preview-box"></div>
+    <div id="md-preview"></div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
-
-<?php
-$script = <<<EOF
-// hljs.initHighlightingOnLoad();
-EOF;
-$this->registerJs($script);
-

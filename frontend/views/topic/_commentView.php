@@ -42,6 +42,7 @@ use yii\widgets\ListView;
             ],
         ])->textarea([
             'placeholder' => '内容',
+            'disabled' => Yii::$app->user->getIsGuest(),
             'id' => 'md-input',
             'rows'        => 6
         ]) ?>

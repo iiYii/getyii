@@ -98,7 +98,7 @@ class BlogController extends Controller
         $model = new Post();
         if ($model->load(Yii::$app->request->post())) {
             $model->user_id = Yii::$app->user->id;
-            if ($model->tags = Yii::$app->request->post('tags')) {
+            if ($model->tags) {
                 $model->addTags(explode(',', $model->tags));
             }
             if ($model->save()) {
@@ -129,8 +129,10 @@ class BlogController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->tags = Yii::$app->request->post('tags');
-            $model->addTags(explode(',', $model->tags));
+            if ($model->tags) {
+                $model->addTags(explode(',', $model->tags));
+            }
+
             if ($model->save()) {
                 $this->flash('发表更新成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->id]);

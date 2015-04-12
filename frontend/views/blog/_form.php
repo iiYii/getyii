@@ -1,9 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use common\models\PostMeta;
-use dosamigos\selectize\SelectizeDropDownList;
+use common\models\PostTag;
+use dosamigos\selectize\SelectizeTextInput;
 use app\models\Product;
 
 // Selectize::$theme ='dosamigos\selectize\SelectizeAsset';
@@ -41,11 +43,10 @@ use app\models\Product;
         'rows'        => 10
     ]) ?>
 
-    <?= SelectizeDropDownList::widget([
+    <?= SelectizeTextInput::widget([
         'name'          => 'Post[tags]',
-        // 'items' => ArrayHelper::map(PostTag::find()->all(), 'id', 'name'),
         'value'         => $model->tags,
-        //'url' => ['/post-tag/index'],
+        'loadUrl' => ['/post-tag/index'],
         'clientOptions' => [
             'allowEmptyOption' => false,
             'delimiter'        => ',',
@@ -58,7 +59,6 @@ use app\models\Product;
             'create'           => true,
         ],
     ]) ?>
-
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

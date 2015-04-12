@@ -3,7 +3,7 @@
  * @Author: forecho
  * @Date:   2015-01-24 22:21:45
  * @Last Modified by:   forecho
- * @Last Modified time: 2015-01-24 22:35:02
+ * @Last Modified time: 2015-04-12 12:24:48
  */
 
 namespace frontend\modules\user\controllers;
@@ -48,11 +48,11 @@ class SecurityController extends Controller
         \Yii::$app->set('authClientCollection', [
             'class' => 'yii\authclient\Collection',
             'clients' => [
-                'google' => [
-                    'class' => 'yii\authclient\clients\GoogleOAuth',
-                    'clientId' => \Yii::$app->setting->get('googleClientId'),
-                    'clientSecret' => \Yii::$app->setting->get('googleClientSecret'),
-                ],
+                // 'google' => [
+                //     'class' => 'yii\authclient\clients\GoogleOAuth',
+                //     'clientId' => \Yii::$app->setting->get('googleClientId'),
+                //     'clientSecret' => \Yii::$app->setting->get('googleClientSecret'),
+                // ],
                 'github' => [
                     'class' => 'yii\authclient\clients\GitHub',
                     'clientId' => \Yii::$app->setting->get('githubClientId'),

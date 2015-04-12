@@ -204,6 +204,10 @@ BowerAsset::register($this);
 </footer>
 <!--/#footer-->
 
+<div style="display:none">
+<?= \Yii::$app->setting->get('siteAnalytics'); ?>
+</div>
+
 <?php $this->endBody() ?>
 </body>
 </html>

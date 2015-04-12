@@ -30,9 +30,9 @@ return [
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
             'clients' => [
-                'google' => [
-                    'class' => 'yii\authclient\clients\GoogleOpenId'
-                ],
+                // 'google' => [
+                //     'class' => 'yii\authclient\clients\GoogleOpenId'
+                // ],
                 'github' => [
                     'class' => 'yii\authclient\clients\GitHub',
                     'clientId' => 'github_client_id',

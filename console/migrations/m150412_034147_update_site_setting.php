@@ -38,7 +38,7 @@ class m150412_034147_update_site_setting extends Migration
 
     private function delSettingSql()
     {
-        return "DELETE FROM {%setting}} WHERE `id` IN (
+        return "DELETE FROM {{%setting}} WHERE `id` IN (
 				51, 5111, 5112, 5113
         	)";
     }

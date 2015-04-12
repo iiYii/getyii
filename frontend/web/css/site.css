@@ -131,6 +131,13 @@ a.desc:after {
     color: #008E59;
 }
 
+#reply-notice {
+  color: gray;
+  padding-top: 16px;
+  margin-bottom: 16px;
+  border: 1px dashed;
+}
+
 /*代码高亮*/
 #md-preview pre, .article pre {
     padding: 0;

@@ -32,6 +32,8 @@ use app\models\Product;
         ['prompt'=>'选择一个分类']
     ) ?>
 
+    <?= $this->render('/partials/markdwon_help') ?>
+
     <?= $form->field($model, 'content', [
         'selectors' => [
             'input' => '#md-input'

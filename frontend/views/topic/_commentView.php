@@ -34,6 +34,8 @@ use yii\widgets\ListView;
             'class' => 'alert alert-danger'
         ]) ?>
 
+        <?= $this->render('/partials/markdwon_help') ?>
+
         <?= $form->field($model, 'comment', [
             'selectors' => [
                 'input' => '#md-input'
@@ -41,7 +43,7 @@ use yii\widgets\ListView;
         ])->textarea([
             'placeholder' => '内容',
             'id' => 'md-input',
-            'rows'        => 10
+            'rows'        => 6
         ]) ?>
 
         <div class="form-group">

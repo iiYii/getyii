@@ -19,8 +19,8 @@ return [
                 'people/<username:\w+>' => 'user/default/show',
                 'people/<username:\w+>/post' => 'user/default/post',
                 'people/<username:\w+>/favorite' => 'user/default/favorite',
-                '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-                '<module>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<module>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
             ],
         ],
         'user' => [
@@ -46,6 +46,17 @@ return [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning', 'info', 'trace'],
+                ],
+            ],
+        ],
+        'i18n' => [
+            'translations' => [
+                'exception*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@frontend/messages',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                    ],
                 ],
             ],
         ],

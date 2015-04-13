@@ -30,7 +30,7 @@ body {
   padding-top: 80px;
   color: #34495e;
   background: #f5f5f5;
-  font-family: Avenir, 'Helvetica Neue', 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', sans-serif;
+  font-family: "Hiragino Sans GB","Microsoft YaHei","微软雅黑",tahoma,arial,simsun,"宋体";
   font-weight: 300;
 }
 h1,
@@ -39,7 +39,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
 a {
@@ -713,7 +712,6 @@ ul.tag-cloud li {
   border: none;
 }
 .navbar-inverse .navbar-brand {
-  font-family: 'Bubbler One', sans-serif;
   font-size: 36px;
   line-height: 50px;
   color: #fff;

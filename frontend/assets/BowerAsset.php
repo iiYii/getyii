@@ -11,7 +11,7 @@ class BowerAsset extends AssetBundle
     public $sourcePath = '@bower';
     public $css = [
         'font-awesome/css/font-awesome.min.css',
-        'highlightjs/styles/pojoaque.css',
+        'highlightjs/styles/monokai_sublime.css',
     ];
     public $js = [
         'bootstrap/dist/js/bootstrap.min.js',

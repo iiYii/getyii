@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    background-color: #e1e1e1;
 }
 
 .wrap {
@@ -15,10 +16,10 @@ body {
 }
 
 .footer {
-    height: 60px;
-    background-color: #f5f5f5;
+    background-color: #fff;
     border-top: 1px solid #ddd;
-    padding-top: 20px;
+    padding-top: 50px;
+    padding-bottom: 30px;
 }
 
 .jumbotron {
@@ -41,7 +42,7 @@ a.asc:after, a.desc:after {
     position: relative;
     top: 1px;
     display: inline-block;
-     font-family: Avenir, 'Helvetica Neue', 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', sans-serif;
+    font-family: Avenir, 'Helvetica Neue', 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', sans-serif;
     font-style: normal;
     font-weight: normal;
     line-height: 1;
@@ -90,41 +91,29 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
-#w0.navbar, #w1.navbar, #w2.navbar, #w3.navbar, #w4.navbar {
-    margin-bottom:25px;
+/* 自定义 */
+.navbar {
+    background: #71C940;
 }
 
-/* markdown 编辑器 */
-#md-preview {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px dashed #ccc;
+.navbar a {
+    color: #fff;
 }
 
-/*个人主页*/
-.list-nav .navbar {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
+@media (min-width: 1400px) {
+    .container {
+        width: 1370px;
+    }
 }
 
-.list-nav .list-group-item:first-child {
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+.list-group-item {
+    border: none;
+    border-bottom: 1px solid #F0F0F0
 }
 
-#new-topic {
-    background: #5677fc;
-}
-#new-topic a {
-    color: white;
-}
-.list-nav .breadcrumb{
-    margin: 0;
-    padding: 0;
-}
-.list-nav .breadcrumb a {
-    padding-right: 0;
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: #71C940;
+    color: #eee;
 }
 
 .article a {
@@ -132,16 +121,17 @@ a.desc:after {
 }
 
 #reply-notice {
-  color: gray;
-  padding-top: 16px;
-  margin-bottom: 16px;
-  border: 1px dashed;
+    color: gray;
+    padding-top: 16px;
+    margin-bottom: 16px;
+    border: 1px dashed;
 }
 
 /*代码高亮*/
 #md-preview pre, .article pre {
     padding: 0;
 }
+
 #about-us h5 {
     font-size: 13px;
 }

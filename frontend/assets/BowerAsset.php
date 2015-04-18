@@ -14,7 +14,6 @@ class BowerAsset extends AssetBundle
         'highlightjs/styles/monokai_sublime.css',
     ];
     public $js = [
-        'bootstrap/dist/js/bootstrap.min.js',
         'marked/lib/marked.js',
         'highlightjs/highlight.pack.js',
     ];

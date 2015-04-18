@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Post;
 use Yii;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
@@ -61,7 +62,10 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $topics = Post::find()->limit(20)->where(['status' => 2])->all();
+        return $this->render('index', [
+            'topics' => $topics
+        ]);
     }
 
     public function actionLogin()
@@ -123,8 +127,8 @@ class SiteController extends Controller
 
     public function actionUsers()
     {
-        $model = User::find()->where(['status'=>10])->limit(100)->all();
-        $count = User::find()->where(['status'=>10])->count();
+        $model = User::find()->where(['status' => 10])->limit(100)->all();
+        $count = User::find()->where(['status' => 10])->count();
         return $this->render('users', [
             'model' => $model,
             'count' => $count,
@@ -179,7 +183,7 @@ class SiteController extends Controller
         }
 
         return $this->render('signup', [
-            'model'   => $model,
+            'model' => $model,
         ]);
     }
 

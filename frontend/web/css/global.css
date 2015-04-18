@@ -1,29 +1,33 @@
 /*屏蔽流氓宽带商强行插入的广告*/
-body > iframe{
-    opacity:0;
-    display:none;
+body > iframe {
+    opacity: 0;
+    display: none;
 }
 
 .text-center {
-	text-align: center;
+    text-align: center;
 }
 
 .fl {
-	float: left;
+    float: left;
 }
 
 .fr {
-	float: right;
+    float: right;
 }
+
 .mt10 {
-	margin-top: 10px;
+    margin-top: 10px;
+}
+
+.mt0 {
+    margin-top: 0;
 }
 
 .mt15 {
-	margin-top: 15px;
+    margin-top: 15px;
 }
 
 .mr15 {
-	margin-right: 15px;
+    margin-right: 15px;
 }
-

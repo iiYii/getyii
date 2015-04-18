@@ -16,12 +16,28 @@ body > iframe {
     float: right;
 }
 
+.pl0 {
+    padding-left: 0
+}
+
+.pr0 {
+    padding-right: 0
+}
+
+.p0 {
+    padding: 0
+}
+
 .mt10 {
     margin-top: 10px;
 }
 
 .mt0 {
     margin-top: 0;
+}
+
+.mb0 {
+    margin-bottom: 0;
 }
 
 .mt15 {

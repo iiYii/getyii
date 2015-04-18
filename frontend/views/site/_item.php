@@ -5,7 +5,7 @@ use yii\helpers\Html;
 <li class="list-group-item media col-sm-6 mt0">
 
     <?= Html::a(Html::tag('span', $model['comment_count'], ['class' => 'badge badge-reply-count']),
-        ['/topics/view', 'id' => $model->id], ['class' => 'pull-right']
+        ['/topic/view', 'id' => $model->id], ['class' => 'pull-right']
     );?>
 
     <div class="avatar pull-left">
@@ -19,13 +19,13 @@ use yii\helpers\Html;
 
         <div class="media-heading">
             <?= Html::a($model->title,
-                ['/topics/view', 'id' => $model->id], ['title' => $model->title]
+                ['/topic/view', 'id' => $model->id], ['title' => $model->title]
             ); ?>
         </div>
         <div class="media-body meta">
             <?php
             echo Html::a(Html::tag('span', $model->like_count, ['class' => 'fa fa-thumbs-o-up']),
-                ['/topics/view', 'id' => $model->id], ['class' => 'remove-padding-left']
+                ['/topic/view', 'id' => $model->id], ['class' => 'remove-padding-left']
             ),
             Html::tag('span', '•'),
             Html::a($model->category->name, ['/user/default/show', 'username' => $model->user['username']]);

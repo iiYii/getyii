@@ -21,12 +21,12 @@ $this->title = \Yii::$app->setting->get('siteName');
 
     </div>
 
-    <div class="panel-body">
-        <?php if($topics){
+    <div class="clearfix site-index-topic">
+        <?php if ($topics) {
             foreach ($topics as $key => $vlaue) {
                 echo $this->render('_item', ['model' => $vlaue]);
             }
-        } else{
+        } else {
             echo \Yii::t('app', 'Dont have any data Yet');
         } ?>
     </div>

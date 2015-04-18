@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
-use frontend\widgets\PostRight;
+use yii\widgets\ListView;
 use yii\helpers\Markdown;
 use yii\bootstrap\Nav;
 
@@ -15,87 +15,52 @@ $this->title = $model->title;
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<section class="container">
-    <div class="col-sm-12 list-nav" contenteditable="false" style="">
-        <nav class="navbar navbar-default">
-        <?= Nav::widget([
-            'options' => [
-                'class' => 'nav navbar-nav breadcrumb',
-            ],
-            'items' => [
-                ['label' => '社区',  'url' => ['/topic']],
-                Html::tag('li', Html::encode($this->title), ['class' => 'mt15']),
-            ]
-        ]) ?>
-        </nav>
-        <div class="list-group-item">
-            <div class="media">
-                <div class="media-left">
-                    <?php $img = "http://gravatar.com/avatar/" . md5($model->user['email']) . "?s=48"; ?>
-                    <?= Html::a(Html::img($img, ['class' => 'media-object']),
-                        ['/user/default/show', 'username' => $model->user['username']]
-                    );?>
-                </div>
-                <div class="media-body">
-                    <a href="">
-                        <?= Html::tag('h3',
-                            Html::a($model->title, ['/topic/view', 'id' => $model->id]),
-                            ['class' => 'media-heading']
-                        );?>
-                        <?= Html::tag('strong', Html::tag('span', $model->user['username'])) ?> •
-                        <?= Html::tag('span', Yii::$app->formatter->asRelativeTime($model->created_at)) ?>
-                    </a>
-                    <div class="article">
-                        <?= Markdown::process($model->content, 'gfm') ?>
-                    </div>
-
-                    <?php if ($isCurrent): ?>
-                        <?= Nav::widget([
-                            'options' => [
-                                'class' => 'nav nav-pills',
-                            ],
-                            'items' => [
-                                ['label' => '编辑',  'url' => ['/topic/update', 'id' => $model->id]],
-                                ['label' => '删除',  'url' => ['/topic/delete', 'id' => $model->id], 'linkOptions' => [
-                                    'data' => [
-                                        'confirm' => "您确认要删除话题「{$model->title}」吗？",
-                                        'method' => 'post',
-                                    ],
-                                ]],
-                            ]
-                        ]) ?>
-                    <?php else: ?>
-                        <?= Nav::widget([
-                            'options' => [
-                                'class' => 'nav nav-pills',
-                            ],
-                            'items' => [
-                                // ['label' => '回复',  'url' => [
-                                //     '/topic/view',
-                                //     'id' => $model->id,
-                                //     '#' => 'comment-form'
-                                // ]],
-                                ['label' => '点赞',  'url' => false, 'options' => [
-                                    'class' => ($model->like) ? 'active': '',
-                                    'data' => [
-                                        'do' => "like",
-                                        'id' => $model->id,
-                                        'type' => 'post',
-                                    ],
-                                ]],
-                            ]
-                        ]) ?>
-                    <?php endif ?>
+<div class="col-sm-10 topic-view" contenteditable="false" style="">
+    <div class="panel panel-default">
+        <div class="panel-heading media clearfix">
+            <div class="media-body">
+                <?= Html::tag('h1', $model->title, ['class' => 'media-heading']); ?>
+                <div class="info">
+                    <?= Html::a('分享', ['/topic/node', 'id' => $model->post_meta_id]) ?>
+                    ·
+                    <?= Html::a($model->user['username'], ['/people', 'id' => $model->user['username']]) ?>
+                    ·
+                    于 <?= Html::tag('abbr', Yii::$app->formatter->asRelativeTime($model->created_at)) ?>发布
+                    ·
+                    最后由 <a data-name="lgn21st" href="/lgn21st">lgn21st</a> 于 <abbr class="timeago" title="2015-04-16T08:58:42+08:00">2 天前</abbr>回复
+                    ·
+                    <?= $model->view_count ?> 次阅读
                 </div>
             </div>
+            <div class="avatar media-right">
+                <?php $img = "http://gravatar.com/avatar/" . md5($model->user['email']) . "?s=48"; ?>
+                <?= Html::a(Html::img($img, ['class' => 'media-object avatar-48']),
+                    ['/user/default/show', 'username' => $model->user['username']]
+                ); ?>
+            </div>
         </div>
-        <div class="list-group-item">
-            <?= $this->render('_commentView', ['model' => $comment, 'dataProvider' => $dataProvider]) ?>
+        <div class="panel-body article">
+            <?= Markdown::process($model->content, 'gfm') ?>
         </div>
-
-
     </div>
-</section><!--/#blog-->
+
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <?= Yii::t('app', 'Received {0} reply', $model->comment_count) ?>
+        </div>
+
+        <?= ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemOptions' => ['class' => 'list-group-item media'],
+            'summary' => false,
+            'itemView' => '_comment',
+        ]) ?>
+    </div>
+
+    <?= $this->render('_commentView', ['model' => $comment, 'dataProvider' => $dataProvider]) ?>
+
+</div>
+<?= \frontend\widgets\TopicSidebar::widget(); ?>
 <?php
 if (!Yii::$app->user->getIsGuest()) {
     $apiUrl = Url::to(['api']);

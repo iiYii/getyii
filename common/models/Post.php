@@ -33,6 +33,36 @@ use yii\data\ActiveDataProvider;
 class Post extends ActiveRecord
 {
     /**
+     * 博客文章
+     */
+    const TYPE_BLOG = 'blog';
+
+    /**
+     * 社区话题
+     */
+    const TYPE_TOPIC = 'topic';
+
+    /**
+     * 置顶
+     */
+    const STATUS_TOP = 3;
+
+    /**
+     * 推荐
+     */
+    const STATUS_GOOD = 2;
+
+    /**
+     * 发布
+     */
+    const STATUS_ACTIVE = 1;
+
+    /**
+     * 删除
+     */
+    const STATUS_DELETED = 0;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -128,6 +158,19 @@ class Post extends ActiveRecord
     public function getIsCurrent()
     {
         return $this->user_id == Yii::$app->user->id;
+    }
+
+
+    /**
+     * 重写 findOne
+     * @inherit
+     */
+    public static function findOne($condition)
+    {
+        return static::find()
+            ->where('status >= :status', [':status' => self::STATUS_ACTIVE])
+            ->andWhere($condition)
+            ->one();
     }
 
     /**

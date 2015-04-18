@@ -39,7 +39,7 @@ BowerAsset::register($this);
         'brandLabel' => 'Get√Yii',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-white navbar-fixed-top',
+            'class' => 'navbar-white',
         ],
     ]);
     $menuItems = [

@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 
 ?>
-<div class="col-md-2 side-bar">
+<div class="col-md-2 side-bar p0">
 
     <div class="panel panel-default corner-radius">
 
@@ -21,7 +21,7 @@ use yii\helpers\Html;
             <div class="btn-group">
                 <?= Html::a(
                     \Yii::t('app', 'New Topic'),
-                    ['/topic/create', 'id' => 'id'],
+                    ['/topic/default/create', 'id' => 'id'],
                     ['class' => 'btn btn-success']
                 ) ?>
             </div>

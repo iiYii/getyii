@@ -20,18 +20,12 @@ class AppAsset extends AssetBundle
 
     public $css = [
         'css/global.css',
-//        'css/font-awesome.min.css',
-//        'css/prettyPhoto.css',
-//        'css/animate.css',
-//        'css/main.css',
         'css/site.css',
     ];
 
     public $js = [
-//        'js/bootstrap.min.js',
-//        'js/jquery.prettyPhoto.js',
-//        'js/jquery.isotope.min.js',
-//        'js/main.js',
+        'js/main.js',
+        'js/topic.js',
     ];
 
     public $depends = [

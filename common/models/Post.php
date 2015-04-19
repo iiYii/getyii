@@ -155,51 +155,13 @@ class Post extends ActiveRecord
         return $this->hasOne(PostMeta::className(), ['id' => 'post_meta_id']);
     }
 
-    public function getIsCurrent()
+    public function isCurrent()
     {
         return $this->user_id == Yii::$app->user->id;
     }
 
 
-    /**
-     * 重写 findOne
-     * @inherit
-     */
-    public static function findOne($condition)
-    {
-        return static::find()
-            ->where('status >= :status', [':status' => self::STATUS_ACTIVE])
-            ->andWhere($condition)
-            ->one();
-    }
 
-    /**
-     * 添加标签
-     * @param array $tags
-     * @return bool
-     */
-    public function addTags(array $tags)
-    {
-        $return = false;
-        $tagItem = new PostTag();
-        foreach ($tags as $tag) {
-            $tagRaw = false;
-            $_tagItem = clone $tagItem;
-            $tagRaw = $_tagItem::findOne(['name' => $tag]);
-            if (!$tagRaw) {
-                $_tagItem->setAttributes([
-                    'name' => $tag,
-                    'count' => 1,
-                ]);
-                if ($_tagItem->save()) {
-                    $return = true;
-                }
-            } else {
-                $tagRaw->updateCounters(['count' => 1]);
-            }
-        }
-        return $return;
-    }
 
 
 }

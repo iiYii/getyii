@@ -1,14 +1,15 @@
 <?php
 
-namespace frontend\controllers;
+namespace frontend\modules\topic\controllers;
 
-use Yii;
 use common\models\Post;
+use common\services\TopicService;
+use frontend\modules\topic\models\Topic;
+use Yii;
 use yii\filters\AccessControl;
 use common\models\PostSearch;
 use common\models\PostComment;
 use common\models\PostMeta;
-use common\models\UserMeta;
 use common\models\UserInfo;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
@@ -16,10 +17,7 @@ use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 
-/**
- * TopicController implements the CRUD actions for Post model.
- */
-class TopicController extends Controller
+class DefaultController extends Controller
 {
     public function behaviors()
     {
@@ -45,7 +43,7 @@ class TopicController extends Controller
     }
 
     /**
-     * Lists all Post models.
+     * 话题列表
      * @return mixed
      */
     public function actionIndex()
@@ -69,37 +67,36 @@ class TopicController extends Controller
     }
 
     /**
-     * Displays a single Post model.
+     * 话题详细页
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-        $model = $this->findModel($id);
+        $topicService = new TopicService();
+        $model = $topicService->findTopic($id);
         $comment = $this->newComment($model);
         $dataProvider = new ActiveDataProvider([
             'query' => PostComment::find()->where(['post_id' => $id]),
         ]);
 
         // 文章浏览次数
-        Post::updateAllCounters(['view_count' =>1], ['id' => $id]);
+        Topic::updateAllCounters(['view_count' => 1], ['id' => $id]);
 
         return $this->render('view', [
             'model' => $model,
             'dataProvider' => $dataProvider,
             'comment' => $comment,
-            'isCurrent' => $model->getIsCurrent(),
         ]);
     }
 
     /**
-     * Creates a new Post model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * 新建话题
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Post();
+        $model = new Topic();
         if ($model->load(Yii::$app->request->post())) {
             $model->user_id = Yii::$app->user->id;
             $model->type = 'topic';
@@ -108,7 +105,7 @@ class TopicController extends Controller
             }
             if ($model->save()) {
                 // 更新个人总统计
-                UserInfo::updateAllCounters(['post_count' =>1], ['user_id' => $model->user_id]);
+                UserInfo::updateAllCounters(['post_count' => 1], ['user_id' => $model->user_id]);
                 $this->flash('发表文章成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -120,8 +117,7 @@ class TopicController extends Controller
     }
 
     /**
-     * Updates an existing Post model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * 修改自己的话题
      * @param integer $id
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException
@@ -157,7 +153,7 @@ class TopicController extends Controller
     {
         $model = $this->findModel($id);
         $model->updateCounters(['status' => 1]);
-        $revoke = Html::a('撤消',['/topic/revoke', 'id' => $model->id]);
+        $revoke = Html::a('撤消', ['/topic/revoke', 'id' => $model->id]);
         $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
         return $this->redirect(['index']);
     }
@@ -176,9 +172,9 @@ class TopicController extends Controller
     }
 
     /**
-     * 创建新回答
-     * @param $question
-     * @return PostComment
+     * 创建评论
+     * @param Post $post
+     * @return array|PostComment|string
      */
     protected function newComment(Post $post)
     {
@@ -187,54 +183,14 @@ class TopicController extends Controller
             $model->user_id = Yii::$app->user->id;
             $model->post_id = $post->id;
             $model->ip = Yii::$app->getRequest()->getUserIP();
-            if ($model ->save()) {
+            if ($model->save()) {
                 // 评论计数器
-                Post::updateAllCounters(['comment_count' =>1], ['id' => $post->id]);
+                Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
                 // 更新个人总统计
-                UserInfo::updateAllCounters(['comment_count' =>1], ['user_id' => $model->user_id]);
+                UserInfo::updateAllCounters(['comment_count' => 1], ['user_id' => $model->user_id]);
                 return $this->message('回答发表成功!', 'success', $this->refresh(), 'flash');
             }
         }
         return $model;
-    }
-
-    /**
-     * 收藏, 赞, 踩, 标签 接口
-     * @param $id
-     * @return json
-     */
-    public function actionApi()
-    {
-        $request = Yii::$app->request;
-        $model = $this->findModel($id = $request->post('id'));
-        if ($model === null || $model->getIsCurrent()) {
-            return $this->message('错误的操作', 'error');
-        }
-        $opeartions = ['like', 'thanks', 'favorite', 'hate'];
-        if (!in_array($type = $request->post('do'), $opeartions)) {
-            return $this->message('错误的操作', 'error');
-        }
-        $userMeta = new UserMeta();
-        $result = $userMeta->userAction($type, $id);
-        if ($result !== true) {
-            return $this->message($result === false ? '操作失败' : $result, 'error');
-        }
-        return $this->message('操作成功', 'success');
-    }
-
-    /**
-     * Finds the Post model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Post the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Post::findOne(['id' => $id, 'type' => 'topic'])) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
     }
 }

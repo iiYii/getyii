@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
             'class' => 'alert alert-danger'
         ]) ?>
 
-        <?= $this->render('/partials/markdwon_help') ?>
+        <?= $this->render('@frontend/views/partials/markdwon_help') ?>
 
         <?= $form->field($model, 'comment', [
             'selectors' => [

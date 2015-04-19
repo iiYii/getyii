@@ -92,16 +92,8 @@ a.desc:after {
     background: #5CB85C;
 }
 
-a {
-    color: #888;
-}
-
 .navbar a {
     color: #fff;
-}
-
-.topic {
-    padding: 0;
 }
 
 @media (min-width: 1400px) {
@@ -113,6 +105,10 @@ a {
 .list-group {
     margin-bottom: 0;
     background-color: #f5f5f5;
+}
+
+.col-md-10 {
+    padding-left: 0;
 }
 
 .site-index-topic .list-group-item:last-child {
@@ -156,6 +152,19 @@ a {
     padding-top: 16px;
     margin-bottom: 16px;
     border: 1px dashed;
+}
+
+.opts a:link, .opts a:visited {
+    color: #666;
+    text-decoration: none;
+}
+
+.opts a {
+    margin-right: 8px;
+}
+
+.list-view .empty {
+    padding: 10px 15px;
 }
 
 /*代码高亮*/

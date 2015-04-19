@@ -17,6 +17,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'people/<username:\w+>' => 'user/default/show',
+                '<action>/<type:\w+>/<id:\d+>' => 'user/action/<action>',
                 'people/<username:\w+>/post' => 'user/default/post',
                 'people/<username:\w+>/favorite' => 'user/default/favorite',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
@@ -66,7 +67,10 @@ return [
     ],
     'modules' => [
         'user' => [
-            'class' => 'frontend\modules\user\module',
+            'class' => 'frontend\modules\user\Module',
+        ],
+        'topic' => [
+            'class' => 'frontend\modules\topic\Module',
         ],
     ],
     'params' => $params,

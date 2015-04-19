@@ -16,7 +16,7 @@ use yii\helpers\Markdown;
     <div class="media-body">
         <a href="">
             <?= Html::tag('h3',
-                Html::a($model->title, ['/topic/view', 'id' => $model->id]),
+                Html::a($model->title, ['/topic/default/view', 'id' => $model->id]),
                 ['class' => 'media-heading']
             );?>
             <?= Html::tag('strong', Html::tag('span', $model->user['username'])) ?> •

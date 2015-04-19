@@ -4,7 +4,7 @@ namespace frontend\modules\user;
 
 use yii\base\Module as BaseModule;
 
-class module extends BaseModule
+class Module extends BaseModule
 {
 	public $modelMap = [];
 	/** @var bool Whether to show flash messages. */

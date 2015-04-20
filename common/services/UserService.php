@@ -8,6 +8,7 @@
 namespace common\services;
 
 use common\models\Post;
+use common\models\PostComment;
 use common\models\User;
 use common\models\UserInfo;
 use frontend\modules\topic\models\Topic;
@@ -59,6 +60,34 @@ class UserService
             UserInfo::updateAllCounters([$action . '_count' => -1], ['user_id' => $user->id]);
         }
 
+        return [true, null];
+    }
+
+    /**
+     * 对评论点赞
+     * @param User $user
+     * @param PostComment $comment
+     * @param $action
+     * @return array
+     */
+    public static function CommentAction(User $user, PostComment $comment, $action)
+    {
+        $data = [
+            'target_id'   => $comment->id,
+            'target_type' => $comment::TYPE,
+            'user_id'     => $user->id,
+            'value'       => '1',
+        ];
+        if (!UserMeta::deleteAll($data + ['type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
+            $userMeta = new UserMeta();
+            $userMeta->setAttributes($data + ['type' => $action]);
+            $result = $userMeta->save();
+            if ($result) {
+                $comment->updateCounters([$action . '_count' => 1]);
+            }
+            return [$result, $userMeta];
+        }
+        $comment->updateCounters([$action . '_count' => -1]);
         return [true, null];
     }
 

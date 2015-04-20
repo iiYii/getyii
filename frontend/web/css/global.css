@@ -51,3 +51,7 @@ body > iframe {
 h1 {
     font-size: 24px;
 }
+
+abbr[title] {
+     border-bottom: 0px;
+}

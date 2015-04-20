@@ -25,7 +25,7 @@ $this->title = $model->title;
                     ·
                     <?= Html::a($model->user['username'], ['/people', 'id' => $model->user['username']]) ?>
                     ·
-                    于 <?= Html::tag('abbr', Yii::$app->formatter->asRelativeTime($model->created_at)) ?>发布
+                    于 <?= Html::tag('abbr', Yii::$app->formatter->asRelativeTime($model->created_at), ['title' => Yii::$app->formatter->asDatetime($model->created_at)]) ?>发布
                     ·
                     <?= $model->view_count ?> 次阅读
                 </div>
@@ -122,7 +122,7 @@ $this->title = $model->title;
 
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
-            'itemOptions' => ['class' => 'list-group-item media'],
+            'itemOptions' => ['class' => 'list-group-item media mt0'],
             'summary' => false,
             'itemView' => '_comment',
         ]) ?>

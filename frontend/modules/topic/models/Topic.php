@@ -75,11 +75,7 @@ class Topic extends Post
     public static function findDeletedTopic($id)
     {
         $model = static::find()
-            ->where([
-                'id'     => $id,
-                'status' => self::STATUS_DELETED,
-                'type'   => 'topic'
-            ])
+            ->where(['id' => $id, 'status' => self::STATUS_DELETED, 'type' => 'topic'])
             ->one();
         if ($model !== null) {
             return $model;

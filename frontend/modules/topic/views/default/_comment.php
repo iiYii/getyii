@@ -9,6 +9,7 @@
 use yii\helpers\Html;
 use yii\helpers\Markdown;
 
+$index += +1;
 ?>
 
 <div class="avatar pull-left">
@@ -20,19 +21,43 @@ use yii\helpers\Markdown;
 
 <div class="infos">
 
-    <div class="media-heading meta">
+    <div class="media-heading meta info opts">
         <?= Html::a($model->user['username'], ['/people', 'id' => $model->user['username']]) ?>
+        <span> •  </span>
+        <?= Html::a("#{$index}", "#comment{$index}", ['class' => 'comment-floor']) ?>
         <span> •  </span>
         <abbr class="timeago" title="<?= Yii::$app->formatter->asDatetime($model->created_at) ?>">
             <?= Yii::$app->formatter->asRelativeTime($model->created_at) ?>
         </abbr>
-        <span> •  </span>
-        <?= Html::a('#1', '#reply1', ['class' => 'reply-floor']) ?>
 
-        <span class="operate pull-right">
-            <a title="喜欢" data-count="0" data-state="" data-type="Reply" data-id="255240" class="likeable " href="#"><i class="fa fa-heart-o"></i> <span>喜欢</span></a>
-            <a class="edit fa fa-pencil" data-uid="3" title="修改回帖" href="/topics/25116/replies/255240/edit"></a>
-            <a data-floor="14" data-login="lgn21st" title="回复此楼" class="btn-reply fa fa-mail-reply" href="#"></a>
+        <span class="opts pull-right">
+            <?php
+                echo Html::a(
+                    Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count) . ' 个赞',
+                    '#',
+                    [
+                        'data-do' => 'like',
+                        'data-id' => $model->id,
+                        'data-type' => 'comment',
+                        'class' => ($model->like) ? 'active': ''
+                    ]
+                );
+                if($model->isCurrent()){
+                    echo Html::a('',
+                        ['/topic/comment/update', 'id' => $model->id],
+                        ['title' => '修改回帖', 'class' => 'fa fa-pencil']
+                    );
+                } else{
+                    echo Html::a('', '#',
+                        [
+                            'data-login' => $model->user['username'],
+                            'data-floor' => $index,
+                            'title' => '回复此楼',
+                            'class' => 'fa fa-mail-reply'
+                        ]
+                    );
+                }
+            ?>
         </span>
 
     </div>

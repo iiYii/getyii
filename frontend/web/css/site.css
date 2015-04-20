@@ -167,6 +167,11 @@ a.desc:after {
     margin-right: 8px;
 }
 
+#topic-view .info .opts a {
+    margin-left: 5px;
+    color: #999;
+}
+
 .list-view .empty {
     padding: 10px 15px;
 }

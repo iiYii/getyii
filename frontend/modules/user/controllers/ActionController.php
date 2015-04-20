@@ -7,6 +7,7 @@
 
 namespace frontend\modules\user\controllers;
 
+use common\services\CommentService;
 use common\services\TopicService;
 use common\services\UserService;
 use Yii;
@@ -48,7 +49,8 @@ class ActionController extends Controller
                 break;
 
             case 'comment':
-                # code...
+                $commentService = new CommentService();
+                list($result, $data) = $commentService->userDoAction($id, 'like');
                 break;
 
             default:

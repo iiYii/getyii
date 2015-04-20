@@ -34,7 +34,7 @@ class UserMeta extends ActiveRecord
     {
         return [
             'timestamp' => [
-                'class' => 'yii\behaviors\TimestampBehavior',
+                'class'      => 'yii\behaviors\TimestampBehavior',
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'created_at',
                 ],
@@ -61,31 +61,32 @@ class UserMeta extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'user_id' => '用户ID',
-            'type' => '操作类型',
-            'value' => '操作类型值',
-            'target_id' => '目标id',
+            'id'          => 'ID',
+            'user_id'     => '用户ID',
+            'type'        => '操作类型',
+            'value'       => '操作类型值',
+            'target_id'   => '目标id',
             'target_type' => '目标类型',
-            'created_at' => '创建时间',
+            'created_at'  => '创建时间',
         ];
     }
 
 
-
     /**
-     * 判断操作是否存在
-     * @param  string  $type [description]
-     * @return boolean       [description]
+     * 判断指定分类下操作是否存在
+     * @param string $type 话题还是评论
+     * @param string $do 动作
+     * @param $targetId 话题ID或者评论ID
+     * @return int|string
      */
-    public function isUserAction($type='', $targetId)
+    public function isUserAction($type = '', $do = '', $targetId)
     {
         return $this->find()->where([
-                'target_id' => $targetId,
-                'user_id' => Yii::$app->user->getId(),
-                'target_type' => 'post',
-                'type' =>  $type,
-            ])->count();
+            'target_id'   => $targetId,
+            'user_id'     => Yii::$app->user->getId(),
+            'target_type' => $type,
+            'type'        => $do,
+        ])->count();
     }
 
 
@@ -95,7 +96,7 @@ class UserMeta extends ActiveRecord
      * @param $targetId int 文章ID
      * @return bool|string
      */
-    public function userAction($type='', $targetId)
+    public function userAction($type = '', $targetId)
     {
         switch ($type) {
             case 'like':
@@ -123,8 +124,8 @@ class UserMeta extends ActiveRecord
         $model = self::find()
             ->where(['or', ['type' => 'like'], ['type' => 'hate']])
             ->andWhere([
-                'user_id' => $userId,
-                'target_id' => $targetId,
+                'user_id'     => $userId,
+                'target_id'   => $targetId,
                 'target_type' => 'post'
             ])->one();
         $contrary = $return = $active = false;
@@ -134,14 +135,14 @@ class UserMeta extends ActiveRecord
                 $return = $num >= 0;
             } else {
                 $model = null; // 相对记录需清空查询结果已经生成相应的记录
-               $contrary = true;
+                $contrary = true;
             }
         }
         if (!$model) { //创建记录
             $this->setAttributes([
-                'user_id' => $userId,
-                'target_id' => $targetId,
-                'type' => $type,
+                'user_id'     => $userId,
+                'target_id'   => $targetId,
+                'type'        => $type,
                 'target_type' => 'post',
             ]);
             if ($this->save()) {
@@ -157,12 +158,12 @@ class UserMeta extends ActiveRecord
             if ($contrary) {
                 $attributeName2 = ($type == 'like' ? 'hate' : 'like') . '_count';
                 $attributes = [
-                    $attributeName1 => $active ? 1 : ($model->$attributeName1 > 0 ? -1 :0),
-                    $attributeName2 => $active ? ($model->$attributeName2 > 0 ? -1 :0) : 1
+                    $attributeName1 => $active ? 1 : ($model->$attributeName1 > 0 ? -1 : 0),
+                    $attributeName2 => $active ? ($model->$attributeName2 > 0 ? -1 : 0) : 1
                 ];
             } else {
                 $attributes = [
-                    $attributeName1 => $active ? 1 : ($model->$attributeName1 > 0 ? -1 :0)
+                    $attributeName1 => $active ? 1 : ($model->$attributeName1 > 0 ? -1 : 0)
                 ];
             }
             //更新版块统计
@@ -186,9 +187,9 @@ class UserMeta extends ActiveRecord
         //查找数据库是否有记录
         $model = self::find()
             ->where([
-                'user_id' => $userId,
-                'type' => $type,
-                'target_id' => $targetId,
+                'user_id'     => $userId,
+                'type'        => $type,
+                'target_id'   => $targetId,
                 'target_type' => 'post'
             ])->one();
         $return = $active = false;
@@ -199,9 +200,9 @@ class UserMeta extends ActiveRecord
             }
         } else {
             $this->setAttributes([
-                'user_id' => $userId,
-                'target_id' => $targetId,
-                'type' => $type,
+                'user_id'     => $userId,
+                'target_id'   => $targetId,
+                'type'        => $type,
                 'target_type' => 'post',
             ]);
             if ($this->save()) {
@@ -215,7 +216,7 @@ class UserMeta extends ActiveRecord
             $model = Post::findOne($targetId);
             $attributeName = $type . '_count';
             $attributes = [
-                $attributeName => $active ? 1 : ($model->$attributeName > 0 ? -1 :0),
+                $attributeName => $active ? 1 : ($model->$attributeName > 0 ? -1 : 0),
             ];
 
             //更新版块统计

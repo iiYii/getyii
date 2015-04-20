@@ -42,10 +42,8 @@ class UserService
                 if (UserMeta::deleteAll($data + ['type' => $attributeName])) { // 如果有删除hate数据, hate_count也要-1
                     $attributes[$attributeName . '_count'] = -1;
                 }
-                if ($model->$attributes > 0) {
-                    //更新版块统计
-                    $model->updateCounters($attributes);
-                }
+                //更新版块统计
+                $model->updateCounters($attributes);
                 // 更新个人总统计
                 UserInfo::updateAllCounters($attributes, ['user_id' => $user->id]);
             }

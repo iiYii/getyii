@@ -9,10 +9,41 @@ namespace frontend\modules\topic\models;
 
 
 use common\models\Post;
+use frontend\modules\user\models\UserMeta;
 
 class Topic extends Post
 {
     const TYPE = 'topic';
+
+    public function getLike()
+    {
+        $model = new UserMeta();
+        return $model->isUserAction(self::TYPE, 'like', $this->id);
+    }
+
+    public function getFollow()
+    {
+        $model = new UserMeta();
+        return $model->isUserAction(self::TYPE, 'follow', $this->id);
+    }
+
+    public function getHate()
+    {
+        $model = new UserMeta();
+        return $model->isUserAction(self::TYPE, 'hate', $this->id);
+    }
+
+    public function getFavorite()
+    {
+        $model = new UserMeta();
+        return $model->isUserAction(self::TYPE, 'favorite', $this->id);
+    }
+
+    public function getThanks()
+    {
+        $model = new UserMeta();
+        return $model->isUserAction(self::TYPE, 'thanks', $this->id);
+    }
 
     /**
      * 重写 findOne
@@ -41,7 +72,7 @@ class Topic extends Post
             $tagRaw = $_tagItem::findOne(['name' => $tag]);
             if (!$tagRaw) {
                 $_tagItem->setAttributes([
-                    'name' => $tag,
+                    'name'  => $tag,
                     'count' => 1,
                 ]);
                 if ($_tagItem->save()) {

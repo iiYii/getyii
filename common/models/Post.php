@@ -126,30 +126,6 @@ class Post extends ActiveRecord
     }
 
 
-    public function getLike()
-    {
-        $model = new UserMeta();
-        return $model->isUserAction('like', $this->id);
-    }
-
-    public function getHate()
-    {
-        $model = new UserMeta();
-        return $model->isUserAction('hate', $this->id);
-    }
-
-    public function getFavorite()
-    {
-        $model = new UserMeta();
-        return $model->isUserAction('favorite', $this->id);
-    }
-
-    public function getThanks()
-    {
-        $model = new UserMeta();
-        return $model->isUserAction('thanks', $this->id);
-    }
-
     public function getCategory()
     {
         return $this->hasOne(PostMeta::className(), ['id' => 'post_meta_id']);

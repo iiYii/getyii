@@ -27,8 +27,6 @@ $this->title = $model->title;
                     ·
                     于 <?= Html::tag('abbr', Yii::$app->formatter->asRelativeTime($model->created_at)) ?>发布
                     ·
-                    最后由 <a data-name="lgn21st" href="/lgn21st">lgn21st</a> 于 <abbr class="timeago" title="2015-04-16T08:58:42+08:00">2 天前</abbr>回复
-                    ·
                     <?= $model->view_count ?> 次阅读
                 </div>
             </div>
@@ -61,7 +59,7 @@ $this->title = $model->title;
                         'data-do' => 'hate',
                         'data-id' => $model->id,
                         'data-type' => 'topic',
-                        'class' => ($model->like) ? 'active': ''
+                        'class' => ($model->hate) ? 'active': ''
                     ]
                 );
                 echo Html::a(
@@ -71,7 +69,7 @@ $this->title = $model->title;
                         'data-do' => 'follow',
                         'data-id' => $model->id,
                         'data-type' => 'topic',
-                        'class' => ($model->like) ? 'active': ''
+                        'class' => ($model->follow) ? 'active': ''
                     ]
                 );
                 echo Html::a(
@@ -81,7 +79,7 @@ $this->title = $model->title;
                         'data-do' => 'thanks',
                         'data-id' => $model->id,
                         'data-type' => 'topic',
-                        'class' => ($model->like) ? 'active': ''
+                        'class' => ($model->thanks) ? 'active': ''
                     ]
                 );
                 echo Html::a(
@@ -91,7 +89,7 @@ $this->title = $model->title;
                         'data-do' => 'favorite',
                         'data-id' => $model->id,
                         'data-type' => 'topic',
-                        'class' => ($model->like) ? 'active': ''
+                        'class' => ($model->favorite) ? 'active': ''
                     ]
                 );
             ?>

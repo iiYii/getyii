@@ -187,6 +187,11 @@ a.desc:after {
     padding: 0;
 }
 
+.deleted {
+    text-decoration: line-through;
+    color: #EEF3F5;
+}
+
 #about-us h5 {
     font-size: 13px;
 }

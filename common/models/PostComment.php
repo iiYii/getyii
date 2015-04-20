@@ -108,14 +108,13 @@ class PostComment extends ActiveRecord
     }
 
     /**
-     *
-     * @param $id
-     * @return array|null|\yii\db\ActiveRecord
-     * @throws NotFoundHttpException
+     * 评论列表
+     * @param $postId
+     * @return static
      */
     public static function findCommentList($postId)
     {
-        return static::find()->where(['post_id' => $postId, 'status' => self::STATUS_ACTIVE]);
+        return static::find()->where(['post_id' => $postId]);
     }
 
     /**

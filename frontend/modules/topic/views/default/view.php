@@ -115,20 +115,15 @@ $this->title = $model->title;
         </div>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading clearfix">
-            <?= Yii::t('app', 'Received {0} reply', $model->comment_count) ?>
-        </div>
+    <?= $this->render(
+        '@frontend/modules/topic/views/comment/index',
+        ['model' => $model, 'dataProvider' => $dataProvider]
+    ) ?>
 
-        <?= ListView::widget([
-            'dataProvider' => $dataProvider,
-            'itemOptions' => ['class' => 'list-group-item media mt0'],
-            'summary' => false,
-            'itemView' => '_comment',
-        ]) ?>
-    </div>
-
-    <?= $this->render('_commentView', ['model' => $comment, 'dataProvider' => $dataProvider]) ?>
+    <?= $this->render(
+        '@frontend/modules/topic/views/comment/create',
+        ['model' => $comment, 'dataProvider' => $dataProvider]
+    ) ?>
 
 </div>
 <?= \frontend\widgets\TopicSidebar::widget(); ?>

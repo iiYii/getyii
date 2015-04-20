@@ -98,7 +98,7 @@ class Topic extends Post
             $tagRaw = $_tagItem::findOne(['name' => $tag]);
             if (!$tagRaw) {
                 $_tagItem->setAttributes([
-                    'name'  => $tag,
+                    'name' => $tag,
                     'count' => 1,
                 ]);
                 if ($_tagItem->save()) {

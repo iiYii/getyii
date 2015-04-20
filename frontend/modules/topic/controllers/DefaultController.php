@@ -3,7 +3,6 @@
 namespace frontend\modules\topic\controllers;
 
 use common\models\Post;
-use common\services\TopicService;
 use frontend\modules\topic\models\Topic;
 use Yii;
 use yii\filters\AccessControl;
@@ -76,7 +75,7 @@ class DefaultController extends Controller
         $model = Topic::findTopic($id);
         $comment = $this->newComment($model);
         $dataProvider = new ActiveDataProvider([
-            'query' => PostComment::find()->where(['post_id' => $id]),
+            'query' => PostComment::findCommentList($id),
         ]);
 
         // 文章浏览次数
@@ -145,12 +144,16 @@ class DefaultController extends Controller
 
     /**
      * 伪删除
-     * @param integer $id
-     * @return mixed
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
      */
     public function actionDelete($id)
     {
         $model = Topic::findTopic($id);
+        if(!$model->isCurrent()){
+            throw new NotFoundHttpException();
+        }
         $model->updateCounters(['status' => -1]);
         $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
         $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
@@ -159,12 +162,16 @@ class DefaultController extends Controller
 
     /**
      * 撤消删除
-     * @param integer $id
-     * @return mixed
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
      */
     public function actionRevoke($id)
     {
         $model = Topic::findDeletedTopic($id);
+        if(!$model->isCurrent()){
+            throw new NotFoundHttpException();
+        }
         $model->updateCounters(['status' => 1]);
         $this->flash("「{$model->title}」文章撤销删除成功。", 'success');
         return $this->redirect(['view', 'id' => $model->id]);

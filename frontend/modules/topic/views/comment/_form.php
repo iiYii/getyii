@@ -1,4 +1,9 @@
 <?php
+/**
+ * author     : forecho <caizhenghai@gmail.com>
+ * createTime : 15/4/20 下午9:15
+ * description:
+ */
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -16,19 +21,9 @@ use yii\widgets\ActiveForm;
         'class' => 'alert alert-danger'
     ]) ?>
 
-    <?= $form->field($model, 'title')->textInput([
-        'maxlength' => 255,
-        'placeholder' => '标题'
-    ]) ?>
-
-    <?= $form->field($model, 'post_meta_id')->dropDownList(
-        \common\models\PostMeta::topicCategory(),
-        ['prompt'=>'选择一个分类']
-    ) ?>
-
     <?= $this->render('@frontend/views/partials/markdwon_help') ?>
 
-    <?= $form->field($model, 'content', [
+    <?= $form->field($model, 'comment', [
         'selectors' => [
             'input' => '#md-input'
         ],
@@ -39,7 +34,7 @@ use yii\widgets\ActiveForm;
     ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? '创建话题' : '修改话题', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? '创建评论' : '修改评论', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <div id="md-preview"></div>

@@ -5,6 +5,7 @@ namespace common\models;
 use frontend\modules\user\models\UserMeta;
 use Yii;
 use common\components\db\ActiveRecord;
+use yii\web\NotFoundHttpException;
 
 /**
  * This is the model class for table "post_comment".
@@ -104,6 +105,17 @@ class PostComment extends ActiveRecord
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     *
+     * @param $id
+     * @return array|null|\yii\db\ActiveRecord
+     * @throws NotFoundHttpException
+     */
+    public static function findCommentList($postId)
+    {
+        return static::find()->where(['post_id' => $postId, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**

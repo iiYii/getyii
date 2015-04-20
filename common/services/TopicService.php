@@ -18,25 +18,10 @@ class TopicService
     {
         $topic = $this->findTopic($id);
         $user = \Yii::$app->user->getIdentity();
-        if(in_array($action, ['like', 'hate'])){
+        if (in_array($action, ['like', 'hate'])) {
             return UserService::TopicActionA($user, $topic, $action);
-        }else{
-            return UserService::TopicActionB($user, $topic, $action);
-        }
-    }
-
-    /**
-     * 通过ID获取指定话题
-     * @param $id
-     * @return array|null|\yii\db\ActiveRecord|static
-     * @throws NotFoundHttpException
-     */
-    public function findTopic($id)
-    {
-        if (($model = Topic::findOne(['id' => $id, 'type' => 'topic'])) !== null) {
-            return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            return UserService::TopicActionB($user, $topic, $action);
         }
     }
 

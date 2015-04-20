@@ -22,8 +22,8 @@ class DefaultController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
+            'verbs'  => [
+                'class'   => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
@@ -61,7 +61,7 @@ class DefaultController extends Controller
         $dataProvider = $searchModel->search($params);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -73,8 +73,7 @@ class DefaultController extends Controller
      */
     public function actionView($id)
     {
-        $topicService = new TopicService();
-        $model = $topicService->findTopic($id);
+        $model = Topic::findTopic($id);
         $comment = $this->newComment($model);
         $dataProvider = new ActiveDataProvider([
             'query' => PostComment::find()->where(['post_id' => $id]),
@@ -84,9 +83,9 @@ class DefaultController extends Controller
         Topic::updateAllCounters(['view_count' => 1], ['id' => $id]);
 
         return $this->render('view', [
-            'model' => $model,
+            'model'        => $model,
             'dataProvider' => $dataProvider,
-            'comment' => $comment,
+            'comment'      => $comment,
         ]);
     }
 
@@ -124,9 +123,9 @@ class DefaultController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = Topic::findTopic($id);
 
-        if ($model === null || !$model->getIsCurrent()) {
+        if ($model === null || !$model->isCurrent()) {
             throw new NotFoundHttpException;
         }
 
@@ -151,9 +150,9 @@ class DefaultController extends Controller
      */
     public function actionDelete($id)
     {
-        $model = $this->findModel($id);
-        $model->updateCounters(['status' => 1]);
-        $revoke = Html::a('撤消', ['/topic/revoke', 'id' => $model->id]);
+        $model = Topic::findTopic($id);
+        $model->updateCounters(['status' => -1]);
+        $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
         $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
         return $this->redirect(['index']);
     }
@@ -165,8 +164,8 @@ class DefaultController extends Controller
      */
     public function actionRevoke($id)
     {
-        $model = $this->findModel($id, 2);
-        $model->updateCounters(['status' => -1]);
+        $model = Topic::findDeletedTopic($id);
+        $model->updateCounters(['status' => 1]);
         $this->flash("「{$model->title}」文章撤销删除成功。", 'success');
         return $this->redirect(['view', 'id' => $model->id]);
     }

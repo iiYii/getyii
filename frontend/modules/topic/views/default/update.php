@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\Models\Post */
 
-$this->title = 'Update Post: ' . ' ' . $model->title;
+$this->title =  Yii::t('app', 'Update Post: ') . ' ' . $model->title;
 ?>
 <div class="col-md-10 topic-create" contenteditable="false" style="">
 

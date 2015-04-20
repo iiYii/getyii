@@ -142,4 +142,7 @@ return [
     'Attented topic has new update:' => '关注的话题有新附言',
     'Commented topic has new update:' => '留言的话题有新附言',
     'Document' => '文档',
+
+
+    'Update Post: ' => '更新话题：',
 ];

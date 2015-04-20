@@ -9,7 +9,9 @@ namespace frontend\modules\topic\models;
 
 
 use common\models\Post;
+use common\models\PostTag;
 use frontend\modules\user\models\UserMeta;
+use yii\web\NotFoundHttpException;
 
 class Topic extends Post
 {
@@ -46,15 +48,44 @@ class Topic extends Post
     }
 
     /**
-     * 重写 findOne
-     * @inherit
+     * 通过ID获取指定话题
+     * @param $id
+     * @return array|null|\yii\db\ActiveRecord|static
+     * @throws NotFoundHttpException
      */
-    public static function findOne($condition)
+    public static function findTopic($id)
     {
-        return static::find()
+        $model = static::find()
             ->where('status >= :status', [':status' => self::STATUS_ACTIVE])
-            ->andWhere($condition)
+            ->andWhere(['id' => $id, 'type' => 'topic'])
             ->one();
+        if ($model !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    /**
+     * 获取已经删除过的话题
+     * @param $id
+     * @return array|null|\yii\db\ActiveRecord
+     * @throws NotFoundHttpException
+     */
+    public static function findDeletedTopic($id)
+    {
+        $model = static::find()
+            ->where([
+                'id'     => $id,
+                'status' => self::STATUS_DELETED,
+                'type'   => 'topic'
+            ])
+            ->one();
+        if ($model !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 
     /**
@@ -67,7 +98,6 @@ class Topic extends Post
         $return = false;
         $tagItem = new PostTag();
         foreach ($tags as $tag) {
-            $tagRaw = false;
             $_tagItem = clone $tagItem;
             $tagRaw = $_tagItem::findOne(['name' => $tag]);
             if (!$tagRaw) {

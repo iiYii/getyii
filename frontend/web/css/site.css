@@ -2,6 +2,7 @@ html,
 body {
     height: 100%;
     background-color: #e1e1e1;
+    font-family: 'Hiragino Sans GB', 'Microsoft YaHei', 微软雅黑, tahoma, arial, simsun, 宋体;
 }
 
 .wrap {
@@ -38,7 +39,6 @@ a.asc:after, a.desc:after {
     position: relative;
     top: 1px;
     display: inline-block;
-    font-family: Avenir, 'Helvetica Neue', 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', sans-serif;
     font-style: normal;
     font-weight: normal;
     line-height: 1;
@@ -169,6 +169,12 @@ a.desc:after {
 
 .list-view .empty {
     padding: 10px 15px;
+}
+
+#md-preview {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px dashed #ccc;
 }
 
 /*代码高亮*/

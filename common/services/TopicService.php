@@ -13,6 +13,18 @@ use yii\web\NotFoundHttpException;
 
 class TopicService
 {
+
+    public function userDoAction($id, $action)
+    {
+        $topic = $this->findTopic($id);
+        $user = \Yii::$app->user->getIdentity();
+        if(in_array($action, ['like', 'hate'])){
+            return UserService::TopicActionA($user, $topic, $action);
+        }else{
+            return UserService::TopicActionB($user, $topic, $action);
+        }
+    }
+
     /**
      * 通过ID获取指定话题
      * @param $id
@@ -41,4 +53,5 @@ class TopicService
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

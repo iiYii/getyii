@@ -32,14 +32,19 @@ class ActionController extends Controller
         ];
     }
 
+    /**
+     * 赞话题和评论
+     * @param $type
+     * @param $id
+     * @return array|string
+     * @throws NotFoundHttpException
+     */
     public function actionLike($type, $id)
     {
         switch ($type) {
             case 'topic':
                 $topicService = new TopicService();
-                $topic = $topicService->findTopic($id);
-                $user = Yii::$app->user->getIdentity();
-                list($result, $data) = UserService::TopicAction($user, $topic, 'like');
+                list($result, $data) = $topicService->userDoAction($id, 'like');
                 break;
 
             case 'comment':
@@ -58,77 +63,83 @@ class ActionController extends Controller
         }
     }
 
+    /**
+     * 喝倒彩话题
+     * @param $type
+     * @param $id
+     * @return array|string
+     */
     public function actionHate($type, $id)
     {
-        if($type != 'topic'){
-            throw new NotFoundHttpException();
-        }
-        $topicService = new TopicService();
-        $topic = $topicService->findTopic($id);
-        $user = Yii::$app->user->getIdentity();
-        list($result, $data) = UserService::TopicAction($user, $topic, 'hate');
+        if ($type == 'topic') {
+            $topicService = new TopicService();
+            list($result, $data) = $topicService->userDoAction($id, 'hate');
 
-        if ($result) {
-            return $this->message('提交成功!', 'success');
-        } else {
-            return $this->message($data ? $data->getErrors() : '提交失败!');
+            if ($result) {
+                return $this->message('提交成功!', 'success');
+            } else {
+                return $this->message($data ? $data->getErrors() : '提交失败!');
+            }
         }
     }
 
+    /**
+     * 关注话题
+     * @param $type
+     * @param $id
+     * @return array|string
+     */
     public function actionFollow($type, $id)
     {
-        if (true) {
-            return $this->message('提交成功!', 'success');
-        } else {
-            return $this->message($like ? $like->getErrors() : '提交失败!');
+        if ($type == 'topic') {
+            $topicService = new TopicService();
+            list($result, $data) = $topicService->userDoAction($id, 'follow');
+
+            if ($result) {
+                return $this->message('提交成功!', 'success');
+            } else {
+                return $this->message($data ? $data->getErrors() : '提交失败!');
+            }
         }
     }
 
+    /**
+     * 感谢话题
+     * @param $type
+     * @param $id
+     * @return array|string
+     */
     public function actionThanks($type, $id)
     {
-        if (true) {
-            return $this->message('提交成功!', 'success');
-        } else {
-            return $this->message($like ? $like->getErrors() : '提交失败!');
+        if ($type == 'topic') {
+            $topicService = new TopicService();
+            list($result, $data) = $topicService->userDoAction($id, 'thanks');
+
+            if ($result) {
+                return $this->message('提交成功!', 'success');
+            } else {
+                return $this->message($data ? $data->getErrors() : '提交失败!');
+            }
         }
     }
 
+    /**
+     * 收藏话题
+     * @param $type
+     * @param $id
+     * @return array|string
+     */
     public function actionFavorite($type, $id)
     {
-        if (true) {
-            return $this->message('提交成功!', 'success');
-        } else {
-            return $this->message($like ? $like->getErrors() : '提交失败!');
-        }
-    }
+        if ($type == 'topic') {
+            $topicService = new TopicService();
+            list($result, $data) = $topicService->userDoAction($id, 'favorite');
 
-    public function actionTopic($id)
-    {
-        $topicService = new TopicService();
-        $topic = $topicService->findTopic($id);
-        $user = Yii::$app->user->getIdentity();
-
-        list($result, $like) = Like::topic($user, $topic);
-
-        if ($result) {
-            return $this->message('提交成功!', 'success');
-        } else {
-            return $this->message($like ? $like->getErrors() : '提交失败!');
-        }
-    }
-
-    public function actionComment($id)
-    {
-        $topicService = new TopicService();
-        $comment = $topicService->findComment($id);
-        $user = Yii::$app->user->getIdentity();
-
-        list($result, $like) = Like::comment($user, $comment);
-
-        if ($result) {
-            return $this->message('提交成功!', 'success');
-        } else {
-            return $this->message($like ? $like->getErrors() : '提交失败!');
+            if ($result) {
+                return $this->message('提交成功!', 'success');
+            } else {
+                return $this->message($data ? $data->getErrors() : '提交失败!');
+            }
         }
     }
 }

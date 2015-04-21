@@ -5,6 +5,7 @@ namespace frontend\modules\topic\controllers;
 use common\models\Post;
 use common\services\NotificationService;
 use frontend\modules\topic\models\Topic;
+use frontend\modules\user\models\UserMeta;
 use Yii;
 use yii\filters\AccessControl;
 use common\models\PostSearch;
@@ -197,11 +198,13 @@ class DefaultController extends Controller
             $model->ip = Yii::$app->getRequest()->getUserIP();
             $model->comment = $model->replace($model->comment);
             if ($model->save()) {
+                (new UserMeta)->saveNewMeta('topic', $post->id, 'follow');
                 (new NotificationService)->newReplyNotify(Yii::$app->user->identity, $post, $model);
                 // 评论计数器
                 Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
                 // 更新个人总统计
                 UserInfo::updateAllCounters(['comment_count' => 1], ['user_id' => $model->user_id]);
+
                 $this->flash("评论成功", 'success');
                 return $this->redirect(['view', 'id' => $post->id]);
             }

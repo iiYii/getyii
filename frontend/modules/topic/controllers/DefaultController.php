@@ -109,6 +109,7 @@ class DefaultController extends Controller
                 $model->addTags(explode(',', $model->tags));
             }
             if ($model->save()) {
+                (new UserMeta)->saveNewMeta('topic', $model->id, 'follow');
                 // 更新个人总统计
                 UserInfo::updateAllCounters(['post_count' => 1], ['user_id' => $model->user_id]);
                 $this->flash('发表文章成功!', 'success');

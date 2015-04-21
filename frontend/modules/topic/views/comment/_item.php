@@ -7,8 +7,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Markdown;
-
-$index += +1;
+$index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->pagination->pageSize;
 ?>
 <?php if (!$model->status): ?>
     <div class="deleted text-center"><?= $index ?>楼 已删除.</div>
@@ -20,7 +19,7 @@ $index += +1;
         ); ?>
     </div>
 
-    <div class="infos">
+    <div class="infos" id="comment<?= $index ?>">
 
         <div class="media-heading meta info opts">
             <?php
@@ -60,10 +59,10 @@ $index += +1;
                 } else{
                     echo Html::a('', '#',
                         [
-                            'data-login' => $model->user['username'],
+                            'data-username' => $model->user['username'],
                             'data-floor' => $index,
                             'title' => '回复此楼',
-                            'class' => 'fa fa-mail-reply'
+                            'class' => 'fa fa-mail-reply btn-reply'
                         ]
                     );
                 }

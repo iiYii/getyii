@@ -5,7 +5,6 @@ namespace frontend\modules\topic\controllers;
 use frontend\modules\topic\models\Topic;
 use Yii;
 use common\models\PostComment;
-use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

@@ -122,7 +122,7 @@ $this->title = $model->title;
 
     <?= $this->render(
         '@frontend/modules/topic/views/comment/create',
-        ['model' => $comment, 'dataProvider' => $dataProvider]
+        ['model' => $comment, 'post' => $model]
     ) ?>
 
 </div>

@@ -18,6 +18,8 @@ use yii\helpers\Html;
 
 class DefaultController extends Controller
 {
+    const PAGE_SIZE = 50;
+
     public function behaviors()
     {
         return [
@@ -76,6 +78,9 @@ class DefaultController extends Controller
         $comment = $this->newComment($model);
         $dataProvider = new ActiveDataProvider([
             'query' => PostComment::findCommentList($id),
+            'pagination' => [
+                'pageSize' => self::PAGE_SIZE,
+            ],
         ]);
 
         // 文章浏览次数
@@ -189,12 +194,14 @@ class DefaultController extends Controller
             $model->user_id = Yii::$app->user->id;
             $model->post_id = $post->id;
             $model->ip = Yii::$app->getRequest()->getUserIP();
+            $model->comment = $model->replace($model->comment);
             if ($model->save()) {
                 // 评论计数器
                 Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
                 // 更新个人总统计
                 UserInfo::updateAllCounters(['comment_count' => 1], ['user_id' => $model->user_id]);
-                return $this->message('回答发表成功!', 'success', $this->refresh(), 'flash');
+                $this->flash("评论成功", 'success');
+                return $this->redirect(['view', 'id' => $post->id]);
             }
         }
         return $model;

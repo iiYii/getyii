@@ -23,7 +23,7 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
 
         <div class="media-heading meta info opts">
             <?php
-            echo Html::a($model->user['username'], ['/people', 'id' => $model->user['username']]), '•',
+            echo Html::a($model->user['username'], ['/people', 'id' => $model->user['username']], ['class' => 'author']), '•',
             Html::a("#{$index}", "#comment{$index}", ['class' => 'comment-floor']), '•',
             Html::tag('addr', Yii::$app->formatter->asRelativeTime($model->created_at), ['title' => Yii::$app->formatter->asDatetime($model->created_at)]);
             ?>

@@ -16,5 +16,6 @@ class BowerAsset extends AssetBundle
     public $js = [
         'marked/lib/marked.js',
         'highlightjs/highlight.pack.js',
+        'jquery-textcomplete/dist/jquery.textcomplete.min.js',
     ];
 }

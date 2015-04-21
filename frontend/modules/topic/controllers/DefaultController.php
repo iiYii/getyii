@@ -3,6 +3,7 @@
 namespace frontend\modules\topic\controllers;
 
 use common\models\Post;
+use common\services\NotificationService;
 use frontend\modules\topic\models\Topic;
 use Yii;
 use yii\filters\AccessControl;
@@ -196,6 +197,7 @@ class DefaultController extends Controller
             $model->ip = Yii::$app->getRequest()->getUserIP();
             $model->comment = $model->replace($model->comment);
             if ($model->save()) {
+                (new NotificationService)->newReplyNotify(Yii::$app->user->identity, $post, $model);
                 // 评论计数器
                 Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
                 // 更新个人总统计

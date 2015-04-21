@@ -48,6 +48,16 @@ class Topic extends Post
     }
 
     /**
+     * 获取关注者
+     * @return static
+     */
+    public function getFollower()
+    {
+        return $this->hasMany(UserMeta::className(), ['target_id' => 'id'])
+            ->where(['target_type' => self::TYPE, 'type' => 'follow']);
+    }
+
+    /**
      * 通过ID获取指定话题
      * @param $id
      * @return array|null|\yii\db\ActiveRecord|static
@@ -98,7 +108,7 @@ class Topic extends Post
             $tagRaw = $_tagItem::findOne(['name' => $tag]);
             if (!$tagRaw) {
                 $_tagItem->setAttributes([
-                    'name' => $tag,
+                    'name'  => $tag,
                     'count' => 1,
                 ]);
                 if ($_tagItem->save()) {

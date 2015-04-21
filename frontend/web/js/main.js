@@ -8,7 +8,35 @@ jQuery(function ($) {
         }, 500);
     });
 
+    function autocompleteAtUser() {
+        var atUsers = [],
+            user;
+        $users = $('.media-heading').find('a.author');
+        for (var i = 0; i < $users.length; i++) {
+            user = $users.eq(i).text().trim();
+            if ($.inArray(user, atUsers) == -1) {
+                atUsers.push(user);
+            };
+        };
 
+        $('textarea#md-input').textcomplete([{
+            mentions: atUsers,
+            match: /\B@(\w*)$/,
+            search: function(term, callback) {
+                callback($.map(this.mentions, function(mention) {
+                    return mention.indexOf(term) === 0 ? mention : null;
+                }));
+            },
+            index: 1,
+            replace: function(mention) {
+                return '@' + mention + ' ';
+            }
+        }], {
+            appendTo: 'body'
+        });
+
+    };
+    autocompleteAtUser();
 
     // 新窗口打开外链
     $('a[href^="http://"], a[href^="https://"]').each(function() {

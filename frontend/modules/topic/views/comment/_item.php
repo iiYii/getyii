@@ -30,17 +30,13 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
 
             <span class="opts pull-right">
                 <?php
-                echo Html::a(
-                    Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count) . ' 个赞',
-                    '#',
-                    [
-                        'data-do' => 'like',
-                        'data-id' => $model->id,
-                        'data-type' => 'comment',
-                        'class' => ($model->like) ? 'active': ''
-                    ]
-                );
+
                 if($model->isCurrent()){
+                    echo Html::a(
+                        Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count) . ' 个赞',
+                        'javascript:;'
+                    );
+
                     echo Html::a('',
                         ['/topic/comment/update', 'id' => $model->id],
                         ['title' => '修改回帖', 'class' => 'fa fa-pencil']
@@ -57,6 +53,16 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
                         ]
                     );
                 } else{
+                    echo Html::a(
+                        Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count) . ' 个赞',
+                        '#',
+                        [
+                            'data-do' => 'like',
+                            'data-id' => $model->id,
+                            'data-type' => 'comment',
+                            'class' => ($model->like) ? 'active': ''
+                        ]
+                    );
                     echo Html::a('', '#',
                         [
                             'data-username' => $model->user['username'],

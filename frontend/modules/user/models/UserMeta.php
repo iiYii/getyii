@@ -2,6 +2,9 @@
 
 namespace frontend\modules\user\models;
 
+use common\models\PostComment;
+use common\services\NotificationService;
+use frontend\modules\topic\models\Topic;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -113,5 +116,47 @@ class UserMeta extends ActiveRecord
                 return array_values($this->getFirstErrors())[0];
             }
         }
+    }
+
+    public function getTopic()
+    {
+        return $this->hasOne(Topic::className(), ['id' => 'target_id']);
+    }
+
+    public function getComment()
+    {
+        return $this->hasOne(PostComment::className(), ['id' => 'target_id']);
+    }
+
+    public function beforeSave($insert)
+    {
+        if ($insert) {
+            // 点赞、感谢和收藏会收到通知
+            if (in_array($this->type, ['like', 'favorite', 'thanks'])) {
+                switch ($this->target_type) {
+                    case 'topic':
+                        (new NotificationService)->newActionNotify(
+                            $this->target_type . '_' . $this->type,
+                            Yii::$app->user->id,
+                            $this->topic->user_id,
+                            $this->topic->id
+                        );
+                        break;
+                    case 'comment':
+                        (new NotificationService)->newActionNotify(
+                            $this->target_type . '_' . $this->type,
+                            Yii::$app->user->id,
+                            $this->comment->user_id,
+                            $this->comment->topic->id,
+                            $this->comment
+                        );
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        return parent::beforeSave($insert);
     }
 }

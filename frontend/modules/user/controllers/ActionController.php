@@ -9,10 +9,8 @@ namespace frontend\modules\user\controllers;
 
 use common\services\CommentService;
 use common\services\TopicService;
-use common\services\UserService;
 use Yii;
 use yii\filters\AccessControl;
-use frontend\modules\user\models\Like;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
 

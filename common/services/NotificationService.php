@@ -12,12 +12,21 @@ use common\models\User;
 use frontend\models\Notification;
 use frontend\modules\topic\models\Topic;
 use common\models\Post;
+use frontend\modules\user\models\UserMeta;
 use yii\base\Exception;
 
 class NotificationService
 {
     public $notifiedUsers = [];
 
+    /**
+     * 评论和@用户会有通知
+     * @param User $fromUser
+     * @param Topic $topic
+     * @param PostComment $comment
+     * @param string $rawComment
+     * @throws Exception
+     */
     public function newReplyNotify(User $fromUser, Topic $topic, PostComment $comment, $rawComment = '')
     {
         foreach ($topic->follower as $key => $value) {
@@ -34,6 +43,33 @@ class NotificationService
             $this->removeDuplication($comment->parse($rawComment)),
             $topic,
             $comment);
+    }
+
+    /**
+     * 点赞和其他动作通知
+     * @param $type
+     * @param $fromUserId
+     * @param $toUserId
+     * @param $topicId
+     * @param PostComment $comment
+     * @throws Exception
+     */
+    public function newActionNotify($type, $fromUserId, $toUserId, $topicId, PostComment $comment = null)
+    {
+        $model = new Notification();
+        $model->setAttributes([
+            'from_user_id' => $fromUserId,
+            'user_id'      => $toUserId,
+            'post_id'      => $topicId,
+            'comment_id'   => $comment ? $comment->id : 0,
+            'data'         => $comment ? $comment->comment : '主题被点'.$type,
+            'type'         => $type,
+        ]);
+        if ($model->save()) {
+            User::updateAllCounters(['notification_count' => 1], ['id' => $toUserId]);
+        } else {
+            throw new Exception(array_values($model->getFirstErrors())[0]);
+        }
     }
 
     /**

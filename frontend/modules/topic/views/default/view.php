@@ -42,7 +42,7 @@ $this->title = $model->title;
         </div>
         <div class="panel-footer clearfix opts">
             <?php
-                echo Html::a(
+                $like = Html::a(
                     Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count) . ' 个赞',
                     '#',
                     [
@@ -52,8 +52,8 @@ $this->title = $model->title;
                         'class' => ($model->like) ? 'active': ''
                     ]
                 );
-                echo Html::a(
-                    Html::tag('i', '', ['class' => 'fa fa-thumbs-o-down']) . ' 喝倒彩',
+                $hate = Html::a(
+                    Html::tag('i', '', ['class' => 'fa fa-thumbs-o-down']) . ' 踩',
                     '#',
                     [
                         'data-do' => 'hate',
@@ -62,7 +62,7 @@ $this->title = $model->title;
                         'class' => ($model->hate) ? 'active': ''
                     ]
                 );
-                echo Html::a(
+                $follow = Html::a(
                     Html::tag('i', '', ['class' => 'fa fa-eye']) . ' 关注',
                     '#',
                     [
@@ -72,7 +72,7 @@ $this->title = $model->title;
                         'class' => ($model->follow) ? 'active': ''
                     ]
                 );
-                echo Html::a(
+                $thanks = Html::a(
                     Html::tag('i', '', ['class' => 'fa fa-heart-o']) . ' 感谢',
                     '#',
                     [
@@ -82,7 +82,7 @@ $this->title = $model->title;
                         'class' => ($model->thanks) ? 'active': ''
                     ]
                 );
-                echo Html::a(
+                $favorite = Html::a(
                     Html::tag('i', '', ['class' => 'fa fa-bookmark']) . ' 收藏',
                     '#',
                     [
@@ -92,6 +92,17 @@ $this->title = $model->title;
                         'class' => ($model->favorite) ? 'active': ''
                     ]
                 );
+                if($model->isCurrent()){
+                    echo Html::a(
+                        Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count) . ' 个赞',
+                        'javascript:;'
+                    );
+                } else {
+                    echo $like, $hate;
+                    echo $thanks;
+                }
+                echo $follow;
+                echo $favorite;
             ?>
             <?php if ($model->isCurrent()): ?>
                 <span class="pull-right">

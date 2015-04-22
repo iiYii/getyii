@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\services\NotificationService;
 use frontend\modules\user\models\UserMeta;
 use Yii;
 use common\components\db\ActiveRecord;
@@ -65,6 +66,11 @@ class PostComment extends ActiveRecord
     public function getPost()
     {
         return $this->hasOne(Post::className(), ['id' => 'post_id']);
+    }
+
+    public function getTopic()
+    {
+        return $this->hasOne(Post::className(), ['id' => 'post_id'])->where(['type' => 'topic']);
     }
 
     public function getLike()
@@ -166,6 +172,17 @@ class PostComment extends ActiveRecord
             $users[] = $value;
         }
         return ArrayHelper::map(User::find()->where(['username' => $users])->all(), 'id', 'username');
+    }
+
+    public function beforeSave($insert)
+    {
+        if ($insert) {
+            //(new NotificationService)->newActionNotify($this->type);
+        } else {
+            return false;
+        }
+
+        return parent::beforeSave($insert);
     }
 
     /**

@@ -39,6 +39,32 @@ jQuery(function ($) {
     };
     autocompleteAtUser();
 
+    function notificationsCount() {
+        var notification = $('#notification');
+        var originalTitle = document.title;
+        if (notification.length > 0) {
+            function scheduleGetNotification(){
+                $.get('notification/count', function( data ) {
+                    var nCount = parseInt(data)
+                    if (nCount > 0) {
+                        $('#notification a').text(nCount);
+                        $('#notification a').hasClass('badge-important') || $('#notification-count').addClass('badge-important');
+                        document.title = '(' + nCount + ') '+ originalTitle;
+                    } else {
+                        document.title =  originalTitle;
+                        $('#notification a').text('');
+                        $('#notification a').addClass('badge-fade');
+                        $('#notification a').removeClass('badge-important');
+                    }
+                    setTimeout(scheduleGetNotification, 15000);
+                });
+            };
+            setTimeout(scheduleGetNotification, 15000);
+        }
+    };
+    notificationsCount();
+
+
     // 新窗口打开外链
     $('a[href^="http://"], a[href^="https://"]').each(function() {
        var a = new RegExp('/' + window.location.host + '/');

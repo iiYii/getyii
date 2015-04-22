@@ -44,14 +44,10 @@ BowerAsset::register($this);
     ]);
     $menuItems = [
         ['label' => '首页', 'url' => ['/site']],
-        ['label' => '新手入门', 'url' => ['/site/getstart']],
-        // ['label' => '手册', 'url' => ['/site/book'], 'linkOptions' =>['target' => '_banck']],
-        // ['label' => 'Services', 'url' => ['/site/services']],
-        // ['label' => 'Portfolio', 'url' => ['/site/portfolio']],
-        ['label' => '博客', 'url' => ['/blog']],
         ['label' => '社区', 'url' => ['/topic']],
-        // ['label' => 'FAQ', 'url' => ['/site/faq'], 'linkOptions' =>['target' => '_banck']],
-        // ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => '新手入门', 'url' => ['/site/getstart']],
+        ['label' => 'Wiki', 'url' => ['/site/getstart']],
+        //['label' => '招聘', 'url' => ['/site/getstart']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => '注册', 'url' => ['/site/signup']];
@@ -59,10 +55,10 @@ BowerAsset::register($this);
     } else {
         // 撰写
         $menuItems[] = [
-            'label' => '撰写',
-            'items' => [
-                ['label' => '写教程', 'url' => ['/blog/create']],
-            ]
+            'label' => '',
+            'url' => ['/site/getstart'],
+            'linkOptions' => ['class' => 'fa fa-bell'],
+            'options' => ['id' => 'notification']
         ];
 
         // 个人中心

@@ -6,22 +6,23 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\ResetPasswordForm */
 
-$this->title = 'Reset password';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = '密码重置';
 ?>
-<section class="container site-reset-password">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please choose your new password:</p>
+<div class="container p0 site-login">
 
     <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
-                <?= $form->field($model, 'password')->passwordInput() ?>
-                <div class="form-group">
-                    <?= Html::submitButton('Save', ['class' => 'btn btn-primary']) ?>
+        <div class="col-md-4 col-sm-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading"><?= Html::encode($this->title) ?></div>
+                <div class="panel-body">
+                    <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
+                    <?= $form->field($model, 'password')->passwordInput() ?>
+                    <div class="form-group">
+                        <?= Html::submitButton(Yii::t('app','Save'), ['class' => 'btn btn-primary']) ?>
+                    </div>
+                    <?php ActiveForm::end(); ?>
                 </div>
-            <?php ActiveForm::end(); ?>
+            </div>
         </div>
     </div>
-</section>
+</div>

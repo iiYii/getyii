@@ -8,6 +8,7 @@ return [
     'Search' => '搜索',
     'Login' => '登 录',
     'Logout' => '退出',
+    'Sign up' => '注册',
     'New Topic' => '发 布 新 帖',
     'Links' => '友情社区',
     'Same Node Topics' => '节点下其他主题',

@@ -4,7 +4,6 @@ use yii\helpers\Markdown;
 
 /* @var $this yii\web\View */
 $this->title = '关于';
-$this->params['breadcrumbs'][] = $this->title;
 $content = '
 #### 这里是 Yii 中文社区
 
@@ -20,10 +19,13 @@ $content = '
 enjoy coding! enjoy yii!
 ';
 ?>
-<section id="about-us" class="container blog">
-    <div class="row blog-item">
-        <div class="blog-content">
+<div class="container p0">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            关于
+        </div>
+        <div class="panel-body">
             <?= Markdown::process($content, 'gfm') ?>
         </div>
-    </div><!--/.row-->
-</section><!--/#about-us-->
+    </div>
+</div>

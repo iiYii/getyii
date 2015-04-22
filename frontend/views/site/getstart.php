@@ -76,10 +76,13 @@ $content = '
 欢迎大家跟我联系提供更多资料。
 ';
 ?>
-<section id="about-us" class="container blog">
-    <div class="row blog-item">
-        <div class="blog-content">
+<div class="container p0">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Wiki 列表
+        </div>
+        <div class="panel-body">
             <?= Markdown::process($content, 'gfm') ?>
         </div>
-    </div><!--/.row-->
-</section><!--/#about-us-->
+    </div>
+</div>

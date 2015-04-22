@@ -22,8 +22,8 @@ class DefaultController extends Controller
 {
     const PAGE_SIZE = 50;
     public $sorts = [
-        'hotest' => '热门的',
         'newest' => '最新的',
+        'hotest' => '热门的',
         'uncommented' => '未回答的'
     ];
 

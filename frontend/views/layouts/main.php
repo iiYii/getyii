@@ -98,6 +98,7 @@ BowerAsset::register($this);
             <div class="col-sm-2">
                 <dt>网站信息</dt>
                 <dd> <a href="<?= Url::to(['/site/about']) ?>">关于我们</a> </dd>
+                <dd> <a href="<?= Url::to(['/site/contributors']) ?>">贡献者</a> </dd>
             </div>
             <div class="col-sm-2">
                 <dt>相关合作</dt>
@@ -105,7 +106,7 @@ BowerAsset::register($this);
             </div>
             <div class="col-sm-2">
                 <dt>关注我们</dt>
-                <dd> <a href="<?= Url::to(['/site']) ?>">成长日志</a> </dd>
+                <dd> <a href="<?= Url::to(['/site/timeline']) ?>">时间线</a> </dd>
             </div>
             <div class="col-sm-6">
                 <dt> 技术采用 </dt>

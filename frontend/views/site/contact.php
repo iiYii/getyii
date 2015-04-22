@@ -1,39 +1,29 @@
 <?php
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
+use yii\helpers\Markdown;
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \frontend\models\ContactForm */
+$this->title = '联系我们';
+$content = '
+## QQ群
 
-$this->title = 'Contact';
-$this->params['breadcrumbs'][] = $this->title;
+- Yii2 中国交流群：343188481
+- Get√Yii 核心开发者群：321493381（本群只接受参与本站开发的 Yiier）
+
+## 个人联系
+
+- QQ：314494687
+- Mail：caizhenghai[#]gmail.com
+
+';
 ?>
-
-<section class="container site-contact">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
-    </p>
-
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-                <?= $form->field($model, 'name') ?>
-                <?= $form->field($model, 'email') ?>
-                <?= $form->field($model, 'subject') ?>
-                <?= $form->field($model, 'body')->textArea(['rows' => 6]) ?>
-                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                ]) ?>
-                <div class="form-group">
-                    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
-                </div>
-            <?php ActiveForm::end(); ?>
+<div class="container p0">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <?= $this->title ?>
+        </div>
+        <div class="panel-body">
+            <?= Markdown::process($content, 'gfm') ?>
         </div>
     </div>
-
-</section>
+</div>

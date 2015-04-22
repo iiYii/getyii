@@ -140,15 +140,10 @@ class SiteController extends Controller
         return $this->redirect('http://book.getyii.com');
     }
 
-    public function actionServices()
-    {
-        return $this->render('services');
-    }
 
-
-    public function actionPortfolio()
+    public function actionTimeline()
     {
-        return $this->render('portfolio');
+        return $this->render('timeline');
     }
 
     /**

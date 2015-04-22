@@ -40,21 +40,22 @@ jQuery(function ($) {
     autocompleteAtUser();
 
     function notificationsCount() {
-        var notification = $('#notification');
+        var notification = $('.notification-count');
         var originalTitle = document.title;
         if (notification.length > 0) {
             function scheduleGetNotification(){
                 $.get('notification/count', function( data ) {
                     var nCount = parseInt(data)
                     if (nCount > 0) {
-                        $('#notification a').text(nCount);
-                        $('#notification a').hasClass('badge-important') || $('#notification-count').addClass('badge-important');
+                        $('.notification-count a').html('<span>' + nCount + '</span>');
+                        $('.notification-count a').addClass('new');
+                        //$('.notification-count a').hasClass('badge-important') || $('#notification-count').addClass('badge-important');
                         document.title = '(' + nCount + ') '+ originalTitle;
                     } else {
                         document.title =  originalTitle;
-                        $('#notification a').text('');
-                        $('#notification a').addClass('badge-fade');
-                        $('#notification a').removeClass('badge-important');
+                        $('.notification-count a').text('');
+                        $('.notification-count a').addClass('badge-fade');
+                        $('.notification-count a').removeClass('badge-important');
                     }
                     setTimeout(scheduleGetNotification, 15000);
                 });

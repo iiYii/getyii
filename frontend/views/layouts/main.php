@@ -62,7 +62,7 @@ BowerAsset::register($this);
             'label' => '',
             'url' => ['/site/getstart'],
             'linkOptions' => ['class' => 'fa fa-bell'],
-            'options' => ['id' => 'notification']
+            'options' => ['class' => 'notification-count']
         ];
 
         // 个人中心

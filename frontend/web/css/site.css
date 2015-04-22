@@ -195,3 +195,12 @@ a.desc:after {
 #about-us h5 {
     font-size: 13px;
 }
+
+.notification-count .new {
+    color: #F86334;
+}
+
+.notification-count span {
+    margin-left: 3px;
+    font-size: 12px;
+}

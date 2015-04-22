@@ -197,10 +197,11 @@ class DefaultController extends Controller
             $model->user_id = Yii::$app->user->id;
             $model->post_id = $post->id;
             $model->ip = Yii::$app->getRequest()->getUserIP();
-            $model->comment = $model->replace($model->comment);
+            $rawComment = $model->comment;
+            $model->comment = $model->replace($rawComment);
             if ($model->save()) {
                 (new UserMeta)->saveNewMeta('topic', $post->id, 'follow');
-                (new NotificationService)->newReplyNotify(Yii::$app->user->identity, $post, $model);
+                (new NotificationService)->newReplyNotify(Yii::$app->user->identity, $post, $model, $rawComment);
                 // 评论计数器
                 Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
                 // 更新个人总统计

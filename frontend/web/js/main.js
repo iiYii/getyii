@@ -8,6 +8,7 @@ jQuery(function ($) {
         }, 500);
     });
 
+    // @ 用户
     function autocompleteAtUser() {
         var atUsers = [],
             user;
@@ -19,7 +20,7 @@ jQuery(function ($) {
             };
         };
 
-        $('textarea#md-input').textcomplete([{
+        $('#md-input').textcomplete([{
             mentions: atUsers,
             match: /\B@(\w*)$/,
             search: function(term, callback) {

@@ -3,9 +3,6 @@
 namespace frontend\models;
 
 use common\components\db\ActiveRecord;
-use common\models\Post;
-use common\models\PostComment;
-use common\models\User;
 use Yii;
 
 /**
@@ -62,37 +59,5 @@ class Notification extends ActiveRecord
         ];
     }
 
-    /**
-     * 批量处理通知
-     * @param $type
-     * @param User $fromUser
-     * @param $users
-     * @param Post $post
-     * @param PostComment $comment
-     * @param null $content
-     * @return bool
-     */
-    public function batchNotify($type, User $fromUser, $users, Post $post, PostComment $comment = null, $content = null)
-    {
-        foreach ($users as $toUser) {
-            if ($fromUser->id == $toUser->id) {
-                continue;
-            }
 
-            $this->setAttributes([
-                'from_user_id' => $fromUser->id,
-                'user_id'      => $toUser->id,
-                'post_id'      => $post->id,
-                'comment_id'   => $content ?: $comment->id,
-                'data'         => $content ?: $comment->comment,
-                'type'         => $type,
-            ]);
-            if ($this->save()) {
-                User::updateAllCounters(['notification_count' => 1], ['id' => $toUser->id]);
-                return true;
-            } else {
-                return array_values($this->getFirstErrors())[0];
-            }
-        }
-    }
 }

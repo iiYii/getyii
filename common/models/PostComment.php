@@ -5,6 +5,7 @@ namespace common\models;
 use frontend\modules\user\models\UserMeta;
 use Yii;
 use common\components\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 
@@ -128,35 +129,43 @@ class PostComment extends ActiveRecord
     }
 
     /**
-     * 转换@用户和#楼层
+     * 分别转换@用户和#楼层
      * @param $comment
      * @return mixed
      */
     public function replace($comment)
     {
-        preg_match_all("/(\S*)\@([^\r\n\s]*)\s\#(\d*)/i", $comment, $atlistTmp);
-
-        foreach ($atlistTmp[3] as $key => $value) {
-            $search = "#{$value}楼";
-            $place = "[{$search}](#comment{$value}) ";
-            $comment = str_replace($search . ' ', $place, $comment);
-
-        }
-
-        foreach ($atlistTmp[2] as $key => $value) {
-            if ($atlistTmp[1][$key] || strlen($value) > 25) {
-                continue;
-            }
-            $user = User::find()->where(['username' => $value]);
-            if ($user) {
-                $search = '@' . $value;
-                echo $url = Url::to(['/user/default/show', 'username' => $value]);
-                $place = "[{$search}]({$url}) ";
+        preg_match_all("/\#(\d*)/i", $comment, $floor);
+        if (isset($floor[1])) {
+            foreach ($floor[1] as $key => $value) {
+                $search = "#{$value}楼";
+                $place = "[{$search}](#comment{$value}) ";
                 $comment = str_replace($search . ' ', $place, $comment);
             }
         }
 
+        $users = $this->parse($comment);
+        foreach ($users as $key => $value) {
+            $search = '@' . $value;
+            $url = Url::to(['/user/default/show', 'username' => $value]);
+            $place = "[{$search}]({$url}) ";
+            $comment = str_replace($search . ' ', $place, $comment);
+        }
+
         return $comment;
+    }
+
+    public function parse($comment)
+    {
+        preg_match_all("/(\S*)\@([^\r\n\s]*)/i", $comment, $atlistTmp);
+        $users = [];
+        foreach ($atlistTmp[2] as $key => $value) {
+            if ($atlistTmp[1][$key] || strlen($value) > 25) {
+                continue;
+            }
+            $users[] = $value;
+        }
+        return ArrayHelper::map(User::find()->where(['username' => $users])->all(), 'id', 'username');
     }
 
     /**

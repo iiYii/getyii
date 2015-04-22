@@ -42,7 +42,7 @@ use yii\widgets\ActiveForm;
         <?= Html::submitButton($model->isNewRecord ? '创建话题' : '修改话题', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
-    <div id="md-preview"></div>
+    <div id="md-preview"><?= \yii\helpers\Markdown::process($model->content, 'gfm') ?></div>
 
     <?php ActiveForm::end(); ?>
 

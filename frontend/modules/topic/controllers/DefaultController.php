@@ -21,6 +21,11 @@ use yii\helpers\Html;
 class DefaultController extends Controller
 {
     const PAGE_SIZE = 50;
+    public $sorts = [
+        'hotest' => '热门的',
+        'newest' => '最新的',
+        'uncommented' => '未回答的'
+    ];
 
     public function behaviors()
     {
@@ -60,11 +65,35 @@ class DefaultController extends Controller
             $postMeta = PostMeta::findOne(['alias' => $params['tag']]);
             $params['PostSearch']['post_meta_id'] = $postMeta->id;
         }
-
         $dataProvider = $searchModel->search($params);
+        // 排序
+        $sort = $dataProvider->getSort();
+        $sort->attributes = array_merge($sort->attributes, [
+            'hotest' => [
+                'asc' => [
+                    'comment_count' => SORT_DESC,
+                    'created_at' => SORT_DESC
+                ],
+                'desc' => [
+                    'comment_count' => SORT_DESC,
+                    'created_at' => SORT_DESC
+                ]
+            ],
+            'uncommented' => [
+                'asc' => [
+                    'comment_count' => SORT_ASC,
+                    'created_at' => SORT_DESC
+                ],
+                'desc' => [
+                    'comment_count' => SORT_ASC,
+                    'created_at' => SORT_DESC
+                ]
+            ]
+        ]);
 
         return $this->render('index', [
             'searchModel'  => $searchModel,
+            'sorts'  => $this->sorts,
             'dataProvider' => $dataProvider,
         ]);
     }

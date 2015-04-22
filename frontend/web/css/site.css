@@ -147,7 +147,7 @@ a.desc:after {
     color: #008E59;
 }
 
-.topic-view .active .fa {
+.topic-view .active .fa, .filter .active {
     color: #EB5424;
 }
 
@@ -181,8 +181,6 @@ a.desc:after {
     margin-bottom: 15px;
     border: 1px dashed #ccc;
 }
-
-.page
 
 /*代码高亮*/
 #md-preview pre, .article pre {

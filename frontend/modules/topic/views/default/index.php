@@ -7,31 +7,18 @@ use yii\bootstrap\Nav;
 use frontend\widgets\TopicSidebar;
 
 $this->title = '社区';
-// $this->params['breadcrumbs'][] = $this->title;
+$sort = Yii::$app->request->getQueryParam('sort');
 ?>
 <div class="col-md-10 topic">
     <div class="panel panel-default">
-        <div class="panel-heading p0">
-            <?php
-                echo Nav::widget([
-                    'options' => [
-                        'class' => 'nav navbar-nav',
-                    ],
-                    'items' => [
-                        ['label' => '社区',  'url' => false],
-                    ]
-                ]);
-                echo Nav::widget([
-                    'options' => [
-                        'class' => 'nav navbar-nav navbar-right',
-                    ],
-                    'items' => [
-                        ['label' => '热门主题',  'url' => ['/topic/index', 'tab' => 'hot']],
-                        ['label' => '最新主题',  'url' => ['/topic/index', 'tab' => 'newest'], 'options' => ['class' => 'mr15']],
-                    ]
-                ])
-            ?>
-            <div class="clearfix"></div>
+        <div class="panel-heading clearfix">
+            <div class="filter pull-right">
+                <span class="l">查看:</span>
+                <?php foreach($sorts as $key => $name): ?>
+                    <?= Html::a($name, \yii\helpers\Url::current(['sort' => $key]),['class' => ($sort == $key || ((empty($sort) && $key == 'newest')))?'active':'']) ?> \
+                <?php endforeach ?>
+            </div>
+
         </div>
 
         <?php Pjax::begin(); ?>
@@ -43,6 +30,7 @@ $this->title = '社区';
             'options' => ['class' => 'list-group'],
         ]) ?>
         <?php Pjax::end(); ?>
+
     </div>
 </div>
 <?= TopicSidebar::widget(); ?>

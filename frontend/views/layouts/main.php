@@ -42,13 +42,17 @@ BowerAsset::register($this);
             'class' => 'navbar-white',
         ],
     ]);
-    $menuItems = [
-        ['label' => '首页', 'url' => ['/site']],
-        ['label' => '社区', 'url' => ['/topic']],
-        ['label' => '新手入门', 'url' => ['/site/getstart']],
-        ['label' => 'Wiki', 'url' => ['/site/getstart']],
-        //['label' => '招聘', 'url' => ['/site/getstart']],
-    ];
+    echo Nav::widget([
+        'options' => ['class' => 'nav navbar-nav'],
+        'items' => [
+            ['label' => '社区', 'url' => ['/topic']],
+            ['label' => 'Wiki', 'url' => ['/site/getstart']],
+            ['label' => '新手入门', 'url' => ['/site/getstart']],
+            ['label' => '会员', 'url' => ['/site/users']],
+            ['label' => '关于', 'url' => ['/site/about']],
+            //['label' => '招聘', 'url' => ['/site/getstart']],
+        ],
+    ]);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => '注册', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
@@ -71,6 +75,7 @@ BowerAsset::register($this);
             ]
         ];
     }
+
     echo Nav::widget([
         'options' => ['class' => 'nav navbar-nav navbar-right'],
         'items' => $menuItems,
@@ -104,7 +109,7 @@ BowerAsset::register($this);
             </div>
             <div class="col-sm-6">
                 <dt> 技术采用 </dt>
-                <dd> 由 <a href="https://github.com/callmez">CallMeZ</a> 创建 项目地址: <a href="https://github.com/callmez/huajuan">huajuan</a> </dd>
+                <dd> 由 <a href="https://github.com/forecho">forecho</a> 创建 项目地址: <a href="https://github.com/iiyii/getyii">getyii</a> </dd>
                 <dd> <?= Yii::powered() ?> <?= Yii::getVersion() ?> </dd>
             </div>
         </div>

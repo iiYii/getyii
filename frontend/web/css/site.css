@@ -189,7 +189,7 @@ a.desc:after {
 
 .deleted {
     text-decoration: line-through;
-    color: #EEF3F5;
+    color: #e1e1e1;
 }
 
 #about-us h5 {
@@ -203,4 +203,11 @@ a.desc:after {
 .notification-count span {
     margin-left: 3px;
     font-size: 12px;
+}
+
+.notification-index .notification {
+    position: relative;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #F0F4F6;
 }

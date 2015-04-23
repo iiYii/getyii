@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use common\models\User;
+use common\services\UserService;
 use Yii;
 use frontend\models\Notification;
 use yii\data\ActiveDataProvider;
@@ -18,7 +20,7 @@ class NotificationController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class'   => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
@@ -33,22 +35,28 @@ class NotificationController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Notification::find(),
+            'query' => Notification::find()->where(['user_id' => Yii::$app->user->id]),
+            'sort'  => ['defaultOrder' => [
+                'created_at' => SORT_DESC,
+                'id'         => SORT_ASC,
+            ]]
         ]);
-
+        $notifyCount = UserService::findNotifyCount();
+        UserService::clearNotifyCount();
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'notifyCount' => $notifyCount,
         ]);
     }
 
     /**
-     * Displays a single Notification model.
-     * @param integer $id
+     * 返回通知条数
      * @return mixed
      */
     public function actionCount()
     {
-        return 2;
+        $model = User::findOne(Yii::$app->user->id);
+        return $model->notification_count;
     }
 
     /**

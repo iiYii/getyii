@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
-use yii\bootstrap\Nav;
 use frontend\widgets\TopicSidebar;
 
 $this->title = '社区';
@@ -26,7 +25,7 @@ $sort = Yii::$app->request->getQueryParam('sort');
             'dataProvider' => $dataProvider,
             'itemOptions' => ['class' => 'list-group-item'],
             'summary' => false,
-            'itemView' => '_post',
+            'itemView' => '_item',
             'options' => ['class' => 'list-group'],
         ]) ?>
         <?php Pjax::end(); ?>

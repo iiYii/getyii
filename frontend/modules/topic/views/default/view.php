@@ -1,18 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\widgets\DetailView;
-use yii\widgets\ListView;
 use yii\helpers\Markdown;
-use yii\bootstrap\Nav;
 
 /* @var $this yii\web\View */
 /* @var $model common\Models\Post */
 
 $this->title = $model->title;
-// $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
-// $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="col-md-10 topic-view" contenteditable="false" style="">

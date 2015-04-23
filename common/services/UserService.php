@@ -17,6 +17,25 @@ use frontend\modules\user\models\UserMeta;
 class UserService
 {
     /**
+     * 获取通知条数
+     * @return mixed
+     */
+    public static function findNotifyCount()
+    {
+        $user = User::findOne(\Yii::$app->user->id);
+        return $user->notification_count;
+    }
+
+    /**
+     * 清除通知数
+     * @return mixed
+     */
+    public static function clearNotifyCount()
+    {
+        return User::updateAll(['notification_count' => '0'], ['id' => \Yii::$app->user->id]);
+    }
+
+    /**
      * 赞话题(如果已经赞,则取消赞)
      * @param User $user
      * @param Topic $topic

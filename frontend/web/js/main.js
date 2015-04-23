@@ -44,18 +44,16 @@ jQuery(function ($) {
         var originalTitle = document.title;
         if (notification.length > 0) {
             function scheduleGetNotification(){
-                $.get('notification/count', function( data ) {
+                $.get(location.origin + '/notification/count', function( data ) {
                     var nCount = parseInt(data)
                     if (nCount > 0) {
-                        $('.notification-count a').html('<span>' + nCount + '</span>');
+                        $('.notification-count a span').text(nCount );
                         $('.notification-count a').addClass('new');
-                        //$('.notification-count a').hasClass('badge-important') || $('#notification-count').addClass('badge-important');
                         document.title = '(' + nCount + ') '+ originalTitle;
                     } else {
                         document.title =  originalTitle;
-                        $('.notification-count a').text('');
-                        $('.notification-count a').addClass('badge-fade');
-                        $('.notification-count a').removeClass('badge-important');
+                        $('.notification-count a span').text('');
+                        $('.notification-count a').removeClass('new');
                     }
                     setTimeout(scheduleGetNotification, 15000);
                 });

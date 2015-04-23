@@ -34,7 +34,7 @@ class NotificationService
         }
 
         // 通知关注的用户
-        $this->batchNotify('follow', $fromUser, $users, $topic, $comment);
+        $this->batchNotify('new_comment', $fromUser, $users, $topic, $comment);
 
         // Notify mentioned users
         $this->batchNotify(
@@ -62,7 +62,7 @@ class NotificationService
             'user_id'      => $toUserId,
             'post_id'      => $topicId,
             'comment_id'   => $comment ? $comment->id : 0,
-            'data'         => $comment ? $comment->comment : '主题被点'.$type,
+            'data'         => $comment ? $comment->comment : '',
             'type'         => $type,
         ]);
         if ($model->save()) {

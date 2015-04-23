@@ -1,8 +1,6 @@
 <?php
 
-use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\helpers\Markdown;
 /* @var $this yii\web\View */
 ?>
 <div class="media">

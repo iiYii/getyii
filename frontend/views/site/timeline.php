@@ -20,7 +20,7 @@ $content = '
 - 在 [yiichina](http://www.yiichina.com/topic/5685) 上发帖推广
 
 **2015年2月14日**
-- 吸引到第一位开发者－[kevin](http://www.getyii.com/people/kevin) 注册账号
+- 吸引到第一位开发者－[kevin](http://www.getyii.com/member/kevin) 注册账号
 
 **2015年2月06日**
 - 上线测试

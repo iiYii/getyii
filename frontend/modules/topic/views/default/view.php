@@ -17,7 +17,7 @@ $this->title = $model->title;
                 <div class="info">
                     <?= Html::a('分享', ['/topic/node', 'id' => $model->post_meta_id]) ?>
                     ·
-                    <?= Html::a($model->user['username'], ['/people', 'id' => $model->user['username']]) ?>
+                    <?= Html::a($model->user['username'], ['/user/default/show', 'username' => $model->user['username']]) ?>
                     ·
                     于 <?= Html::tag('abbr', Yii::$app->formatter->asRelativeTime($model->created_at), ['title' => Yii::$app->formatter->asDatetime($model->created_at)]) ?>发布
                     ·

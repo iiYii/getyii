@@ -13,7 +13,7 @@ $content = '
 
 #### 社区维护
 
-- [forecho](/people/forecho)
+- [forecho](/member/forecho)
 
 #### 网站功能开发者
 
@@ -21,7 +21,7 @@ $content = '
 
 #### Logo 设计
 
-- [forecho](/people/forecho)
+- [forecho](/member/forecho)
 
 #### 如何贡献?
 

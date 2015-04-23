@@ -7,6 +7,7 @@ use common\services\UserService;
 use Yii;
 use frontend\models\Notification;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,11 +21,18 @@ class NotificationController extends Controller
     {
         return [
             'verbs' => [
-                'class'   => VerbFilter::className(),
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    ['allow' => true, 'actions' => ['index', 'count'], 'roles' => ['@']],
+                    ['allow' => true, 'actions' => ['delete'], 'verbs' => ['POST'], 'roles' => ['@']],
+                ]
+            ]
         ];
     }
 
@@ -36,9 +44,9 @@ class NotificationController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Notification::find()->where(['user_id' => Yii::$app->user->id]),
-            'sort'  => ['defaultOrder' => [
+            'sort' => ['defaultOrder' => [
                 'created_at' => SORT_DESC,
-                'id'         => SORT_ASC,
+                'id' => SORT_ASC,
             ]]
         ]);
         $notifyCount = UserService::findNotifyCount();
@@ -57,25 +65,6 @@ class NotificationController extends Controller
     {
         $model = User::findOne(Yii::$app->user->id);
         return $model->notification_count;
-    }
-
-    /**
-     * Updates an existing Notification model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
     }
 
     /**

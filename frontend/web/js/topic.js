@@ -8,7 +8,7 @@ jQuery(function ($) {
             _type = _this.data('type');
         if (_this.is('a')) e.preventDefault();
         $.ajax({
-            url: '/' + [_do, _type, _id].join('/'),
+            url: '/member/' + [_do, _type, _id].join('/'),
             success: function (result) {
                 if (result.type != 'success') {
                     return alert(result.message);

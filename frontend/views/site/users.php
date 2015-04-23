@@ -14,12 +14,15 @@ $this->title = '活跃用户';
         <?php foreach ($model as $key => $value): ?>
             <div class="col-md-1 col-xs-2">
                 <div class="text-center">
-                    <p><a href="/people/<?= $value['username'] ?>">
-                        <img class="img-responsive img-thumbnail img-circle" src="http://gravatar.com/avatar/<?= md5($value['email']) ?>?s=75" alt="" >
-                    </a></p>
-                    <h5><a href="/people/<?= $value['username'] ?>">
-                        <?= $value['username'] ?>
-                    </a></h5>
+                    <p>
+                        <?php $img = "http://gravatar.com/avatar/" . md5($value['email']) . "?s=75"; ?>
+                        <?= Html::a(Html::img($img, ['class' => 'img-responsive img-thumbnail img-circle']),
+                            ['/user/default/show', 'username' => $value['username']]
+                        );?>
+                    </p>
+                    <h5>
+                        <?= Html::a($value['username'], ['/user/default/show', 'username' => $value['username']]) ?>
+                    </h5>
                 </div>
             </div>
         <?php endforeach ?>

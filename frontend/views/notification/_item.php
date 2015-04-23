@@ -22,7 +22,7 @@ use yii\helpers\Html;
             <?= Html::tag('abbr', Yii::$app->formatter->asRelativeTime($model->created_at), ['title' => Yii::$app->formatter->asDatetime($model->created_at)]) ?>
         </span>
         <?php if ($index < $notifyCount) {
-                echo Html::tag('span', 'New', ['class' => 'label label-danger']);
+                echo Html::tag('span', Yii::t('app', 'New'), ['class' => 'new label label-warning']);
         } ?>
     </div>
     <div class="summary markdown">
@@ -30,7 +30,15 @@ use yii\helpers\Html;
     </div>
 </div>
 <div class="media-right opts">
-    <a data-remote="true" rel="nofollow" data-method="delete" href="/notifications/380935"><i class="fa fa-trash"></i> </a>
+    <?= Html::a(
+        Html::tag('i', '', ['class' => 'fa fa-trash']),
+        ['/notification/delete', 'id' => $model->id],
+        [
+            'data' => [
+                'method' => 'post',
+            ],
+        ]
+    ) ?>
 </div>
 
 

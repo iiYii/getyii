@@ -35,7 +35,7 @@ class PostMeta extends ActiveRecord
     public function rules()
     {
         return [
-            [['count', 'order', 'created_at', 'updated_at'], 'integer'],
+            [['count', 'order', 'created_at', 'updated_at', 'parent'], 'integer'],
             [['name'], 'string', 'max' => 100],
             [['alias', 'type'], 'string', 'max' => 32],
             [['description'], 'string', 'max' => 255],
@@ -51,6 +51,7 @@ class PostMeta extends ActiveRecord
         return [
             'id' => 'ID',
             'name' => '名称',
+            'parent' => '父级分类',
             'alias' => '变量（别名）',
             'type' => '项目类型',
             'description' => '选项描述',
@@ -74,8 +75,8 @@ class PostMeta extends ActiveRecord
     public function getTypes()
     {
         return [
-            'blog_category' => '文章分类',
             'topic_category' => '社区分类',
+            'blog_category' => '文章分类',
         ];
     }
 

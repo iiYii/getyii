@@ -205,9 +205,34 @@ a.desc:after {
     font-size: 12px;
 }
 
+.title-info {
+    color: #aaa;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.title-info .node {
+    padding: 1px 5px;
+    text-decoration: none;
+    background-color: #efefef;
+}
+
+.title-info a {
+    color: #666;
+}
+
 .notification-index .notification {
     position: relative;
     margin-bottom: 15px;
     padding-bottom: 15px;
     border-bottom: 1px solid #F0F4F6;
+}
+
+.badge-reply-count {
+    margin-top: 15px;
+    background-color: #9f9f9f;
+}
+
+.excellent {
+    color: #EB5424;
 }

@@ -23,16 +23,17 @@ class DefaultController extends Controller
 {
     const PAGE_SIZE = 50;
     public $sorts = [
-        'newest'      => '最新的',
-        'hotest'      => '热门的',
+        'newest' => '最新的',
+        'excellent' => '优质主题',
+        'hotest' => '热门的',
         'uncommented' => '未回答的'
     ];
 
     public function behaviors()
     {
         return [
-            'verbs'  => [
-                'class'   => VerbFilter::className(),
+            'verbs' => [
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
@@ -60,7 +61,7 @@ class DefaultController extends Controller
         $searchModel = new PostSearch();
         $params = Yii::$app->request->queryParams;
         $params['PostSearch']['type'] = 'topic';
-        $params['PostSearch']['status'] = 1;
+        $params['PostSearch']['status'] = [1, 2];
         // 话题或者分类筛选
         empty($params['tag']) ?: $params['PostSearch']['tags'] = $params['tag'];
         if (isset($params['node'])) {
@@ -71,31 +72,30 @@ class DefaultController extends Controller
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [
-            'hotest'      => [
-                'asc'  => [
+            'hotest' => [
+                'asc' => [
                     'comment_count' => SORT_DESC,
-                    'created_at'    => SORT_DESC
+                    'created_at' => SORT_DESC
                 ],
-                'desc' => [
+            ],
+            'excellent' => [
+                'asc' => [
+                    'status' => SORT_DESC,
                     'comment_count' => SORT_DESC,
-                    'created_at'    => SORT_DESC
-                ]
+                    'created_at' => SORT_DESC
+                ],
             ],
             'uncommented' => [
-                'asc'  => [
+                'asc' => [
                     'comment_count' => SORT_ASC,
-                    'created_at'    => SORT_DESC
+                    'created_at' => SORT_DESC
                 ],
-                'desc' => [
-                    'comment_count' => SORT_ASC,
-                    'created_at'    => SORT_DESC
-                ]
             ]
         ]);
 
         return $this->render('index', [
-            'searchModel'  => $searchModel,
-            'sorts'        => $this->sorts,
+            'searchModel' => $searchModel,
+            'sorts' => $this->sorts,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -110,7 +110,7 @@ class DefaultController extends Controller
         $model = Topic::findTopic($id);
         $comment = $this->newComment($model);
         $dataProvider = new ActiveDataProvider([
-            'query'      => PostComment::findCommentList($id),
+            'query' => PostComment::findCommentList($id),
             'pagination' => [
                 'pageSize' => self::PAGE_SIZE,
             ],
@@ -120,9 +120,9 @@ class DefaultController extends Controller
         Topic::updateAllCounters(['view_count' => 1], ['id' => $id]);
 
         return $this->render('view', [
-            'model'        => $model,
+            'model' => $model,
             'dataProvider' => $dataProvider,
-            'comment'      => $comment,
+            'comment' => $comment,
         ]);
     }
 

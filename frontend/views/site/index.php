@@ -32,9 +32,6 @@ $this->title = \Yii::$app->setting->get('siteName');
     </div>
 
     <div class="panel-footer text-right">
-
-        <a href="topics?filter=excellent">
-            <?= \Yii::t('app', 'More Excellent Topics') ?>
-        </a>
+        <?= Html::a(\Yii::t('app', 'More Excellent Topics') , ['topic/default/index', 'sort' => 'excellent'])?>
     </div>
 </div>

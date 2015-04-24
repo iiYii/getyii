@@ -104,6 +104,7 @@ $this->title = $model->title;
                         Html::tag('i', '', ['class' => 'fa fa-pencil']) . ' 修改',
                         ['/topic/default/update', 'id' => $model->id]
                     ) ?>
+              <?php if($model->comment_count == 0): ?>      
                     <?= Html::a(
                         Html::tag('i', '', ['class' => 'fa fa-trash']) . ' 删除',
                         ['/topic/default/delete', 'id' => $model->id],
@@ -114,6 +115,7 @@ $this->title = $model->title;
                             ],
                         ]
                     ) ?>
+                    <?php endif?>
                 </span>
             <?php endif ?>
 

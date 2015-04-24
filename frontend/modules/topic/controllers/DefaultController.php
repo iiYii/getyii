@@ -23,8 +23,8 @@ class DefaultController extends Controller
 {
     const PAGE_SIZE = 50;
     public $sorts = [
-        'newest' => '最新的',
-        'hotest' => '热门的',
+        'newest'      => '最新的',
+        'hotest'      => '热门的',
         'uncommented' => '未回答的'
     ];
 
@@ -70,31 +70,31 @@ class DefaultController extends Controller
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [
-            'hotest' => [
-                'asc' => [
+            'hotest'      => [
+                'asc'  => [
                     'comment_count' => SORT_DESC,
-                    'created_at' => SORT_DESC
+                    'created_at'    => SORT_DESC
                 ],
                 'desc' => [
                     'comment_count' => SORT_DESC,
-                    'created_at' => SORT_DESC
+                    'created_at'    => SORT_DESC
                 ]
             ],
             'uncommented' => [
-                'asc' => [
+                'asc'  => [
                     'comment_count' => SORT_ASC,
-                    'created_at' => SORT_DESC
+                    'created_at'    => SORT_DESC
                 ],
                 'desc' => [
                     'comment_count' => SORT_ASC,
-                    'created_at' => SORT_DESC
+                    'created_at'    => SORT_DESC
                 ]
             ]
         ]);
 
         return $this->render('index', [
             'searchModel'  => $searchModel,
-            'sorts'  => $this->sorts,
+            'sorts'        => $this->sorts,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -109,7 +109,7 @@ class DefaultController extends Controller
         $model = Topic::findTopic($id);
         $comment = $this->newComment($model);
         $dataProvider = new ActiveDataProvider([
-            'query' => PostComment::findCommentList($id),
+            'query'      => PostComment::findCommentList($id),
             'pagination' => [
                 'pageSize' => self::PAGE_SIZE,
             ],
@@ -189,20 +189,26 @@ class DefaultController extends Controller
     public function actionDelete($id)
     {
         $model = Topic::findTopic($id);
-        if(!$model->isCurrent()){
+        if (!$model->isCurrent()) {
             throw new NotFoundHttpException();
         }
-        // 启用事物
-        $transaction = \Yii::$app->db->beginTransaction();
-        $updateTopic = $model->updateCounters(['status' => -1]);
-        $updateNotify = Notification::updateAll(['status' => 0], ['post_id' => $model->id]);
-        if ($updateNotify && $updateTopic) {
-            $transaction->commit();
+
+        if ($model->comment_count) {
+            $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'success');
         } else {
-            $transaction->rollback();
+            // 启用事物
+            $transaction = \Yii::$app->db->beginTransaction();
+            $updateTopic = $model->updateCounters(['status' => -1]);
+            $updateNotify = Notification::updateAll(['status' => 0], ['post_id' => $model->id]);
+            if ($updateNotify && $updateTopic) {
+                $transaction->commit();
+            } else {
+                $transaction->rollback();
+            }
+            $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
+            $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
         }
-        $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
-        $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
+
         return $this->redirect(['index']);
     }
 
@@ -215,7 +221,7 @@ class DefaultController extends Controller
     public function actionRevoke($id)
     {
         $model = Topic::findDeletedTopic($id);
-        if(!$model->isCurrent()){
+        if (!$model->isCurrent()) {
             throw new NotFoundHttpException();
         }
         $model->updateCounters(['status' => 1]);

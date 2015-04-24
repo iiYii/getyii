@@ -6,7 +6,7 @@ use yii\helpers\Html;
 <li class="list-group-item media col-sm-6 mt0">
 
     <?= Html::a(Html::tag('span', $model['comment_count'], ['class' => 'badge badge-reply-count']),
-        ['/topic/default/view', 'id' => $model->id], ['class' => 'pull-right']
+        ['/topic/default/view', 'id' => $model->id, '#' => 'comment' . $model['comment_count']], ['class' => 'pull-right']
     ); ?>
 
     <div class="avatar pull-left">
@@ -20,7 +20,7 @@ use yii\helpers\Html;
 
         <div class="media-heading">
             <?= Html::a($model->title,
-                ['/topic/view', 'id' => $model->id], ['title' => $model->title]
+                ['/topic/default/view', 'id' => $model->id], ['title' => $model->title]
             ); ?>
             <?= ($model->status == 2) ? Html::tag('i', '', ['class' => 'fa fa-trophy excellent']) : null ?>
         </div>

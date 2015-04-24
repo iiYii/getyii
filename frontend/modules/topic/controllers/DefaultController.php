@@ -196,15 +196,8 @@ class DefaultController extends Controller
         if ($model->comment_count) {
             $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'success');
         } else {
-            // 启用事物
-            $transaction = \Yii::$app->db->beginTransaction();
-            $updateTopic = $model->updateCounters(['status' => -1]);
-            $updateNotify = Notification::updateAll(['status' => 0], ['post_id' => $model->id]);
-            if ($updateNotify && $updateTopic) {
-                $transaction->commit();
-            } else {
-                $transaction->rollback();
-            }
+            $model->updateCounters(['status' => -1]);
+            Notification::updateAll(['status' => 0], ['post_id' => $model->id]);
             $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
             $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
         }

@@ -23,16 +23,16 @@ class DefaultController extends Controller
 {
     const PAGE_SIZE = 50;
     public $sorts = [
-        'newest'      => '最新的',
-        'hotest'      => '热门的',
+        'newest' => '最新的',
+        'hotest' => '热门的',
         'uncommented' => '未回答的'
     ];
 
     public function behaviors()
     {
         return [
-            'verbs'  => [
-                'class'   => VerbFilter::className(),
+            'verbs' => [
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
@@ -61,41 +61,39 @@ class DefaultController extends Controller
         $params = Yii::$app->request->queryParams;
         $params['PostSearch']['type'] = 'topic';
         $params['PostSearch']['status'] = 1;
-        // 话题或者分类筛选
-        empty($params['tag']) ?: $params['PostSearch']['tags'] = $params['tag'];
-        if (isset($params['node'])) {
-            $postMeta = PostMeta::findOne(['alias' => $params['node']]);
+        // 话题筛选
+        if (isset($params['tag']) && $params['tag'] != 'index') {
+            $postMeta = PostMeta::findOne(['alias' => $params['tag']]);
             $params['PostSearch']['post_meta_id'] = $postMeta->id;
         }
         $dataProvider = $searchModel->search($params);
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [
-            'hotest'      => [
-                'asc'  => [
+            'hotest' => [
+                'asc' => [
                     'comment_count' => SORT_DESC,
-                    'created_at'    => SORT_DESC
+                    'created_at' => SORT_DESC
                 ],
                 'desc' => [
                     'comment_count' => SORT_DESC,
-                    'created_at'    => SORT_DESC
+                    'created_at' => SORT_DESC
                 ]
             ],
             'uncommented' => [
-                'asc'  => [
+                'asc' => [
                     'comment_count' => SORT_ASC,
-                    'created_at'    => SORT_DESC
+                    'created_at' => SORT_DESC
                 ],
                 'desc' => [
                     'comment_count' => SORT_ASC,
-                    'created_at'    => SORT_DESC
+                    'created_at' => SORT_DESC
                 ]
             ]
         ]);
-
         return $this->render('index', [
-            'searchModel'  => $searchModel,
-            'sorts'        => $this->sorts,
+            'searchModel' => $searchModel,
+            'sorts' => $this->sorts,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -110,19 +108,17 @@ class DefaultController extends Controller
         $model = Topic::findTopic($id);
         $comment = $this->newComment($model);
         $dataProvider = new ActiveDataProvider([
-            'query'      => PostComment::findCommentList($id),
+            'query' => PostComment::findCommentList($id),
             'pagination' => [
                 'pageSize' => self::PAGE_SIZE,
             ],
         ]);
-
         // 文章浏览次数
         Topic::updateAllCounters(['view_count' => 1], ['id' => $id]);
-
         return $this->render('view', [
-            'model'        => $model,
+            'model' => $model,
             'dataProvider' => $dataProvider,
-            'comment'      => $comment,
+            'comment' => $comment,
         ]);
     }
 
@@ -136,7 +132,7 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->user_id = Yii::$app->user->id;
             $model->type = 'topic';
-            if ($model->tags) {
+            if ($model->tags = Yii::$app->request->post('tags')) {
                 $model->addTags(explode(',', $model->tags));
             }
             if ($model->save()) {
@@ -162,15 +158,12 @@ class DefaultController extends Controller
     public function actionUpdate($id)
     {
         $model = Topic::findTopic($id);
-
         if ($model === null || !$model->isCurrent()) {
             throw new NotFoundHttpException;
         }
-
         if ($model->load(Yii::$app->request->post())) {
-            if ($model->tags) {
-                $model->addTags(explode(',', $model->tags));
-            }
+            $model->tags = Yii::$app->request->post('tags');
+            $model->addTags(explode(',', $model->tags));
             if ($model->save()) {
                 $this->flash('发表更新成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -195,22 +188,13 @@ class DefaultController extends Controller
             throw new NotFoundHttpException();
         }
         if ($model->comment_count) {
-            $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'warning');
+            $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'success');
         } else {
-            // 启用事物
-            $transaction = \Yii::$app->db->beginTransaction();
-            $updateTopic = $model->updateCounters(['status' => -1]);
-            $updateNotify = Notification::updateAll(['status' => 0], ['post_id' => $model->id]);
-            if ($updateNotify && $updateTopic) {
-                $transaction->commit();
-            } else {
-                $transaction->rollback();
-            }
+            $model->updateCounters(['status' => -1]);
+            Notification::updateAll(['status' => 0], ['post_id' => $model->id]);
             $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
             $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
         }
-
-
         return $this->redirect(['index']);
     }
 
@@ -252,7 +236,6 @@ class DefaultController extends Controller
                 Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
                 // 更新个人总统计
                 UserInfo::updateAllCounters(['comment_count' => 1], ['user_id' => $model->user_id]);
-
                 $this->flash("评论成功", 'success');
                 return $this->redirect(['view', 'id' => $post->id]);
             }

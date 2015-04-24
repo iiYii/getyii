@@ -17,7 +17,8 @@ use yii\helpers\Html;
                 Html::a($model->title, ['/topic/default/view', 'id' => $model->id]),
                 ['class' => 'media-heading']
             );?>
-            <?= Html::tag('strong', Html::tag('span', $model->user['username'])) ?> •
+            <?= Html::tag('span', Html::a($model->category->name, ['/topic/default/index', 'node' => $model->category->alias])) ?> •
+            <?= Html::tag('span', Html::a($model->user['username'], ['/user/default/show', 'username' => $model->user['username']])) ?> •
             <?= Html::tag('span', Yii::$app->formatter->asRelativeTime($model->created_at)) ?>
         </a>
     </div>

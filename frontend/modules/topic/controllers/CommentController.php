@@ -2,6 +2,7 @@
 
 namespace frontend\modules\topic\controllers;
 
+use frontend\models\Notification;
 use frontend\modules\topic\models\Topic;
 use Yii;
 use common\models\PostComment;
@@ -18,7 +19,7 @@ class CommentController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class'   => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
@@ -59,8 +60,16 @@ class CommentController extends Controller
         if (!$model->isCurrent()) {
             throw new NotFoundHttpException();
         }
-        $model->updateCounters(['status' => -1]);
-        Topic::updateAllCounters(['comment_count' => -1], ['id' => $model->post_id]);
+        // 事物 暂时数据库类型不支持 无效
+        $transaction = \Yii::$app->db->beginTransaction();
+        $updateComment = $model->updateCounters(['status' => -1]);
+        $updateNotify = Notification::updateAll(['status' => 0], ['comment_id' => $model->id]);
+        $updateTopic = Topic::updateAllCounters(['comment_count' => -1], ['id' => $model->post_id]);
+        if ($updateNotify && $updateComment && $updateTopic) {
+            $transaction->commit();
+        } else {
+            $transaction->rollback();
+        }
         return $this->redirect(['/topic/default/view', 'id' => $model->post_id]);
     }
 

@@ -148,4 +148,5 @@ return [
 
 
     'Update Post: ' => '更新话题：',
+    'Data Deleted' => '相关数据已经删除',
 ];

@@ -4,6 +4,7 @@ namespace frontend\modules\topic\controllers;
 
 use common\models\Post;
 use common\services\NotificationService;
+use frontend\models\Notification;
 use frontend\modules\topic\models\Topic;
 use frontend\modules\user\models\UserMeta;
 use Yii;
@@ -191,7 +192,15 @@ class DefaultController extends Controller
         if(!$model->isCurrent()){
             throw new NotFoundHttpException();
         }
-        $model->updateCounters(['status' => -1]);
+        // 启用事物
+        $transaction = \Yii::$app->db->beginTransaction();
+        $updateTopic = $model->updateCounters(['status' => -1]);
+        $updateNotify = Notification::updateAll(['status' => 0], ['post_id' => $model->id]);
+        if ($updateNotify && $updateTopic) {
+            $transaction->commit();
+        } else {
+            $transaction->rollback();
+        }
         $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
         $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
         return $this->redirect(['index']);
@@ -211,7 +220,7 @@ class DefaultController extends Controller
         }
         $model->updateCounters(['status' => 1]);
         $this->flash("「{$model->title}」文章撤销删除成功。", 'success');
-        return $this->redirect(['view', 'id' => $model->id]);
+        return $this->redirect(['/topic/default/view', 'id' => $model->id]);
     }
 
     /**

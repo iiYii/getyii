@@ -191,11 +191,21 @@ class DefaultController extends Controller
         if(!$model->isCurrent()){
             throw new NotFoundHttpException();
         }
-        $model->updateCounters(['status' => -1]);
-        $modelReview = PostComment::findCommentList(['id' => $id])->one();
-        $modelReview->updateCounters(['status' => -1]);
-        $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
-        $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
+        //$ReferenceCount = PostComment::findCommentList(['id' => $id])->count();
+          $ReferenceCount = $model->comment_count;
+        if($ReferenceCount)
+        {
+            $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'success');
+        }else{  
+            $model->updateCounters(['status' => -1]);
+           /*  修改评论status状态
+            *  $modelReview = PostComment::findCommentList(['id' => $id])->all();
+            foreach ($modelReview as $k=>$oneModelReview){
+                $oneModelReview->updateCounters(['status' => -1]);
+            }*/
+            $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
+            $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
+        }
         return $this->redirect(['index']);
     }
 
@@ -212,8 +222,11 @@ class DefaultController extends Controller
             throw new NotFoundHttpException();
         }
         $model->updateCounters(['status' => 1]);
-        $modelReview = PostComment::findCommentList(['id' => $id])->one();
-        $modelReview->updateCounters(['status' => 1]);
+        /* 修改评论status状态
+         * $modelReview = PostComment::findCommentList(['id' => $id])->all();
+        foreach ($modelReview as $k=>$oneModelReview){
+            $oneModelReview->updateCounters(['status' => 1]);
+        }*/
         $this->flash("「{$model->title}」文章撤销删除成功。", 'success');
         return $this->redirect(['view', 'id' => $model->id]);
     }

@@ -38,7 +38,7 @@ class DefaultController extends Controller
     protected function comment($userId)
     {
         return new ActiveDataProvider([
-            'query' => PostComment::find()->where(['user_id' => $userId]),
+            'query' => PostComment::find()->where(['user_id' => $userId,'status' => 1])->orderBy(['created_at' => SORT_DESC]),
         ]);
     }
 
@@ -51,9 +51,7 @@ class DefaultController extends Controller
     {
         $user = $this->user($username);
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => Post::find()->where(['user_id' => $user->id]),
-        ]);
+        $dataProvider = $this->getDataProvider($user->id);
 
         return $this->render('show', [
             'user' => $user,
@@ -61,6 +59,15 @@ class DefaultController extends Controller
         ]);
     }
 
+
+    protected function getDataProvider($userid)
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Post::find()->where(['user_id' => $userid,'status' => 1])->orderBy(['created_at' => SORT_DESC]),
+        ]);
+        return $dataProvider;
+    
+    }
     /**
      * 最新收藏
      * @param  string $username [description]
@@ -70,9 +77,7 @@ class DefaultController extends Controller
     {
         $user = $this->user($username);
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => Post::find()->where(['user_id' => $user->id]),
-        ]);
+        $dataProvider = $this->getDataProvider($user->id);
 
         return $this->render('show', [
             'user' => $user,

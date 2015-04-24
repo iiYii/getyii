@@ -192,6 +192,8 @@ class DefaultController extends Controller
             throw new NotFoundHttpException();
         }
         $model->updateCounters(['status' => -1]);
+        $modelReview = PostComment::findCommentList(['id' => $id])->one();
+        $modelReview->updateCounters(['status' => -1]);
         $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
         $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
         return $this->redirect(['index']);
@@ -210,6 +212,8 @@ class DefaultController extends Controller
             throw new NotFoundHttpException();
         }
         $model->updateCounters(['status' => 1]);
+        $modelReview = PostComment::findCommentList(['id' => $id])->one();
+        $modelReview->updateCounters(['status' => 1]);
         $this->flash("「{$model->title}」文章撤销删除成功。", 'success');
         return $this->redirect(['view', 'id' => $model->id]);
     }

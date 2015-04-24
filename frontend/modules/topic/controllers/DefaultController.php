@@ -194,17 +194,23 @@ class DefaultController extends Controller
         if (!$model->isCurrent()) {
             throw new NotFoundHttpException();
         }
-        // 启用事物
-        $transaction = \Yii::$app->db->beginTransaction();
-        $updateTopic = $model->updateCounters(['status' => -1]);
-        $updateNotify = Notification::updateAll(['status' => 0], ['post_id' => $model->id]);
-        if ($updateNotify && $updateTopic) {
-            $transaction->commit();
+        if ($model->comment_count) {
+            $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'warning');
         } else {
-            $transaction->rollback();
+            // 启用事物
+            $transaction = \Yii::$app->db->beginTransaction();
+            $updateTopic = $model->updateCounters(['status' => -1]);
+            $updateNotify = Notification::updateAll(['status' => 0], ['post_id' => $model->id]);
+            if ($updateNotify && $updateTopic) {
+                $transaction->commit();
+            } else {
+                $transaction->rollback();
+            }
+            $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
+            $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
         }
-        $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
-        $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
+
+
         return $this->redirect(['index']);
     }
 

@@ -67,7 +67,7 @@ class DefaultController extends Controller
         empty($params['tag']) ?: $params['PostSearch']['tags'] = $params['tag'];
         if (isset($params['node'])) {
             $postMeta = PostMeta::findOne(['alias' => $params['node']]);
-            $params['PostSearch']['post_meta_id'] = $postMeta->id;
+            ($postMeta) ? $params['PostSearch']['post_meta_id'] = $postMeta->id : '';
         }
 
         $dataProvider = $searchModel->search($params, $conditions);

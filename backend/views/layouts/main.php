@@ -79,6 +79,13 @@ AppAsset::register($this);
                                 ['label' => 'New Arrivals', 'url' => ['product/index', 'tag' => 'new']],
                                 ['label' => 'Most Popular', 'url' => ['product/index', 'tag' => 'popular']],
                             ]],
+                            [
+                             'label' => '右边栏设置', 'url' => ['right-link/index'],
+                                'items' => [
+                                    ['label' => '推荐资源' , 'url' => ['/right-link/recommend-rsources', 'tag' => 'RecommendResources']],
+                                    ['label' => '小贴士' , 'url' => ['/right-link/tips' , 'tag' => 'Tips']]
+                                ]   
+                            ],
                             ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                         ],
                     ]); ?>

@@ -47,7 +47,7 @@ use yii\helpers\Html;
 
     <?= \frontend\widgets\Panel::widget([
         'title' => \Yii::t('app', 'Recomended Resources'),
-        'items' => [],
+        'items' => $RecommendResources,
     ])?>
 
     <?= \frontend\widgets\Panel::widget([
@@ -60,7 +60,7 @@ use yii\helpers\Html;
             <h3 class="panel-title"><?= \Yii::t('app', 'Tips and Tricks');?></h3>
         </div>
         <div class="panel-body">
-            {{ $siteTip->body }}
+            <?=$tips;?>
         </div>
     </div>
 

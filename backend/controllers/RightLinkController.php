@@ -100,7 +100,7 @@ class RightLinkController extends Controller
     {
         $model = new Rightlink();
         $request = Yii::$app->request->post();
-        $request['Rightlink']['created_user'] = 'zghack';
+        $request['Rightlink']['created_user'] = Yii::$app->user->identity->username;
         $request['Rightlink']['created_at'] = '';
         $request['Rightlink']['updated_at'] = '';
         if ($model->load($request) && $model->save()) {

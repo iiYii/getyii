@@ -64,12 +64,17 @@ class PostMeta extends ActiveRecord
 
     public static function blogCategory()
     {
-        return ArrayHelper::map(static::find()->where(['type'=>'blog_category'])->all(), 'id', 'name');
+        return ArrayHelper::map(static::find()->where(['type' => 'blog_category'])->all(), 'id', 'name');
     }
 
     public static function topicCategory()
     {
-        return ArrayHelper::map(static::find()->where(['type'=>'topic_category'])->all(), 'id', 'name');
+        return ArrayHelper::map(static::find()->where(['type' => 'topic_category'])->all(), 'id', 'name');
+    }
+
+    public function getParents()
+    {
+        return ArrayHelper::map(static::find()->where(['parent' => null])->all(), 'id', 'name');
     }
 
     public function getTypes()
@@ -82,6 +87,6 @@ class PostMeta extends ActiveRecord
 
     public static function topic()
     {
-        return ArrayHelper::map(static::find()->where(['type'=>'topic_category'])->all(), 'alias', 'name');
+        return ArrayHelper::map(static::find()->where(['type' => 'topic_category'])->all(), 'alias', 'name');
     }
 }

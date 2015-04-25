@@ -35,3 +35,5 @@ $this->title = \Yii::$app->setting->get('siteName');
         <?= Html::a(\Yii::t('app', 'More Excellent Topics') , ['topic/default/index', 'sort' => 'excellent'])?>
     </div>
 </div>
+
+<?= \frontend\widgets\Node::widget() ?>

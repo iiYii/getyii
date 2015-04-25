@@ -55,3 +55,7 @@ h1 {
 abbr[title] {
      border-bottom: 0px;
 }
+
+.divider {
+    border-bottom: 1px solid #ddd;
+}

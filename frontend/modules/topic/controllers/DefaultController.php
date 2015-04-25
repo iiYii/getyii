@@ -59,16 +59,18 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         $searchModel = new PostSearch();
-        $params = Yii::$app->request->queryParams;
-        $params['PostSearch']['type'] = 'topic';
-        $params['PostSearch']['status'] = [1, 2];
+        $conditions['type'] = 'topic';
+        $conditions['status'] = [1, 2];
+
         // 话题或者分类筛选
+        $params = Yii::$app->request->queryParams;
         empty($params['tag']) ?: $params['PostSearch']['tags'] = $params['tag'];
         if (isset($params['node'])) {
             $postMeta = PostMeta::findOne(['alias' => $params['node']]);
             $params['PostSearch']['post_meta_id'] = $postMeta->id;
         }
-        $dataProvider = $searchModel->search($params);
+
+        $dataProvider = $searchModel->search($params, $conditions);
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [
@@ -197,19 +199,11 @@ class DefaultController extends Controller
         if ($model->comment_count) {
             $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'warning');
         } else {
-            // 启用事物
-            $transaction = \Yii::$app->db->beginTransaction();
-            $updateTopic = $model->updateCounters(['status' => -1]);
-            $updateNotify = Notification::updateAll(['status' => 0], ['post_id' => $model->id]);
-            if ($updateNotify && $updateTopic) {
-                $transaction->commit();
-            } else {
-                $transaction->rollback();
-            }
+            $model->updateAttributes(['status' => 0]);
+            Notification::updateAll(['status' => 0], ['post_id' => $model->id]);
             $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
             $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
         }
-
 
         return $this->redirect(['index']);
     }

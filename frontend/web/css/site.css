@@ -245,3 +245,12 @@ a.desc:after {
 .node-box dd, .node-box dt {
     padding: 15px 0 4px;
 }
+
+.ribbon-excellent {
+    font-size: 13px;
+    background: #FCF8F7;
+    padding: 3px 15px;
+    border-top: 1px solid #eae5e4;
+    color: #aAa5a4;
+    margin: 0 -15px -15px;
+}

@@ -110,7 +110,7 @@ class LoginForm extends Model
     public function loginAdmin()
     {
         if ($this->validate()) {
-            if (User::isUserAdmin($this->username)) {
+            if (User::isSuperAdmin($this->username)) {
                 return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
             }
             $this->addError('username', '你没有权限登录');

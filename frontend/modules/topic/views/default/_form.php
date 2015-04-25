@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use dosamigos\selectize\SelectizeTextInput;
 
 ?>
 <div class="list-group-item">
@@ -32,10 +33,29 @@ use yii\widgets\ActiveForm;
         'selectors' => [
             'input' => '#md-input'
         ],
+
     ])->textarea([
         'placeholder' => '内容',
         'id' => 'md-input',
         'rows'        => 10
+    ]) ?>
+
+    <?= SelectizeTextInput::widget([
+        'name'          => 'Topic[tags]',
+        'value'         => $model->tags,
+        'loadUrl' => ['/post-tag/index'],
+        'clientOptions' => [
+            'placeholder' => '标签（可选）',
+            'allowEmptyOption' => false,
+            'delimiter'        => ',',
+            'valueField'       => 'name',
+            'labelField'       => 'name',
+            'searchField'      => 'name',
+            'maxItems'         => 5,
+            'plugins'          => ['remove_button'],
+            'persist'          => false,
+            'create'           => true,
+        ],
     ]) ?>
 
     <div class="form-group">

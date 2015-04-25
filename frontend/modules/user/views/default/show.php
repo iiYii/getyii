@@ -15,7 +15,7 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
         <div class="panel panel-default thumbnail center">
             <br>
             <img src="http://gravatar.com/avatar/<?= md5($user->email) ?>?s=200" alt="用户头像" title="用户头像" class="img-circle img-responsive" />
-            <h1 class=""><?= Html::tag('strong', $user->username) ?></h1>
+            <h1 class="text-center"><?= Html::tag('strong', $user->username) ?></h1>
             <p><?= $user->tagline ?></p>
             <!-- <button type="button" class="btn btn-success">Book me!</button> -->
             <!-- <button type="button" class="btn btn-info">Send me a message</button> -->
@@ -113,7 +113,7 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
         </div> -->
     </div>
     <!--/col-3-->
-    <div class="col-sm-9 list-nav" contenteditable="false" style="">
+    <div class="col-sm-9 list-nav mb20" contenteditable="false" style="">
         <nav class="navbar navbar-default">
         <?= Menu::widget([
             'options' => [
@@ -133,11 +133,6 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
             'summary' => false,
             'itemView' => '_view',
             'options' => ['class' => 'list-group'],
-            'pager' => [
-                'options' => ['class'=>'pagination pagination-lg'],
-                'prevPageLabel' => '<i class="icon-angle-left"></i>',
-                'nextPageLabel' => '<i class="icon-angle-right"></i>',
-            ]
         ]) ?>
     </div>
 </section>

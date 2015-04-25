@@ -35,7 +35,7 @@ class PostMeta extends ActiveRecord
     public function rules()
     {
         return [
-            [['count', 'order', 'created_at', 'updated_at'], 'integer'],
+            [['count', 'order', 'created_at', 'updated_at', 'parent'], 'integer'],
             [['name'], 'string', 'max' => 100],
             [['alias', 'type'], 'string', 'max' => 32],
             [['description'], 'string', 'max' => 255],
@@ -51,6 +51,7 @@ class PostMeta extends ActiveRecord
         return [
             'id' => 'ID',
             'name' => '名称',
+            'parent' => '父级分类',
             'alias' => '变量（别名）',
             'type' => '项目类型',
             'description' => '选项描述',
@@ -63,24 +64,34 @@ class PostMeta extends ActiveRecord
 
     public static function blogCategory()
     {
-        return ArrayHelper::map(static::find()->where(['type'=>'blog_category'])->all(), 'id', 'name');
+
+        return ArrayHelper::map(static::find()->where(['type' => 'blog_category'])->all(), 'id', 'name');
     }
 
     public static function topicCategory()
     {
-        return ArrayHelper::map(static::find()->where(['type'=>'topic_category'])->all(), 'id', 'name');
+        $parents = ArrayHelper::map(static::find()->where(['parent' => null])->orderBy(['order' => SORT_ASC])->all(), 'id', 'name');
+        foreach ($parents as $key => $value) {
+            $nodes[$value] = ArrayHelper::map(static::find()->where(['parent' => $key])->asArray()->all(), 'id', 'name');
+        }
+        return $nodes;
+    }
+
+    public function getParents()
+    {
+        return ArrayHelper::map(static::find()->where(['parent' => null])->all(), 'id', 'name');
     }
 
     public function getTypes()
     {
         return [
-            'blog_category' => '文章分类',
             'topic_category' => '社区分类',
+            'blog_category' => '文章分类',
         ];
     }
 
     public static function topic()
     {
-        return ArrayHelper::map(static::find()->where(['type'=>'topic_category'])->all(), 'alias', 'name');
+        return ArrayHelper::map(static::find()->where(['type' => 'topic_category'])->all(), 'alias', 'name');
     }
 }

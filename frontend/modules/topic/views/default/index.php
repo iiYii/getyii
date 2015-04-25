@@ -31,5 +31,7 @@ $sort = Yii::$app->request->getQueryParam('sort');
         <?php Pjax::end(); ?>
 
     </div>
+    <?= \frontend\widgets\Node::widget(); ?>
 </div>
 <?= TopicSidebar::widget(); ?>
+

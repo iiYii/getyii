@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\Models\Post */
+/* @var $model common\models\RightLink */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Right Links', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="post-view">
+<div class="right-link-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,21 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'post_meta_id',
-            'user_id',
             'title',
-            'author',
-            'excerpt',
+            'url:url',
             'image',
-            'content:ntext',
-            'tags',
-            'view_count',
-            'comment_count',
-            'favorite_count',
-            'like_count',
-            'hate_count',
-            'status',
-            'order',
+            'content',
+            'type',
+            'created_user',
             'created_at',
             'updated_at',
         ],

@@ -79,6 +79,7 @@ AppAsset::register($this);
                                 ['label' => 'New Arrivals', 'url' => ['product/index', 'tag' => 'new']],
                                 ['label' => 'Most Popular', 'url' => ['product/index', 'tag' => 'popular']],
                             ]],
+                            ['label' => '右边栏设置', 'url' => ['right-link/index']],
                             ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                         ],
                     ]); ?>

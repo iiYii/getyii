@@ -14,6 +14,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 100]) ?>
 
+    <?= $form->field($model, 'parent')->dropDownList(['' => '根目录'] + $model->getParents()) ?>
+
 	<?= $form->field($model, 'alias')->textInput(['maxlength' => 32]) ?>
 
     <?= $form->field($model, 'type')->dropDownList($model->types) ?>

@@ -24,13 +24,14 @@ class NotificationController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                    'clear' => ['post'],
                 ],
             ],
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
                     ['allow' => true, 'actions' => ['index', 'count'], 'roles' => ['@']],
-                    ['allow' => true, 'actions' => ['delete'], 'verbs' => ['POST'], 'roles' => ['@']],
+                    ['allow' => true, 'actions' => ['delete', 'clear'], 'verbs' => ['POST'], 'roles' => ['@']],
                 ]
             ]
         ];
@@ -76,6 +77,19 @@ class NotificationController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * 清空通知
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     * @throws \Exception
+     */
+    public function actionClear()
+    {
+        Notification::deleteAll(['user_id' => Yii::$app->user->id]);
 
         return $this->redirect(['index']);
     }

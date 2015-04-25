@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\UserSearch */
+/* @var $model backend\models\RightLinkSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="user-search">
+<div class="right-link-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,23 +17,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'username') ?>
+    <?= $form->field($model, 'title') ?>
 
-    <?= $form->field($model, 'avatar') ?>
+    <?= $form->field($model, 'url') ?>
 
-    <?= $form->field($model, 'auth_key') ?>
+    <?= $form->field($model, 'image') ?>
 
-    <?= $form->field($model, 'password_hash') ?>
+    <?= $form->field($model, 'content') ?>
 
-    <?php // echo $form->field($model, 'password_reset_token') ?>
+    <?php // echo $form->field($model, 'type') ?>
 
-    <?php // echo $form->field($model, 'email') ?>
-
-    <?php // echo $form->field($model, 'tagline') ?>
-
-    <?php // echo $form->field($model, 'role') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
+    <?php // echo $form->field($model, 'created_user') ?>
 
     <?php // echo $form->field($model, 'created_at') ?>
 

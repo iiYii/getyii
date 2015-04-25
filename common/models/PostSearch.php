@@ -39,9 +39,9 @@ class PostSearch extends Post
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $conditions=[])
     {
-        $query = Post::find();
+        $query = Post::find()->where($conditions);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

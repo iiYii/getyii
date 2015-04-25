@@ -3,7 +3,9 @@
 namespace frontend\modules\topic\controllers;
 
 use common\models\Post;
+use common\models\User;
 use common\services\NotificationService;
+use frontend\models\Notification;
 use frontend\modules\topic\models\Topic;
 use frontend\modules\user\models\UserMeta;
 use Yii;
@@ -23,6 +25,7 @@ class DefaultController extends Controller
     const PAGE_SIZE = 50;
     public $sorts = [
         'newest' => '最新的',
+        'excellent' => '优质主题',
         'hotest' => '热门的',
         'uncommented' => '未回答的'
     ];
@@ -30,8 +33,8 @@ class DefaultController extends Controller
     public function behaviors()
     {
         return [
-            'verbs'  => [
-                'class'   => VerbFilter::className(),
+            'verbs' => [
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
@@ -44,7 +47,7 @@ class DefaultController extends Controller
                     // 登录用户才能提交评论或其他内容
                     ['allow' => true, 'actions' => ['api', 'view', 'delete'], 'verbs' => ['POST'], 'roles' => ['@']],
                     // 登录用户才能使用API操作(赞,踩,收藏)
-                    ['allow' => true, 'actions' => ['create', 'update', 'revoke'], 'roles' => ['@']],
+                    ['allow' => true, 'actions' => ['create', 'update', 'revoke', 'excellent'], 'roles' => ['@']],
                 ]
             ]
         ];
@@ -57,15 +60,18 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         $searchModel = new PostSearch();
+        $conditions['type'] = 'topic';
+        $conditions['status'] = [1, 2];
+
+        // 话题或者分类筛选
         $params = Yii::$app->request->queryParams;
-        $params['PostSearch']['type'] = 'topic';
-        $params['PostSearch']['status'] = 1;
-        // 话题筛选
-        if (isset($params['tag']) && $params['tag'] != 'index') {
-            $postMeta = PostMeta::findOne(['alias' => $params['tag']]);
-            $params['PostSearch']['post_meta_id'] = $postMeta->id;
+        empty($params['tag']) ?: $params['PostSearch']['tags'] = $params['tag'];
+        if (isset($params['node'])) {
+            $postMeta = PostMeta::findOne(['alias' => $params['node']]);
+            ($postMeta) ? $params['PostSearch']['post_meta_id'] = $postMeta->id : '';
         }
-        $dataProvider = $searchModel->search($params);
+
+        $dataProvider = $searchModel->search($params, $conditions);
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [
@@ -74,26 +80,25 @@ class DefaultController extends Controller
                     'comment_count' => SORT_DESC,
                     'created_at' => SORT_DESC
                 ],
-                'desc' => [
+            ],
+            'excellent' => [
+                'asc' => [
+                    'status' => SORT_DESC,
                     'comment_count' => SORT_DESC,
                     'created_at' => SORT_DESC
-                ]
+                ],
             ],
             'uncommented' => [
                 'asc' => [
                     'comment_count' => SORT_ASC,
                     'created_at' => SORT_DESC
                 ],
-                'desc' => [
-                    'comment_count' => SORT_ASC,
-                    'created_at' => SORT_DESC
-                ]
             ]
         ]);
 
         return $this->render('index', [
-            'searchModel'  => $searchModel,
-            'sorts'  => $this->sorts,
+            'searchModel' => $searchModel,
+            'sorts' => $this->sorts,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -117,10 +122,14 @@ class DefaultController extends Controller
         // 文章浏览次数
         Topic::updateAllCounters(['view_count' => 1], ['id' => $id]);
 
+        $user = new User();
+        $admin = ($user->isAdmin($model->user['username']) || $user->isSuperAdmin($model->user['username'])) ? true : false;
+
         return $this->render('view', [
-            'model'        => $model,
+            'model' => $model,
             'dataProvider' => $dataProvider,
-            'comment'      => $comment,
+            'comment' => $comment,
+            'admin' => $admin,
         ]);
     }
 
@@ -134,7 +143,7 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->user_id = Yii::$app->user->id;
             $model->type = 'topic';
-            if ($model->tags = Yii::$app->request->post('tags')) {
+            if ($model->tags) {
                 $model->addTags(explode(',', $model->tags));
             }
             if ($model->save()) {
@@ -166,8 +175,9 @@ class DefaultController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->tags = Yii::$app->request->post('tags');
-            $model->addTags(explode(',', $model->tags));
+            if ($model->tags) {
+                $model->addTags(explode(',', $model->tags));
+            }
             if ($model->save()) {
                 $this->flash('发表更新成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -188,24 +198,18 @@ class DefaultController extends Controller
     public function actionDelete($id)
     {
         $model = Topic::findTopic($id);
-        if(!$model->isCurrent()){
+        if (!$model->isCurrent()) {
             throw new NotFoundHttpException();
         }
-        //$ReferenceCount = PostComment::findCommentList(['id' => $id])->count();
-          $ReferenceCount = $model->comment_count;
-        if($ReferenceCount)
-        {
-            $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'success');
-        }else{  
-            $model->updateCounters(['status' => -1]);
-           /*  修改评论status状态
-            *  $modelReview = PostComment::findCommentList(['id' => $id])->all();
-            foreach ($modelReview as $k=>$oneModelReview){
-                $oneModelReview->updateCounters(['status' => -1]);
-            }*/
+        if ($model->comment_count) {
+            $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'warning');
+        } else {
+            $model->updateAttributes(['status' => 0]);
+            Notification::updateAll(['status' => 0], ['post_id' => $model->id]);
             $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
             $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
         }
+
         return $this->redirect(['index']);
     }
 
@@ -218,17 +222,32 @@ class DefaultController extends Controller
     public function actionRevoke($id)
     {
         $model = Topic::findDeletedTopic($id);
-        if(!$model->isCurrent()){
+        if (!$model->isCurrent()) {
             throw new NotFoundHttpException();
         }
         $model->updateCounters(['status' => 1]);
-        /* 修改评论status状态
-         * $modelReview = PostComment::findCommentList(['id' => $id])->all();
-        foreach ($modelReview as $k=>$oneModelReview){
-            $oneModelReview->updateCounters(['status' => 1]);
-        }*/
         $this->flash("「{$model->title}」文章撤销删除成功。", 'success');
-        return $this->redirect(['view', 'id' => $model->id]);
+        return $this->redirect(['/topic/default/view', 'id' => $model->id]);
+    }
+
+    /**
+     * 伪删除
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionExcellent($id)
+    {
+        $user = new User();
+        $model = Topic::findTopic($id);
+        if ($user->isAdmin($model->user['username']) || $user->isSuperAdmin($model->user['username'])) {
+            $action = ($model->status == Topic::STATUS_ACTIVE) ? Topic::STATUS_GOOD : Topic::STATUS_ACTIVE;
+            $model->updateAttributes(['status' => $action]);
+            $this->flash("操作成功", 'success');
+            return $this->redirect(['/topic/default/view', 'id' => $model->id]);
+        } else {
+            throw new NotFoundHttpException();
+        }
     }
 
     /**

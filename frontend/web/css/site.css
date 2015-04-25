@@ -88,11 +88,11 @@ a.desc:after {
 }
 
 /* 自定义 */
-.navbar {
+.navbar, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background: #5CB85C;
 }
 
-.navbar a {
+.navbar a, .navbar-default .navbar-nav > li > a {
     color: #fff;
 }
 
@@ -138,7 +138,7 @@ a.desc:after {
     margin-left: 15px;
 }
 
-.nav > li > a:hover, .nav > li > a:focus {
+.nav > li > a:hover, .nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     background-color: #5CB85C;
     color: #eee;
 }
@@ -172,7 +172,7 @@ a.desc:after {
     color: #999;
 }
 
-.list-view .empty {
+.empty {
     padding: 10px 15px;
 }
 
@@ -205,9 +205,52 @@ a.desc:after {
     font-size: 12px;
 }
 
+.title-info {
+    color: #aaa;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.title-info .node {
+    padding: 1px 5px;
+    text-decoration: none;
+    background-color: #efefef;
+}
+
+.title-info a {
+    color: #666;
+}
+
 .notification-index .notification {
     position: relative;
     margin-bottom: 15px;
     padding-bottom: 15px;
     border-bottom: 1px solid #F0F4F6;
+}
+
+.badge-reply-count {
+    margin-top: 15px;
+    background-color: #9f9f9f;
+}
+
+.excellent {
+    color: #EB5424;
+}
+
+.node-box dt {
+    color: #999;
+    font-weight: 400;
+}
+
+.node-box dd, .node-box dt {
+    padding: 15px 0 4px;
+}
+
+.ribbon-excellent {
+    font-size: 13px;
+    background: #FCF8F7;
+    padding: 3px 15px;
+    border-top: 1px solid #eae5e4;
+    color: #aAa5a4;
+    margin: 0 -15px -15px;
 }

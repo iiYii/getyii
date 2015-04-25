@@ -33,6 +33,11 @@ $this->title = $model->title;
         </div>
         <div class="panel-body article">
             <?= Markdown::process($model->content, 'gfm') ?>
+            <?php if ($model->status == 2): ?>
+                <div class="ribbon-excellent">
+                    <i class="fa fa-trophy excellent"></i> 本帖已被设为精华帖！
+                </div>
+            <?php endif ?>
         </div>
         <div class="panel-footer clearfix opts">
             <?php
@@ -86,6 +91,7 @@ $this->title = $model->title;
                         'class' => ($model->favorite) ? 'active': ''
                     ]
                 );
+
                 if($model->isCurrent()){
                     echo Html::a(
                         Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count) . ' 个赞',
@@ -97,6 +103,15 @@ $this->title = $model->title;
                 }
                 echo $follow;
                 echo $favorite;
+
+                if ($admin) {
+                    $class = $model->status == 2 ? ['class' => 'active'] : null;
+                    echo Html::a(
+                        Html::tag('i', '', ['class' => 'fa fa-trophy']) . ' 加精',
+                        ['/topic/default/excellent', 'id' => $model->id],
+                        $class
+                    );
+                }
             ?>
             <?php if ($model->isCurrent()): ?>
                 <span class="pull-right">
@@ -104,7 +119,7 @@ $this->title = $model->title;
                         Html::tag('i', '', ['class' => 'fa fa-pencil']) . ' 修改',
                         ['/topic/default/update', 'id' => $model->id]
                     ) ?>
-              <?php if($model->comment_count == 0): ?>      
+              <?php if($model->comment_count == 0): ?>
                     <?= Html::a(
                         Html::tag('i', '', ['class' => 'fa fa-trash']) . ' 删除',
                         ['/topic/default/delete', 'id' => $model->id],

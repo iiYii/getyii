@@ -6,6 +6,8 @@
  */
 use yii\helpers\Html;
 ?>
+<?php if ($model->status): ?>
+
 <div class="media-left">
     <?php $img = "http://gravatar.com/avatar/" . md5($model->fromUser['email']) . "?s=48"; ?>
     <?= Html::a(Html::img($img, ['class' => 'media-object']),
@@ -29,6 +31,13 @@ use yii\helpers\Html;
         <?= \yii\helpers\Markdown::process($model->data, 'gfm') ?>
     </div>
 </div>
+
+<?php else: ?>
+    <div class="media-body">
+        <?= Yii::t('app', 'Data Deleted'); ?>
+    </div>
+<?php endif ?>
+
 <div class="media-right opts">
     <?= Html::a(
         Html::tag('i', '', ['class' => 'fa fa-trash']),
@@ -40,5 +49,3 @@ use yii\helpers\Html;
         ]
     ) ?>
 </div>
-
-

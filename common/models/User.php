@@ -34,6 +34,7 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_ACTIVE = 10;
     const ROLE_USER = 10;
     const ROLE_ADMIN = 20;
+    const ROLE_SUPER_ADMIN = 30;
 
     /**
      * @inheritdoc
@@ -125,7 +126,7 @@ class User extends ActiveRecord implements IdentityInterface
         }
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         $parts = explode('_', $token);
-        $timestamp = (int) end($parts);
+        $timestamp = (int)end($parts);
         return $timestamp + $expire >= time();
     }
 
@@ -198,13 +199,14 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
-     /**
+    /**
      * 根据 email 获取 gravatar 头像的地址
      * @param $email
      * @param int $size
      * @return string
      */
-    public function getGravatarUrl($email, $size = 64){
+    public function getGravatarUrl($email, $size = 64)
+    {
         $gravatar = sprintf('http://gravatar.com/avatar/%s?s=%d', md5($email), $size);
         return $gravatar;
     }
@@ -220,7 +222,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function getAccounts()
     {
         $connected = [];
-        $accounts  = $this->hasMany(UserAccount::className(), ['user_id' => 'id'])->all();
+        $accounts = $this->hasMany(UserAccount::className(), ['user_id' => 'id'])->all();
 
         // @var Account $account
         foreach ($accounts as $account) {
@@ -236,14 +238,14 @@ class User extends ActiveRecord implements IdentityInterface
         if ($insert) {
             $time = time();
             $userInfo = Yii::createObject([
-                'class'           => UserInfo::className(),
-                'user_id'         => $this->id,
+                'class' => UserInfo::className(),
+                'user_id' => $this->id,
                 'prev_login_time' => $time,
-                'prev_login_ip'   => Yii::$app->request->userIP,
+                'prev_login_ip' => Yii::$app->request->userIP,
                 'last_login_time' => $time,
-                'last_login_ip'   => Yii::$app->request->userIP,
-                'created_at'      => $time,
-                'updated_at'      => $time,
+                'last_login_ip' => Yii::$app->request->userIP,
+                'created_at' => $time,
+                'updated_at' => $time,
             ]);
             $userInfo->save();
         }
@@ -251,9 +253,18 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
 
-    public static function isUserAdmin($username)
+    public static function isAdmin($username)
     {
-        if (static::findOne(['username' => $username, 'role' => self::ROLE_ADMIN])){
+        if (static::findOne(['username' => $username, 'role' => self::ROLE_ADMIN])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function isSuperAdmin($username)
+    {
+        if (static::findOne(['username' => $username, 'role' => self::ROLE_SUPER_ADMIN])) {
             return true;
         } else {
             return false;

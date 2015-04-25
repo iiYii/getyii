@@ -20,7 +20,7 @@ echo Nav::widget([
     'options' => ['class' => 'nav navbar-nav'],
     'items'   => [
         ['label' => '社区', 'url' => ['/topic']],
-        ['label' => 'Wiki', 'url' => ['/site/getstart']],
+        ['label' => 'Wiki', 'url' => ['/topic/default/index', 'node'=>'wiki']],
         ['label' => '新手入门', 'url' => ['/site/getstart']],
         ['label' => '会员', 'url' => ['/site/users']],
         ['label' => '关于', 'url' => ['/site/about']],

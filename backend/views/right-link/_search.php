@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\RightlinkSearch */
+/* @var $model backend\models\RightLinkSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="rightlink-search">
+<div class="right-link-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'rlid') ?>
+    <?= $form->field($model, 'id') ?>
 
     <?= $form->field($model, 'title') ?>
 
@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'content') ?>
 
-    <?php // echo $form->field($model, 'class') ?>
+    <?php // echo $form->field($model, 'type') ?>
 
     <?php // echo $form->field($model, 'created_user') ?>
 

@@ -64,12 +64,17 @@ class PostMeta extends ActiveRecord
 
     public static function blogCategory()
     {
+
         return ArrayHelper::map(static::find()->where(['type' => 'blog_category'])->all(), 'id', 'name');
     }
 
     public static function topicCategory()
     {
-        return ArrayHelper::map(static::find()->where(['type' => 'topic_category'])->all(), 'id', 'name');
+        $parents = ArrayHelper::map(static::find()->where(['parent' => null])->orderBy(['order' => SORT_ASC])->all(), 'id', 'name');
+        foreach ($parents as $key => $value) {
+            $nodes[$value] = ArrayHelper::map(static::find()->where(['parent' => $key])->asArray()->all(), 'id', 'name');
+        }
+        return $nodes;
     }
 
     public function getParents()

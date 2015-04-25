@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Rightlink */
+/* @var $model common\models\RightLink */
 
-$this->title = 'Update Rightlink: ' . ' ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Rightlinks', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->rlid]];
+$this->title = 'Update Right Link: ' . ' ' . $model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Right Links', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="rightlink-update">
+<div class="right-link-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\RightlinkSearch */
+/* @var $searchModel backend\models\RightLinkSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = $title;
+$this->title = '右边栏设置';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="rightlink-index">
+<div class="right-link-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Rightlink', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Right Link', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,11 +24,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
             'title',
+            'type',
             'url:url',
-            'image',
-            'content',
-            // 'class',
+//            'image',
+//            'content',
             // 'created_user',
             // 'created_at',
             // 'updated_at',

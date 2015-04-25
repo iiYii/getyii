@@ -36,8 +36,8 @@ use yii\helpers\Html;
             <div class="panel-body text-center" style="padding-top: 5px;">
                 <?php foreach ($links as $key => $value) {
                     echo Html::a(
-                        Html::img($value->cover),
-                        $value->link,
+                        Html::img($value->image),
+                        $value->url,
                         ['target' => '_blank', 'title' => $value->title]
                     );
                 } ?>
@@ -47,7 +47,7 @@ use yii\helpers\Html;
 
     <?= \frontend\widgets\Panel::widget([
         'title' => \Yii::t('app', 'Recomended Resources'),
-        'items' => $RecommendResources,
+        'items' => $recommendResources,
     ])?>
 
     <?= \frontend\widgets\Panel::widget([
@@ -60,7 +60,7 @@ use yii\helpers\Html;
             <h3 class="panel-title"><?= \Yii::t('app', 'Tips and Tricks');?></h3>
         </div>
         <div class="panel-body">
-            <?=$tips;?>
+            <?= $tips;?>
         </div>
     </div>
 

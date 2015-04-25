@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Rightlink */
+/* @var $model common\models\RightLink */
 
-$this->title = 'Create Rightlink';
-$this->params['breadcrumbs'][] = ['label' => 'Rightlinks', 'url' => ['index']];
+$this->title = 'Create Right Link';
+$this->params['breadcrumbs'][] = ['label' => 'Right Links', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="rightlink-create">
+<div class="right-link-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

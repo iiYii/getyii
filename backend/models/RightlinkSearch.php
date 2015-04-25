@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Rightlink;
+use common\models\RightLink;
 
 /**
- * RightlinkSearch represents the model behind the search form about `app\models\Rightlink`.
+ * RightLinkSearch represents the model behind the search form about `common\models\RightLink`.
  */
-class RightlinkSearch extends Rightlink
+class RightLinkSearch extends RightLink
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class RightlinkSearch extends Rightlink
     public function rules()
     {
         return [
-            [['rlid', 'class'], 'integer'],
-            [['title', 'url', 'image', 'content', 'created_user', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'type', 'created_at', 'updated_at'], 'integer'],
+            [['title', 'url', 'image', 'content', 'created_user'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class RightlinkSearch extends Rightlink
      */
     public function search($params)
     {
-        $query = Rightlink::find();
+        $query = RightLink::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,8 +56,8 @@ class RightlinkSearch extends Rightlink
         }
 
         $query->andFilterWhere([
-            'rlid' => $this->rlid,
-            'class' => $this->class,
+            'id' => $this->id,
+            'type' => $this->type,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

@@ -24,8 +24,6 @@
         "bower-asset/marked": "*",
         "bower-asset/highlightjs": "*",
         "bower-asset/metisMenu": "*",
-        "bower-asset/jquery-textcomplete": "*",
-        "bower-asset/emojify.js": "*",
         "yiisoft/yii2-authclient": "*",
         "funson86/yii2-setting": "dev-master"
     },

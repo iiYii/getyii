@@ -3,6 +3,7 @@
 namespace frontend\modules\topic\controllers;
 
 use common\models\Post;
+use common\models\User;
 use common\services\NotificationService;
 use frontend\models\Notification;
 use frontend\modules\topic\models\Topic;
@@ -46,7 +47,7 @@ class DefaultController extends Controller
                     // 登录用户才能提交评论或其他内容
                     ['allow' => true, 'actions' => ['api', 'view', 'delete'], 'verbs' => ['POST'], 'roles' => ['@']],
                     // 登录用户才能使用API操作(赞,踩,收藏)
-                    ['allow' => true, 'actions' => ['create', 'update', 'revoke'], 'roles' => ['@']],
+                    ['allow' => true, 'actions' => ['create', 'update', 'revoke', 'excellent'], 'roles' => ['@']],
                 ]
             ]
         ];
@@ -121,10 +122,14 @@ class DefaultController extends Controller
         // 文章浏览次数
         Topic::updateAllCounters(['view_count' => 1], ['id' => $id]);
 
+        $user = new User();
+        $admin = ($user->isAdmin($model->user['username']) || $user->isSuperAdmin($model->user['username'])) ? true : false;
+
         return $this->render('view', [
             'model' => $model,
             'dataProvider' => $dataProvider,
             'comment' => $comment,
+            'admin' => $admin,
         ]);
     }
 
@@ -223,6 +228,26 @@ class DefaultController extends Controller
         $model->updateCounters(['status' => 1]);
         $this->flash("「{$model->title}」文章撤销删除成功。", 'success');
         return $this->redirect(['/topic/default/view', 'id' => $model->id]);
+    }
+
+    /**
+     * 伪删除
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionExcellent($id)
+    {
+        $user = new User();
+        $model = Topic::findTopic($id);
+        if ($user->isAdmin($model->user['username']) || $user->isSuperAdmin($model->user['username'])) {
+            $action = ($model->status == Topic::STATUS_ACTIVE) ? Topic::STATUS_GOOD : Topic::STATUS_ACTIVE;
+            $model->updateAttributes(['status' => $action]);
+            $this->flash("操作成功", 'success');
+            return $this->redirect(['/topic/default/view', 'id' => $model->id]);
+        } else {
+            throw new NotFoundHttpException();
+        }
     }
 
     /**

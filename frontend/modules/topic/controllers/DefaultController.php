@@ -5,6 +5,7 @@ namespace frontend\modules\topic\controllers;
 use common\models\Post;
 use common\models\User;
 use common\services\NotificationService;
+use common\services\TopicService;
 use frontend\models\Notification;
 use frontend\modules\topic\models\Topic;
 use frontend\modules\user\models\UserMeta;
@@ -146,6 +147,11 @@ class DefaultController extends Controller
             if ($model->tags) {
                 $model->addTags(explode(',', $model->tags));
             }
+            $topService = new TopicService();
+            if (!$topService->filterContent($model->title) || !$topService->filterContent($model->content)) {
+                $this->flash('请勿发表无意义的内容', 'warning');
+                return $this->render('create', ['model' => $model]);
+            }
             if ($model->save()) {
                 (new UserMeta)->saveNewMeta('topic', $model->id, 'follow');
                 // 更新个人总统计
@@ -153,6 +159,7 @@ class DefaultController extends Controller
                 $this->flash('发表文章成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->id]);
             }
+
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -259,6 +266,11 @@ class DefaultController extends Controller
     {
         $model = new PostComment();
         if ($model->load(Yii::$app->request->post())) {
+            $topService = new TopicService();
+            if (!$topService->filterContent($model->comment)) {
+                $this->flash('回复内容请勿回复无意义的内容，如你想收藏或赞等功能，请直接操作这篇帖子。', 'warning');
+                return $this->redirect(['view', 'id' => $post->id]);
+            }
             $model->user_id = Yii::$app->user->id;
             $model->post_id = $post->id;
             $model->ip = Yii::$app->getRequest()->getUserIP();

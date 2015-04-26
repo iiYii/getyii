@@ -230,7 +230,11 @@ a.desc:after {
 
 .badge-reply-count {
     margin-top: 15px;
-    background-color: #9f9f9f;
+    background-color: #98ACDF;
+}
+
+a:visited .badge-reply-count{
+    background-color: #d7d7d7;
 }
 
 .excellent {

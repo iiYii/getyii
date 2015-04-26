@@ -89,11 +89,22 @@ a.desc:after {
 
 /* 自定义 */
 .navbar, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-    background: #5CB85C;
+    background: #FFF;
 }
 
 .navbar a, .navbar-default .navbar-nav > li > a {
-    color: #fff;
+    color: #333;
+}
+
+.navbar .nav li.active a:focus, .navbar .nav li.active a:hover, .nav > li > a:hover, .nav > li > a:focus {
+    background-color: #FFF;
+    color: #000;
+}
+
+.navbar .nav li.active a {
+    background-color: #FFF;
+    border-bottom: 3px solid #5CB85C;
+    color: #5CB85C;
 }
 
 @media (min-width: 1400px) {
@@ -136,11 +147,6 @@ a.desc:after {
 
 .pagination {
     margin-left: 15px;
-}
-
-.nav > li > a:hover, .nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color: #5CB85C;
-    color: #eee;
 }
 
 .article a {
@@ -233,7 +239,7 @@ a.desc:after {
     background-color: #98ACDF;
 }
 
-a:visited .badge-reply-count{
+a:visited .badge-reply-count {
     background-color: #d7d7d7;
 }
 

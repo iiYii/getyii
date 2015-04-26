@@ -32,7 +32,7 @@ class CommentService
         if (in_array($content, $data)) {
             return false;
         }
-        $action = ['+1', '赞', '很赞' , '喜欢', '收藏', 'mark', '写的不错', '不错', '给力' ];
+        $action = ['+1', '赞', '很赞' , '喜欢', '收藏', 'mark', '写的不错', '不错', '给力', '顶', '沙发', '前排', '留名', '路过'];
         if (in_array($content, $action)) {
             return false;
         }

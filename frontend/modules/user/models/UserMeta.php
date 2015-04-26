@@ -37,7 +37,7 @@ class UserMeta extends ActiveRecord
     {
         return [
             'timestamp' => [
-                'class'      => 'yii\behaviors\TimestampBehavior',
+                'class' => 'yii\behaviors\TimestampBehavior',
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'created_at',
                 ],
@@ -64,16 +64,24 @@ class UserMeta extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'          => 'ID',
-            'user_id'     => '用户ID',
-            'type'        => '操作类型',
-            'value'       => '操作类型值',
-            'target_id'   => '目标id',
+            'id' => 'ID',
+            'user_id' => '用户ID',
+            'type' => '操作类型',
+            'value' => '操作类型值',
+            'target_id' => '目标id',
             'target_type' => '目标类型',
-            'created_at'  => '创建时间',
+            'created_at' => '创建时间',
         ];
     }
 
+    public static function deleteOne($conditions)
+    {
+        $model = self::findOne($conditions);
+        if ($model) {
+            return $model->delete();
+        }
+        return false;
+    }
 
     /**
      * 判断指定分类下操作是否存在
@@ -85,10 +93,10 @@ class UserMeta extends ActiveRecord
     public function isUserAction($type = '', $do = '', $targetId)
     {
         return $this->find()->where([
-            'target_id'   => $targetId,
-            'user_id'     => Yii::$app->user->id,
+            'target_id' => $targetId,
+            'user_id' => Yii::$app->user->id,
             'target_type' => $type,
-            'type'        => $do,
+            'type' => $do,
         ])->count();
     }
 
@@ -102,10 +110,10 @@ class UserMeta extends ActiveRecord
     public function saveNewMeta($type, $targetId, $do)
     {
         $data = [
-            'target_id'   => $targetId,
-            'user_id'     => Yii::$app->user->id,
+            'target_id' => $targetId,
+            'user_id' => Yii::$app->user->id,
             'target_type' => $type,
-            'type'        => $do,
+            'type' => $do,
         ];
         $model = $this->find()->where($data)->one();
         $this->setAttributes($data);
@@ -131,6 +139,10 @@ class UserMeta extends ActiveRecord
     public function beforeSave($insert)
     {
         if ($insert) {
+            $userActionNotify = (new NotificationService)->findUserActionNotify($this);
+            if ($userActionNotify) {
+                $userActionNotify->delete();
+            }
             // 点赞、感谢和收藏会收到通知
             if (in_array($this->type, ['like', 'favorite', 'thanks'])) {
                 switch ($this->target_type) {
@@ -159,4 +171,19 @@ class UserMeta extends ActiveRecord
 
         return parent::beforeSave($insert);
     }
+
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            $userActionNotify = (new NotificationService)->findUserActionNotify($this);
+            if ($userActionNotify) {
+                $userActionNotify->status = 0;
+                $userActionNotify->save();
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

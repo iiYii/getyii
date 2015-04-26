@@ -59,7 +59,13 @@ use dosamigos\selectize\SelectizeTextInput;
     ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? '创建话题' : '修改话题', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton(
+            $model->isNewRecord ? '创建话题' : '修改话题',
+            [
+                'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary',
+                'onclick' => "this.form.submit(); this.disabled=true; this.value='Sending…';",
+            ]
+        ) ?>
     </div>
 
     <div id="md-preview"><?= \yii\helpers\Markdown::process($model->content, 'gfm') ?></div>

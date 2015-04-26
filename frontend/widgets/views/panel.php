@@ -12,7 +12,7 @@ use yii\helpers\Html;
         <div class="panel-heading text-center">
             <h3 class="panel-title"><?= $model['title']?></h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body side-bar">
             <ul class="list">
                 <?php foreach ($model['items'] as $key => $value) {
                     echo Html::tag('li', Html::a($key, $value));

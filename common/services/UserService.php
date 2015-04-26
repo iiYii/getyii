@@ -62,7 +62,7 @@ class UserService
             'user_id'     => $user->id,
             'value'       => '1',
         ];
-        if (!UserMeta::deleteAll($data + ['type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
+        if (!UserMeta::deleteOne($data + ['type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
             $userMeta = new UserMeta();
             $userMeta->setAttributes($data + ['type' => $action]);
             $result = $userMeta->save();
@@ -97,7 +97,7 @@ class UserService
             'user_id'     => $user->id,
             'value'       => '1',
         ];
-        if (!UserMeta::deleteAll($data + ['type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
+        if (!UserMeta::deleteOne($data + ['type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
             $userMeta = new UserMeta();
             $userMeta->setAttributes($data + ['type' => $action]);
             $result = $userMeta->save();
@@ -125,14 +125,14 @@ class UserService
             'user_id'     => $user->id,
             'value'       => '1',
         ];
-        if (!UserMeta::deleteAll($data + ['type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
+        if (!UserMeta::deleteOne($data + ['type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
             $userMeta = new UserMeta();
             $userMeta->setAttributes($data + ['type' => $action]);
             $result = $userMeta->save();
             if ($result) { // 如果是新增数据, 删除掉Hate的同类型数据
                 $attributeName = ($action == 'like' ? 'hate' : 'like');
                 $attributes = [$action . '_count' => 1];
-                if (UserMeta::deleteAll($data + ['type' => $attributeName])) { // 如果有删除hate数据, hate_count也要-1
+                if (UserMeta::deleteOne($data + ['type' => $attributeName])) { // 如果有删除hate数据, hate_count也要-1
                     $attributes[$attributeName . '_count'] = -1;
                 }
                 //更新版块统计

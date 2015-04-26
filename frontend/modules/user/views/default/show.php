@@ -16,7 +16,7 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
             <br>
             <img src="http://gravatar.com/avatar/<?= md5($user->email) ?>?s=200" alt="用户头像" title="用户头像" class="img-circle img-responsive" />
             <h1 class="text-center"><?= Html::tag('strong', $user->username) ?></h1>
-            <p><?= $user->tagline ?></p>
+            <p class="text-center"><?= $user->tagline ?></p>
             <!-- <button type="button" class="btn btn-success">Book me!</button> -->
             <!-- <button type="button" class="btn btn-info">Send me a message</button> -->
             <!-- <br> -->

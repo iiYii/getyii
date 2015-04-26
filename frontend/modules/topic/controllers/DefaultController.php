@@ -141,16 +141,16 @@ class DefaultController extends Controller
     public function actionCreate()
     {
         $model = new Topic();
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $topService = new TopicService();
+            if (!$topService->filterContent($model->title) || !$topService->filterContent($model->content)) {
+                $this->flash('请勿发表无意义的内容', 'warning');
+                return $this->redirect('create');
+            }
             $model->user_id = Yii::$app->user->id;
             $model->type = 'topic';
             if ($model->tags) {
                 $model->addTags(explode(',', $model->tags));
-            }
-            $topService = new TopicService();
-            if (!$topService->filterContent($model->title) || !$topService->filterContent($model->content)) {
-                $this->flash('请勿发表无意义的内容', 'warning');
-                return $this->render('create', ['model' => $model]);
             }
             if ($model->save()) {
                 (new UserMeta)->saveNewMeta('topic', $model->id, 'follow');

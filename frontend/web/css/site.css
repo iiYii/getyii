@@ -189,7 +189,7 @@ a.desc:after {
 }
 
 /*代码高亮*/
-#md-preview pre, .article pre {
+#md-preview pre, .article pre, .markdown-reply pre{
     padding: 0;
 }
 

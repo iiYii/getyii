@@ -123,8 +123,8 @@ class DefaultController extends Controller
         // 文章浏览次数
         Topic::updateAllCounters(['view_count' => 1], ['id' => $id]);
 
-        $user = new User();
-        $admin = ($user->isAdmin($model->user['username']) || $user->isSuperAdmin($model->user['username'])) ? true : false;
+        $user = User::findOne(Yii::$app->user->id);
+        $admin = ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username)) ? true : false;
 
         return $this->render('view', [
             'model' => $model,
@@ -181,7 +181,7 @@ class DefaultController extends Controller
             throw new NotFoundHttpException;
         }
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->tags) {
                 $model->addTags(explode(',', $model->tags));
             }

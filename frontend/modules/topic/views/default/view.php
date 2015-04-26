@@ -15,7 +15,11 @@ $this->title = $model->title;
             <div class="media-body">
                 <?= Html::tag('h1', $model->title, ['class' => 'media-heading']); ?>
                 <div class="info">
-                    <?= Html::a('分享', ['/topic/node', 'id' => $model->post_meta_id]) ?>
+                    <?= Html::a(
+                        $model->category->name,
+                        ['/topic/default/index', 'node' => $model->category->alias],
+                        ['class' => 'node']
+                    ) ?>
                     ·
                     <?= Html::a($model->user['username'], ['/user/default/show', 'username' => $model->user['username']]) ?>
                     ·
@@ -148,4 +152,6 @@ $this->title = $model->title;
     ) ?>
 
 </div>
-<?= \frontend\widgets\TopicSidebar::widget(); ?>
+<?= \frontend\widgets\TopicSidebar::widget([
+    'node' => $model->category
+]); ?>

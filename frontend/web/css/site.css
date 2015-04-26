@@ -258,3 +258,7 @@ a:visited .badge-reply-count{
     color: #aAa5a4;
     margin: 0 -15px -15px;
 }
+
+.side-bar .list {
+    padding-left: 15px;
+}

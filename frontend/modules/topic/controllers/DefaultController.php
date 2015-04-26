@@ -181,7 +181,7 @@ class DefaultController extends Controller
             throw new NotFoundHttpException;
         }
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->tags) {
                 $model->addTags(explode(',', $model->tags));
             }

@@ -64,7 +64,7 @@ use yii\helpers\Html;
             <h3 class="panel-title"><?= \Yii::t('app', 'Tips and Tricks');?></h3>
         </div>
         <div class="panel-body">
-            <?= $tips;?>
+            <?= \yii\helpers\Markdown::process($tips, 'gfm');?>
         </div>
     </div>
 

@@ -22,8 +22,8 @@ class TopicSidebar extends \yii\bootstrap\Widget
     {
         $tipsModel = ArrayHelper::map(
             RightLink::find()->where(['type' => RightLink::RIGHT_LINK_TYPE_TIPS])->all(),
-            'title',
-            'content'
+            'content',
+            'title'
         );
         $tips = array_rand($tipsModel);
 

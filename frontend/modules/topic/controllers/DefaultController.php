@@ -245,9 +245,9 @@ class DefaultController extends Controller
      */
     public function actionExcellent($id)
     {
-        $user = new User();
+        $user = User::findOne(Yii::$app->user->id);
         $model = Topic::findTopic($id);
-        if ($user->isAdmin($model->user['username']) || $user->isSuperAdmin($model->user['username'])) {
+        if ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username)) {
             $action = ($model->status == Topic::STATUS_ACTIVE) ? Topic::STATUS_GOOD : Topic::STATUS_ACTIVE;
             $model->updateAttributes(['status' => $action]);
             $this->flash("操作成功", 'success');

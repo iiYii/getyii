@@ -124,7 +124,7 @@ class DefaultController extends Controller
         Topic::updateAllCounters(['view_count' => 1], ['id' => $id]);
 
         $user = User::findOne(Yii::$app->user->id);
-        $admin = ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username)) ? true : false;
+        $admin = ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) ? true : false;
 
         return $this->render('view', [
             'model' => $model,
@@ -247,7 +247,7 @@ class DefaultController extends Controller
     {
         $user = User::findOne(Yii::$app->user->id);
         $model = Topic::findTopic($id);
-        if ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username)) {
+        if ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) {
             $action = ($model->status == Topic::STATUS_ACTIVE) ? Topic::STATUS_GOOD : Topic::STATUS_ACTIVE;
             $model->updateAttributes(['status' => $action]);
             $this->flash("操作成功", 'success');

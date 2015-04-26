@@ -43,6 +43,7 @@ body > iframe {
 .mt15 {
     margin-top: 15px;
 }
+
 .mb20 {
     margin-bottom: 20px;
 }
@@ -56,14 +57,27 @@ h1 {
 }
 
 abbr[title] {
-     border-bottom: 0px;
+    border-bottom: 0px;
 }
 
 .divider {
     border-bottom: 1px solid #ddd;
 }
+
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: 'Hiragino Sans GB', 'Microsoft YaHei', 微软雅黑, tahoma, arial, simsun, 宋体;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 18px;
 }
 
 .br0 {

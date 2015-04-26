@@ -7,7 +7,7 @@ $this->title = '时间线';
 $content = '
 **2015年5月1日**
 - 网站重新上线，全新改版只做社区！
-- 原来的版本命令为[V1](https://github.com/iiyii/getyii/tree/v1)，可能不会再更新，没有通知系统。
+- 原来的版本命名为[V1](https://github.com/iiyii/getyii/tree/v1)，可能不会再更新，没有通知系统。
 
 **2015年4月15日**
 - 解决几个BUG

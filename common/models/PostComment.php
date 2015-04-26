@@ -53,7 +53,7 @@ class PostComment extends ActiveRecord
         return [
             [['parent', 'post_id', 'status', 'user_id', 'like_count', 'created_at', 'updated_at'], 'integer'],
             [['post_id', 'comment', 'user_id', 'ip'], 'required'],
-            [['comment'], 'string'],
+            [['comment'], 'string', 'min' =>2],
             [['ip'], 'string', 'max' => 255]
         ];
     }
@@ -191,14 +191,14 @@ class PostComment extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'         => 'ID',
-            'parent'     => '父级评论',
-            'post_id'    => '文章ID',
-            'comment'    => '评论',
-            'status'     => '1为正常 0为禁用',
-            'user_id'    => '用户ID',
+            'id' => 'ID',
+            'parent' => '父级评论',
+            'post_id' => '文章ID',
+            'comment' => '评论',
+            'status' => '1为正常 0为禁用',
+            'user_id' => '用户ID',
             'like_count' => '喜欢数',
-            'ip'         => '评论者ip地址',
+            'ip' => '评论者ip地址',
             'created_at' => '创建时间',
             'updated_at' => '修改时间',
         ];

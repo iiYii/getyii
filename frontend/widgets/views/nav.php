@@ -8,19 +8,23 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 
+$module = Yii::$app->controller->module->id;
+$node = Yii::$app->request->getQueryParam('node');
+$topicActive = ($module == 'topic' && $node != 'wiki') ? true : false;
+
 NavBar::begin([
     // 'brandLabel' => Html::img('/images/logo.png'),
     'brandLabel' => 'Get√Yii',
-    'brandUrl'   => Yii::$app->homeUrl,
-    'options'    => [
-        'class' => 'navbar-white',
+    'brandUrl' => Yii::$app->homeUrl,
+    'options' => [
+        'class' => 'navbar-white br0',
     ],
 ]);
 echo Nav::widget([
     'options' => ['class' => 'nav navbar-nav'],
-    'items'   => [
-        ['label' => '社区', 'url' => ['/topic']],
-        ['label' => 'Wiki', 'url' => ['/topic/default/index', 'node'=>'wiki']],
+    'items' => [
+        ['label' => '社区', 'url' => ['/topic'], 'active' => $topicActive],
+        ['label' => 'Wiki', 'url' => ['/topic/default/index', 'node' => 'wiki']],
         ['label' => '新手入门', 'url' => ['/site/getstart']],
         ['label' => '会员', 'url' => ['/site/users']],
         ['label' => '关于', 'url' => ['/site/about']],
@@ -33,10 +37,10 @@ if (Yii::$app->user->isGuest) {
 } else {
     // 撰写
     $menuItems[] = [
-        'label'       => Html::tag('i', '', ['class' => 'fa fa-bell']) . Html::tag('span', $notifyCount ? $notifyCount : null),
-        'url'         => ['/notification/index'],
+        'label' => Html::tag('i', '', ['class' => 'fa fa-bell']) . Html::tag('span', $notifyCount ? $notifyCount : null),
+        'url' => ['/notification/index'],
         'linkOptions' => ['class' => $notifyCount ? 'new' : null],
-        'options'     => ['class' => 'notification-count'],
+        'options' => ['class' => 'notification-count'],
     ];
 
     // 个人中心
@@ -52,7 +56,8 @@ if (Yii::$app->user->isGuest) {
 
 echo Nav::widget([
     'encodeLabels' => false,
-    'options'      => ['class' => 'nav navbar-nav navbar-right'],
-    'items'        => $menuItems,
+    'options' => ['class' => 'nav navbar-nav navbar-right'],
+    'items' => $menuItems,
+    'activateParents' => true,
 ]);
 NavBar::end();

@@ -59,11 +59,11 @@ class NotificationService
         $model = new Notification();
         $model->setAttributes([
             'from_user_id' => $fromUserId,
-            'user_id'      => $toUserId,
-            'post_id'      => $topicId,
-            'comment_id'   => $comment ? $comment->id : 0,
-            'data'         => $comment ? $comment->comment : '',
-            'type'         => $type,
+            'user_id' => $toUserId,
+            'post_id' => $topicId,
+            'comment_id' => $comment ? $comment->id : 0,
+            'data' => $comment ? $comment->comment : '',
+            'type' => $type,
         ]);
         if ($model->save()) {
             User::updateAllCounters(['notification_count' => 1], ['id' => $toUserId]);
@@ -91,11 +91,11 @@ class NotificationService
             $model = new Notification();
             $model->setAttributes([
                 'from_user_id' => $fromUser->id,
-                'user_id'      => $key,
-                'post_id'      => $post->id,
-                'comment_id'   => $content ?: $comment->id,
-                'data'         => $content ?: $comment->comment,
-                'type'         => $type,
+                'user_id' => $key,
+                'post_id' => $post->id,
+                'comment_id' => $content ?: $comment->id,
+                'data' => $content ?: $comment->comment,
+                'type' => $type,
             ]);
             if ($model->save()) {
                 User::updateAllCounters(['notification_count' => 1], ['id' => $key]);
@@ -120,5 +120,23 @@ class NotificationService
             }
         }
         return $notYetNotifyUsers;
+    }
+
+    /**
+     * 查找用户的动作通知
+     * @param UserMeta $meta
+     * @return null|static
+     */
+    public function findUserActionNotify(UserMeta $meta)
+    {
+        if ($meta->target_type == 'comment') {
+            $condition['comment_id'] = $meta->target_id;
+        } else {
+            $condition['post_id'] = $meta->target_id;
+        }
+        return Notification::findOne([
+                'from_user_id' => $meta->user_id,
+                'type' => $meta->target_type . '_' . $meta->type,
+            ] + $condition);
     }
 }

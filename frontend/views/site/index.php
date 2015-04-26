@@ -14,11 +14,7 @@ $this->title = \Yii::$app->setting->get('siteName');
     <div class="panel-heading">
         <h3 class="panel-title text-center">
             <?= \Yii::t('app', 'Excellent Topics') ?> &nbsp;
-            <a href="{{ route('feed') }}" style="color: #E5974E; font-size: 14px;" target="_blank">
-                <i class="fa fa-rss"></i>
-            </a>
         </h3>
-
     </div>
 
     <div class="clearfix site-index-topic">

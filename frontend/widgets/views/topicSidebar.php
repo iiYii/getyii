@@ -11,9 +11,9 @@ use yii\helpers\Html;
 
     <div class="panel panel-default corner-radius">
 
-        <?php if ($config['node']): ?>
+        <?php if ($node = $config['node']): ?>
             <div class="panel-heading text-center">
-                <h3 class="panel-title">{{{ $node->name }}}</h3>
+                <h3 class="panel-title"><?= $node->name ?></h3>
             </div>
         <?php endif ?>
 
@@ -28,7 +28,7 @@ use yii\helpers\Html;
         </div>
     </div>
 
-    <?php if (!empty($links)): ?>
+    <?php if (!$config['node'] && !empty($links)): ?>
         <div class="panel panel-default corner-radius">
             <div class="panel-heading text-center">
                 <h3 class="panel-title"><?= \Yii::t('app', 'Links')?></h3>
@@ -45,15 +45,19 @@ use yii\helpers\Html;
         </div>
     <?php endif ?>
 
-    <?= \frontend\widgets\Panel::widget([
-        'title' => \Yii::t('app', 'Recomended Resources'),
-        'items' => $recommendResources,
-    ])?>
+    <?php if (!$node) {
+        echo \frontend\widgets\Panel::widget([
+            'title' => \Yii::t('app', 'Recomended Resources'),
+            'items' => $recommendResources,
+        ]);
+    }?>
 
-    <?= \frontend\widgets\Panel::widget([
-        'title' => \Yii::t('app', 'Same Node Topics'),
-        'items' => [],
-    ])?>
+    <?php if ($node) {
+        echo \frontend\widgets\Panel::widget([
+            'title' => \Yii::t('app', 'Same Node Topics'),
+            'items' => $sameTopics,
+        ]) ;
+    } ?>
 
     <div class="panel panel-default corner-radius">
         <div class="panel-heading text-center">
@@ -64,7 +68,7 @@ use yii\helpers\Html;
         </div>
     </div>
 
-    <?= \frontend\widgets\Panel::widget([
+    <?php \frontend\widgets\Panel::widget([
         'title' => \Yii::t('app', 'Site Status'),
         'items' => [],
     ])?>

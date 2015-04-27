@@ -62,7 +62,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $topics = Post::find()->limit(20)->where(['status' => 2])->all();
+        $topics = Post::find()->limit(20)->where(['status' => 2])->orderBy(['created_at' => SORT_DESC])->all();
         return $this->render('index', [
             'topics' => $topics
         ]);

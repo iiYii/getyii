@@ -2,9 +2,10 @@
 
 namespace frontend\modules\user\controllers;
 
+use frontend\modules\topic\models\Topic;
+use frontend\modules\user\models\UserMeta;
 use yii\web\Controller;
 use common\models\User;
-use common\models\Post;
 use common\models\UserInfo;
 use common\models\PostComment;
 use yii\data\ActiveDataProvider;
@@ -19,73 +20,77 @@ class DefaultController extends Controller
 
     /**
      * Shows user's profile.
-     * @param  integer $username
+     * @param  string $username
      * @return \yii\web\Response
      * @throws \yii\web\NotFoundHttpException
      */
-    public function actionShow($username='')
+    public function actionShow($username = '')
     {
         $user = $this->user($username);
         // 个人主页浏览次数
-        UserInfo::updateAllCounters(['view_count' =>1], ['user_id' => $user->id]);
+        UserInfo::updateAllCounters(['view_count' => 1], ['user_id' => $user->id]);
 
         return $this->render('show', [
-            'user' => $user,
-            'dataProvider' =>$this->comment($user->id),
+            'user'         => $user,
+            'dataProvider' => $this->comment($user->id),
         ]);
     }
 
     protected function comment($userId)
     {
         return new ActiveDataProvider([
-            'query' => PostComment::find()->where(['user_id' => $userId,'status' => 1])->orderBy(['created_at' => SORT_DESC]),
+            'query' => PostComment::find()->where(['user_id' => $userId, 'status' => 1])->orderBy(['created_at' => SORT_DESC]),
         ]);
     }
 
     /**
      * 最近主题
-     * @param  string $username [description]
-     * @return [type]           [description]
+     * @param string $username
+     * @return string
+     * @throws NotFoundHttpException
      */
-    public function actionPost($username='')
+    public function actionPost($username = '')
     {
         $user = $this->user($username);
 
-        $dataProvider = $this->getDataProvider($user->id);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Topic::find()
+                ->where(['user_id' => $user->id])
+                ->andWhere('status > :status ' , [':status' => Topic::STATUS_DELETED])
+                ->orderBy(['created_at' => SORT_DESC]),
+        ]);
 
         return $this->render('show', [
-            'user' => $user,
-            'dataProvider' =>$dataProvider,
+            'user'         => $user,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
-
-    protected function getDataProvider($userid)
-    {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Post::find()->where(['user_id' => $userid,'status' => 1])->orderBy(['created_at' => SORT_DESC]),
-        ]);
-        return $dataProvider;
-    
-    }
     /**
      * 最新收藏
-     * @param  string $username [description]
-     * @return [type]           [description]
+     * @param string $username
+     * @return string
+     * @throws NotFoundHttpException
      */
-    public function actionFavorite($username='')
+    public function actionFavorite($username = '')
     {
         $user = $this->user($username);
 
-        $dataProvider = $this->getDataProvider($user->id);
+        $dataProvider = $dataProvider = new ActiveDataProvider([
+            'query' => UserMeta::find()->where([
+                'user_id'     => $user->id,
+                'type'        => 'favorite',
+                'target_type' => 'topic',
+            ])->orderBy(['created_at' => SORT_DESC])
+        ]);
 
         return $this->render('show', [
-            'user' => $user,
-            'dataProvider' =>$dataProvider,
+            'user'         => $user,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
-    protected function user($username='')
+    protected function user($username = '')
     {
         $user = User::findOne(['username' => $username]);
 

@@ -17,7 +17,8 @@
 1. 在终端输入命令 `composer global require "fxp/composer-asset-plugin:~1.0"` 安装 [composer-asset-plugin](https://github.com/francoispluchino/composer-asset-plugin) 来管理静态资源文件。
 1. 最后在终端输入命令 `composer update` 更新包。
 1. 在终端输入命令 `yii migrate` (windows下面可能是 `php yii migrate` 命令)初始化数据。
-1. 把 user 表中的某用户值 role 字段值改为20，即可登录后台。
+1. 把 user 表中的某用户值 role 字段值改为20，即为前台管理员，目前可以给帖子加精华，不能登录后台。
+1. 把 user 表中的某用户值 role 字段值改为30，即为超级管理员，可登录后台。
 
 
 ~~1. 在终端输入命令 `yii migrate --migrationPath=@funson86/setting/migrations` 初始化数据。~~

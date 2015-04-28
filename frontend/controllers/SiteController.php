@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\Post;
+use common\models\PostTag;
 use Yii;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
@@ -113,6 +114,15 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionTags()
+    {
+        $tags = PostTag::find()->orderBy('count DESC')->all();
+
+        return $this->render('tags', [
+            'tags' => $tags,
+        ]);
     }
 
     public function actionContributors()

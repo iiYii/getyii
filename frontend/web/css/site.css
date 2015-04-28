@@ -189,7 +189,7 @@ a.desc:after {
 }
 
 /*代码高亮*/
-#md-preview pre, .article pre, .markdown-reply pre{
+#md-preview pre, .article pre, .markdown-reply pre {
     padding: 0;
 }
 
@@ -267,4 +267,32 @@ a:visited .badge-reply-count {
 
 .side-bar .list {
     padding-left: 15px;
+}
+
+.tag-cloud a {
+    padding: 10px;
+}
+
+.tag-cloud .cloud-1 {
+    font-size:120%;
+}
+
+.tag-cloud .cloud-2 {
+    font-size:140%;
+}
+
+.tag-cloud .cloud-3 {
+    font-size:160%;
+}
+
+.tag-cloud .cloud-4 {
+    font-size:180%;
+}
+
+.tag-cloud .cloud-5 {
+    font-size:200%;
+}
+
+.tag-cloud .cloud-6 {
+    font-size:220%;
 }

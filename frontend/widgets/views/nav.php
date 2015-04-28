@@ -9,8 +9,10 @@ use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 
 $module = Yii::$app->controller->module->id;
-$node = Yii::$app->request->getQueryParam('node');
-$topicActive = ($module == 'topic' && $node != 'wiki') ? true : false;
+$action = Yii::$app->controller->action->id;
+$tag = Yii::$app->request->getQueryParam('tag');
+$topicActive = ($module == 'topic' && !$tag) ? true : false;
+$topicTagsActive = $action == 'tags' || ($module == 'topic' && $tag) ? true : false;
 
 NavBar::begin([
     // 'brandLabel' => Html::img('/images/logo.png'),
@@ -24,7 +26,8 @@ echo Nav::widget([
     'options' => ['class' => 'nav navbar-nav'],
     'items' => [
         ['label' => '社区', 'url' => ['/topic'], 'active' => $topicActive],
-        ['label' => 'Wiki', 'url' => ['/topic/default/index', 'node' => 'wiki']],
+//        ['label' => 'Wiki', 'url' => ['/topic/default/index', 'node' => 'wiki']],
+        ['label' => '标签云', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
         ['label' => '新手入门', 'url' => ['/site/getstart']],
         ['label' => '会员', 'url' => ['/site/users']],
         ['label' => '关于', 'url' => ['/site/about']],

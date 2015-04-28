@@ -22,7 +22,7 @@ return [
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 'member/<action>/<type:\w+>/<id:\d+>' => 'user/action/<action>',
                 'tag/<tag:\w+>' => 'topic/default/index/',
-                'node/<node:\w+>' => 'topic/default/index',
+                'node/<node:[0-9a-zA-Z\-]+>' => 'topic/default/index',
                 '<module>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
             ],
         ],

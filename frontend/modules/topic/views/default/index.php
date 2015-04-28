@@ -7,10 +7,16 @@ use frontend\widgets\TopicSidebar;
 
 $this->title = '社区';
 $sort = Yii::$app->request->getQueryParam('sort');
+$tag = Yii::$app->request->getQueryParam('tag');
 ?>
 <div class="col-md-10 topic">
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
+            <?php if($tag): ?>
+                <div class="pull-left">搜索标签：<?= $tag; ?>
+                </div>
+            <?php endif; ?>
+
             <div class="filter pull-right">
                 <span class="l">查看:</span>
                 <?php foreach($sorts as $key => $name): ?>

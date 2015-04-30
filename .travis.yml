@@ -10,11 +10,9 @@ install:
   - travis_retry composer global require "fxp/composer-asset-plugin:1.0.0"
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
 
-before_script:
-  - composer self-update
-  - composer install --prefer-source
+before_script: composer install --prefer-source
 
-script: phpunit --configuration phpunit.xml.dist
+#script: phpunit --configuration phpunit.xml.dist
 
 cache:
   directories:

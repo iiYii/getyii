@@ -118,7 +118,7 @@ class SiteController extends Controller
 
     public function actionTags()
     {
-        $tags = PostTag::find()->orderBy('count DESC')->all();
+        $tags = PostTag::find()->orderBy('updated_at DESC')->all();
 
         return $this->render('tags', [
             'tags' => $tags,

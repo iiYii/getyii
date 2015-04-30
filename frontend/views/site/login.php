@@ -20,7 +20,7 @@ $this->title = Yii::t('app', 'Login');
                 </div>
                 <div class="panel-body">
                     <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-                    <?= $form->field($model, 'username') ?>
+                    <?= $form->field($model, 'username', ['inputOptions' => ['tabindex' => '1']]) ?>
                     <?= $form->field($model, 'password', ['inputOptions' => ['class' => 'form-control', 'tabindex' => '2']])->passwordInput()->label('密码' . ' (' . Html::a('忘记密码？', ['site/request-password-reset'], ['tabindex' => '5']) . ')') ?>
                     <?= $form->field($model, 'rememberMe')->checkbox() ?>
                     <div class="form-group">

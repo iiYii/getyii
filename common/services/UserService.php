@@ -22,7 +22,7 @@ class UserService
      */
     public static function findNotifyCount()
     {
-        $user = User::findOne(\Yii::$app->user->id);
+        $user = \Yii::$app->getUser()->getIdentity();
         return $user ? $user->notification_count : null;
     }
 

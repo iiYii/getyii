@@ -28,7 +28,6 @@
         "bower-asset/emojify.js": "*",
         "bower-asset/localforage": "*",
         "yiisoft/yii2-authclient": "*",
-        "callmez/yii2-storage": "*",
         "funson86/yii2-setting": "*"
     },
     "require-dev": {

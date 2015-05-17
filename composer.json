@@ -29,6 +29,7 @@
         "bower-asset/PACE": "*",
         "bower-asset/localforage": "*",
         "yiisoft/yii2-authclient": "*",
+        "yzalis/identicon": "*",
         "funson86/yii2-setting": "*"
     },
     "require-dev": {

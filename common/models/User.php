@@ -1,15 +1,14 @@
 <?php
 namespace common\models;
 
+use common\helpers\Avatar;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
-use yii\helpers\Json;
 use common\components\db\Mailer;
 use frontend\modules\user\models\UserAccount;
-use yii\log\Logger;
 
 /**
  * User model
@@ -200,15 +199,16 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * 根据 email 获取 gravatar 头像的地址
-     * @param $email
-     * @param int $size
+     * 获取用户头像
      * @return string
      */
-    public function getGravatarUrl($email, $size = 64)
+    public function getUserAvatar($size = 48)
     {
-        $gravatar = sprintf('http://gravatar.com/avatar/%s?s=%d', md5($email), $size);
-        return $gravatar;
+        if ($this->avatar) {
+            return $this->avatar;
+        } else {
+            return (new Avatar($this->email, $size))->getAvater();
+        }
     }
 
     public function getUserInfo()

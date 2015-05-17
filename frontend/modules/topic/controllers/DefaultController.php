@@ -123,7 +123,7 @@ class DefaultController extends Controller
         // 文章浏览次数
         Topic::updateAllCounters(['view_count' => 1], ['id' => $id]);
 
-        $user = User::findOne(Yii::$app->user->id);
+        $user = Yii::$app->user->identity;
         $admin = ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) ? true : false;
 
         return $this->render('view', [
@@ -245,7 +245,7 @@ class DefaultController extends Controller
      */
     public function actionExcellent($id)
     {
-        $user = User::findOne(Yii::$app->user->id);
+        $user = Yii::$app->user->identity;
         $model = Topic::findTopic($id);
         if ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) {
             $action = ($model->status == Topic::STATUS_ACTIVE) ? Topic::STATUS_GOOD : Topic::STATUS_ACTIVE;

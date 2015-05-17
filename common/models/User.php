@@ -205,10 +205,9 @@ class User extends ActiveRecord implements IdentityInterface
     public function getUserAvatar($size = 48)
     {
         if ($this->avatar) {
-            return $this->avatar;
-        } else {
-            return (new Avatar($this->email, $size))->getAvater();
+            return Yii::$app->params['avatarUrl'].$this->avatar;
         }
+        return (new Avatar($this->email, $size))->getAvater();
     }
 
     public function getUserInfo()

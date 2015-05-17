@@ -14,6 +14,7 @@ use common\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
+use yii\web\UploadedFile;
 use yii\widgets\ActiveForm;
 
 /**
@@ -28,8 +29,8 @@ class SettingController extends Controller
     public function behaviors()
     {
         return [
-            'verbs'  => [
-                'class'   => VerbFilter::className(),
+            'verbs' => [
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'disconnect' => ['post']
                 ],
@@ -38,9 +39,9 @@ class SettingController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'allow'   => true,
+                        'allow' => true,
                         'actions' => ['profile', 'account', 'avatar', 'confirm', 'networks', 'connect', 'disconnect'],
-                        'roles'   => ['@']
+                        'roles' => ['@']
                     ],
                 ]
             ],
@@ -51,16 +52,16 @@ class SettingController extends Controller
     {
         parent::init();
         Yii::$app->set('authClientCollection', [
-            'class'   => 'yii\authclient\Collection',
+            'class' => 'yii\authclient\Collection',
             'clients' => [
                 'google' => [
-                    'class'        => 'yii\authclient\clients\GoogleOAuth',
-                    'clientId'     => Yii::$app->setting->get('googleClientId'),
+                    'class' => 'yii\authclient\clients\GoogleOAuth',
+                    'clientId' => Yii::$app->setting->get('googleClientId'),
                     'clientSecret' => Yii::$app->setting->get('googleClientSecret'),
                 ],
                 'github' => [
-                    'class'        => 'yii\authclient\clients\GitHub',
-                    'clientId'     => Yii::$app->setting->get('githubClientId'),
+                    'class' => 'yii\authclient\clients\GitHub',
+                    'clientId' => Yii::$app->setting->get('githubClientId'),
                     'clientSecret' => Yii::$app->setting->get('githubClientSecret'),
                 ],
             ],
@@ -72,7 +73,7 @@ class SettingController extends Controller
     {
         return [
             'connect' => [
-                'class'           => 'yii\authclient\AuthAction',
+                'class' => 'yii\authclient\AuthAction',
                 'successCallback' => [$this, 'connect'],
             ]
         ];
@@ -127,9 +128,16 @@ class SettingController extends Controller
         /** @var SettingsForm $model */
         $model = Yii::createObject(AvatarForm::className());
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', '您的用户信息修改成功');
-            return $this->refresh();
+        if ($model->load(Yii::$app->request->post())) {
+            // 删除头像
+            $model->deleteImage();
+            $image = UploadedFile::getInstance($model, 'avatar');
+            $model->avatar = Yii::$app->getSecurity()->generateRandomString(32) . '.' . $image->extension;
+            if ($model->save()) {
+                $image->saveAs('uploads/avatars/' . $model->avatar);
+                Yii::$app->session->setFlash('success', '您的用户信息修改成功');
+                return $this->refresh();
+            }
         }
 
         return $this->render('avatar', [
@@ -186,11 +194,11 @@ class SettingController extends Controller
 
         if ($account === null) {
             $account = Yii::createObject([
-                'class'      => UserAccount::className(),
-                'provider'   => $provider,
-                'client_id'  => $clientId,
-                'data'       => json_encode($attributes),
-                'user_id'    => Yii::$app->user->id,
+                'class' => UserAccount::className(),
+                'provider' => $provider,
+                'client_id' => $clientId,
+                'data' => json_encode($attributes),
+                'user_id' => Yii::$app->user->id,
                 'created_at' => time(),
             ]);
             $account->save(false);

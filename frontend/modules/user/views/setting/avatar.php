@@ -12,7 +12,7 @@ use yii\helpers\Html;
 $this->title = Yii::t('app', 'Avatar');
 ?>
 
-<section class="container">
+<section class="container" xmlns="http://www.w3.org/1999/html">
     <div class="col-md-3">
         <?= $this->render('_menu') ?>
     </div>
@@ -24,22 +24,17 @@ $this->title = Yii::t('app', 'Avatar');
             <div class="panel-body">
                 <?php $form = ActiveForm::begin([
                     'id'          => 'account-form',
-                    'options'     => ['class' => 'form-horizontal'],
-                    'fieldConfig' => [
-                        'template'     => "{label}\n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
-                        'labelOptions' => ['class' => 'col-lg-3 control-label'],
-                    ],
-                    'enableAjaxValidation'   => true,
-                    'enableClientValidation' => false,
+                    'options'     => ['enctype' => 'multipart/form-data'],
                 ]); ?>
-
-                <?= \callmez\storage\widgets\UploadInput::widget([]); ?>
-                <?= $form->field($model, 'avatar') ?>
+                <?= Html::img($model->user->userAvatar, ['width' => '140']); ?>
+                <?= Html::img($model->user->userAvatar, ['width' => '48']); ?>
+                <?= Html::img($model->user->userAvatar, ['width' => '20']); ?>
+                <br>
+                <br>
+                <?= $form->field($model, 'avatar')->fileInput(); ?>
 
                 <div class="form-group">
-                    <div class="col-lg-offset-3 col-lg-9">
-                        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?><br>
-                    </div>
+                    <?= Html::submitButton(Yii::t('yii', 'Update'), ['class' => 'btn btn-success']) ?><br>
                 </div>
 
                 <?php ActiveForm::end(); ?>

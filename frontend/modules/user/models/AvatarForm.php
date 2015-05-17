@@ -33,6 +33,7 @@ class AvatarForm extends Model
     {
         return [
             [['avatar'], 'required'],
+            [['avatar'], 'file', 'extensions' => 'gif, jpg, png'],
         ];
     }
 
@@ -51,14 +52,44 @@ class AvatarForm extends Model
      */
     public function save()
     {
-        //if ($this->validate()) {
-        //    $this->user->username = $this->username;
-        //    // 新密码没填写 则为不修改密码
-        //    ($this->new_password) ? $this->user->password = $this->new_password : '';
-        //    $this->user->tagline = $this->tagline;
-        //    return $this->user->save();
-        //}
-
+        if ($this->validate()) {
+            $this->user->avatar = $this->avatar;
+            return $this->user->save();
+        }
         return false;
+    }
+
+    /**
+     * fetch stored image file name with complete path
+     * @return string
+     */
+    public function getImageFile()
+    {
+        return isset($this->user->avatar) ? \Yii::$app->params['avatarPath'] . $this->user->avatar : null;
+    }
+
+    /**
+     * Process deletion of image
+     *
+     * @return boolean the status of deletion
+     */
+    public function deleteImage()
+    {
+        $file = $this->getImageFile();
+
+        // check if file exists on server
+        if (empty($file) || !file_exists($file)) {
+            return false;
+        }
+
+        // check if uploaded file can be deleted on server
+        if (!unlink($file)) {
+            return false;
+        }
+
+        // if deletion successful, reset your file attributes
+        $this->avatar = null;
+
+        return true;
     }
 }

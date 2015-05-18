@@ -33,7 +33,7 @@ class AvatarForm extends Model
     {
         return [
             [['avatar'], 'required'],
-            [['avatar'], 'file', 'extensions' => 'gif, jpg, png'],
+            [['avatar'], 'file', 'extensions' => 'gif, jpg, png', 'maxSize' => 1024 * 1024 * 2, 'tooBig' => \Yii::t('app', 'File has to be smaller than 2MB')],
         ];
     }
 
@@ -65,7 +65,7 @@ class AvatarForm extends Model
      */
     public function getImageFile()
     {
-        return isset($this->user->avatar) ? \Yii::$app->params['avatarPath'] . $this->user->avatar : null;
+        return isset($this->user->avatar) ? \Yii::$app->basePath. \Yii::$app->params['avatarPath'] . $this->user->avatar : null;
     }
 
     /**

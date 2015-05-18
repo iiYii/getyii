@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use PHPImageWorkshop\ImageWorkshop;
 use common\helpers\Avatar;
 use Yii;
 use yii\base\NotSupportedException;
@@ -108,7 +109,7 @@ class User extends ActiveRecord implements IdentityInterface
 
         return static::findOne([
             'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
+            'status'               => self::STATUS_ACTIVE,
         ]);
     }
 
@@ -205,7 +206,18 @@ class User extends ActiveRecord implements IdentityInterface
     public function getUserAvatar($size = 48)
     {
         if ($this->avatar) {
-            return Yii::$app->params['avatarUrl'].$this->avatar;
+            // TODO 写法更优雅
+            $avatarPath = Yii::$app->basePath . Yii::$app->params['avatarPath'];
+            $avatarCachePath = Yii::$app->basePath . Yii::$app->params['avatarCachePath'];
+            if (file_exists($avatarCachePath. $size . '_' . $this->avatar)) {
+                // 头像是否存在
+                return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
+            }
+            $avatar = $avatarPath . $this->avatar;
+            $pinguLayer = ImageWorkshop::initFromPath($avatar);
+            $pinguLayer->resizeInPixel($size, null, true);
+            $pinguLayer->save($avatarCachePath, $size . '_' . $this->avatar, true, null, 95);
+            return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
         }
         return (new Avatar($this->email, $size))->getAvater();
     }
@@ -237,14 +249,14 @@ class User extends ActiveRecord implements IdentityInterface
         if ($insert) {
             $time = time();
             $userInfo = Yii::createObject([
-                'class' => UserInfo::className(),
-                'user_id' => $this->id,
+                'class'           => UserInfo::className(),
+                'user_id'         => $this->id,
                 'prev_login_time' => $time,
-                'prev_login_ip' => Yii::$app->request->userIP,
+                'prev_login_ip'   => Yii::$app->request->userIP,
                 'last_login_time' => $time,
-                'last_login_ip' => Yii::$app->request->userIP,
-                'created_at' => $time,
-                'updated_at' => $time,
+                'last_login_ip'   => Yii::$app->request->userIP,
+                'created_at'      => $time,
+                'updated_at'      => $time,
             ]);
             $userInfo->save();
         }

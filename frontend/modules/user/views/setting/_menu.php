@@ -16,7 +16,7 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <?= \yii\helpers\Html::img($user->getUserAvatar(24), ['class' => 'img-rounded']);?>
+            <?= \yii\helpers\Html::img($user->getUserAvatar(24), ['class' => 'img-rounded', 'alt' => $user->username]);?>
             <?= $user->username ?>
         </h3>
     </div>

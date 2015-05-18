@@ -7,4 +7,6 @@ return [
 //    'avatarUrl' => Yii::$app->urlManager->baseUrl . '/uploads/avatars/',
     'avatarPath' => '/web/uploads/avatars/',
     'avatarUrl' => '/uploads/avatars/',
+    'avatarCachePath' => '/web/uploads/avatars/cache/',
+    'avatarCacheUrl' => '/uploads/avatars/cache/',
 ];

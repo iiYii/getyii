@@ -26,7 +26,7 @@ $this->title = Yii::t('app', 'Avatar');
                     'id'          => 'account-form',
                     'options'     => ['enctype' => 'multipart/form-data'],
                 ]); ?>
-                <?= Html::img($model->user->userAvatar, ['width' => '140']); ?>
+                <?= Html::img($model->user->getUserAvatar(140), ['width' => '140']); ?>
                 <?= Html::img($model->user->userAvatar, ['width' => '48']); ?>
                 <?= Html::img($model->user->userAvatar, ['width' => '20']); ?>
                 <br>

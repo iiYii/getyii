@@ -129,14 +129,14 @@ class SettingController extends Controller
         $model = Yii::createObject(AvatarForm::className());
 
         if ($model->load(Yii::$app->request->post())) {
-            if ($model->avatar) {
+            if ($model->user->avatar) {
                 // 删除头像
                 $model->deleteImage();
             }
             $image = UploadedFile::getInstance($model, 'avatar');
             $model->avatar = Yii::$app->getSecurity()->generateRandomString(32) . '.' . $image->extension;
             if ($model->save()) {
-                $image->saveAs('uploads/avatars/' . $model->avatar);
+                $image->saveAs(Yii::$app->basePath . Yii::$app->params['avatarPath'] . $model->avatar);
                 Yii::$app->session->setFlash('success', '您的用户信息修改成功');
                 return $this->refresh();
             }

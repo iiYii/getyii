@@ -15,8 +15,7 @@ $this->title = '活跃用户';
             <div class="col-md-1 col-xs-2">
                 <div class="text-center">
                     <p>
-                        <?php $img = "http://gravatar.com/avatar/" . md5($value['email']) . "?s=75"; ?>
-                        <?= Html::a(Html::img($img, ['class' => 'img-responsive img-thumbnail img-circle']),
+                        <?= Html::a(Html::img($value->userAvatar, ['class' => 'img-responsive img-thumbnail']),
                             ['/user/default/show', 'username' => $value['username']]
                         );?>
                     </p>

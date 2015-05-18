@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-
 ?>
 <li class="list-group-item media col-sm-6 mt0">
 
@@ -10,8 +9,7 @@ use yii\helpers\Html;
     ); ?>
 
     <div class="avatar pull-left">
-        <?php $img = "http://gravatar.com/avatar/" . md5($model->user['email']) . "?s=48"; ?>
-        <?= Html::a(Html::img($img, ['class' => 'media-object']),
+        <?= Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object']),
             ['/user/default/show', 'username' => $model->user['username']]
         ); ?>
     </div>

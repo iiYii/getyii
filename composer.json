@@ -26,8 +26,11 @@
         "bower-asset/metisMenu": "*",
         "bower-asset/jquery-textcomplete": "*",
         "bower-asset/emojify.js": "*",
+        "bower-asset/PACE": "*",
         "bower-asset/localforage": "*",
         "yiisoft/yii2-authclient": "*",
+        "yzalis/identicon": "*",
+        "sybio/image-workshop": "*",
         "funson86/yii2-setting": "*"
     },
     "require-dev": {

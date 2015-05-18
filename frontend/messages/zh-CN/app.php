@@ -144,8 +144,8 @@ return [
     'Close' => '关闭',
     'Attented topic has new update:' => '关注的话题有新附言',
     'Commented topic has new update:' => '留言的话题有新附言',
+    'File has to be smaller than 2MB' => '文件最大支持2M',
     'Document' => '文档',
-
 
     'Update Post: ' => '更新话题：',
     'Data Deleted' => '相关数据已经删除',

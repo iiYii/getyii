@@ -16,7 +16,7 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <img src="http://gravatar.com/avatar/<?= md5($user->email) ?>?s=24" class="img-rounded" alt="<?= $user->username ?>"/>
+            <?= \yii\helpers\Html::img($user->getUserAvatar(24), ['class' => 'img-rounded', 'alt' => $user->username]);?>
             <?= $user->username ?>
         </h3>
     </div>
@@ -28,6 +28,7 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
             'items' => [
                 ['label' => '个人资料',  'url' => ['/user/setting/profile']],
                 ['label' => '账号设置',  'url' => ['/user/setting/account']],
+                ['label' => '更换头像',  'url' => ['/user/setting/avatar']],
                 ['label' => '账号绑定', 'url' => ['/user/setting/networks'], 'visible' => $networksVisible],
             ]
         ]) ?>

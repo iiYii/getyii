@@ -29,8 +29,7 @@ $this->title = $model->title;
                 </div>
             </div>
             <div class="avatar media-right">
-                <?php $img = "http://gravatar.com/avatar/" . md5($model->user['email']) . "?s=48"; ?>
-                <?= Html::a(Html::img($img, ['class' => 'media-object avatar-48']),
+                <?= Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object avatar-48']),
                     ['/user/default/show', 'username' => $model->user['username']]
                 ); ?>
             </div>

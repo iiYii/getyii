@@ -7,6 +7,7 @@ use Yii;
 use common\models\User;
 use frontend\modules\user\models\AccountForm;
 use common\models\UserInfo;
+use yii\base\ErrorException;
 use yii\filters\AccessControl;
 use frontend\modules\user\models\UserAccount;
 use yii\data\ActiveDataProvider;
@@ -133,10 +134,12 @@ class SettingController extends Controller
                 // 删除头像
                 $model->deleteImage();
             }
-            $image = UploadedFile::getInstance($model, 'avatar');
-            $model->avatar = Yii::$app->getSecurity()->generateRandomString(32) . '.' . $image->extension;
+            $image = $model->uploadImage();
             if ($model->save()) {
-                $image->saveAs(Yii::$app->basePath . Yii::$app->params['avatarPath'] . $model->avatar);
+                if ($image !== false) {
+                    $path = $model->getImageFile();
+                    $image->saveAs($path);
+                }
                 Yii::$app->session->setFlash('success', '您的用户信息修改成功');
                 return $this->refresh();
             }

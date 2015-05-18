@@ -9,6 +9,7 @@
 namespace frontend\modules\user\models;
 
 use yii\base\Model;
+use yii\web\UploadedFile;
 
 class AvatarForm extends Model
 {
@@ -65,7 +66,31 @@ class AvatarForm extends Model
      */
     public function getImageFile()
     {
-        return isset($this->user->avatar) ? \Yii::$app->basePath. \Yii::$app->params['avatarPath'] . $this->user->avatar : null;
+        return isset($this->user->avatar) ? \Yii::$app->basePath . \Yii::$app->params['avatarPath'] . $this->user->avatar : null;
+    }
+
+    /**
+     * Process upload of image
+     *
+     * @return mixed the uploaded image instance
+     */
+    public function uploadImage()
+    {
+        // get the uploaded file instance. for multiple file uploads
+        // the following data will return an array (you may need to use
+        // getInstances method)
+        $image = UploadedFile::getInstance($this, 'avatar');
+
+        // if no image was uploaded abort the upload
+        if (empty($image)) {
+            return false;
+        }
+
+        // generate a unique file name
+        $this->avatar = \Yii::$app->security->generateRandomString() . ".{$image->extension}";
+
+        // the uploaded image instance
+        return $image;
     }
 
     /**

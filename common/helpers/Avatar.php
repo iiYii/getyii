@@ -12,7 +12,7 @@ class Avatar
     public $email;
     public $size;
 
-    public function __construct($email, $size = 48)
+    public function __construct($email, $size = 50)
     {
         $this->email = $email;
         $this->size = $size;

@@ -8,6 +8,7 @@
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use bupy7\cropbox\Cropbox;
 
 $this->title = Yii::t('app', 'Avatar');
 ?>
@@ -26,13 +27,12 @@ $this->title = Yii::t('app', 'Avatar');
                     'id'          => 'account-form',
                     'options'     => ['enctype' => 'multipart/form-data'],
                 ]); ?>
-                <?= Html::img($model->user->getUserAvatar(140), ['width' => '140']); ?>
-                <?= Html::img($model->user->userAvatar, ['width' => '48']); ?>
-                <?= Html::img($model->user->userAvatar, ['width' => '20']); ?>
+                <?= Html::img($model->user->getUserAvatar(200)); ?>
+                <?= Html::img($model->user->getUserAvatar(50)); ?>
+                <?= Html::img($model->user->getUserAvatar(24)); ?>
                 <br>
                 <br>
                 <?= $form->field($model, 'avatar')->fileInput(); ?>
-
                 <div class="form-group">
                     <?= Html::submitButton(Yii::t('yii', 'Update'), ['class' => 'btn btn-success']) ?><br>
                 </div>

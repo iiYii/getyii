@@ -30,8 +30,8 @@
         "bower-asset/localforage": "*",
         "yiisoft/yii2-authclient": "*",
         "yzalis/identicon": "*",
-        "sybio/image-workshop": "*",
-        "funson86/yii2-setting": "*"
+        "funson86/yii2-setting": "*",
+        "yiisoft/yii2-imagine": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

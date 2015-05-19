@@ -1,7 +1,6 @@
 <?php
 namespace common\models;
 
-use PHPImageWorkshop\ImageWorkshop;
 use common\helpers\Avatar;
 use Yii;
 use yii\base\NotSupportedException;
@@ -203,7 +202,7 @@ class User extends ActiveRecord implements IdentityInterface
      * 获取用户头像
      * @return string
      */
-    public function getUserAvatar($size = 48)
+    public function getUserAvatar($size = 50)
     {
         if ($this->avatar) {
             // TODO 写法更优雅
@@ -213,10 +212,8 @@ class User extends ActiveRecord implements IdentityInterface
                 // 头像是否存在
                 return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
             }
-            $avatar = $avatarPath . $this->avatar;
-            $pinguLayer = ImageWorkshop::initFromPath($avatar);
-            $pinguLayer->resizeInPixel($size, null, true);
-            $pinguLayer->save($avatarCachePath, $size . '_' . $this->avatar, true, null, 95);
+            \yii\imagine\Image::thumbnail($avatarPath . $this->avatar, $size, $size)
+                ->save($avatarCachePath. $size . '_' . $this->avatar, ['quality' => 100]);
             return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
         }
         return (new Avatar($this->email, $size))->getAvater();

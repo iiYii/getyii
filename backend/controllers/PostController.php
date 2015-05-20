@@ -71,6 +71,7 @@ class PostController extends Controller
         }
     }
 
+
     /**
      * Updates an existing Post model.
      * If update is successful, the browser will be redirected to the 'view' page.

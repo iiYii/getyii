@@ -51,7 +51,7 @@ class UserService
      * 用户对话题其他动作
      * @param User $user
      * @param Post $model
-     * @param $action
+     * @param $action  fa
      * @return array
      */
     public static function TopicActionB(User $user, Post $model, $action)
@@ -69,14 +69,14 @@ class UserService
             if ($result) {
                 $model->updateCounters([$action . '_count' => 1]);
                 if ($action == 'thanks') {
-                    UserInfo::updateAllCounters([$action . '_count' => 1], ['user_id' => $user->id]);
+                    UserInfo::updateAllCounters([$action . '_count' => 1], ['user_id' => $model->user_id]);
                 }
             }
             return [$result, $userMeta];
         }
         $model->updateCounters([$action . '_count' => -1]);
         if ($action == 'thanks') {
-            UserInfo::updateAllCounters([$action . '_count' => -1], ['user_id' => $user->id]);
+            UserInfo::updateAllCounters([$action . '_count' => -1], ['user_id' => $model->user_id]);
         }
 
         return [true, null];
@@ -138,12 +138,12 @@ class UserService
                 //更新版块统计
                 $model->updateCounters($attributes);
                 // 更新个人总统计
-                UserInfo::updateAllCounters($attributes, ['user_id' => $user->id]);
+                UserInfo::updateAllCounters($attributes, ['user_id' => $model->user_id]);
             }
             return [$result, $userMeta];
         }
         $model->updateCounters([$action . '_count' => -1]);
-        UserInfo::updateAllCounters([$action . '_count' => -1], ['user_id' => $user->id]);
+        UserInfo::updateAllCounters([$action . '_count' => -1], ['user_id' => $model->user_id]);
         return [true, null];
     }
 

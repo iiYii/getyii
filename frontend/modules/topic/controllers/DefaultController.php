@@ -25,17 +25,17 @@ class DefaultController extends Controller
 {
     const PAGE_SIZE = 50;
     public $sorts = [
-        'newest' => '最新的',
-        'excellent' => '优质主题',
-        'hotest' => '热门的',
+        'newest'      => '最新的',
+        'excellent'   => '优质主题',
+        'hotest'      => '热门的',
         'uncommented' => '未回答的'
     ];
 
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
+            'verbs'  => [
+                'class'   => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
@@ -44,7 +44,7 @@ class DefaultController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     // 默认只能Get方式访问
-                    ['allow' => true, 'actions' => ['view', 'index'], 'verbs' => ['GET']],
+                    ['allow' => true, 'actions' => ['view', 'index', 'sync'], 'verbs' => ['GET']],
                     // 登录用户才能提交评论或其他内容
                     ['allow' => true, 'actions' => ['api', 'view', 'delete'], 'verbs' => ['POST'], 'roles' => ['@']],
                     // 登录用户才能使用API操作(赞,踩,收藏)
@@ -76,30 +76,30 @@ class DefaultController extends Controller
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [
-            'hotest' => [
+            'hotest'      => [
                 'asc' => [
                     'comment_count' => SORT_DESC,
-                    'created_at' => SORT_DESC
+                    'created_at'    => SORT_DESC
                 ],
             ],
-            'excellent' => [
+            'excellent'   => [
                 'asc' => [
-                    'status' => SORT_DESC,
+                    'status'        => SORT_DESC,
                     'comment_count' => SORT_DESC,
-                    'created_at' => SORT_DESC
+                    'created_at'    => SORT_DESC
                 ],
             ],
             'uncommented' => [
                 'asc' => [
                     'comment_count' => SORT_ASC,
-                    'created_at' => SORT_DESC
+                    'created_at'    => SORT_DESC
                 ],
             ]
         ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'sorts' => $this->sorts,
+            'searchModel'  => $searchModel,
+            'sorts'        => $this->sorts,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -114,7 +114,7 @@ class DefaultController extends Controller
         $model = Topic::findTopic($id);
         $comment = $this->newComment($model);
         $dataProvider = new ActiveDataProvider([
-            'query' => PostComment::findCommentList($id),
+            'query'      => PostComment::findCommentList($id),
             'pagination' => [
                 'pageSize' => self::PAGE_SIZE,
             ],
@@ -127,10 +127,10 @@ class DefaultController extends Controller
         $admin = ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) ? true : false;
 
         return $this->render('view', [
-            'model' => $model,
+            'model'        => $model,
             'dataProvider' => $dataProvider,
-            'comment' => $comment,
-            'admin' => $admin,
+            'comment'      => $comment,
+            'admin'        => $admin,
         ]);
     }
 
@@ -289,5 +289,35 @@ class DefaultController extends Controller
             }
         }
         return $model;
+    }
+
+
+    public function actionSync()
+    {
+        UserInfo::updateAll(['thanks_count' => 0, 'like_count' => 0, 'hate_count' => 0]);
+        $meta = UserMeta::find()->all();
+        foreach ($meta as $key => $value) {
+            if (in_array($value->type, ['thanks', 'like', 'hate'])) {
+                switch ($value->target_type) {
+                    case 'topic':
+                    case 'post':
+                        echo '同步文章操作</br>';
+                        $topic = Topic::findOne($value->target_id);
+                        UserInfo::updateAllCounters([$value->type . '_count' => 1], ['user_id' => $topic->user_id]);
+                        break;
+                    case 'comment':
+                        echo '同步评论操作</br>';
+                        $comment = PostComment::findOne($value->target_id);
+                        UserInfo::updateAllCounters([$value->type . '_count' => 1], ['user_id' => $comment->user_id]);
+                        break;
+
+                    default:
+                        # code...
+                        break;
+                }
+            }
+
+        }
+        return;
     }
 }

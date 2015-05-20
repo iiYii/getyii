@@ -103,10 +103,14 @@ class UserService
             $result = $userMeta->save();
             if ($result) {
                 $comment->updateCounters([$action . '_count' => 1]);
+                // 更新个人总统计
+                UserInfo::updateAllCounters([$action . '_count' => 1], ['user_id' => $comment->user_id]);
             }
             return [$result, $userMeta];
         }
         $comment->updateCounters([$action . '_count' => -1]);
+        // 更新个人总统计
+        UserInfo::updateAllCounters([$action . '_count' => -1], ['user_id' => $comment->user_id]);
         return [true, null];
     }
 

@@ -21,5 +21,5 @@ $this->title =  Yii::t('app', 'Update Post: ') . ' ' . $model->title;
 </div>
 
 <?= \frontend\widgets\TopicSidebar::widget([
-
+    'type' => 'create'
 ])?>

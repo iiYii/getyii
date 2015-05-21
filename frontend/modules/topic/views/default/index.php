@@ -8,6 +8,9 @@ use frontend\widgets\TopicSidebar;
 $this->title = '社区';
 $sort = Yii::$app->request->getQueryParam('sort');
 $tag = Yii::$app->request->getQueryParam('tag');
+if ($node = Yii::$app->request->getQueryParam('node')){
+    $node = \common\models\PostMeta::find()->where(['alias' => $node])->one();
+}
 ?>
 <div class="col-md-10 topic">
     <div class="panel panel-default">
@@ -39,5 +42,7 @@ $tag = Yii::$app->request->getQueryParam('tag');
     </div>
     <?= \frontend\widgets\Node::widget(); ?>
 </div>
-<?= TopicSidebar::widget(); ?>
+<?= TopicSidebar::widget([
+    'node' => $node
+]); ?>
 

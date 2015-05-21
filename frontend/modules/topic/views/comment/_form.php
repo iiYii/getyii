@@ -39,7 +39,6 @@ use yii\widgets\ActiveForm;
             $model->isNewRecord ? '创建评论' : '修改评论',
             [
                 'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary',
-                'onclick' => "this.form.submit(); this.disabled=true; this.value='Sending…';",
             ]
         ) ?>
     </div>

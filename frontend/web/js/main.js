@@ -104,7 +104,6 @@ jQuery(function ($) {
                 if ($('.topic-create #topic-title').val() == '' && !err) {
                     $('.topic-create #topic-title').val(value);
                 }
-                ;
             });
             $('.topic-create #topic-title').keyup(function () {
                 localforage.setItem('topic_title', $(this).val());
@@ -119,6 +118,7 @@ jQuery(function ($) {
             });
             $('.topic-create #md-input').keyup(function () {
                 localforage.setItem('topic_create_content', $(this).val());
+                runPreview();
             });
 
             // Reply Content ON Topic Detail View
@@ -130,7 +130,15 @@ jQuery(function ($) {
             });
             $('.topic-view #md-input').keyup(function () {
                 localforage.setItem('comment_content', $(this).val());
+                runPreview();
             });
+
+            ///**
+            // * 监听键盘
+            // */
+            //$('#md-input').keyup(function () {
+            //    runPreview();
+            //});
         });
 
         // Clear Local Storage on submit
@@ -143,13 +151,6 @@ jQuery(function ($) {
         });
     };
     localStorage();
-
-    /**
-     * 监听键盘
-     */
-    $('#md-input').keyup(function () {
-        runPreview();
-    });
 
     /**
      * markdown预览
@@ -205,4 +206,8 @@ jQuery(function ($) {
             obj.selectionStart = obj.selectionEnd = len;
         }
     }
+
+    $('form').submit(function () {
+        $(this).find("button[type='submit']").prop('disabled', true);
+    });
 });

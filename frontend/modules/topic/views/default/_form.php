@@ -63,7 +63,6 @@ use dosamigos\selectize\SelectizeTextInput;
             $model->isNewRecord ? '创建话题' : '修改话题',
             [
                 'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary',
-                'onclick' => "this.form.submit(); this.disabled=true; this.value='Sending…';",
             ]
         ) ?>
     </div>

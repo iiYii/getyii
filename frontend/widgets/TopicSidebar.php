@@ -16,7 +16,13 @@ use yii\helpers\Url;
 class TopicSidebar extends \yii\bootstrap\Widget
 {
     public $type = 'node';
-    public $node = '';
+    public $node;
+
+    public function init()
+    {
+        parent::init();
+        $this->node;
+    }
 
     public function run()
     {
@@ -58,12 +64,12 @@ class TopicSidebar extends \yii\bootstrap\Widget
         ];
 
         return $this->render('topicSidebar', [
-            'category' => PostMeta::blogCategory(),
-            'config' => $config,
-            'sameTopics' => $sameTopics,
-            'tips' => $tips,
+            'category'           => PostMeta::blogCategory(),
+            'config'             => $config,
+            'sameTopics'         => $sameTopics,
+            'tips'               => $tips,
             'recommendResources' => $recommendResources,
-            'links' => $links,
+            'links'              => $links,
         ]);
     }
 

@@ -6,27 +6,30 @@
  */
 use yii\helpers\Html;
 
+$node = $config['node'];
 ?>
 <div class="col-md-2 side-bar p0">
 
-    <div class="panel panel-default corner-radius">
+    <?php if ($config['type'] != 'create'): ?>
+        <div class="panel panel-default corner-radius">
 
-        <?php if ($node = $config['node']): ?>
-            <div class="panel-heading text-center">
-                <h3 class="panel-title"><?= $node->name ?></h3>
-            </div>
-        <?php endif ?>
+            <?php if ($node): ?>
+                <div class="panel-heading text-center">
+                    <h3 class="panel-title"><?= $node->name ?></h3>
+                </div>
+            <?php endif ?>
 
-        <div class="panel-body text-center">
-            <div class="btn-group">
-                <?= Html::a(
-                    \Yii::t('app', 'New Topic'),
-                    ['/topic/default/create', 'id' => 'id'],
-                    ['class' => 'btn btn-success']
-                ) ?>
+            <div class="panel-body text-center">
+                <div class="btn-group">
+                    <?= Html::a(
+                        \Yii::t('app', 'New Topic'),
+                        ['/topic/default/create', 'id' => 'id'],
+                        ['class' => 'btn btn-success']
+                    ) ?>
+                </div>
             </div>
         </div>
-    </div>
+    <?php endif ?>
 
     <?php if (!$config['node'] && !empty($links)): ?>
         <div class="panel panel-default corner-radius">

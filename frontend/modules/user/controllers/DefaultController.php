@@ -76,7 +76,7 @@ class DefaultController extends Controller
     {
         $user = $this->user($username);
 
-        $dataProvider = $dataProvider = new ActiveDataProvider([
+        $dataProvider = new ActiveDataProvider([
             'query' => UserMeta::find()->where([
                 'user_id'     => $user->id,
                 'type'        => 'favorite',

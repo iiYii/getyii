@@ -10,15 +10,7 @@ namespace frontend\modules\user\models;
 
 use common\components\Mailer;
 use yii\base\Model;
-use yii\base\NotSupportedException;
 
-/**
- * AccountForm gets user's username, email and password and changes them.
- *
- * @property User $user
- *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
- */
 class AccountForm extends Model
 {
     /** @var string */

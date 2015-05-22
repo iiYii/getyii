@@ -26,9 +26,12 @@
         "bower-asset/metisMenu": "*",
         "bower-asset/jquery-textcomplete": "*",
         "bower-asset/emojify.js": "*",
+        "bower-asset/PACE": "*",
         "bower-asset/localforage": "*",
         "yiisoft/yii2-authclient": "*",
-        "funson86/yii2-setting": "dev-master"
+        "yzalis/identicon": "*",
+        "funson86/yii2-setting": "*",
+        "yiisoft/yii2-imagine": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

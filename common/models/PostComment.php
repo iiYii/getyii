@@ -174,17 +174,6 @@ class PostComment extends ActiveRecord
         return ArrayHelper::map(User::find()->where(['username' => $users])->all(), 'id', 'username');
     }
 
-    public function beforeSave($insert)
-    {
-        if ($insert) {
-            //(new NotificationService)->newActionNotify($this->type);
-        } else {
-            return false;
-        }
-
-        return parent::beforeSave($insert);
-    }
-
     /**
      * @inheritdoc
      */

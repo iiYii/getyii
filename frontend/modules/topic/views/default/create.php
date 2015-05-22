@@ -24,5 +24,5 @@ $this->title = '发布新话题';
 </div>
 
 <?= \frontend\widgets\TopicSidebar::widget([
-
+    'type' => 'create'
 ])?>

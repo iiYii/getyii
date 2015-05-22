@@ -1,15 +1,14 @@
 <?php
 namespace common\models;
 
+use common\helpers\Avatar;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
-use yii\helpers\Json;
 use common\components\db\Mailer;
 use frontend\modules\user\models\UserAccount;
-use yii\log\Logger;
 
 /**
  * User model
@@ -64,7 +63,7 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
 
             ['role', 'default', 'value' => 10],
-            ['role', 'in', 'range' => [self::ROLE_USER, self::ROLE_ADMIN]],
+            ['role', 'in', 'range' => [self::ROLE_USER, self::ROLE_ADMIN, self::ROLE_SUPER_ADMIN]],
         ];
     }
 
@@ -109,7 +108,7 @@ class User extends ActiveRecord implements IdentityInterface
 
         return static::findOne([
             'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
+            'status'               => self::STATUS_ACTIVE,
         ]);
     }
 
@@ -200,15 +199,24 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * 根据 email 获取 gravatar 头像的地址
-     * @param $email
-     * @param int $size
+     * 获取用户头像
      * @return string
      */
-    public function getGravatarUrl($email, $size = 64)
+    public function getUserAvatar($size = 50)
     {
-        $gravatar = sprintf('http://gravatar.com/avatar/%s?s=%d', md5($email), $size);
-        return $gravatar;
+        if ($this->avatar) {
+            // TODO 写法更优雅
+            $avatarPath = Yii::$app->basePath . Yii::$app->params['avatarPath'];
+            $avatarCachePath = Yii::$app->basePath . Yii::$app->params['avatarCachePath'];
+            if (file_exists($avatarCachePath. $size . '_' . $this->avatar)) {
+                // 头像是否存在
+                return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
+            }
+            \yii\imagine\Image::thumbnail($avatarPath . $this->avatar, $size, $size)
+                ->save($avatarCachePath. $size . '_' . $this->avatar, ['quality' => 100]);
+            return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
+        }
+        return (new Avatar($this->email, $size))->getAvater();
     }
 
     public function getUserInfo()
@@ -238,14 +246,14 @@ class User extends ActiveRecord implements IdentityInterface
         if ($insert) {
             $time = time();
             $userInfo = Yii::createObject([
-                'class' => UserInfo::className(),
-                'user_id' => $this->id,
+                'class'           => UserInfo::className(),
+                'user_id'         => $this->id,
                 'prev_login_time' => $time,
-                'prev_login_ip' => Yii::$app->request->userIP,
+                'prev_login_ip'   => Yii::$app->request->userIP,
                 'last_login_time' => $time,
-                'last_login_ip' => Yii::$app->request->userIP,
-                'created_at' => $time,
-                'updated_at' => $time,
+                'last_login_ip'   => Yii::$app->request->userIP,
+                'created_at'      => $time,
+                'updated_at'      => $time,
             ]);
             $userInfo->save();
         }

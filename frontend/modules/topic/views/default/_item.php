@@ -10,8 +10,7 @@ use yii\helpers\Html;
     ); ?>
 
     <div class="media-left">
-        <?php $img = "http://gravatar.com/avatar/" . md5($model->user['email']) . "?s=48"; ?>
-        <?= Html::a(Html::img($img, ['class' => 'media-object']),
+        <?= Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object']),
             ['/user/default/show', 'username' => $model->user['username']]
         ); ?>
     </div>

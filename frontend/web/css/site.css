@@ -106,6 +106,9 @@ a.desc:after {
     border-bottom: 3px solid #5CB85C;
     color: #5CB85C;
 }
+.navbar-toggle .icon-bar {
+    background-color: #5CB85C;
+}
 
 @media (min-width: 1400px) {
     .container {

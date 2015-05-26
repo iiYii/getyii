@@ -15,7 +15,7 @@ use yii\helpers\Html;
         <div class="panel-body side-bar">
             <ul class="list">
                 <?php foreach ($model['items'] as $key => $value) {
-                    echo Html::tag('li', Html::a($key, $value));
+                    echo Html::tag('li', Html::a(Html::encode($key), $value));
                 } ?>
             </ul>
         </div>

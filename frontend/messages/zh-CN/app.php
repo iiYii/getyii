@@ -34,6 +34,7 @@ return [
     'All Nodes' => '节点导航',
     'My Notifications' => '我的提醒',
     'Your topic have new reply:' => '回复了你的主题:',
+    'Your follow topic have new reply:' => '回复了你关注的主题:',
     'Attented topic has new reply:' => '回复了你关注的主题:',
     'Mention you At:' => '在主题中提及你:',
     'Data has been deleted.' => '信息已被删除.',

@@ -33,9 +33,6 @@ class NotificationService
             $users[$value->user_id] = $value->user_id;
         }
 
-        // 通知关注的用户
-        $this->batchNotify('new_comment', $fromUser, $users, $topic, $comment);
-
         // Notify mentioned users
         $this->batchNotify(
             'at',
@@ -43,6 +40,10 @@ class NotificationService
             $this->removeDuplication($comment->parse($rawComment)),
             $topic,
             $comment);
+
+        // 通知关注的用户
+        //print_r($users);die;
+        $this->batchNotify('new_comment', $fromUser, $this->removeDuplication($users), $topic, $comment);
     }
 
     /**
@@ -97,6 +98,7 @@ class NotificationService
                 'data' => $content ?: $comment->comment,
                 'type' => $type,
             ]);
+            $this->notifiedUsers[] = $key;
             if ($model->save()) {
                 User::updateAllCounters(['notification_count' => 1], ['id' => $key]);
             } else {

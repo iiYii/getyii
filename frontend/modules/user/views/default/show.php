@@ -71,7 +71,10 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
             <div class="panel panel-default">
                 <div class="panel-heading"><i class="fa fa-link"></i>个人网站</div>
                 <div class="panel-body">
-                    <?= Html::a(Html::encode($user->userInfo->website), Html::encode($user->userInfo->website)) ?>
+                    <?php if (\yii\helpers\Url::isRelative($user->userInfo->website)) {
+                        $user->userInfo->website ='http://' . $user->userInfo->website;
+                    }
+                    echo Html::a(Html::encode($user->userInfo->website), Html::encode($user->userInfo->website)) ?>
                 </div>
             </div>
         <?php endif ?>

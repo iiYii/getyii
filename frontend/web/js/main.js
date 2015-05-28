@@ -160,7 +160,9 @@ jQuery(function ($) {
         var oldContent = replyContent.val();
         if (oldContent) {
 
-            marked(oldContent, function (err, content) {
+            marked(oldContent, {
+                sanitize: true,
+            }, function (err, content) {
                 $('#md-preview').html(content);
 
                 $('pre code').each(function (i, block) {

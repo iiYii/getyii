@@ -77,7 +77,7 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
         </div>
 
         <div class="media-body markdown-reply content-body">
-            <?= Markdown::process($model->comment), 'gfm') ?>
+            <?= Markdown::process($model->comment, 'gfm') ?>
         </div>
     </div>
 <?php endif ?>

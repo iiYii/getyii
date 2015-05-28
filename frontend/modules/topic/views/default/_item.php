@@ -17,7 +17,7 @@ use yii\helpers\Html;
     <div class="media-body">
 
         <div class="media-heading">
-            <?= Html::a($model->title,
+            <?= Html::a(Html::encode($model->title),
                 ['/topic/default/view', 'id' => $model->id], ['title' => $model->title]
             ); ?>
             <?= ($model->status == 2) ? Html::tag('i', '', ['class' => 'fa fa-trophy excellent']) : null ?>

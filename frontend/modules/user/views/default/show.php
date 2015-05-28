@@ -15,8 +15,8 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
         <div class="panel panel-default thumbnail center">
             <br>
             <?= Html::img($user->getUserAvatar(200), ['class' => 'img-circle img-responsive']);?>
-            <h1 class="text-center"><?= Html::tag('strong', $user->username) ?></h1>
-            <p class="text-center"><?= $user->tagline ?></p>
+            <h1 class="text-center"><?= Html::tag('strong', Html::encode($user->username)) ?></h1>
+            <p class="text-center"><?= Html::encode($user->tagline) ?></p>
             <!-- <button type="button" class="btn btn-success">Book me!</button> -->
             <!-- <button type="button" class="btn btn-info">Send me a message</button> -->
             <!-- <br> -->
@@ -42,7 +42,7 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
                 <?php if ($user->userInfo->company): ?>
                     <li class="list-group-item text-right">
                         <span class="pull-left"><strong class="">公司</strong></span>
-                        <?= $user->userInfo->company ?>
+                        <?= Html::encode($user->userInfo->company) ?>
                     </li>
                 <?php endif ?>
                 <?php if ($user->userInfo->github): ?>
@@ -62,7 +62,7 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
             <div class="panel panel-default">
                 <div class="panel-heading"><i class="fa fa-user"></i>个人简介</div>
                 <div class="panel-body">
-                    <?= $user->userInfo->info ?>
+                    <?= Html::encode($user->userInfo->info) ?>
                 </div>
             </div>
         <?php endif ?>

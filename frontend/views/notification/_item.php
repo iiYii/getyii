@@ -18,7 +18,7 @@ use yii\helpers\Html;
     <div class="media-heading">
         <?= Html::tag('span', Html::a($model->fromUser['username'], ['/user/default/show', 'username' => $model->fromUser['username']])); ?>
         <span class="info"><?= $model->getlable($model->type) ?>
-            <?= Html::a($model->post->title, ['/topic/default/view', 'id' => $model->post_id], ['title' => $model->post->title]); ?>
+            <?= Html::a(Html::encode($model->post->title), ['/topic/default/view', 'id' => $model->post_id], ['title' => $model->post->title]); ?>
         <span class="date pull-right">
             <i class="fa fa-clock-o"></i>
             <?= Html::tag('abbr', Yii::$app->formatter->asRelativeTime($model->created_at), ['title' => Yii::$app->formatter->asDatetime($model->created_at)]) ?>
@@ -28,7 +28,7 @@ use yii\helpers\Html;
         } ?>
     </div>
     <div class="summary markdown">
-        <?= \yii\helpers\Markdown::process($model->data, 'gfm') ?>
+        <?= \yii\helpers\Markdown::process(Html::encode($model->data), 'gfm') ?>
     </div>
 </div>
 

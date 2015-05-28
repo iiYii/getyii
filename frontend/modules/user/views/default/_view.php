@@ -13,18 +13,18 @@ use yii\helpers\Markdown;
 <?php if ($this->context->action->id == 'show'): ?>
     <!-- 评论 -->
     <?= Html::a(
-        $model->post->title,
+        Html::encode($model->post->title),
         ["/{$model->post->type}/default/view", 'id' => $model->post->id],
         ['class' => 'list-group-item-heading']
     )?>
     <?=  Html::tag('em',Yii::$app->formatter->asRelativeTime($model->created_at)) ?>
-    <p><?= Markdown::process($model->comment, 'gfm') ?></p>
+    <p><?= Markdown::process(Html::encode($model->comment), 'gfm') ?></p>
 <?php else: ?>
     <?php if ($this->context->action->id == 'favorite'): ?>
         <!--收藏-->
         <i class="fa fa-bookmark red"></i>
         <?= Html::a(
-            $model->topic->title,
+            Html::encode($model->topic->title),
             ["/{$model->topic->type}/default/view", 'id' => $model->topic->id],
             ['class' => 'list-group-item-heading']
         )?>
@@ -38,7 +38,7 @@ use yii\helpers\Markdown;
     <?php else: ?>
         <!-- 文章 -->
         <?= Html::a(
-            $model->title,
+            Html::encode($model->title),
             ["/{$model->type}/default/view", 'id' => $model->id],
             ['class' => 'list-group-item-heading']
         )?>

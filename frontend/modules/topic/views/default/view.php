@@ -13,7 +13,7 @@ $this->title = $model->title;
     <div class="panel panel-default">
         <div class="panel-heading media clearfix">
             <div class="media-body">
-                <?= Html::tag('h1', $model->title, ['class' => 'media-heading']); ?>
+                <?= Html::tag('h1', Html::encode($model->title), ['class' => 'media-heading']); ?>
                 <div class="info">
                     <?= Html::a(
                         $model->category->name,
@@ -35,7 +35,7 @@ $this->title = $model->title;
             </div>
         </div>
         <div class="panel-body article">
-            <?= Markdown::process($model->content, 'gfm') ?>
+            <?= Markdown::process(Html::encode($model->content), 'gfm') ?>
             <?php if ($model->status == 2): ?>
                 <div class="ribbon-excellent">
                     <i class="fa fa-trophy excellent"></i> 本帖已被设为精华帖！
@@ -128,7 +128,7 @@ $this->title = $model->title;
                         ['/topic/default/delete', 'id' => $model->id],
                         [
                             'data' => [
-                                'confirm' => "您确认要删除文章「{$model->title}」吗？",
+                                'confirm' => "您确认要删除文章「{Html::encode($model->title)}」吗？",
                                 'method' => 'post',
                             ],
                         ]

@@ -28,7 +28,7 @@ use yii\helpers\Html;
         } ?>
     </div>
     <div class="summary markdown">
-        <?= \yii\helpers\Markdown::process(Html::encode($model->data), 'gfm') ?>
+        <?= \yii\helpers\Markdown::process($model->data, 'gfm') ?>
     </div>
 </div>
 

@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\HtmlPurifier;
 use yii\widgets\ActiveForm;
 use dosamigos\selectize\SelectizeTextInput;
 
@@ -67,7 +68,7 @@ use dosamigos\selectize\SelectizeTextInput;
         ) ?>
     </div>
 
-    <div id="md-preview"><?= \yii\helpers\Markdown::process($model->content, 'gfm') ?></div>
+    <div id="md-preview"><?= HtmlPurifier::process(\yii\helpers\Markdown::process($model->content, 'gfm')) ?></div>
 
     <?php ActiveForm::end(); ?>
 

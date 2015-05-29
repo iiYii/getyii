@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\HtmlPurifier;
 use yii\helpers\Markdown;
 
 /* @var $this yii\web\View */
@@ -35,7 +36,7 @@ $this->title = $model->title;
             </div>
         </div>
         <div class="panel-body article">
-            <?= Markdown::process($model->content, 'gfm') ?>
+            <?= HtmlPurifier::process(Markdown::process($model->content, 'gfm')) ?>
             <?php if ($model->status == 2): ?>
                 <div class="ribbon-excellent">
                     <i class="fa fa-trophy excellent"></i> 本帖已被设为精华帖！

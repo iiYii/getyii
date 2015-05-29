@@ -5,6 +5,7 @@
  * description:
  */
 use yii\helpers\Html;
+use yii\helpers\HtmlPurifier;
 ?>
 <?php if ($model->status): ?>
 
@@ -28,7 +29,7 @@ use yii\helpers\Html;
         } ?>
     </div>
     <div class="summary markdown">
-        <?= \yii\helpers\Markdown::process($model->data, 'gfm') ?>
+        <?= HtmlPurifier::process(\yii\helpers\Markdown::process($model->data, 'gfm')) ?>
     </div>
 </div>
 

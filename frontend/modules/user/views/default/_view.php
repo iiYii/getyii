@@ -7,6 +7,7 @@
  */
 
 use yii\helpers\Html;
+use yii\helpers\HtmlPurifier;
 use yii\helpers\Markdown;
 ?>
 
@@ -18,7 +19,7 @@ use yii\helpers\Markdown;
         ['class' => 'list-group-item-heading']
     )?>
     <?=  Html::tag('em',Yii::$app->formatter->asRelativeTime($model->created_at)) ?>
-    <p><?= Markdown::process($model->comment, 'gfm') ?></p>
+    <p><?= HtmlPurifier::process(Markdown::process($model->comment, 'gfm')) ?></p>
 <?php else: ?>
     <?php if ($this->context->action->id == 'favorite'): ?>
         <!--收藏-->

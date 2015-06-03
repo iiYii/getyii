@@ -32,6 +32,7 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
     const ROLE_USER = 10;
+    const ROLE_AUTHOR = 15; 
     const ROLE_ADMIN = 20;
     const ROLE_SUPER_ADMIN = 30;
 
@@ -273,6 +274,18 @@ class User extends ActiveRecord implements IdentityInterface
     public static function isSuperAdmin($username)
     {
         if (static::findOne(['username' => $username, 'role' => self::ROLE_SUPER_ADMIN])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 是否是视频作者
+     */
+    public static function isAuthor($username)
+    {
+        if (static::findOne(['username' => $username, 'role' => self::ROLE_AUTHOR])){
             return true;
         } else {
             return false;

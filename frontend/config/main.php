@@ -74,6 +74,9 @@ return [
         'topic' => [
             'class' => 'frontend\modules\topic\Module',
         ],
+        'course' => [
+            'class' => 'frontend\modules\course\Module',
+        ],
     ],
     'params' => $params,
 ];

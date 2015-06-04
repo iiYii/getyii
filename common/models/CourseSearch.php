@@ -88,10 +88,10 @@ class CourseSearch extends Course
                 'pagination' => [
                     'pageSize' => 20,
                 ],
-                'sort' => ['defaultOrder' =>[
-                    'order' => SORT_ASC,
-                    'created_at' => SORT_DESC
-                ]],
+                // 'sort' => ['defaultOrder' =>[
+                //     'order' => SORT_ASC,
+                //     'created_at' => SORT_DESC
+                // ]],
             ]);
 
         if(!($this->load($params) && $this->validate())){

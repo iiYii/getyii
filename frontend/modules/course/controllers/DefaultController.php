@@ -38,17 +38,20 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         $searchCourse = new CourseSearch();
-
+        $conditions = [];
         #分类筛选
         $params = Yii::$app->request->queryParams;
+        
         if(isset($params['terms'])){
             $courseTerms = CourseTerms::findOne(['id'=> $params['terms']] );
             ($courseTerms)?$params['CourseSearch']['course_terms_id'] =$courseTerms->id :  '';
         }
         
+        $dataProvider =$searchCourse->search($params, $conditions);
         
         return $this->render('index', [
-            'searchModel' => $serchCourse,
+            'searchModel' => $searchCourse,
+            'sorts' => [],
             'dataProvider' => $dataProvider,
         ]);
     }

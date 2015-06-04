@@ -39,8 +39,8 @@ class Section extends ActiveRecord
     public function rules()
     {
         return [
-            [['create_at', 'update_at'], 'required'],
-            [['create_at', 'update_at', 'user_id', 'status', 'type', 'parent_id'], 'integer'],
+            [['created_at', 'updated_at'], 'required'],
+            [['created_at', 'updated_at', 'user_id', 'status', 'type', 'parent_id'], 'integer'],
             [['title', 'excerpt', 'video_url', 'image'], 'string', 'max' => 255],
             [['course_id'], 'string', 'max' => 45]
         ];
@@ -53,8 +53,8 @@ class Section extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'create_at' => '创建时间',
-            'update_at' => '更新时间',
+            'created_at' => '创建时间',
+            'updated_at' => '更新时间',
             'title' => '标题',
             'excerpt' => '简介',
             'video_url' => '视频地址',

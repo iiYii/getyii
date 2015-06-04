@@ -22,8 +22,8 @@
     
 ?>
 
-<div class="col-md-10">
-    <div class="panel panel-default">
+<div class="container">
+    <div class="row">
             <?php Pjax::begin();?>
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,

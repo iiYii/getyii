@@ -36,8 +36,8 @@ class Course extends ActiveRecord
     public function rules()
     {
         return [
-            [['create_at', 'update_at', 'user_id', 'course_terms'], 'required'],
-            [['create_at', 'update_at', 'user_id', 'course_terms'], 'integer'],
+            [['created_at', 'updated_at', 'user_id', 'course_terms'], 'required'],
+            [['created_at', 'updated_at', 'user_id', 'course_terms'], 'integer'],
             [['content'], 'string'],
             [['title', 'video_url', 'excerpt', 'image'], 'string', 'max' => 255]
         ];

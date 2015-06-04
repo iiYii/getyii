@@ -26,14 +26,13 @@ BowerAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="wrap">
 
 
-    <div class="container">
+<!--中间内容 START-->
 
         <?= $content ?>
-    </div>
-</div>
+
+<!--中间内容 END-->
 
 <!--底部　start-->
         <footer class="page-footer">

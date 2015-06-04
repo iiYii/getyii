@@ -10,7 +10,7 @@ print_r($model);
 <div class="col s6">
 			<div class="card small">
               <div class="card-image">
-                <img src="<?=Html::encode($model->)?>">
+                <img src="<?=Html::encode($model->image)?>">
                 <span class="card-title"><?=Html::encode($model->title)?></span>
               </div>
               <div class="card-content">

@@ -150,7 +150,7 @@ jQuery(function ($) {
             localforage.removeItem('comment_content');
         });
     };
-    localStorage();
+    // localStorage();
 
     /**
      * markdown预览

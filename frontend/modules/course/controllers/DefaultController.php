@@ -5,20 +5,14 @@ namespace frontend\modules\course\controllers;
 use yii;
 use yii\web\Controller;
 use common\models\Course;
+use common\models\CourseSearch;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
 class DefaultController extends Controller
 {
 	public function behaviors()
 	{
-
-		// return [
-		// 	'verbs' => VerbFilter::className(),
-		// 	'actions' => [
-
-		// 	],
-		// ];
-
 		return [
             'verbs' => [
                 'class'   => VerbFilter::className(),
@@ -43,6 +37,10 @@ class DefaultController extends Controller
 	*/
     public function actionIndex()
     {
+        $searchCourse = new CourseSearch();
+
+        #分类筛选
+        $params = Yii::$app->request->queryParams;
         return $this->render('index');
     }
 

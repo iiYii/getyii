@@ -32,7 +32,7 @@ class CourseTerms extends ActiveRecord
     {
         return [
             [['create_at', 'update_at'], 'required'],
-            [['create_at', 'update_at', 'parent_id'], 'integer'],
+            [['create_at', 'update_at', 'parent_id','count', 'order'], 'integer'],
             [['title', 'excerpt'], 'string', 'max' => 255]
         ];
     }
@@ -49,6 +49,18 @@ class CourseTerms extends ActiveRecord
             'update_at' => '更新时间',
             'excerpt' => '简介',
             'parent_id' => '父级id',
+            'count' => '课程数量',
+            'order' =>　'课程排序',
         ];
     }
+
+    /**
+    *   得到所有顶级分类
+    */
+    public function getParents(){
+        return ArrayHelper::map(static::find()->where(['parent_id' => null])->all(), 'id', 'name');
+    }
+
+    
+
 }

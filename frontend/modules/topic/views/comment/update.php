@@ -16,7 +16,7 @@ $this->title = Yii::t('app', 'Update {modelClass}: ', [
 
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
-            <?= $this->title ?>
+            <?= Html::encode($this->title) ?>
         </div>
 
         <?= $this->render('_form', [

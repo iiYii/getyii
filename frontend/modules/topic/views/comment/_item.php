@@ -6,6 +6,7 @@
  */
 
 use yii\helpers\Html;
+use yii\helpers\HtmlPurifier;
 use yii\helpers\Markdown;
 $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->pagination->pageSize;
 ?>
@@ -77,7 +78,7 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
         </div>
 
         <div class="media-body markdown-reply content-body">
-            <?= Markdown::process($model->comment), 'gfm') ?>
+            <?= HtmlPurifier::process(Markdown::process($model->comment, 'gfm')) ?>
         </div>
     </div>
 <?php endif ?>

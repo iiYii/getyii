@@ -6,6 +6,8 @@
  */
 
 use yii\helpers\Html;
+use yii\helpers\HtmlPurifier;
+use yii\helpers\Markdown;
 use yii\widgets\ActiveForm;
 
 ?>
@@ -43,7 +45,7 @@ use yii\widgets\ActiveForm;
         ) ?>
     </div>
 
-    <div id="md-preview"></div>
+    <div id="md-preview"><?= HtmlPurifier::process(Markdown::process($model->comment, 'gfm')) ?></div>
 
     <?php ActiveForm::end(); ?>
 

@@ -28,7 +28,11 @@ class DefaultController extends Controller
     {
         $user = $this->user($username);
         // 个人主页浏览次数
-        UserInfo::updateAllCounters(['view_count' => 1], ['user_id' => $user->id]);
+        $currentUserId = \Yii::$app->getUser()->getId();
+        if (null != $currentUserId
+            && $user->id != $currentUserId) {
+            UserInfo::updateAllCounters(['view_count' => 1], ['user_id' => $user->id]);
+        }
 
         return $this->render('show', [
             'user'         => $user,

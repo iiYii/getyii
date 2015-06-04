@@ -10,3 +10,29 @@
         <code><?= __FILE__ ?></code>
     </p>
 </div>
+
+<?php
+    
+    use yii\helpsers\Html;
+    use yii\widgets\ListView;
+    use yii\widgets\Pjax;
+    
+    
+    $this->title = '课程';
+    
+?>
+
+<div class="col-md-10">
+    <div class="panel panel-default">
+            <?php Pjax::begin();?>
+            <?= ListView::widget([
+                'dataProvider' => $dataProvider,
+                'itemOptions' => ['class' => 'list-group-item'],
+                'summary' => false,
+                'itemView' => '_item',
+                'options' => ['class' => 'list-group'],
+            ]);
+            ?>
+            <?php Pjax::end();?>
+    </div>
+</div>

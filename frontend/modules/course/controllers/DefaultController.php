@@ -41,7 +41,16 @@ class DefaultController extends Controller
 
         #分类筛选
         $params = Yii::$app->request->queryParams;
-        return $this->render('index');
+        if(isset($params['terms'])){
+            $courseTerms = CourseTerms::findOne(['id'=> $params['terms']] );
+            ($courseTerms)?$params['CourseSearch']['course_terms_id'] =$courseTerms->id :  '';
+        }
+        
+        
+        return $this->render('index', [
+            'searchModel' => $serchCourse,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
 

@@ -4,17 +4,18 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 
-print_r($model);
 ?>
 
-<div class="col s6">
+<div class="col s12 m4">
 			<div class="card small">
               <div class="card-image">
-                <img src="<?=Html::encode($model->image)?>">
+                <a href="">
+                  <img src="<?=Html::encode($model->image)?>">
+                </a>
                 <span class="card-title"><?=Html::encode($model->title)?></span>
               </div>
               <div class="card-content">
-                <p><?=Html::encode($model->title)?></p>
+                <p><?=Html::encode($model->excerpt)?></p>
               </div>
               <div class="card-action">
                 <a href="#">This is a link</a>

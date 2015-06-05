@@ -133,12 +133,7 @@ jQuery(function ($) {
                 runPreview();
             });
 
-            ///**
-            // * 监听键盘
-            // */
-            //$('#md-input').keyup(function () {
-            //    runPreview();
-            //});
+
         });
 
         // Clear Local Storage on submit
@@ -149,8 +144,15 @@ jQuery(function ($) {
         $('.topic-view button[type=submit]').click(function (event) {
             localforage.removeItem('comment_content');
         });
-    };
+    }
     // localStorage();
+
+    /**
+     * 监听键盘
+     */
+    $('#md-input').keyup(function () {
+        runPreview();
+    });
 
     /**
      * markdown预览
@@ -180,7 +182,7 @@ jQuery(function ($) {
         var replyContent = $("#md-input");
         var oldContent = replyContent.val();
         var prefix = "@" + username + " #" + floor + "楼 ";
-        var newContent = ''
+        var newContent = '';
         if (oldContent.length > 0) {
             if (oldContent != prefix) {
                 newContent = oldContent + "\n" + prefix;

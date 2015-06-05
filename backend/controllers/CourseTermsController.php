@@ -61,6 +61,7 @@ class CourseTermsController extends Controller
     public function actionCreate()
     {
         $model = new CourseTerms();
+        $model->order = 888;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             
             return $this->redirect(['view', 'id' => $model->id]);

@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use common\components\db\ActiveRecord;
 use yii\data\ActiveDataProvider;
+use yii\base\Model;
 /**
  * This is the model class for table "course_terms".
  *
@@ -46,11 +47,11 @@ class CourseTerms extends ActiveRecord
             'id' => 'ID',
             'title' => '标题',
             'created_at' => '创建时间',
-            'updatedat' => '更新时间',
+            'updated_at' => '更新时间',
             'excerpt' => '简介',
             'parent_id' => '父级id',
             'count' => '课程数量',
-            'order' =>　'课程排序',
+            'order' => '课程排序',
         ];
     }
 

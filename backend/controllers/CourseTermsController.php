@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Course;
-use common\models\CourseSearch;
-use  common\components\Controller;
+use common\models\CourseTerms;
+use common\models\CourseTermsSearch;
+use common\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CourseController implements the CRUD actions for Course model.
+ * CourseTermsController implements the CRUD actions for CourseTerms model.
  */
-class CourseController extends Controller
+class CourseTermsController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class CourseController extends Controller
     }
 
     /**
-     * Lists all Course models.
+     * Lists all CourseTerms models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CourseSearch();
+        $searchModel = new CourseTermsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class CourseController extends Controller
     }
 
     /**
-     * Displays a single Course model.
+     * Displays a single CourseTerms model.
      * @param integer $id
      * @return mixed
      */
@@ -54,15 +54,15 @@ class CourseController extends Controller
     }
 
     /**
-     * Creates a new Course model.
+     * Creates a new CourseTerms model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Course();
-
+        $model = new CourseTerms();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -72,7 +72,7 @@ class CourseController extends Controller
     }
 
     /**
-     * Updates an existing Course model.
+     * Updates an existing CourseTerms model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -91,7 +91,7 @@ class CourseController extends Controller
     }
 
     /**
-     * Deletes an existing Course model.
+     * Deletes an existing CourseTerms model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -104,15 +104,15 @@ class CourseController extends Controller
     }
 
     /**
-     * Finds the Course model based on its primary key value.
+     * Finds the CourseTerms model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Course the loaded model
+     * @return CourseTerms the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Course::findOne($id)) !== null) {
+        if (($model = CourseTerms::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

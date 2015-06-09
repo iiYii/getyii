@@ -27,6 +27,10 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'excerpt')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
+    
+       <?= $form->field($model, 'created_at')->textInput(['maxlength' => 11]) ?>
+
+    <?= $form->field($model, 'updated_at')->textInput(['maxlength' => 11]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

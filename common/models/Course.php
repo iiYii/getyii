@@ -79,4 +79,19 @@ class Course extends ActiveRecord
     }
 
 
+
+     /**
+     *  通过指定的ID获取课程
+     */
+     public static function findCourse($id){
+         $model = static::find()
+            ->where(['id' => $id])
+            ->one();
+          if($model != null){
+              return $model;
+          }else{
+              throw new NotFoundHttpException('The requested page does not exit!');
+          }
+     }
+
 }

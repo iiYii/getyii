@@ -57,4 +57,16 @@ class DefaultController extends Controller
     }
 
 
+    /**
+    *课程详情，课程的纲要
+    */
+    
+    public function actionView($id){
+        $model = Course::findCourse($id);
+        
+        return $this->render('view',[
+            'model' => $model,
+        ]);
+    }
+
 }

@@ -9,17 +9,16 @@ use yii\helpers\Html;
 <div class="col s12 m4">
 			<div class="card small">
               <div class="card-image">
-                <a href="">
-                  <img src="<?=Html::encode($model->image)?>">
-                </a>
-                <span class="card-title"><?=Html::encode($model->title)?></span>
+                <?= Html::a(Html::img($model->image),
+                                      ['/course/default/view', 'id' => $model->id],['title' =>$model->title]
+                  );?>
               </div>
               <div class="card-content">
                 <p><?=Html::encode($model->excerpt)?></p>
               </div>
               <div class="card-action">
-                <a href="#">This is a link</a>
-                <a href="#">This is a link</a>
+                    <?= Html::a(Html::encode($model->title),
+                                        ['/course/default/view', 'id' => $model->id],['title' =>$model->title]);?>
               </div>
             </div>
 </div>

@@ -86,7 +86,7 @@ class CourseSearch extends Course
         $dataProvider = new ActiveDataProvider([
                 'query' => $query,
                 'pagination' => [
-                    'pageSize' => 20,
+                    'pageSize' => 3,
                 ],
                 // 'sort' => ['defaultOrder' =>[
                 //     'order' => SORT_ASC,

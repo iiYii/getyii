@@ -12,6 +12,7 @@
 <div class="container">
     <div class="row">
             <?php Pjax::begin();?>
+            
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
                 'itemOptions' => ['class' => 'list-group-item'],
@@ -20,6 +21,7 @@
                 'options' => ['class' => 'list-group'],
             ]);
             ?>
+            
             <?php Pjax::end();?>
     </div>
 </div>

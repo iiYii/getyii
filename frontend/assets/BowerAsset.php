@@ -12,13 +12,14 @@ class BowerAsset extends AssetBundle
     public $css = [
         // 'font-awesome/css/font-awesome.min.css',
         'highlightjs/styles/monokai_sublime.css',
-        'materialize/css/materialize.min.css',
+        //'materialize/css/materialize.min.css',
+        'foundation/css/foundation.min.css',
     ];
     public $js = [
         'marked/lib/marked.js',
         'highlightjs/highlight.pack.js',
         'localforage/dist/localforage.min.js',
         'jquery-textcomplete/dist/jquery.textcomplete.min.js',
-        'materialize/js/materialize.min.js',
+        'foundation/js/foundation.min.js',
     ];
 }

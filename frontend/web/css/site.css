@@ -1,7 +1,6 @@
 html,
 body {
     height: 100%;
-    background-color: #e1e1e1;
     font-family: 'Hiragino Sans GB', 'Microsoft YaHei', 微软雅黑, tahoma, arial, simsun, 宋体;
 }
 
@@ -100,7 +99,9 @@ a.desc:after {
     background-color: #FFF;
     color: #00bcd4;
 }
-
+.navbar .nav >li> a{
+      border-bottom: 3px solid #FFFFFF;
+}
 .navbar .nav li.active a {
     background-color: #FFF;
     border-bottom: 3px solid #EC4DA0;

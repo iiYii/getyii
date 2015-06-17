@@ -8,7 +8,7 @@ use yii\helpers\Html;
 
 $node = $config['node'];
 ?>
-<div class="col-md-2 side-bar p0">
+<div class="col-md-3 side-bar p0">
 
     <?php if ($config['type'] != 'create'): ?>
         <div class="panel panel-default corner-radius">

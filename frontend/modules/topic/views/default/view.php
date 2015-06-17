@@ -10,7 +10,7 @@ use yii\helpers\Markdown;
 $this->title = $model->title;
 ?>
 
-<div class="col-md-10 topic-view" contenteditable="false" style="">
+<div class="col-md-9 topic-view" contenteditable="false" style="">
     <div class="panel panel-default">
         <div class="panel-heading media clearfix">
             <div class="media-body">

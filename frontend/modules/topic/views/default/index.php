@@ -12,7 +12,7 @@ if ($node = Yii::$app->request->getQueryParam('node')){
     $node = \common\models\PostMeta::find()->where(['alias' => $node])->one();
 }
 ?>
-<div class="col-md-10 topic">
+<div class="col-md-9 topic">
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
             <?php if($tag): ?>

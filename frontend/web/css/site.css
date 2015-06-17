@@ -98,22 +98,26 @@ a.desc:after {
 
 .navbar .nav li.active a:focus, .navbar .nav li.active a:hover, .nav > li > a:hover, .nav > li > a:focus {
     background-color: #FFF;
-    color: #000;
+    color: #00bcd4;
 }
 
 .navbar .nav li.active a {
     background-color: #FFF;
-    border-bottom: 3px solid #5CB85C;
-    color: #5CB85C;
+    border-bottom: 3px solid #EC4DA0;
+    color: #EC4DA0;
 }
 .navbar-toggle .icon-bar {
-    background-color: #5CB85C;
+    background-color: #EC4DA0;
 }
 
-@media (min-width: 1400px) {
+/*@media (min-width: 1400px) {
     .container {
         width: 1400px;
     }
+}*/
+
+.navbar-brand {
+    padding:0;
 }
 
 .list-group {

@@ -1,16 +1,13 @@
 <?php
 use frontend\assets\AppAsset;
 use frontend\assets\BowerAsset;
-// use frontend\widgets\Alert;
-
+use frontend\widgets\Alert;
 use yii\helpers\Html;
 use yii\helpers\Url;
-// use yii\widgets\Breadcrumbs;
-// use frontend\widgets\NewestPost;
-
+use yii\widgets\Breadcrumbs;
+use frontend\widgets\NewestPost;
 /* @var $this \yii\web\View */
 /* @var $content string */
-
 AppAsset::register($this);
 BowerAsset::register($this);
 ?>
@@ -26,50 +23,50 @@ BowerAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Logo</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="components.html">Components</a></li>
-        <li><a href="javascript.html">JavaScript</a></li>
-      </ul>
+<div class="header">
+            <?= \frontend\widgets\Nav::widget(); ?>
+      <div class="container">
+          <?= Breadcrumbs::widget([
+              'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+          ]) ?>
+          <?= Alert::widget() ?>
+          </div>
+</div>
+<div class="wrap">
+      <div class="container">
+            <?= $content ?>
+    </div>  
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <dt>网站信息</dt>
+                <dd> <a href="<?= Url::to(['/site/about']) ?>">关于我们</a> </dd>
+                <dd> <a href="<?= Url::to(['/site/contributors']) ?>">贡献者</a> </dd>
+            </div>
+            <div class="col-sm-2">
+                <dt>相关合作</dt>
+                <dd> <a href="<?= Url::to(['/site/contact']) ?>">联系我们</a> </dd>
+            </div>
+            <div class="col-sm-2">
+                <dt>关注我们</dt>
+                <dd> <a href="<?= Url::to(['/site/timeline']) ?>">时间线</a> </dd>
+            </div>
+            <div class="col-sm-6">
+                <dt> 技术采用 </dt>
+                <dd> 由 <a href="https://github.com/forecho">forecho</a> 创建 项目地址: <a href="https://github.com/iiyii/getyii">getyii</a> </dd>
+                <dd> <?= Yii::powered() ?> <?= Yii::getVersion() ?> </dd>
+            </div>
+        </div>
     </div>
-  </nav>
+</footer>
 
-<!--中间内容 START-->
+<div style="display:none">
+<?= \Yii::$app->setting->get('siteAnalytics'); ?>
+</div>
 
-        <?= $content ?>
-
-<!--中间内容 END-->
-
-<!--底部　start-->
-        <footer class="page-footer">
-          <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
-          </div>
-        </footer>
-<!--底部　end-->
 <?php $this->endBody() ?>
 </body>
 </html>

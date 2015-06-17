@@ -15,15 +15,16 @@ $topicActive = ($module == 'topic' && !$tag) ? true : false;
 $topicTagsActive = $action == 'tags' || ($module == 'topic' && $tag) ? true : false;
 
 NavBar::begin([
-    // 'brandLabel' => Html::img('/images/logo.png'),
-    'brandLabel' => 'Get√Yii',
+    'brandLabel' => Html::img('/images/logo.png'),
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
         'class' => 'navbar-white br0',
     ],
 ]);
 echo Nav::widget([
-    'options' => ['class' => 'nav navbar-nav'],
+    'options' => [
+        'class' => 'nav navbar-nav js-nav', 
+        ],
     'items' => [
         ['label' => '社区', 'url' => ['/topic'], 'active' => $topicActive],
 //        ['label' => 'Wiki', 'url' => ['/topic/default/index', 'node' => 'wiki']],

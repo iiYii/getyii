@@ -212,4 +212,24 @@ jQuery(function ($) {
     $('form').submit(function () {
         $(this).find("button[type='submit']").prop('disabled', true);
     });
+    
+    //菜单效果
+    var currentLiIndex = -1 ;
+    $('.js-nav li').each(function(){
+        if($(this).hasClass('active')){
+            currentLiIndex = $(this).index();
+            return false;;
+        }    
+    });
+    $('.js-nav li').hover(function(){
+            if(currentLiIndex > -1){
+                 $('.js-nav li').eq(currentLiIndex).removeClass('active');   
+            }
+            $(this).addClass('active');
+        },function(){
+            $(this).removeClass('active')
+            if(currentLiIndex > -1){
+                 $('.js-nav li').eq(currentLiIndex).addClass('active');   
+            }
+    });
 });

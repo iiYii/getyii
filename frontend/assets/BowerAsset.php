@@ -10,10 +10,10 @@ class BowerAsset extends AssetBundle
 {
     public $sourcePath = '@bower';
     public $css = [
-        // 'font-awesome/css/font-awesome.min.css',
+        'font-awesome/css/font-awesome.min.css',
         'highlightjs/styles/monokai_sublime.css',
         //'materialize/css/materialize.min.css',
-        'foundation/css/foundation.min.css',
+        //'foundation/css/foundation.min.css',
     ];
     public $js = [
         'marked/lib/marked.js',

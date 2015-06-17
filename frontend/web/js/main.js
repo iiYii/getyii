@@ -145,7 +145,7 @@ jQuery(function ($) {
             localforage.removeItem('comment_content');
         });
     }
-    // localStorage();
+    localStorage();
 
     /**
      * 监听键盘
@@ -161,19 +161,16 @@ jQuery(function ($) {
         var replyContent = $("#md-input");
         var oldContent = replyContent.val();
         if (oldContent) {
-
-            marked(oldContent, {
-                sanitize: true,
-            }, function (err, content) {
+            marked(oldContent, function (err, content) {
                 $('#md-preview').html(content);
-
-                $('pre code').each(function (i, block) {
-                    hljs.highlightBlock(block);
-                });
+                //$('pre code').each(function (i, block) {
+                //    hljs.highlightBlock(block);
+                //});
                 //emojify.run(document.getElementById('preview-box'));
             });
         }
     }
+
 
     $(document).on('click', '.btn-reply', function (e) {
         e.preventDefault();

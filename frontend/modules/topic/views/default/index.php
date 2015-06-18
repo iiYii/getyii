@@ -12,7 +12,17 @@ if ($node = Yii::$app->request->getQueryParam('node')){
     $node = \common\models\PostMeta::find()->where(['alias' => $node])->one();
 }
 ?>
+
+<!--topic list start-->
 <div class="col-md-9 topic">
+    <div class="topic-list">
+            <div class="topic-list-header">
+                    
+            </div>
+            <div class="topic-list-body">
+                
+            </div>
+    </div>
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
             <?php if($tag): ?>
@@ -26,22 +36,23 @@ if ($node = Yii::$app->request->getQueryParam('node')){
                     <?= Html::a($name, \yii\helpers\Url::current(['sort' => $key]),['class' => ($sort == $key || ((empty($sort) && $key == 'newest')))?'active':'']) ?> \
                 <?php endforeach ?>
             </div>
-
         </div>
-
+             
         <?php Pjax::begin(); ?>
-        <?= ListView::widget([
-            'dataProvider' => $dataProvider,
-            'itemOptions' => ['class' => 'list-group-item'],
-            'summary' => false,
-            'itemView' => '_item',
-            'options' => ['class' => 'list-group'],
-        ]) ?>
+                <?= ListView::widget([
+                    'dataProvider' => $dataProvider,
+                    'itemOptions' => ['class' => 'list-group-item'],
+                    'summary' => false,
+                    'itemView' => '_item',
+                    'options' => ['class' => 'list-group'],
+                ]) ?>
         <?php Pjax::end(); ?>
 
     </div>
     <?= \frontend\widgets\Node::widget(); ?>
 </div>
+<!--topic list end-->
+
 <?= TopicSidebar::widget([
     'node' => $node
 ]); ?>

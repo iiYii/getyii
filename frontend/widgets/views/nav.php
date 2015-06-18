@@ -49,7 +49,7 @@ if (Yii::$app->user->isGuest) {
 
     // 个人中心
     $menuItems[] = [
-        'label' => Yii::$app->user->identity->username,
+        'label' => Html::img(Yii::$app->user->identity->getUserAvatar(50),['class' => 'img-circle img-responsive']),
         'items' => [
             ['label' => '我的主页', 'url' => ['/user/default']],
             ['label' => '帐号设置', 'url' => ['/user/setting/profile']],

@@ -65,3 +65,6 @@ echo Nav::widget([
     'activateParents' => true,
 ]);
 NavBar::end();
+
+?>
+

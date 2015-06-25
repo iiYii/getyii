@@ -33,24 +33,27 @@ class PostSearch extends Post
     }
 
     /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
+     * @param $params
+     * @param array $conditions
      * @return ActiveDataProvider
      */
-    public function search($params, $conditions=[])
+    public function search($params, $conditions = [])
     {
         $query = Post::find()->where($conditions);
+
+        // 帖子列表过滤无人区节点的帖子
+        if (empty($params['PostSearch']['post_meta_id']) || $params['PostSearch']['post_meta_id'] != PostMeta::noManLandId()) {
+            $query->andWhere(['!=', 'post_meta_id', PostMeta::noManLandId()]);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-               'pageSize' => 20,
+                'pageSize' => 20,
             ],
-            'sort'=> ['defaultOrder' => [
-               'order' => SORT_ASC,
-               'updated_at' => SORT_DESC,
+            'sort' => ['defaultOrder' => [
+                'order' => SORT_ASC,
+                'updated_at' => SORT_DESC,
             ]]
         ]);
 

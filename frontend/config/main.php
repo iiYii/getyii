@@ -40,6 +40,10 @@ return [
                     'class' => 'yii\authclient\clients\GitHub',
                     'clientId' => 'github_client_id',
                     'clientSecret' => 'github_client_secret',
+                    'viewOptions' => [
+                        'popupWidth' => 820,
+                        'popupHeight' => 600,
+                    ]
                 ],
             ],
         ],

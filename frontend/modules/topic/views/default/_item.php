@@ -39,7 +39,7 @@ use yii\helpers\Html;
                 $model->user['username'],
                 ['/user/default/show', 'username' => $model->user['username']]
             ), '•',
-            Html::tag('span', Yii::$app->formatter->asRelativeTime($model->created_at));
+            Html::tag('span', Yii::$app->formatter->asRelativeTime($model->updated_at));
             ?>
         </div>
     </div>

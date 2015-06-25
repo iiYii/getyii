@@ -50,7 +50,7 @@ class PostSearch extends Post
             ],
             'sort'=> ['defaultOrder' => [
                'order' => SORT_ASC,
-               'created_at' => SORT_DESC,
+               'updated_at' => SORT_DESC,
             ]]
         ]);
 

@@ -21,11 +21,13 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/global.css',
         'css/site.css',
+        'css/pace-theme-minimal.css',
     ];
 
     public $js = [
         'js/main.js',
         'js/topic.js',
+        'js/pace.min.js',
     ];
 
     public $depends = [

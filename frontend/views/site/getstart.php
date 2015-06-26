@@ -27,7 +27,7 @@ $content = '
 - [Yii2 权威指南英文版](http://www.yiiframework.com/doc-2.0/guide-index.html)
 - [Yii2 Api 英文版](http://www.yiiframework.com/doc-2.0/index.html)
 - [Yii 2.0权威指南中文版](http://yii2.techbrood.com/guide-index.html)
-- [Yii 2.0权威指南中文版](http://guide.yiibar.com/guide-index.html)
+- [Yii 2.0权威指南中文版](http://yii2.yiibar.com/guide-zh-CN/guide-README.html)
 - [Yii 2.0权威指南中文版](http://www.yiifans.com/yii2/guide/index.html)
 - [深入理解Yii2.0](http://www.digpage.com)
 - [Krajee Yii Extensions](http://demos.krajee.com/)

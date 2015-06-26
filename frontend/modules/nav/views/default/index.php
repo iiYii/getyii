@@ -11,15 +11,11 @@ $this->title = '网站导航';
 ?>
 
 <style type="text/css">
-    .top10 {
-        margin-top: 10px;
-    }
-
     .nav-item {
         height: 35px;
     }
 </style>
-<div class="container-fluid nav-index col-md-2">
+<div class="nav-index col-md-2">
     <div class="panel panel-default corner-radius pinned">
         <div class="panel-heading text-center">
             <h3 class="panel-title"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> 导航栏目</h3>

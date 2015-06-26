@@ -299,3 +299,12 @@ a:visited .badge-reply-count {
 .tag-cloud .cloud-6 {
     font-size:220%;
 }
+
+/* add by ruzuojun */
+#floatButton {position:fixed;top:50%;right:0;z-index:9999999;}
+#floatButton .btn:focus{outline:0}
+@media screen and (max-width: 767px) {
+    #floatButton {display:none;}
+}
+#pageQrcode img.qrcode{position:absolute;right:50px;bottom:-34px;padding:10px;background:#fff;border:1px solid #ccc;border-radius:4px;display:none}
+#pageQrcode:hover img.qrcode{display:block}

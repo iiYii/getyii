@@ -22,6 +22,7 @@ BowerAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?> - <?= \Yii::$app->setting->get('siteTitle') ?></title>
+    <meta name="keywords" content="<?= \Yii::$app->setting->get('siteKeyword') ?>" />
     <?php $this->head() ?>
 </head>
 <body>

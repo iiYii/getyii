@@ -26,6 +26,8 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/main.js',
         'js/topic.js',
+        'js/jquery.pin.js',
+        'js/nav.js',
     ];
 
     public $depends = [

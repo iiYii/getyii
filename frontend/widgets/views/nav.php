@@ -13,6 +13,7 @@ $action = Yii::$app->controller->action->id;
 $tag = Yii::$app->request->getQueryParam('tag');
 $topicActive = ($module == 'topic' && !$tag) ? true : false;
 $topicTagsActive = $action == 'tags' || ($module == 'topic' && $tag) ? true : false;
+$navActive = ($module == 'nav') ? true : false;
 
 NavBar::begin([
     // 'brandLabel' => Html::img('/images/logo.png'),
@@ -32,6 +33,7 @@ echo Nav::widget([
         ['label' => '会员', 'url' => ['/site/users']],
         ['label' => '关于', 'url' => ['/site/about']],
         //['label' => '招聘', 'url' => ['/site/getstart']],
+        ['label' => '站点导航', 'url' => ['/nav'], 'active' => $navActive],
     ],
 ]);
 if (Yii::$app->user->isGuest) {

@@ -31,9 +31,9 @@ echo Nav::widget([
         ['label' => '标签云', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
         ['label' => '新手入门', 'url' => ['/site/getstart']],
         ['label' => '会员', 'url' => ['/site/users']],
-        ['label' => '关于', 'url' => ['/site/about']],
+//        ['label' => '关于', 'url' => ['/site/about']],
         //['label' => '招聘', 'url' => ['/site/getstart']],
-        ['label' => '站点导航', 'url' => ['/nav'], 'active' => $navActive],
+        ['label' => '酷站', 'url' => ['/nav'], 'active' => $navActive],
     ],
 ]);
 if (Yii::$app->user->isGuest) {

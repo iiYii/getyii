@@ -43,7 +43,8 @@ if (Yii::$app->user->isGuest) {
         // 个人中心
     $menuItems[] = [
         'label' => Html::img(Yii::$app->user->identity->getUserAvatar(28),['class' => 'img-circle img-responsive']),
-        'url'     => ['/user/default'],        
+        'url'     => ['/user/default'], 
+        'linkOptions' => ['style' => 'padding-bottom:0']       
     ];
     
     // 撰写

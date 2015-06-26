@@ -87,6 +87,9 @@ a.desc:after {
 }
 
 /* 自定义 */
+.navbar{
+    border: none;
+}
 .navbar, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background: #FFF;
 }

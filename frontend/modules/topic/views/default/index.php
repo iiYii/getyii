@@ -15,15 +15,8 @@ if ($node = Yii::$app->request->getQueryParam('node')){
 
 <!--topic list start-->
 <div class="col-md-9 topic">
-    <div class="topic-list">
-            <div class="topic-list-header">
-                    
-            </div>
-            <div class="topic-list-body">
-                
-            </div>
-    </div>
     <div class="panel panel-default">
+        <!--标题 start-->
         <div class="panel-heading clearfix">
             <?php if($tag): ?>
                 <div class="pull-left">搜索标签：<?= $tag; ?>
@@ -37,14 +30,15 @@ if ($node = Yii::$app->request->getQueryParam('node')){
                 <?php endforeach ?>
             </div>
         </div>
-             
+           <!--标题end-->
+           
         <?php Pjax::begin(); ?>
                 <?= ListView::widget([
                     'dataProvider' => $dataProvider,
                     'itemOptions' => ['class' => 'list-group-item'],
                     'summary' => false,
                     'itemView' => '_item',
-                    'options' => ['class' => 'list-group'],
+                    'options' => ['class' => 'list-group pannel-body'],
                 ]) ?>
         <?php Pjax::end(); ?>
 

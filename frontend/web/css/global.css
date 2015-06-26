@@ -13,7 +13,7 @@ license: MIT
 author: bootply.com
 */
 
-@import url(http://fonts.useso.com/css??family=Roboto:400);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400);
 body {
   background-color:#e0e0e0;
   -webkit-font-smoothing: antialiased;
@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .navbar-default .dropdown-menu {background-color:#ffffff;}
 .navbar-default .dropdown-menu li > a {padding-left:30px;}
 
-.header {background-color:#ffffff;border-width:0;}
+.header border-width:0;}
 .header .navbar-collapse {background-color:#ffffff;}
 .btn,.form-control,.panel,.list-group,.well {border-radius:1px;box-shadow:0 0 0;}
 .form-control {border-color:#d7d7d7;}

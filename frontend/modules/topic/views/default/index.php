@@ -18,30 +18,32 @@ if ($node = Yii::$app->request->getQueryParam('node')){
     <div class="panel panel-default">
         <!--标题 start-->
         <div class="panel-heading clearfix">
+            <h4>
             <?php if($tag): ?>
                 <div class="pull-left">搜索标签：<?= $tag; ?>
                 </div>
             <?php endif; ?>
 
-            <div class="filter pull-right">
-                <span class="l">查看:</span>
+            <div class="">
+                <span class="">查看:</span>
                 <?php foreach($sorts as $key => $name): ?>
-                    <?= Html::a($name, \yii\helpers\Url::current(['sort' => $key]),['class' => ($sort == $key || ((empty($sort) && $key == 'newest')))?'active':'']) ?> \
+                    <?= Html::a($name, \yii\helpers\Url::current(['sort' => $key]),['class' => ($sort == $key || ((empty($sort) && $key == 'newest')))?'active':'']) ?> *
                 <?php endforeach ?>
             </div>
+            </h4>
         </div>
            <!--标题end-->
-           
-        <?php Pjax::begin(); ?>
-                <?= ListView::widget([
-                    'dataProvider' => $dataProvider,
-                    'itemOptions' => ['class' => 'list-group-item'],
-                    'summary' => false,
-                    'itemView' => '_item',
-                    'options' => ['class' => 'list-group pannel-body'],
-                ]) ?>
-        <?php Pjax::end(); ?>
-
+               <div class="panel-body">
+                    <?php Pjax::begin(); ?>
+                            <?= ListView::widget([
+                                'dataProvider' => $dataProvider,
+                                'itemOptions' => ['class' => 'list-group-item'],
+                                'summary' => false,
+                                'itemView' => '_item',
+                                'options' => ['class' => 'list-group'],
+                            ]) ?>
+                    <?php Pjax::end(); ?>
+            </div>
     </div>
     <?= \frontend\widgets\Node::widget(); ?>
 </div>

@@ -53,11 +53,12 @@ textarea {
  color:#666666;
 }
 .panel .panel-heading {
- background-color:#ffffff;
- font-weight:700;
- font-size:16px;
- color:#262626;
- border-color:#ffffff;
+   background-color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  color: #262626;
+  border-color: #ffffff;
+  padding: 10px 15px 0;
 }
 .panel .panel-heading a {
  font-weight:400;
@@ -72,6 +73,9 @@ textarea {
 .panel .img-circle {
  width:50px;
  height:50px;
+}
+.panel-body {
+  padding: 0  15px 15px;
 }
 .list-group-item:first-child,.list-group-item:last-child {
  border-radius:0;

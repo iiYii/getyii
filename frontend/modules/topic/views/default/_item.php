@@ -10,7 +10,7 @@ use yii\helpers\Html;
     ); ?>
 
     <div class="media-left">
-        <?= Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object']),
+        <?= Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object img-circle']),
             ['/user/default/show', 'username' => $model->user['username']]
         ); ?>
     </div>
@@ -28,17 +28,18 @@ use yii\helpers\Html;
             if ($model->like_count) {
                 echo Html::a(Html::tag('span', ' ' . $model->like_count . ' ', ['class' => 'fa fa-thumbs-o-up']),
                     ['/topic/default/view', 'id' => $model->id], ['class' => 'remove-padding-left']
-                ), '•';
+                ), '';
             }
+ 
             echo Html::a(
                 $model->category->name,
                 ['/topic/default/index', 'node' => $model->category->alias],
                 ['class' => 'node']
-            ), '•',
+            ), '<i class="fa fa-user"></i>',
             Html::a(
                 $model->user['username'],
                 ['/user/default/show', 'username' => $model->user['username']]
-            ), '•',
+            ), '<i class="fa fa-calendar"></i>',
             Html::tag('span', Yii::$app->formatter->asRelativeTime($model->created_at));
             ?>
         </div>

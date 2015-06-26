@@ -77,6 +77,19 @@ class PostMeta extends ActiveRecord
         return $nodes;
     }
 
+    /**
+     * 返回无人区节点id
+     * @return mixed|static
+     */
+    public static function noManLandId()
+    {
+        $postMeta = self::find()->where(['alias' => 'no-man-land'])->one();
+        if ($postMeta) {
+            return $postMeta->id;
+        }
+        return $postMeta;
+    }
+
     public function getParents()
     {
         return ArrayHelper::map(static::find()->where(['parent' => null])->all(), 'id', 'name');

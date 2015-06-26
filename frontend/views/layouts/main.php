@@ -62,7 +62,9 @@ BowerAsset::register($this);
                 <dd> <?= Yii::powered() ?> <?= Yii::getVersion() ?> </dd>
             </div>
             <div class="col-sm-3">
-                <img src="http://assets.qiniu.com/qiniu-white-97x51.png" alt="qiniu">
+                <a href="http://www.qiniu.com/">
+                    <img src="http://assets.qiniu.com/qiniu-transparent.png" alt="qiniu" width="240">
+                </a>
             </div>
         </div>
     </div>

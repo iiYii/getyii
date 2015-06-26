@@ -39,6 +39,13 @@ if (Yii::$app->user->isGuest) {
     $menuItems[] = ['label' => '注册', 'url' => ['/site/signup']];
     $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
 } else {
+    
+        // 个人中心
+    $menuItems[] = [
+        'label' => Html::img(Yii::$app->user->identity->getUserAvatar(28),['class' => 'img-circle img-responsive']),
+        'url'     => ['/user/default'],        
+    ];
+    
     // 撰写
     $menuItems[] = [
         'label' => Html::tag('i', '', ['class' => 'fa fa-bell']) . Html::tag('span', $notifyCount ? $notifyCount : null),
@@ -46,15 +53,18 @@ if (Yii::$app->user->isGuest) {
         'linkOptions' => ['class' => $notifyCount ? 'new' : null],
         'options' => ['class' => 'notification-count'],
     ];
-
-    // 个人中心
+        
     $menuItems[] = [
-        'label' => Html::img(Yii::$app->user->identity->getUserAvatar(50),['class' => 'img-circle img-responsive']),
-        'items' => [
-            ['label' => '我的主页', 'url' => ['/user/default']],
-            ['label' => '帐号设置', 'url' => ['/user/setting/profile']],
-            ['label' => '退出', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']]
-        ]
+      'label'     => '设置',
+      'url'         => ['/user/setting/profile'],
+      'options' => ['class' => ''],  
+    ];
+    
+    $menuItems[] = [
+      'label'             => '退出',
+      'url'                => ['/site/logout'],
+      'options'        => ['class' => ''],  
+      'linkOptions' => ['data-method' => 'post'],
     ];
 }
 

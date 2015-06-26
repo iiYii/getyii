@@ -74,6 +74,12 @@ AppAsset::register($this);
                             ['label' => '分类管理', 'url' => ['/post-meta']],
                             ['label' => '网站配置', 'url' => ['/setting/default']],
                             [
+                                'label' => '网站导航', 'url' => ['nav/index'],
+                                'items' => [
+                                    ['label' => '导航分类', 'url' => ['nav/index']],
+                                    ['label' => '导航链接', 'url' => ['nav-url/index']],
+                                ]],
+                            [
                                 'label' => 'Products', 'url' => ['product/index'],
                                 'items' => [
                                 ['label' => 'New Arrivals', 'url' => ['product/index', 'tag' => 'new']],

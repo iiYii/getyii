@@ -78,6 +78,9 @@ return [
         'topic' => [
             'class' => 'frontend\modules\topic\Module',
         ],
+        'nav' => [
+            'class' => 'frontend\modules\nav\Module',
+        ],
     ],
     'params' => $params,
 ];

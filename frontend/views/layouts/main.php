@@ -22,6 +22,7 @@ BowerAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?> - <?= \Yii::$app->setting->get('siteTitle') ?></title>
+    <meta name="keywords" content="<?= \Yii::$app->setting->get('siteKeyword') ?>" />
     <?php $this->head() ?>
 </head>
 <body>
@@ -55,10 +56,15 @@ BowerAsset::register($this);
                 <dt>关注我们</dt>
                 <dd> <a href="<?= Url::to(['/site/timeline']) ?>">时间线</a> </dd>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
                 <dt> 技术采用 </dt>
                 <dd> 由 <a href="https://github.com/forecho">forecho</a> 创建 项目地址: <a href="https://github.com/iiyii/getyii">getyii</a> </dd>
                 <dd> <?= Yii::powered() ?> <?= Yii::getVersion() ?> </dd>
+            </div>
+            <div class="col-sm-3">
+                <a href="http://www.qiniu.com/">
+                    <img src="http://assets.qiniu.com/qiniu-transparent.png" alt="qiniu" width="240">
+                </a>
             </div>
         </div>
     </div>

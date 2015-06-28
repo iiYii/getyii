@@ -59,8 +59,7 @@ BowerAsset::register($this);
                 </div>
                 <div class="col-sm-3">
                     <dt> 技术采用</dt>
-                    <dd> 由 <a href="https://github.com/forecho">forecho</a> 创建 项目地址: <a
-                            href="https://github.com/iiyii/getyii">getyii</a></dd>
+                    <dd> 本网站由 <a href="http://www.dba-china.com/member/ruyi">茹憶</a> 创建并维护 感谢: <a href="https://github.com/forecho">forecho</a> 提供开源代码</dd>
                     <dd> <?= Yii::powered() ?> <?= Yii::getVersion() ?> </dd>
                 </div>
                 <div class="col-sm-3">

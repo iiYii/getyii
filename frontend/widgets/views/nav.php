@@ -19,7 +19,7 @@ $navActive = ($module == 'nav') ? true : false;
 
 NavBar::begin([
     // 'brandLabel' => Html::img('/images/logo.png'),
-    'brandLabel' => 'Get√Yii',
+    'brandLabel' => 'DBA√China',
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
         'class' => 'navbar-white   br0',
@@ -29,14 +29,13 @@ echo Nav::widget([
     'options' => ['class' => 'nav navbar-nav '],
     'items' => [
         ['label' =>  Icon::show('home')  . '首页', 'url' => ['/site/index'] ],
-        ['label' => Icon::show('th-large')  .'社区', 'url' => ['/topic'], 'active' => $topicActive],
-//        ['label' => 'Wiki', 'url' => ['/topic/default/index', 'node' => 'wiki']],
-        ['label' => Icon::show('th')  .'标签云', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
-        ['label' => Icon::show('signal')  .'新手入门', 'url' => ['/site/getstart']],
+        ['label' => Icon::show('th-large')  .'话题', 'url' => ['/topic'], 'active' => $topicActive],
+        ['label' => Icon::show('th')  .'标签', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
+        //['label' => Icon::show('signal')  .'新手入门', 'url' => ['/site/getstart']],
         ['label' => Icon::show('user')  .'会员', 'url' => ['/site/users']],
-//        ['label' => '关于', 'url' => ['/site/about']],
-        //['label' => '招聘', 'url' => ['/site/getstart']],
         ['label' => Icon::show('plane')  .'酷站', 'url' => ['/nav'], 'active' => $navActive],
+        ['label' => '手册', 'url' => ['/topic/default/view/56#']],
+        ['label' => '新人必读', 'url' => ['/topic/default/view/40#']],
 
     ],
     'encodeLabels' => false

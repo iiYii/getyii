@@ -8,6 +8,7 @@ use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use frontend\widgets\NewestPost;
 
+
 /* @var $this \yii\web\View */
 /* @var $content string */
 

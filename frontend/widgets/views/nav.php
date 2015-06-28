@@ -7,6 +7,8 @@
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
+use kartik\icons\Icon;
+Icon::map($this);
 
 $module = Yii::$app->controller->module->id;
 $action = Yii::$app->controller->action->id;
@@ -20,21 +22,24 @@ NavBar::begin([
     'brandLabel' => 'Get√Yii',
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
-        'class' => 'navbar-white br0',
+        'class' => 'navbar-white   br0',
     ],
 ]);
 echo Nav::widget([
-    'options' => ['class' => 'nav navbar-nav'],
+    'options' => ['class' => 'nav navbar-nav '],
     'items' => [
-        ['label' => '社区', 'url' => ['/topic'], 'active' => $topicActive],
+        ['label' =>  Icon::show('home')  . '首页', 'url' => ['/site/index'] ],
+        ['label' => Icon::show('th-large')  .'社区', 'url' => ['/topic'], 'active' => $topicActive],
 //        ['label' => 'Wiki', 'url' => ['/topic/default/index', 'node' => 'wiki']],
-        ['label' => '标签云', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
-        ['label' => '新手入门', 'url' => ['/site/getstart']],
-        ['label' => '会员', 'url' => ['/site/users']],
+        ['label' => Icon::show('th')  .'标签云', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
+        ['label' => Icon::show('signal')  .'新手入门', 'url' => ['/site/getstart']],
+        ['label' => Icon::show('user')  .'会员', 'url' => ['/site/users']],
 //        ['label' => '关于', 'url' => ['/site/about']],
         //['label' => '招聘', 'url' => ['/site/getstart']],
-        ['label' => '酷站', 'url' => ['/nav'], 'active' => $navActive],
+        ['label' => Icon::show('plane')  .'酷站', 'url' => ['/nav'], 'active' => $navActive],
+
     ],
+    'encodeLabels' => false
 ]);
 if (Yii::$app->user->isGuest) {
     $menuItems[] = ['label' => '注册', 'url' => ['/site/signup']];

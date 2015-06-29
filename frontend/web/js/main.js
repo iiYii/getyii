@@ -211,4 +211,13 @@ jQuery(function ($) {
     $('form').submit(function () {
         $(this).find("button[type='submit']").prop('disabled', true);
     });
+
+    //add by ruzuojun
+    $(document).on("click","#goTop",function(){
+        $('html,body').animate({scrollTop: '0px'}, 800);
+    }).on("click","#goBottom",function(){
+        $('html,body').animate({scrollTop:$('.footer').offset().top}, 800);
+    }).on("click","#refresh",function(){
+        location.reload();
+    });
 });

@@ -1,7 +1,7 @@
 html,
 body {
     height: 100%;
-    background-color: #e1e1e1;
+    background-color: #fff;
     font-family: 'Hiragino Sans GB', 'Microsoft YaHei', 微软雅黑, tahoma, arial, simsun, 宋体;
 }
 
@@ -89,22 +89,22 @@ a.desc:after {
 
 /* 自定义 */
 .navbar, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-    background: #FFF;
+    background: #FCFCFC;
+    border-bottom: 1px solid #E5E5E5;
 }
 
 .navbar a, .navbar-default .navbar-nav > li > a {
-    color: #333;
+    color: #000;
 }
 
 .navbar .nav li.active a:focus, .navbar .nav li.active a:hover, .nav > li > a:hover, .nav > li > a:focus {
-    background-color: #FFF;
+    background-color: #F1F1F1;
     color: #000;
 }
 
 .navbar .nav li.active a {
-    background-color: #FFF;
-    border-bottom: 3px solid #5CB85C;
-    color: #5CB85C;
+    background-color: #F0F0F0;
+    color: #000;
 }
 .navbar-toggle .icon-bar {
     background-color: #5CB85C;

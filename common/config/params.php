@@ -1,6 +1,7 @@
 <?php
 return [
     'adminEmail' => 'caizhenghai@gmail.com',
+    'backupEmail' => 'caizhenghai@qq.com',
     'supportEmail' => 'forecho@foxmail.com',
     'user.passwordResetTokenExpire' => 3600,
 //    'avatarPath' => Yii::$app->basePath . '/uploads/avatars/',

@@ -1,53 +1,65 @@
 {
-    "name": "yiisoft/yii2-app-advanced",
-    "description": "Yii 2 Advanced Application Template",
-    "keywords": ["yii2", "framework", "advanced", "application template"],
-    "homepage": "http://www.yiiframework.com/",
-    "type": "project",
-    "license": "BSD-3-Clause",
-    "support": {
-        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2"
-    },
-    "minimum-stability": "stable",
-    "require": {
-        "php": ">=5.4.0",
-        "yiisoft/yii2": "2.0.*@dev",
-        "yiisoft/yii2-bootstrap": "*",
-        "yiisoft/yii2-swiftmailer": "*",
-        "2amigos/yii2-selectize-widget": "*",
-        "bower-asset/sb-admin-2-assets": "*",
-        "bower-asset/font-awesome": "*",
-        "bower-asset/marked": "*",
-        "bower-asset/highlightjs": "*",
-        "bower-asset/metisMenu": "*",
-        "bower-asset/jquery-textcomplete": "*",
-        "bower-asset/emojify.js": "*",
-        "bower-asset/PACE": "*",
-        "bower-asset/localforage": "*",
-        "yiisoft/yii2-authclient": "*",
-        "yzalis/identicon": "*",
-        "funson86/yii2-setting": "*",
-        "yiisoft/yii2-imagine": "^2.0",
-        "fxp/composer-asset-plugin": "~1.0",
-        "kartik-v/yii2-icons": "dev-master"
-    },
-    "require-dev": {
-        "yiisoft/yii2-codeception": "*",
-        "yiisoft/yii2-debug": "*",
-        "yiisoft/yii2-gii": "*",
-        "yiisoft/yii2-faker": "*"
-    },
-    "config": {
-        "process-timeout": 1800
-    },
-    "extra": {
-        "asset-installer-paths": {
-            "npm-asset-library": "vendor/npm",
-            "bower-asset-library": "vendor/bower"
-        }
+  "name": "yiisoft/yii2-app-advanced",
+  "description": "Yii 2 Advanced Application Template",
+  "keywords": [
+    "yii2",
+    "framework",
+    "advanced",
+    "application template"
+  ],
+  "homepage": "http://www.yiiframework.com/",
+  "type": "project",
+  "license": "BSD-3-Clause",
+  "support": {
+    "issues": "https://github.com/yiisoft/yii2/issues?state=open",
+    "forum": "http://www.yiiframework.com/forum/",
+    "wiki": "http://www.yiiframework.com/wiki/",
+    "irc": "irc://irc.freenode.net/yii",
+    "source": "https://github.com/yiisoft/yii2"
+  },
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.4.0",
+    "yiisoft/yii2": "2.0.*@dev",
+    "yiisoft/yii2-bootstrap": "*",
+    "yiisoft/yii2-swiftmailer": "*",
+    "2amigos/yii2-selectize-widget": "*",
+    "bower-asset/sb-admin-2-assets": "*",
+    "bower-asset/font-awesome": "*",
+    "bower-asset/marked": "*",
+    "bower-asset/highlightjs": "*",
+    "bower-asset/metisMenu": "*",
+    "bower-asset/jquery-textcomplete": "*",
+    "bower-asset/emojify.js": "*",
+    "bower-asset/PACE": "*",
+    "bower-asset/localforage": "*",
+    "yiisoft/yii2-authclient": "*",
+    "yzalis/identicon": "*",
+    "funson86/yii2-setting": "*",
+    "yiisoft/yii2-imagine": "^2.0",
+    "fxp/composer-asset-plugin": "~1.0",
+    "kartik-v/yii2-icons": "dev-master",
+    "yiier/yii2-backup": "dev-master"
+  },
+  "require-dev": {
+    "yiisoft/yii2-codeception": "*",
+    "yiisoft/yii2-debug": "*",
+    "yiisoft/yii2-gii": "*",
+    "yiisoft/yii2-faker": "*"
+  },
+  "config": {
+    "process-timeout": 1800
+  },
+  "extra": {
+    "asset-installer-paths": {
+      "npm-asset-library": "vendor/npm",
+      "bower-asset-library": "vendor/bower"
     }
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/yiier/yii2-backup.git"
+    }
+  ]
 }

@@ -1,7 +1,8 @@
 <?php
 return [
-    'adminEmail' => 'ruyi1024@vip.126.com',
-    'supportEmail' => 'ruyi1024@vip.126.com',
+    'adminEmail' => 'caizhenghai@gmail.com',
+    'backupEmail' => 'caizhenghai@qq.com',
+    'supportEmail' => 'forecho@foxmail.com',
     'user.passwordResetTokenExpire' => 3600,
 //    'avatarPath' => Yii::$app->basePath . '/uploads/avatars/',
 //    'avatarUrl' => Yii::$app->urlManager->baseUrl . '/uploads/avatars/',

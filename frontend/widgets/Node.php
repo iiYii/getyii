@@ -15,10 +15,11 @@ class Node extends \yii\bootstrap\Widget
     public function run()
     {
         $nodes = [];
-        $parents = ArrayHelper::map(PostMeta::find()->where(['parent' => null])->orderBy(['order' => SORT_ASC])->all(), 'id', 'name');
+        $parents = ArrayHelper::map(PostMeta::find()->orWhere(['parent' => null,'parent' => 0])->orderBy(['order' => SORT_ASC])->all(), 'id', 'name');
         foreach ($parents as $key => $value) {
             $nodes[$value] = PostMeta::find()->where(['parent' => $key])->asArray()->all();
         }
+
         return $this->render('node', [
             'nodes' => $nodes
         ]);

@@ -70,7 +70,8 @@ class PostMeta extends ActiveRecord
 
     public static function topicCategory()
     {
-        $parents = ArrayHelper::map(static::find()->where(['parent' => null])->orderBy(['order' => SORT_ASC])->all(), 'id', 'name');
+        $parents = ArrayHelper::map(static::find()->where(['parent' => null])->orWhere(['parent' => 0])->orderBy(['order' => SORT_ASC])->all(), 'id', 'name');
+        $nodes = [];
         foreach ($parents as $key => $value) {
             $nodes[$value] = ArrayHelper::map(static::find()->where(['parent' => $key])->asArray()->all(), 'id', 'name');
         }
@@ -92,7 +93,7 @@ class PostMeta extends ActiveRecord
 
     public function getParents()
     {
-        return ArrayHelper::map(static::find()->where(['parent' => null])->all(), 'id', 'name');
+        return ArrayHelper::map(static::find()->where(['parent' => null])->orWhere(['parent' => 0])->all(), 'id', 'name');
     }
 
     public function getTypes()

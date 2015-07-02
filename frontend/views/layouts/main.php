@@ -59,14 +59,14 @@ BowerAsset::register($this);
                 </div>
                 <div class="col-sm-3">
                     <dt> 技术采用</dt>
-                    <dd> 由 <a href="https://github.com/forecho">forecho</a> 创建 项目地址: <a
-                            href="https://github.com/iiyii/getyii">getyii</a></dd>
+                    由 <a href="https://github.com/forecho">forecho</a> 创建 项目地址: <a href="https://github.com/iiyii/getyii">GetYii</a></dd>
                     <dd> <?= Yii::powered() ?> <?= Yii::getVersion() ?> </dd>
                 </div>
                 <div class="col-sm-3">
                     <a href="http://www.qiniu.com/">
                         <img src="http://assets.qiniu.com/qiniu-transparent.png" alt="qiniu" width="240">
                     </a>
+                    <p>赞助本站，你的LOGO将出现在这里</p>
                 </div>
             </div>
         </div>
@@ -78,8 +78,8 @@ BowerAsset::register($this);
         <button type="button" class="btn btn-default" id="refresh" title="刷新"><span
                 class="glyphicon glyphicon-repeat"></span></button>
         <button type="button" class="btn btn-default" id="pageQrcode" title="本页二维码"><span
-                class="glyphicon glyphicon-qrcode"></span><img class="qrcode" width="130" height="130"
-                                                               src="http://qrapi.cli.im/qr?data=http%253A%252F%252Fc3.cli.im%252FBRgmXF&level=H&transparent=1&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=0&kid=cliim&key=e0f1b2eab626d4adb3fb574de051d4b8">
+                class="glyphicon glyphicon-qrcode"></span>
+            <img class="qrcode" width="130" height="130" src="http://qr.liantu.com/api.php?text=<?= Yii::$app->request->absoluteUrl ;?>&w200&m200"/>
         </button>
         <button type="button" class="btn btn-default" id="goBottom" title="去底部"><span
                 class="glyphicon glyphicon-arrow-down"></span></button>

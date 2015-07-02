@@ -66,7 +66,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $topics = Post::find()->limit(20)->where(['status' => 2])->orderBy(['created_at' => SORT_DESC])->all();
-        $users = User::find()->joinWith('userInfo')->where(['role' => 10])->orderBy(['(like_count+thanks_count)' => SORT_DESC])->limit(12)->all();
+        $users = User::find()->joinWith('userInfo')->where(['!=','role' , 30])->orderBy(['(like_count+thanks_count)' => SORT_DESC])->limit(12)->all();
         $statistics = array();
         $statistics['post_count'] =  Post::find()->count();
         $statistics['comment_count'] =  PostComment::find()->count();

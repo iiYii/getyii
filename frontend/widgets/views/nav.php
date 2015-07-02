@@ -24,23 +24,22 @@ $jobsActive = ($node == 'jobs') ? true : false;
 
 NavBar::begin([
     // 'brandLabel' => Html::img('/images/logo.png'),
-    'brandLabel' => 'DBA√China',
+    'brandLabel' => 'Get√Yii',
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
-        'class' => 'navbar-white   br0',
+        'class' => 'navbar-white br0',
     ],
 ]);
 echo Nav::widget([
     'options' => ['class' => 'nav navbar-nav '],
     'items' => [
 //        ['label' =>  Icon::show('th-large')  . '首页', 'url' => ['/site/index'] ],
-        ['label' => Icon::show('comment')  .'话题', 'url' => ['/topic'], 'active' => $topicActive],
+        ['label' => Icon::show('comment')  .'社区', 'url' => ['/topic'], 'active' => $topicActive],
         ['label' => Icon::show('envelope')  .'招聘', 'url' => ['/topic/default/index', 'node' =>'jobs'], 'active' => $jobsActive],
         ['label' => Icon::show('th')  .'标签', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
-        //['label' => Icon::show('signal')  .'新手入门', 'url' => ['/site/getstart']],
+        ['label' => Icon::show('signal')  .'新手入门', 'url' => ['/site/getstart']],
         ['label' => Icon::show('user')  .'会员', 'url' => ['/site/users']],
-        ['label' => Icon::show('eye')  .'酷站', 'url' => ['/nav'], 'active' => $navActive],
-        ['label' => Icon::show('folder-open')  .'手册', 'url' => ['/topic/default/view','id' =>'56' ]],
+        ['label' => Icon::show('plane')  .'酷站', 'url' => ['/nav'], 'active' => $navActive],
 
     ],
     'encodeLabels' => false

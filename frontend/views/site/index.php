@@ -1,5 +1,7 @@
 <?php
 use yii\helpers\Html;
+use kartik\icons\Icon;
+Icon::map($this);
 
 $this->title = \Yii::$app->setting->get('siteName');
 ?>
@@ -28,7 +30,7 @@ $this->title = \Yii::$app->setting->get('siteName');
     </div>
 
     <div class="panel-footer text-right">
-        <?= Html::a(\Yii::t('app', 'More Excellent Topics') , ['topic/default/index', 'sort' => 'excellent'])?>
+        <span class="index_count"><?= Icon::show('user'); ?><?= \Yii::t('app', 'Online Count') ?>：<?= $statistics['online_count']; ?>  &nbsp;<?= Icon::show('list'); ?><?= \Yii::t('app', 'Post Count') ?>：<?= $statistics['post_count']; ?>  &nbsp;<?= Icon::show('share'); ?><?= \Yii::t('app', 'Comment Count') ?>：<?= $statistics['comment_count']; ?></span><?= Html::a(\Yii::t('app', 'More Excellent Topics') , ['topic/default/index', 'sort' => 'excellent'])?>
     </div>
 </div>
 

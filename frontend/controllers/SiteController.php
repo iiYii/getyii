@@ -2,7 +2,9 @@
 namespace frontend\controllers;
 
 use common\models\Post;
+use common\models\PostComment;
 use common\models\PostTag;
+use common\models\Session;
 use Yii;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
@@ -64,8 +66,13 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $topics = Post::find()->limit(20)->where(['status' => 2])->orderBy(['created_at' => SORT_DESC])->all();
+        $statistics = array();
+        $statistics['post_count'] =  Post::find()->count();
+        $statistics['comment_count'] =  PostComment::find()->count();
+        $statistics['online_count'] =  Session::find()->where(['>','expire' , time()])->count();
         return $this->render('index', [
-            'topics' => $topics
+            'topics' => $topics,
+            'statistics' => $statistics,
         ]);
     }
 

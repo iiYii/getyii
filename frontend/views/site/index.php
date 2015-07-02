@@ -11,6 +11,28 @@ $this->title = \Yii::$app->setting->get('siteName');
     </div>
 </div>
 
+    <div class="panel panel-default list-panel">
+        <div class="panel-heading">
+            <h3 class="panel-title text-center">社区会员榜</h3>
+        </div>
+
+        <div class="panel-body row">
+            <?php foreach ($users as $key => $value): ?>
+                <div class="col-md-1 col-xs-2">
+                    <div class="text-center">
+                        <p>
+                            <?= Html::a(Html::img($value->userAvatar, ['class' => 'img-responsive img-thumbnail']),
+                                ['/user/default/show', 'username' => $value['username']]
+                            );?>
+                        </p>
+                        <h5>
+                            <?= Html::a($value['username'], ['/user/default/show', 'username' => $value['username']]) ?>
+                        </h5>
+                    </div>
+                </div>
+            <?php endforeach ?>
+        </div>
+    </div>
 
 <div class="panel panel-default list-panel">
     <div class="panel-heading">

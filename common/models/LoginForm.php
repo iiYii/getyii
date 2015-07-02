@@ -3,7 +3,7 @@ namespace common\models;
 
 use Yii;
 use yii\base\Model;
-
+use yii\web\Session;
 /**
  * Login form
  */
@@ -100,6 +100,13 @@ class LoginForm extends Model
         $model->prev_login_ip = $model->last_login_ip;
         $model->last_login_time = time();
         $model->last_login_ip = Yii::$app->getRequest()->getUserIP();
+
+        if(!Yii::$app->session->isActive){
+            Yii::$app->session->open();
+        }
+        $model->session_id=Yii::$app->session->id;
+        Yii::$app->session->close();
+
         if ($model->save()) {
             return true;
         } else {

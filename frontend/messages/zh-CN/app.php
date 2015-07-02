@@ -108,7 +108,7 @@ return [
     'Recent Topics' => '最近主题',
     'Reply' => '回复',
     'User Login Required for commenting.' => '需要登录后才能发表评论.',
-    'site_intro' => 'Get Yii，对！没错！这里就是 Yii 社区，我们想做国内最权威的 Yii 社区，拥有国内所有资深的 Yii 工程师。',
+    'site_intro' => 'DBA中国社区 致力于打造最专业的DBA交流和互动平台。',
     'contributing' => '功能正在完善中, 欢迎 <i class="fa fa-github" style="font-size:15px"></i> <a href="https://github.com/summerblue/phphub" target="_blank">贡献代码</a> 或 <a href="https://github.com/summerblue/phphub/issues" target="_blank">提交 Issue</a>.',
     'be_nice' => '我们希望 PHPHub 能够成为技术氛围最好的 PHP 社区，而实现这个目标，需要我们所有人的共同努力：友善，公平，尊重知识和事实。',
     'publish_typography' => '请注意单词拼写，以及中英文排版，<a href="https://github.com/sparanoid/chinese-copywriting-guidelines">参考此页</a>',
@@ -150,4 +150,8 @@ return [
 
     'Update Post: ' => '更新话题：',
     'Data Deleted' => '相关数据已经删除',
+
+    'Online Count' => '当前在线人数',
+    'Post Count' => '主题数',
+    'Comment Count' => '回答数',
 ];

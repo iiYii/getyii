@@ -197,6 +197,11 @@ a.desc:after {
     padding: 0;
 }
 
+.article blockquote, .markdown-reply blockquote {
+    background-color: #f7f7f7;
+    font-size: inherit;
+}
+
 .deleted {
     text-decoration: line-through;
     color: #e1e1e1;

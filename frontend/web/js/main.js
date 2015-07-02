@@ -145,6 +145,7 @@ jQuery(function ($) {
             localforage.removeItem('comment_content');
         });
     }
+
     localStorage();
 
     /**
@@ -208,16 +209,16 @@ jQuery(function ($) {
         }
     }
 
-    $('form').submit(function () {
-        $(this).find("button[type='submit']").prop('disabled', true);
-    });
+    //$('form').submit(function () {
+    //    $(this).find("button[type='submit']").prop('disabled', true);
+    //});
 
     //add by ruzuojun
-    $(document).on("click","#goTop",function(){
+    $(document).on("click", "#goTop", function () {
         $('html,body').animate({scrollTop: '0px'}, 800);
-    }).on("click","#goBottom",function(){
-        $('html,body').animate({scrollTop:$('.footer').offset().top}, 800);
-    }).on("click","#refresh",function(){
+    }).on("click", "#goBottom", function () {
+        $('html,body').animate({scrollTop: $('.footer').offset().top}, 800);
+    }).on("click", "#refresh", function () {
         location.reload();
     });
 });

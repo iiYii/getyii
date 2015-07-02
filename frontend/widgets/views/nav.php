@@ -33,7 +33,7 @@ NavBar::begin([
 echo Nav::widget([
     'options' => ['class' => 'nav navbar-nav '],
     'items' => [
-        ['label' =>  Icon::show('th-large')  . '首页', 'url' => ['/site/index'] ],
+//        ['label' =>  Icon::show('th-large')  . '首页', 'url' => ['/site/index'] ],
         ['label' => Icon::show('comment')  .'话题', 'url' => ['/topic'], 'active' => $topicActive],
         ['label' => Icon::show('envelope')  .'招聘', 'url' => ['/topic/default/index', 'node' =>'jobs'], 'active' => $jobsActive],
         ['label' => Icon::show('th')  .'标签', 'url' => ['/site/tags'], 'active' => $topicTagsActive],

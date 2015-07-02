@@ -63,11 +63,9 @@ BowerAsset::register($this);
                     <dd> <?= Yii::powered() ?> <?= Yii::getVersion() ?> </dd>
                 </div>
                 <div class="col-sm-3">
-                    <!--
                     <a href="http://www.qiniu.com/">
                         <img src="http://assets.qiniu.com/qiniu-transparent.png" alt="qiniu" width="240">
                     </a>
-                    -->
                     <?= Html::img('../images/hard_work.gif',['height'=>'44','width'=>'44'] ); ?>
                     <p>赞助本站，你的LOGO将出现在这里</p>
                 </div>

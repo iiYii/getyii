@@ -16,10 +16,11 @@ class BowerAsset extends AssetBundle
         //'foundation/css/foundation.min.css',
     ];
     public $js = [
+        'bootstrap/dist/js/bootstrap.min.js',
         'marked/lib/marked.js',
         'highlightjs/highlight.pack.js',
         'localforage/dist/localforage.min.js',
         'jquery-textcomplete/dist/jquery.textcomplete.min.js',
-        'foundation/js/foundation.min.js',
+        // 'foundation/js/foundation.min.js',
     ];
 }

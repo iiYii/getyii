@@ -9,13 +9,13 @@ namespace frontend\widgets;
 
 use common\services\UserService;
 
-class Nav extends \yii\bootstrap\Widget
+class Nav extends \yii\base\Widget
 {
-
+    public function init(){}
+    
     public function run()
     {
         $notifyCount = UserService::findNotifyCount();
-
         return $this->render('nav', [
             'notifyCount' => $notifyCount,
         ]);

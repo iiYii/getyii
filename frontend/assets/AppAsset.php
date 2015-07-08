@@ -6,7 +6,7 @@
  */
 
 namespace frontend\assets;
-
+use Yii;
 use yii\web\AssetBundle;
 
 /**
@@ -20,12 +20,14 @@ class AppAsset extends AssetBundle
 
     public $css = [
         'css/global.css',
-        'css/site.css',
+        'css/site.css',  //site.css or site-ruyi.css
     ];
 
     public $js = [
         'js/main.js',
         'js/topic.js',
+        'js/jquery.pin.js',
+        'js/nav.js',
     ];
 
     public $depends = [

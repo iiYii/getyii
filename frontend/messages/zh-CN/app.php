@@ -150,4 +150,8 @@ return [
 
     'Update Post: ' => '更新话题：',
     'Data Deleted' => '相关数据已经删除',
+
+    'Online Count' => '当前在线人数',
+    'Post Count' => '主题数',
+    'Comment Count' => '回答数',
 ];

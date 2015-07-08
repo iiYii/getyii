@@ -5,7 +5,7 @@
  * description:
  */
 ?>
-<?php if ($nodes): ?>
+<?php if (isset($nodes)): ?>
 <div class="panel panel-default node-panel">
     <div class="panel-heading">
         <h3 class="panel-title text-center">节点导航</h3>

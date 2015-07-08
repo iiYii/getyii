@@ -133,12 +133,7 @@ jQuery(function ($) {
                 runPreview();
             });
 
-            ///**
-            // * 监听键盘
-            // */
-            //$('#md-input').keyup(function () {
-            //    runPreview();
-            //});
+
         });
 
         // Clear Local Storage on submit
@@ -149,8 +144,16 @@ jQuery(function ($) {
         $('.topic-view button[type=submit]').click(function (event) {
             localforage.removeItem('comment_content');
         });
-    };
+    }
+
     localStorage();
+
+    /**
+     * 监听键盘
+     */
+    $('#md-input').keyup(function () {
+        runPreview();
+    });
 
     /**
      * markdown预览
@@ -159,19 +162,16 @@ jQuery(function ($) {
         var replyContent = $("#md-input");
         var oldContent = replyContent.val();
         if (oldContent) {
-
-            marked(oldContent, {
-                sanitize: true,
-            }, function (err, content) {
+            marked(oldContent, function (err, content) {
                 $('#md-preview').html(content);
-
-                $('pre code').each(function (i, block) {
-                    hljs.highlightBlock(block);
-                });
+                //$('pre code').each(function (i, block) {
+                //    hljs.highlightBlock(block);
+                //});
                 //emojify.run(document.getElementById('preview-box'));
             });
         }
     }
+
 
     $(document).on('click', '.btn-reply', function (e) {
         e.preventDefault();
@@ -180,7 +180,7 @@ jQuery(function ($) {
         var replyContent = $("#md-input");
         var oldContent = replyContent.val();
         var prefix = "@" + username + " #" + floor + "楼 ";
-        var newContent = ''
+        var newContent = '';
         if (oldContent.length > 0) {
             if (oldContent != prefix) {
                 newContent = oldContent + "\n" + prefix;
@@ -209,8 +209,17 @@ jQuery(function ($) {
         }
     }
 
-    $('form').submit(function () {
-        $(this).find("button[type='submit']").prop('disabled', true);
+    //$('form').submit(function () {
+    //    $(this).find("button[type='submit']").prop('disabled', true);
+    //});
+
+    //add by ruzuojun
+    $(document).on("click", "#goTop", function () {
+        $('html,body').animate({scrollTop: '0px'}, 800);
+    }).on("click", "#goBottom", function () {
+        $('html,body').animate({scrollTop: $('.footer').offset().top}, 800);
+    }).on("click", "#refresh", function () {
+        location.reload();
     });
     
     //菜单效果

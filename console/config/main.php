@@ -25,4 +25,9 @@ return [
         ],
     ],
     'params' => $params,
+    'controllerMap' => [
+        'backup' => [
+            'class' => 'yiier\backup\controllers\BackupController',
+        ]
+    ]
 ];

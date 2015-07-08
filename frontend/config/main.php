@@ -23,6 +23,7 @@ return [
                 'member/<action>/<type:\w+>/<id:\d+>' => 'user/action/<action>',
                 'tag/<tag:\w+>' => 'topic/default/index/',
                 'node/<node:[0-9a-zA-Z\-]+>' => 'topic/default/index',
+                'topic/<id:[0-9a-zA-Z\-]+>' => 'topic/default/view',
                 '<module>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
             ],
         ],
@@ -40,6 +41,10 @@ return [
                     'class' => 'yii\authclient\clients\GitHub',
                     'clientId' => 'github_client_id',
                     'clientSecret' => 'github_client_secret',
+                    'viewOptions' => [
+                        'popupWidth' => 820,
+                        'popupHeight' => 600,
+                    ]
                 ],
             ],
         ],
@@ -74,8 +79,13 @@ return [
         'topic' => [
             'class' => 'frontend\modules\topic\Module',
         ],
+<<<<<<< HEAD
         'course' => [
             'class' => 'frontend\modules\course\Module',
+=======
+        'nav' => [
+            'class' => 'frontend\modules\nav\Module',
+>>>>>>> ormm/master
         ],
     ],
     'params' => $params,

@@ -39,8 +39,13 @@ use yii\helpers\Html;
             Html::a(
                 $model->user['username'],
                 ['/user/default/show', 'username' => $model->user['username']]
+<<<<<<< HEAD
             ), '<i class="fa fa-calendar"></i>',
             Html::tag('span', Yii::$app->formatter->asRelativeTime($model->created_at));
+=======
+            ), '•',
+            Html::tag('span', Yii::$app->formatter->asRelativeTime($model->updated_at));
+>>>>>>> ormm/master
             ?>
         </div>
     </div>

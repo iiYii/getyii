@@ -39,6 +39,21 @@
 - Yii2 中国交流群：343188481
 - Get√Yii 核心开发者群：321493381（本群只接受参与本站开发的 Yiier）
 
+## 捐赠
+
+- ![微信支付](https://raw.githubusercontent.com/iiYii/getyii/master/wechat-pay.jpg)
+
+手机微信扫描上方二维码可向本项目捐款
+
+
+感谢以下这些朋友的资金支持，所得捐赠将用于改善网站服务器、购买开发/调试设备&工具。
+
+
+捐赠人    | 金额 | 时间 | 说明
+-------|------|------ | ------
+张**  | 1.00  | 2015年7月7日 | http://iamtutu.com/
+
+
 ## 感谢
 
 - 感谢 [Ruby-China](https://github.com/ruby-china/ruby-china) 的开源代码。

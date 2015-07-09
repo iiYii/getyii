@@ -38,8 +38,8 @@
     "funson86/yii2-setting": "*",
     "yiisoft/yii2-imagine": "^2.0",
     "fxp/composer-asset-plugin": "~1.0",
-    "kartik-v/yii2-icons": "dev-master",
-    "yiier/yii2-backup": "dev-master"
+    "kartik-v/yii2-icons": "*",
+    "yiier/yii2-backup": "*"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",
@@ -55,11 +55,5 @@
       "npm-asset-library": "vendor/npm",
       "bower-asset-library": "vendor/bower"
     }
-  },
-  "repositories": [
-    {
-      "type": "git",
-      "url": "https://github.com/yiier/yii2-backup.git"
-    }
-  ]
+  }
 }

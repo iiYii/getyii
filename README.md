@@ -41,9 +41,9 @@
 
 ## 捐赠
 
-- ![微信支付](https://raw.githubusercontent.com/iiYii/getyii/master/wechat-pay.jpg)
+![支付宝支付](https://raw.githubusercontent.com/iiYii/getyii/master/ali-pay.jpg)
 
-手机微信扫描上方二维码可向本项目捐款
+手机支付宝扫描上方二维码可向本项目捐款
 
 
 感谢以下这些朋友的资金支持，所得捐赠将用于改善网站服务器、购买开发/调试设备&工具。

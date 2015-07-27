@@ -10,6 +10,7 @@ namespace frontend\modules\topic\models;
 
 use common\models\Post;
 use common\models\PostTag;
+use common\models\Search;
 use frontend\modules\user\models\UserMeta;
 use yii\web\NotFoundHttpException;
 
@@ -92,6 +93,18 @@ class Topic extends Post
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function afterSave($insert)
+    {
+//        if ($this->isNewRecord) { // === false even we insert a new record
+            // code here ...
+            $search = new Search();
+            $search->topic_id = $this->id;
+            $search->title = $this->title;
+            $search->content = $this->content;
+            $search->save();
+//        }
     }
 
     /**

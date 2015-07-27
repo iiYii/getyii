@@ -3,6 +3,7 @@
 namespace frontend\modules\topic\controllers;
 
 use common\models\Post;
+use common\models\Search;
 use common\models\User;
 use common\services\NotificationService;
 use common\services\TopicService;
@@ -44,7 +45,7 @@ class DefaultController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     // 默认只能Get方式访问
-                    ['allow' => true, 'actions' => ['view', 'index', 'sync'], 'verbs' => ['GET']],
+                    ['allow' => true, 'actions' => ['view', 'index', 'sync', 'search'], 'verbs' => ['GET']],
                     // 登录用户才能提交评论或其他内容
                     ['allow' => true, 'actions' => ['api', 'view', 'delete'], 'verbs' => ['POST'], 'roles' => ['@']],
                     // 登录用户才能使用API操作(赞,踩,收藏)
@@ -102,6 +103,40 @@ class DefaultController extends Controller
             'sorts'        => $this->sorts,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionSearch()
+    {
+        $searchModel = new Search();
+        $keyword = Yii::$app->request->get('keyword');
+        if (empty($keyword)) $this->goHome();
+
+//        $search = \Yii::$app->xunsearch->getDatabase('search')->getSearch();
+
+        $dataProvider = $searchModel->search($keyword);
+
+        return $this->render('search', [
+            'searchModel'  => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+
+//        $keyword = Yii::$app->request->get('keyword');
+//        $page = Yii::$app->request->get('page', 1);
+//        if ($page < 1) $page = 1;
+//        if (empty($keyword)) $this->goHome();
+//        $this->title = $keyword . ' - 搜索 - ' . Yii::$app->name;
+//        $this->description = '';
+//        $this->keyword = $keyword;
+//        $search = \Yii::$app->xunsearch->getDatabase('search')->getSearch();
+//        $search->setFuzzy();
+//        $search->setQuery($keyword);
+//        $search->setLimit(Yii::$app->params['pageSize'], ($page - 1) * Yii::$app->params['pageSize']);
+//        $topic = $search->search();
+//        $pagination = new Pagination([
+//            'defaultPageSize' => Yii::$app->params['pageSize'],
+//            'totalCount' => count($topic)
+//        ]);
+//        return $this->render('search', ['topic' => $topic, 'pagination' => $pagination, 'keyword' => $keyword]);
     }
 
     /**

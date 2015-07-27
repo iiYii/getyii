@@ -16,6 +16,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<alias:login|logout|about|tags|getstart|signup|contact>' => 'site/<alias>',
+                '<alias:search>' => 'topic/default/<alias>',
                 'member/<username:\w+>' => 'user/default/show',
                 'member/<username:\w+>/post' => 'user/default/post',
                 'member/<username:\w+>/favorite' => 'user/default/favorite',
@@ -30,6 +32,11 @@ return [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
+        ],
+        'xunsearch' => [
+            'class' => 'hightman\xunsearch\Connection', // 此行必须
+            'iniDirectory' => '@frontend/config',    // 搜索 ini 文件目录，默认：@vendor/hightman/xunsearch/app
+            'charset' => 'utf-8',   // 指定项目使用的默认编码，默认即时 utf-8，可不指定
         ],
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',

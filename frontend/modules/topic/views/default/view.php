@@ -129,7 +129,7 @@ $this->title = $model->title;
                         ['/topic/default/delete', 'id' => $model->id],
                         [
                             'data' => [
-                                'confirm' => "您确认要删除文章「{Html::encode($model->title)}」吗？",
+                                'confirm' => "您确认要删除文章「{$model->title}」吗？",
                                 'method' => 'post',
                             ],
                         ]

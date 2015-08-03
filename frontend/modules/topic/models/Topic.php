@@ -97,14 +97,17 @@ class Topic extends Post
 
     public function afterSave($insert)
     {
-//        if ($this->isNewRecord) { // === false even we insert a new record
-            // code here ...
+        if ($insert) {
             $search = new Search();
             $search->topic_id = $this->id;
-            $search->title = $this->title;
-            $search->content = $this->content;
-            $search->save();
-//        }
+            $search->status = self::STATUS_ACTIVE;
+        } else {
+            $search = Search::findOne($this->id);
+            $search->status = $this->status;
+        }
+        $search->title = $this->title;
+        $search->content = $this->content;
+        $search->save();
     }
 
     /**
@@ -121,7 +124,7 @@ class Topic extends Post
             $tagRaw = $_tagItem::findOne(['name' => $tag]);
             if (!$tagRaw) {
                 $_tagItem->setAttributes([
-                    'name'  => $tag,
+                    'name' => $tag,
                     'count' => 1,
                 ]);
                 if ($_tagItem->save()) {

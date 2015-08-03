@@ -8,8 +8,7 @@ class Search extends \hightman\xunsearch\ActiveRecord
 {
     public function search($keyword)
     {
-        $query = self::find()->where($keyword);
-
+        $query = self::find()->where($keyword)->andWhere(['status' => [1, 2]]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

@@ -119,24 +119,6 @@ class DefaultController extends Controller
             'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-
-//        $keyword = Yii::$app->request->get('keyword');
-//        $page = Yii::$app->request->get('page', 1);
-//        if ($page < 1) $page = 1;
-//        if (empty($keyword)) $this->goHome();
-//        $this->title = $keyword . ' - 搜索 - ' . Yii::$app->name;
-//        $this->description = '';
-//        $this->keyword = $keyword;
-//        $search = \Yii::$app->xunsearch->getDatabase('search')->getSearch();
-//        $search->setFuzzy();
-//        $search->setQuery($keyword);
-//        $search->setLimit(Yii::$app->params['pageSize'], ($page - 1) * Yii::$app->params['pageSize']);
-//        $topic = $search->search();
-//        $pagination = new Pagination([
-//            'defaultPageSize' => Yii::$app->params['pageSize'],
-//            'totalCount' => count($topic)
-//        ]);
-//        return $this->render('search', ['topic' => $topic, 'pagination' => $pagination, 'keyword' => $keyword]);
     }
 
     /**
@@ -246,8 +228,8 @@ class DefaultController extends Controller
         if ($model->comment_count) {
             $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'warning');
         } else {
-            $model->updateAttributes(['status' => 0]);
-            Notification::updateAll(['status' => 0], ['post_id' => $model->id]);
+
+            TopicService::delete($model);
             $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
             $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
         }
@@ -267,13 +249,13 @@ class DefaultController extends Controller
         if (!$model->isCurrent()) {
             throw new NotFoundHttpException();
         }
-        $model->updateCounters(['status' => 1]);
+        TopicService::revoke($model);
         $this->flash("「{$model->title}」文章撤销删除成功。", 'success');
         return $this->redirect(['/topic/default/view', 'id' => $model->id]);
     }
 
     /**
-     * 伪删除
+     * 加精华
      * @param $id
      * @return \yii\web\Response
      * @throws NotFoundHttpException

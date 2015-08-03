@@ -10,8 +10,7 @@ use kartik\icons\Icon;
 Icon::map($this);
 
 $this->title = '社区';
-$sort = Yii::$app->request->getQueryParam('sort');
-$tag = Yii::$app->request->getQueryParam('tag');
+$keyword = Yii::$app->request->getQueryParam('keyword');
 if ($node = Yii::$app->request->getQueryParam('node')) {
     $node = \common\models\PostMeta::find()->where(['alias' => $node])->one();
 }
@@ -30,16 +29,8 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
         <?php endif; ?>
 
         <div class="panel-heading clearfix">
-            <?php if ($tag): ?>
-                <div class="pull-left">搜索标签：<?= $tag; ?>
-                </div>
-            <?php endif; ?>
-
-            <div class="filter pull-right">
-                <span class="l">查看:</span>
-
+            <div class="pull-left">搜索：<?= $keyword; ?>
             </div>
-
         </div>
 
         <?php Pjax::begin(['scrollTo' => 0]); ?>

@@ -13,6 +13,7 @@ use common\models\PostTag;
 use common\models\Search;
 use frontend\modules\user\models\UserMeta;
 use yii\web\NotFoundHttpException;
+use Yii;
 
 class Topic extends Post
 {
@@ -61,20 +62,36 @@ class Topic extends Post
     /**
      * 通过ID获取指定话题
      * @param $id
+     * @param string $condition
      * @return array|null|\yii\db\ActiveRecord|static
      * @throws NotFoundHttpException
      */
-    public static function findTopic($id)
+    public function findModel($id, $condition = '')
     {
-        $model = static::find()
-            ->where('status >= :status', [':status' => self::STATUS_ACTIVE])
-            ->andWhere(['id' => $id, 'type' => 'topic'])
-            ->one();
-        if ($model !== null) {
+        if (!$model = Yii::$app->cache->get('topic' . $id)) {
+            $model = static::find()
+                ->where($condition)
+                ->andWhere(['id' => $id, 'type' => 'topic'])
+                ->one();
+        }
+        if ($model) {
+            Yii::$app->cache->set('topic' . $id, $model, 0);
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+
+    }
+
+    /**
+     * 通过ID获取指定话题
+     * @param $id
+     * @return array|Topic|null|\yii\db\ActiveRecord
+     * @throws NotFoundHttpException
+     */
+    public static function findTopic($id)
+    {
+        return static::findModel($id, ['>=', 'status', self::STATUS_ACTIVE]);
     }
 
     /**
@@ -85,14 +102,7 @@ class Topic extends Post
      */
     public static function findDeletedTopic($id)
     {
-        $model = static::find()
-            ->where(['id' => $id, 'status' => self::STATUS_DELETED, 'type' => 'topic'])
-            ->one();
-        if ($model !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
+        return static::findModel($id, ['>=', 'status', self::STATUS_DELETED]);
     }
 
     public function afterSave($insert)
@@ -108,6 +118,7 @@ class Topic extends Post
         $search->title = $this->title;
         $search->content = $this->content;
         $search->save();
+        Yii::$app->cache->set('topic' . $this->id, $this, 0);
     }
 
     /**

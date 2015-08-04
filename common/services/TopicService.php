@@ -7,6 +7,7 @@
 
 namespace common\services;
 
+use frontend\models\Notification;
 use frontend\modules\topic\models\Topic;
 
 class TopicService
@@ -34,11 +35,32 @@ class TopicService
         if (in_array($content, $data)) {
             return false;
         }
-        $action = ['+1', '赞', '很赞' , '喜欢', '收藏', 'mark', '写的不错', '不错', '给力' ];
+        $action = ['+1', '赞', '很赞', '喜欢', '收藏', 'mark', '写的不错', '不错', '给力'];
         if (in_array($content, $action)) {
             return false;
         }
         return true;
     }
 
+    /**
+     * 删除帖子
+     * @param Topic $topic
+     */
+    public static function delete(Topic $topic)
+    {
+        $topic->setAttributes(['status' => Topic::STATUS_DELETED]);
+        $topic->save();
+        Notification::updateAll(['status' => Topic::STATUS_DELETED], ['post_id' => $topic->id]);
+
+    }
+
+    /**
+     * 撤销帖子
+     * @param Topic $topic
+     */
+    public static function revoke(Topic $topic)
+    {
+        $topic->setAttributes(['status' => Topic::STATUS_ACTIVE]);
+        $topic->save();
+    }
 }

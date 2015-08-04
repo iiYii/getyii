@@ -39,6 +39,8 @@
     "yiisoft/yii2-imagine": "^2.0",
     "fxp/composer-asset-plugin": "~1.0",
     "kartik-v/yii2-icons": "*",
+    "hightman/xunsearch": "*@beta",
+    "kartik-v/yii2-widget-select2": "*",
     "yiier/yii2-backup": "*"
   },
   "require-dev": {
@@ -55,5 +57,14 @@
       "npm-asset-library": "vendor/npm",
       "bower-asset-library": "vendor/bower"
     }
-  }
+  },
+  "repositories": [
+    {
+      "packagist": false
+    },
+    {
+      "type": "composer",
+      "url": "http://composer-proxy.jp/proxy/packagist"
+    }
+  ]
 }

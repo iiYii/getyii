@@ -53,7 +53,7 @@ class PostComment extends ActiveRecord
         return [
             [['parent', 'post_id', 'status', 'user_id', 'like_count', 'created_at', 'updated_at'], 'integer'],
             [['post_id', 'comment', 'user_id', 'ip'], 'required'],
-            [['comment'], 'string', 'min' =>2],
+            [['comment'], 'string', 'min' => 2],
             [['ip'], 'string', 'max' => 255]
         ];
     }
@@ -82,19 +82,35 @@ class PostComment extends ActiveRecord
     /**
      * 通过ID获取指定评论
      * @param $id
+     * @param string $condition
+     * @return array|null|\yii\db\ActiveRecord|static
+     * @throws NotFoundHttpException
+     */
+    public function findModel($id, $condition = '')
+    {
+        if (!$model = Yii::$app->cache->get('comment' . $id)) {
+            $model = static::find()
+                ->where(['id' => $id])
+                ->andWhere($condition)
+                ->one();
+        }
+        if ($model !== null) {
+            Yii::$app->cache->set('comment' . $id, $model, 0);
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    /**
+     * 通过ID获取指定评论
+     * @param $id
      * @return array|null|\yii\db\ActiveRecord|static
      * @throws NotFoundHttpException
      */
     public static function findComment($id)
     {
-        $model = static::find()
-            ->where(['id' => $id, 'status' => self::STATUS_ACTIVE])
-            ->one();
-        if ($model !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
+        return static::findModel($id, ['status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -105,14 +121,7 @@ class PostComment extends ActiveRecord
      */
     public static function findDeletedComment($id)
     {
-        $model = static::find()
-            ->where(['id' => $id, 'status' => self::STATUS_DELETED])
-            ->one();
-        if ($model !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
+        return static::findModel($id, ['status' => self::STATUS_DELETED]);
     }
 
     /**
@@ -172,6 +181,11 @@ class PostComment extends ActiveRecord
             $users[] = $value;
         }
         return ArrayHelper::map(User::find()->where(['username' => $users])->all(), 'id', 'username');
+    }
+
+    public function afterSave($insert)
+    {
+        Yii::$app->cache->set('comment' . $this->id, $this, 0);
     }
 
     /**

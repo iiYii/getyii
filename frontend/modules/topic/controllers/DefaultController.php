@@ -3,6 +3,7 @@
 namespace frontend\modules\topic\controllers;
 
 use common\models\Post;
+use common\models\Search;
 use common\models\User;
 use common\services\NotificationService;
 use common\services\TopicService;
@@ -44,7 +45,7 @@ class DefaultController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     // 默认只能Get方式访问
-                    ['allow' => true, 'actions' => ['view', 'index', 'sync'], 'verbs' => ['GET']],
+                    ['allow' => true, 'actions' => ['view', 'index', 'sync', 'search'], 'verbs' => ['GET']],
                     // 登录用户才能提交评论或其他内容
                     ['allow' => true, 'actions' => ['api', 'view', 'delete'], 'verbs' => ['POST'], 'roles' => ['@']],
                     // 登录用户才能使用API操作(赞,踩,收藏)
@@ -100,6 +101,22 @@ class DefaultController extends Controller
         return $this->render('index', [
             'searchModel'  => $searchModel,
             'sorts'        => $this->sorts,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionSearch()
+    {
+        $searchModel = new Search();
+        $keyword = Yii::$app->request->get('keyword');
+        if (empty($keyword)) $this->goHome();
+
+//        $search = \Yii::$app->xunsearch->getDatabase('search')->getSearch();
+
+        $dataProvider = $searchModel->search($keyword);
+
+        return $this->render('search', [
+            'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -211,8 +228,8 @@ class DefaultController extends Controller
         if ($model->comment_count) {
             $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'warning');
         } else {
-            $model->updateAttributes(['status' => 0]);
-            Notification::updateAll(['status' => 0], ['post_id' => $model->id]);
+
+            TopicService::delete($model);
             $revoke = Html::a('撤消', ['/topic/default/revoke', 'id' => $model->id]);
             $this->flash("「{$model->title}」文章删除成功。 反悔了？{$revoke}", 'success');
         }
@@ -232,13 +249,13 @@ class DefaultController extends Controller
         if (!$model->isCurrent()) {
             throw new NotFoundHttpException();
         }
-        $model->updateCounters(['status' => 1]);
+        TopicService::revoke($model);
         $this->flash("「{$model->title}」文章撤销删除成功。", 'success');
         return $this->redirect(['/topic/default/view', 'id' => $model->id]);
     }
 
     /**
-     * 伪删除
+     * 加精华
      * @param $id
      * @return \yii\web\Response
      * @throws NotFoundHttpException

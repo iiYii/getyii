@@ -202,11 +202,6 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionFaq()
-    {
-        return $this->redirect('http://segmentfault.com/t/yii');
-    }
-
     public function actionSignup()
     {
         $model = new SignupForm();

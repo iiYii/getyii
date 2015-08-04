@@ -11,6 +11,11 @@ class Search extends \hightman\xunsearch\ActiveRecord
         $query = self::find()->where($keyword)->andWhere(['status' => [1, 2]]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'updated_at' => SORT_DESC,
+                ]
+            ]
         ]);
 
         return $dataProvider;

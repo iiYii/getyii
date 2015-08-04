@@ -117,6 +117,7 @@ class Topic extends Post
         }
         $search->title = $this->title;
         $search->content = $this->content;
+        $search->updated_at = $this->updated_at;
         $search->save();
         Yii::$app->cache->set('topic' . $this->id, $this, 0);
     }

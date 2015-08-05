@@ -4,18 +4,16 @@ namespace frontend\modules\user\controllers;
 
 use frontend\modules\user\models\AvatarForm;
 use Yii;
-use common\models\User;
 use frontend\modules\user\models\AccountForm;
 use common\models\UserInfo;
-use yii\base\ErrorException;
+use yii\authclient\ClientInterface;
 use yii\filters\AccessControl;
 use frontend\modules\user\models\UserAccount;
-use yii\data\ActiveDataProvider;
 use common\components\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
-use yii\web\UploadedFile;
 use yii\widgets\ActiveForm;
 
 /**

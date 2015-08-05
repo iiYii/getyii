@@ -6,6 +6,7 @@ use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\helpers\FileHelper;
 use yii\web\IdentityInterface;
 use common\components\db\Mailer;
 use frontend\modules\user\models\UserAccount;
@@ -208,6 +209,7 @@ class User extends ActiveRecord implements IdentityInterface
             // TODO 写法更优雅
             $avatarPath = Yii::$app->basePath . Yii::$app->params['avatarPath'];
             $avatarCachePath = Yii::$app->basePath . Yii::$app->params['avatarCachePath'];
+            FileHelper::createDirectory($avatarCachePath); // 创建文件夹
             if (file_exists($avatarCachePath. $size . '_' . $this->avatar)) {
                 // 头像是否存在
                 return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;

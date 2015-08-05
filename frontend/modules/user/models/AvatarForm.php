@@ -106,11 +106,18 @@ class AvatarForm extends Model
         if (empty($file) || !file_exists($file)) {
             return false;
         }
+        // 删除缓存的旧头像
+        $avatarCachePath = \Yii::$app->basePath . \Yii::$app->params['avatarCachePath'];
+        $files = glob("{$avatarCachePath}/*_{$this->user->avatar}");
+        array_walk($files, function ($file) {
+            unlink($file);
+        });
 
         // check if uploaded file can be deleted on server
         if (!unlink($file)) {
             return false;
         }
+
 
         // if deletion successful, reset your file attributes
         $this->avatar = null;

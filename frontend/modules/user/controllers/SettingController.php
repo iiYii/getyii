@@ -10,6 +10,7 @@ use yii\authclient\ClientInterface;
 use yii\filters\AccessControl;
 use frontend\modules\user\models\UserAccount;
 use common\components\Controller;
+use yii\helpers\Url;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -193,7 +194,10 @@ class SettingController extends Controller
         $provider = $client->getId();
         $clientId = $attributes['id'];
 
-        $account = $this->finder->findAccountByProviderAndClientId($provider, $clientId);
+        $account = UserAccount::find()->where([
+            'provider'  => $provider,
+            'client_id' => $clientId
+        ])->one();
 
         if ($account === null) {
             $account = Yii::createObject([

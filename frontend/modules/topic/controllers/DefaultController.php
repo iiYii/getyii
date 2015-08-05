@@ -63,8 +63,6 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         $searchModel = new PostSearch();
-        $conditions['type'] = 'topic';
-        $conditions['status'] = [1, 2];
 
         // 话题或者分类筛选
         $params = Yii::$app->request->queryParams;
@@ -74,7 +72,8 @@ class DefaultController extends Controller
             ($postMeta) ? $params['PostSearch']['post_meta_id'] = $postMeta->id : '';
         }
 
-        $dataProvider = $searchModel->search($params, $conditions);
+        $dataProvider = $searchModel->search($params);
+        $dataProvider->query->andWhere([Post::tableName() . '.type' => 'topic', 'status'=>[Post::STATUS_ACTIVE, Post::STATUS_GOOD]]);
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [

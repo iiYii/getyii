@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace backend\models;
 
 use Yii;
 use yii\base\Model;
@@ -12,6 +12,9 @@ use common\models\Post;
  */
 class PostSearch extends Post
 {
+    public $category_name;
+    public $username;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +22,7 @@ class PostSearch extends Post
     {
         return [
             [['id', 'post_meta_id', 'user_id', 'view_count', 'comment_count', 'favorite_count', 'like_count', 'thanks_count', 'hate_count', 'status', 'order', 'created_at', 'updated_at'], 'integer'],
-            [['type', 'title', 'author', 'excerpt', 'image', 'content', 'tags'], 'safe'],
+            [['type', 'title', 'author', 'excerpt', 'image', 'content', 'tags', 'category_name', 'username'], 'safe'],
         ];
     }
 
@@ -38,12 +41,7 @@ class PostSearch extends Post
      */
     public function search($params)
     {
-        $query = Post::find();
-
-        // 如果有无人区节点 帖子列表过滤无人区节点的帖子
-        if (PostMeta::noManLandId() && (empty($params['PostSearch']['post_meta_id']) || $params['PostSearch']['post_meta_id'] != PostMeta::noManLandId())) {
-            $query->andWhere(['!=', 'post_meta_id', PostMeta::noManLandId()]);
-        }
+        $query = Post::find()->joinWith(['category', 'user']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -55,6 +53,15 @@ class PostSearch extends Post
                 'updated_at' => SORT_DESC,
             ]]
         ]);
+
+        $dataProvider->sort->attributes['category_name'] = [
+            'asc' => ['name' => SORT_ASC],
+            'desc' => ['name' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['username'] = [
+            'asc' => ['username' => SORT_ASC],
+            'desc' => ['username' => SORT_DESC],
+        ];
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
@@ -76,13 +83,15 @@ class PostSearch extends Post
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'type', $this->type])
+        $query->andFilterWhere(['like', Post::tableName() . '.type', $this->type])
             ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'author', $this->author])
             ->andFilterWhere(['like', 'excerpt', $this->excerpt])
             ->andFilterWhere(['like', 'image', $this->image])
             ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'tags', $this->tags]);
+            ->andFilterWhere(['like', 'tags', $this->tags])
+            ->andFilterWhere(['like', 'name', $this->category_name])
+            ->andFilterWhere(['like', 'username', $this->username]);
 
         return $dataProvider;
     }

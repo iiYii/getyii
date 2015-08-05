@@ -344,3 +344,7 @@ a:visited .badge-reply-count {
     font-size: 12px;
     margin-top: 3px;
 }
+
+.select2-container--krajee .select2-results > .select2-results__options {
+     max-height: 500px;
+}

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use yii\widgets\ActiveForm;
 use dosamigos\selectize\SelectizeTextInput;
+use kartik\select2\Select2;
 
 ?>
 <div class="list-group-item">
@@ -23,10 +24,15 @@ use dosamigos\selectize\SelectizeTextInput;
         'placeholder' => '标题'
     ]) ?>
 
-    <?= $form->field($model, 'post_meta_id')->dropDownList(
-        \common\models\PostMeta::topicCategory(),
-        ['prompt'=>'选择一个分类']
-    ) ?>
+    <?= $form->field($model, 'post_meta_id')->widget(Select2::classname(), [
+        'data' => \common\models\PostMeta::topicCategory(),
+        'options' => ['placeholder' => '选择一个分类'],
+        'pluginOptions' => [
+            'allowClear' => true,
+            'height' => '343%'
+        ],
+    ]);
+    ?>
 
     <?= $this->render('@frontend/views/partials/markdwon_help') ?>
 

@@ -265,8 +265,7 @@ class DefaultController extends Controller
         $user = Yii::$app->user->identity;
         $model = Topic::findTopic($id);
         if ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) {
-            $action = ($model->status == Topic::STATUS_ACTIVE) ? Topic::STATUS_GOOD : Topic::STATUS_ACTIVE;
-            $model->updateAttributes(['status' => $action]);
+            TopicService::excellent($model);
             $this->flash("操作成功", 'success');
             return $this->redirect(['/topic/default/view', 'id' => $model->id]);
         } else {

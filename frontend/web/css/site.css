@@ -197,7 +197,7 @@ a.desc:after {
     padding: 0;
 }
 
-.article blockquote, .markdown-reply blockquote {
+.article blockquote, .markdown-reply blockquote, #md-preview blockquote {
     background-color: #f7f7f7;
     font-size: inherit;
 }

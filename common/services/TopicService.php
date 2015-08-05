@@ -63,4 +63,24 @@ class TopicService
         $topic->setAttributes(['status' => Topic::STATUS_ACTIVE]);
         $topic->save();
     }
+
+    /**
+     * 加精华
+     * @param Topic $topic
+     */
+    public static function excellent(Topic $topic)
+    {
+        $action = ($topic->status == Topic::STATUS_ACTIVE) ? Topic::STATUS_GOOD : Topic::STATUS_ACTIVE;
+        $topic->setAttributes(['status' => $action]);
+        $topic->save();
+    }
+
+    /**
+     * 更新缓存
+     * @param Topic $topic
+     */
+    public static function updateCache(Topic $topic)
+    {
+        \Yii::$app->cache->set('topic' . $topic->id, $topic, 0);
+    }
 }

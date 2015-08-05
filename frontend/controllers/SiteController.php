@@ -20,6 +20,7 @@ use common\models\User;
 use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use frontend\modules\user\models\UserAccount;
+use dosamigos\qrcode\QrCode;
 
 /**
  * Site controller
@@ -68,9 +69,9 @@ class SiteController extends Controller
         $topics = Post::find()->limit(20)->where(['status' => 2])->orderBy(['created_at' => SORT_DESC])->all();
         $users = User::find()->joinWith('userInfo')->orderBy(['(like_count+thanks_count)' => SORT_DESC])->limit(12)->all();
         $statistics = array();
-        $statistics['post_count'] =  Post::find()->count();
-        $statistics['comment_count'] =  PostComment::find()->count();
-        $statistics['online_count'] =  Session::find()->where(['>','expire' , time()])->count();
+        $statistics['post_count'] = Post::find()->count();
+        $statistics['comment_count'] = PostComment::find()->count();
+        $statistics['online_count'] = Session::find()->where(['>', 'expire', time()])->count();
 
         return $this->render('index', [
             'topics' => $topics,
@@ -200,6 +201,11 @@ class SiteController extends Controller
         return $this->render('signup', [
             'model' => $model,
         ]);
+    }
+
+    public function actionQrcode($url='')
+    {
+        return QrCode::png($url);
     }
 
     public function actionSignup()

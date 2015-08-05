@@ -41,7 +41,8 @@
     "kartik-v/yii2-icons": "*",
     "hightman/xunsearch": "*@beta",
     "kartik-v/yii2-widget-select2": "*",
-    "yiier/yii2-backup": "*"
+    "yiier/yii2-backup": "*",
+    "2amigos/yii2-qrcode-helper": "~1.0"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",
@@ -57,14 +58,5 @@
       "npm-asset-library": "vendor/npm",
       "bower-asset-library": "vendor/bower"
     }
-  },
-  "repositories": [
-    {
-      "packagist": false
-    },
-    {
-      "type": "composer",
-      "url": "http://composer-proxy.jp/proxy/packagist"
-    }
-  ]
+  }
 }

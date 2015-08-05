@@ -4,6 +4,7 @@ namespace frontend\modules\topic\controllers;
 
 use common\models\Post;
 use common\models\Search;
+use common\models\SearchLog;
 use common\models\User;
 use common\services\NotificationService;
 use common\services\TopicService;
@@ -26,17 +27,17 @@ class DefaultController extends Controller
 {
     const PAGE_SIZE = 50;
     public $sorts = [
-        'newest'      => '最新的',
-        'excellent'   => '优质主题',
-        'hotest'      => '热门的',
+        'newest' => '最新的',
+        'excellent' => '优质主题',
+        'hotest' => '热门的',
         'uncommented' => '未回答的'
     ];
 
     public function behaviors()
     {
         return [
-            'verbs'  => [
-                'class'   => VerbFilter::className(),
+            'verbs' => [
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
@@ -77,30 +78,30 @@ class DefaultController extends Controller
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [
-            'hotest'      => [
+            'hotest' => [
                 'asc' => [
                     'comment_count' => SORT_DESC,
-                    'created_at'    => SORT_DESC
+                    'created_at' => SORT_DESC
                 ],
             ],
-            'excellent'   => [
+            'excellent' => [
                 'asc' => [
-                    'status'        => SORT_DESC,
+                    'status' => SORT_DESC,
                     'comment_count' => SORT_DESC,
-                    'created_at'    => SORT_DESC
+                    'created_at' => SORT_DESC
                 ],
             ],
             'uncommented' => [
                 'asc' => [
                     'comment_count' => SORT_ASC,
-                    'created_at'    => SORT_DESC
+                    'created_at' => SORT_DESC
                 ],
             ]
         ]);
 
         return $this->render('index', [
-            'searchModel'  => $searchModel,
-            'sorts'        => $this->sorts,
+            'searchModel' => $searchModel,
+            'sorts' => $this->sorts,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -111,12 +112,19 @@ class DefaultController extends Controller
         $keyword = Yii::$app->request->get('keyword');
         if (empty($keyword)) $this->goHome();
 
-//        $search = \Yii::$app->xunsearch->getDatabase('search')->getSearch();
+        // 记录log
+        $model = new SearchLog();
+        $model->setAttributes([
+            'user_id' => (Yii::$app->user->isGuest) ? '' : Yii::$app->user->identity->getId(),
+            'keyword' => $keyword,
+            'created_at' => time(),
+        ]);
+        $model->save();
 
         $dataProvider = $searchModel->search($keyword);
 
         return $this->render('search', [
-            'searchModel'  => $searchModel,
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -131,7 +139,7 @@ class DefaultController extends Controller
         $model = Topic::findTopic($id);
         $comment = $this->newComment($model);
         $dataProvider = new ActiveDataProvider([
-            'query'      => PostComment::findCommentList($id),
+            'query' => PostComment::findCommentList($id),
             'pagination' => [
                 'pageSize' => self::PAGE_SIZE,
             ],
@@ -144,10 +152,10 @@ class DefaultController extends Controller
         $admin = ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) ? true : false;
 
         return $this->render('view', [
-            'model'        => $model,
+            'model' => $model,
             'dataProvider' => $dataProvider,
-            'comment'      => $comment,
-            'admin'        => $admin,
+            'comment' => $comment,
+            'admin' => $admin,
         ]);
     }
 

@@ -74,17 +74,13 @@ AppAsset::register($this);
                             ['label' => '分类管理', 'url' => ['/post-meta']],
                             ['label' => '网站配置', 'url' => ['/setting/default']],
                             [
-                                'label' => '网站导航', 'url' => ['nav/index'],
+                                'label' => '网站导航', 'url' => '#',
                                 'items' => [
                                     ['label' => '导航分类', 'url' => ['nav/index']],
                                     ['label' => '导航链接', 'url' => ['nav-url/index']],
-                                ]],
-                            [
-                                'label' => 'Products', 'url' => ['product/index'],
-                                'items' => [
-                                ['label' => 'New Arrivals', 'url' => ['product/index', 'tag' => 'new']],
-                                ['label' => 'Most Popular', 'url' => ['product/index', 'tag' => 'popular']],
-                            ]],
+                                ]
+                            ],
+                            ['label' => '搜索日志', 'url' => ['search-log/index']],
                             ['label' => '右边栏设置', 'url' => ['right-link/index']],
                             ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                         ],

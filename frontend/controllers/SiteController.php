@@ -5,6 +5,7 @@ use common\models\Post;
 use common\models\PostComment;
 use common\models\PostTag;
 use common\models\Session;
+use dosamigos\qrcode\QrCode;
 use Yii;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
@@ -20,7 +21,6 @@ use common\models\User;
 use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use frontend\modules\user\models\UserAccount;
-use dosamigos\qrcode\QrCode;
 
 /**
  * Site controller

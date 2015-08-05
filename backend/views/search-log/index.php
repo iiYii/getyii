@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             [
-                'attribute' => 'user',
+                'attribute' => 'username',
                 'filter' => Html::activeTextInput($searchModel, 'username', ['class' => 'form-control']),
                 'format' => 'raw',
                 'value' => function ($data) {

@@ -106,8 +106,9 @@ class Topic extends Post
         return static::findModel($id, ['>=', 'status', self::STATUS_DELETED]);
     }
 
-    public function afterSave($insert)
+    public function afterSave($insert, $changedAttributes)
     {
+        parent::afterSave($insert, $changedAttributes);
         if ($insert) {
             $search = new Search();
             $search->topic_id = $this->id;

@@ -73,7 +73,7 @@ class DefaultController extends Controller
         }
 
         $dataProvider = $searchModel->search($params);
-        $dataProvider->query->andWhere([Post::tableName() . '.type' => 'topic', 'status'=>[Post::STATUS_ACTIVE, Post::STATUS_GOOD]]);
+        $dataProvider->query->andWhere([Post::tableName() . '.type' => 'topic', 'status'=>[Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]]);
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [

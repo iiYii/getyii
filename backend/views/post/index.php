@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\models\Post;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\Models\PostSearch */
@@ -23,8 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-//            ['class' => 'yii\grid\SerialColumn'],
-
+            [
+                'attribute' => 'id',
+                'options' => ['width' => '10px'],
+            ],
             'title',
             [
                 'attribute' => 'category_name',
@@ -37,24 +40,42 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'username',
                 'filter' => Html::activeTextInput($searchModel, 'username', ['class' => 'form-control']),
-                'format' => 'raw',
                 'value' => function ($data) {
                     return $data->user['username'];
                 },
             ],
-            // 'excerpt',
-            // 'image',
-            // 'content:ntext',
 //             'tags',
-            // 'view_count',
-            // 'comment_count',
-             'favorite_count',
-             'like_count',
-             'hate_count',
-             'status',
-//             'order',
-            // 'created_at',
-             'updated_at:datetime',
+            [
+                'attribute' => 'view_count',
+                'options' => ['width' => '10px'],
+            ],
+            [
+                'attribute' => 'comment_count',
+                'options' => ['width' => '10px'],
+            ],
+//            [
+//                'attribute' => 'favorite_count',
+//                'options' => ['width' => '10px'],
+//            ],
+//            [
+//                'attribute' => 'like_count',
+//                'options' => ['width' => '10px'],
+//            ],
+//            [
+//                'attribute' => 'hate_count',
+//                'options' => ['width' => '10px'],
+//            ],
+            [
+                'attribute' => 'order',
+                'options' => ['width' => '10px'],
+            ],
+            [
+                'class' => \common\grid\EnumColumn::className(),
+                'attribute' => 'status',
+                'filter' => Post::getStatuses(),
+                'enum' => Post::getStatuses(),
+            ],
+            'updated_at:datetime',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

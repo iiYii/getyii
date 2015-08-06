@@ -27,5 +27,21 @@ return [
             // 'db' => 'mydb',  // 数据库连接的应用组件ID，默认为'db'.
             'sessionTable' => 'session', // session 数据表名，默认为'session'.
         ],
+        'i18n' => [
+            'translations' => [
+                'frontend*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                ],
+                'backend*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                ],
+                'common*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                ],
+            ],
+        ],
     ],
 ];

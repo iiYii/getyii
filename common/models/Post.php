@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use common\components\db\ActiveRecord;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "post".
@@ -50,7 +51,7 @@ class Post extends ActiveRecord
     /**
      * 推荐
      */
-    const STATUS_GOOD = 2;
+    const STATUS_EXCELLENT = 2;
 
     /**
      * 发布
@@ -61,6 +62,7 @@ class Post extends ActiveRecord
      * 删除
      */
     const STATUS_DELETED = 0;
+
 
     /**
      * @inheritdoc
@@ -139,8 +141,21 @@ class Post extends ActiveRecord
         return $this->user_id == Yii::$app->user->id;
     }
 
+    /**
+     * @param bool $status
+     * @return array|mixed
+     */
+    public static function getStatuses($status = false)
+    {
+        $statuses = [
+            self::STATUS_DELETED => Yii::t('common', 'DELETED'),
+            self::STATUS_ACTIVE =>  Yii::t('common', 'ACTIVE'),
+            self::STATUS_EXCELLENT => Yii::t('common', 'EXCELLENT'),
+            self::STATUS_TOP => Yii::t('common', 'TOP'),
+        ];
 
-
+        return $status !== false ? ArrayHelper::getValue($statuses, $status) : $statuses;
+    }
 
 
 }

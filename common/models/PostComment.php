@@ -58,6 +58,13 @@ class PostComment extends ActiveRecord
         ];
     }
 
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+
+        Yii::$app->cache->set('comment' . $this->id, $this, 0);
+    }
+
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
@@ -183,15 +190,11 @@ class PostComment extends ActiveRecord
         return ArrayHelper::map(User::find()->where(['username' => $users])->all(), 'id', 'username');
     }
 
-    public function afterSave($insert)
-    {
-        Yii::$app->cache->set('comment' . $this->id, $this, 0);
-    }
-
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+    public
+    function attributeLabels()
     {
         return [
             'id' => 'ID',

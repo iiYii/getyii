@@ -77,7 +77,7 @@ class PostSearch extends Post
             'like_count' => $this->like_count,
             'thanks_count' => $this->thanks_count,
             'hate_count' => $this->hate_count,
-            'status' => $this->status,
+            Post::tableName() . '.status' => $this->status,
             'order' => $this->order,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

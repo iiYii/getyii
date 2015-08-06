@@ -70,7 +70,7 @@ class TopicService
      */
     public static function excellent(Topic $topic)
     {
-        $action = ($topic->status == Topic::STATUS_ACTIVE) ? Topic::STATUS_GOOD : Topic::STATUS_ACTIVE;
+        $action = ($topic->status == Topic::STATUS_ACTIVE) ? Topic::STATUS_EXCELLENT : Topic::STATUS_ACTIVE;
         $topic->setAttributes(['status' => $action]);
         $topic->save();
     }

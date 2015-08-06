@@ -10,7 +10,7 @@ namespace common\services;
 use frontend\models\Notification;
 use frontend\modules\topic\models\Topic;
 
-class TopicService extends PostService
+class TweetService extends PostService
 {
 
     public function userDoAction($id, $action)

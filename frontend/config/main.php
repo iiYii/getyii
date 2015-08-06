@@ -89,6 +89,9 @@ return [
         'nav' => [
             'class' => 'frontend\modules\nav\Module',
         ],
+        'tweet' => [
+            'class' => 'frontend\modules\tweet\Module',
+        ],
     ],
     'params' => $params,
 ];

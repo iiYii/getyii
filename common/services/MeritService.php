@@ -10,10 +10,30 @@ namespace common\services;
 use common\models\Merit;
 use common\models\MeritLog;
 use common\models\MeritTemplate;
+use common\models\User;
 use yii\base\Exception;
 
 class MeritService
 {
+    /**
+     * 查找活跃用户
+     * @param int $limit
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function findActiveUser($limit = 12)
+    {
+        return Merit::find()
+            ->joinWith('user')
+            ->where([User::tableName() . '.status' => 10])
+            ->limit($limit)
+            ->all();
+    }
+
+    /**
+     * 更新积分
+     * @param $actionName
+     * @throws \yii\db\Exception
+     */
     public static function update($actionName)
     {
         $model = MeritTemplate::find()->where(['action' => $actionName])->all();

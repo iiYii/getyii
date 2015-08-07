@@ -50,4 +50,9 @@ class Merit extends \common\components\db\ActiveRecord
             'updated_at' => '创建时间',
         ];
     }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
 }

@@ -37,13 +37,13 @@
 ## 交流群
 
 - Yii2 中国交流群：343188481
-- Get√Yii 核心开发者群：321493381（本群只接受参与本站开发的 Yiier）
+- Get√Yii 开发者群：321493381
 
 ## 捐赠
 
-![支付宝支付](https://raw.githubusercontent.com/iiYii/getyii/master/ali-pay.jpg)
+![微信支付](https://raw.githubusercontent.com/iiYii/getyii/master/wechat-pay.png)
 
-手机支付宝扫描上方二维码可向本项目捐款
+手机微信扫描上方二维码可向本项目捐款
 
 
 感谢以下这些朋友的资金支持，所得捐赠将用于改善网站服务器、购买开发/调试设备&工具。
@@ -52,6 +52,7 @@
 捐赠人    | 金额 | 时间 | 说明
 -------|------|------ | ------
 张**  | 1.00  | 2015年7月7日 | http://iamtutu.com/
+*作军  | 100.00 | 2015年08月07日 | http://www.dba-china.com/
 
 
 ## 感谢

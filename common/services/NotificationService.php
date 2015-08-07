@@ -51,21 +51,23 @@ class NotificationService
      * @param $type
      * @param $fromUserId
      * @param $toUserId
-     * @param $topicId
+     * @param Post $post
      * @param PostComment $comment
      * @throws Exception
      */
-    public function newActionNotify($type, $fromUserId, $toUserId, $topicId, PostComment $comment = null)
+    public function newActionNotify($type, $fromUserId, $toUserId, Post $post, PostComment $comment = null)
     {
         $model = new Notification();
+
         $model->setAttributes([
             'from_user_id' => $fromUserId,
             'user_id' => $toUserId,
-            'post_id' => $topicId,
+            'post_id' => $post->id,
             'comment_id' => $comment ? $comment->id : 0,
-            'data' => $comment ? $comment->comment : '',
+            'data' => $comment ? $comment->comment : $post->content,
             'type' => $type,
         ]);
+
         if ($model->save()) {
             User::updateAllCounters(['notification_count' => 1], ['id' => $toUserId]);
         } else {

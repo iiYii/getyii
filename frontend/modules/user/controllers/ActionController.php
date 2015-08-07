@@ -9,6 +9,7 @@ namespace frontend\modules\user\controllers;
 
 use common\services\CommentService;
 use common\services\TopicService;
+use common\services\TweetService;
 use Yii;
 use yii\filters\AccessControl;
 use common\components\Controller;
@@ -44,6 +45,10 @@ class ActionController extends Controller
             case 'topic':
                 $topicService = new TopicService();
                 list($result, $data) = $topicService->userDoAction($id, 'like');
+                break;
+            case 'tweet':
+                $tweetService = new TweetService();
+                list($result, $data) = $tweetService->userDoAction($id, 'like');
                 break;
 
             case 'comment':

@@ -31,7 +31,7 @@ AppAsset::register($this);
 
         <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => Yii::$app->setting->get('siteName'),
                 'brandUrl' => Yii::$app->homeUrl,
                 'innerContainerOptions' => [
                     'class' => ''
@@ -76,13 +76,13 @@ AppAsset::register($this);
                             [
                                 'label' => '网站导航', 'url' => '#',
                                 'items' => [
-                                    ['label' => '导航分类', 'url' => ['nav/index']],
-                                    ['label' => '导航链接', 'url' => ['nav-url/index']],
+                                    ['label' => '导航分类', 'url' => ['/nav/index']],
+                                    ['label' => '导航链接', 'url' => ['/nav-url/index']],
                                 ]
                             ],
-                            ['label' => '搜索日志', 'url' => ['search-log/index']],
-                            ['label' => '右边栏设置', 'url' => ['right-link/index']],
-                            ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                            ['label' => '搜索日志', 'url' => ['/search-log/index']],
+                            ['label' => '右边栏设置', 'url' => ['/right-link/index']],
+                            ['label' => 'Login', 'url' => ['/site/login'], 'visible' => Yii::$app->user->isGuest],
                         ],
                     ]); ?>
                 </div>

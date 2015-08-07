@@ -7,21 +7,17 @@
 
 namespace common\services;
 
-use frontend\models\Notification;
 use frontend\modules\topic\models\Topic;
+use frontend\modules\tweet\models\Tweet;
 
-class TopicService extends PostService
+class TweetService extends PostService
 {
 
     public function userDoAction($id, $action)
     {
-        $topic = Topic::findTopic($id);
+        $topic = Tweet::findTweet($id);
         $user = \Yii::$app->user->getIdentity();
-        if (in_array($action, ['like', 'hate'])) {
-            return UserService::TopicActionA($user, $topic, $action);
-        } else {
-            return UserService::TopicActionB($user, $topic, $action);
-        }
+        return UserService::TopicActionB($user, $topic, $action);
     }
 
     /**
@@ -44,4 +40,5 @@ class TopicService extends PostService
         $topic->setAttributes(['status' => $action]);
         $topic->save();
     }
+
 }

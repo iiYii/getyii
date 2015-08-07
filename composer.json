@@ -42,7 +42,8 @@
     "hightman/xunsearch": "*@beta",
     "kartik-v/yii2-widget-select2": "*",
     "yiier/yii2-backup": "*",
-    "2amigos/yii2-qrcode-helper": "~1.0"
+    "2amigos/yii2-qrcode-helper": "~1.0",
+    "kop/yii2-scroll-pager": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",

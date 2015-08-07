@@ -51,7 +51,7 @@ $this->title = $model->title;
                     [
                         'data-do' => 'like',
                         'data-id' => $model->id,
-                        'data-type' => 'topic',
+                        'data-type' => $model->type,
                         'class' => ($model->like) ? 'active': ''
                     ]
                 );
@@ -61,7 +61,7 @@ $this->title = $model->title;
                     [
                         'data-do' => 'hate',
                         'data-id' => $model->id,
-                        'data-type' => 'topic',
+                        'data-type' => $model->type,
                         'class' => ($model->hate) ? 'active': ''
                     ]
                 );
@@ -71,7 +71,7 @@ $this->title = $model->title;
                     [
                         'data-do' => 'follow',
                         'data-id' => $model->id,
-                        'data-type' => 'topic',
+                        'data-type' => $model->type,
                         'class' => ($model->follow) ? 'active': ''
                     ]
                 );
@@ -81,7 +81,7 @@ $this->title = $model->title;
                     [
                         'data-do' => 'thanks',
                         'data-id' => $model->id,
-                        'data-type' => 'topic',
+                        'data-type' => $model->type,
                         'class' => ($model->thanks) ? 'active': ''
                     ]
                 );
@@ -91,7 +91,7 @@ $this->title = $model->title;
                     [
                         'data-do' => 'favorite',
                         'data-id' => $model->id,
-                        'data-type' => 'topic',
+                        'data-type' => $model->type,
                         'class' => ($model->favorite) ? 'active': ''
                     ]
                 );

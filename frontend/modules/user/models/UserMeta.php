@@ -5,6 +5,7 @@ namespace frontend\modules\user\models;
 use common\models\PostComment;
 use common\services\NotificationService;
 use frontend\modules\topic\models\Topic;
+use frontend\modules\tweet\models\Tweet;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -131,6 +132,11 @@ class UserMeta extends ActiveRecord
         return $this->hasOne(Topic::className(), ['id' => 'target_id']);
     }
 
+    public function getTweet()
+    {
+        return $this->hasOne(Tweet::className(), ['id' => 'target_id']);
+    }
+
     public function getComment()
     {
         return $this->hasOne(PostComment::className(), ['id' => 'target_id']);
@@ -151,7 +157,15 @@ class UserMeta extends ActiveRecord
                             $this->target_type . '_' . $this->type,
                             Yii::$app->user->id,
                             $this->topic->user_id,
-                            $this->topic->id
+                            $this->topic
+                        );
+                        break;
+                    case 'tweet':
+                        (new NotificationService)->newActionNotify(
+                            $this->target_type . '_' . $this->type,
+                            Yii::$app->user->id,
+                            $this->tweet->user_id,
+                            $this->tweet
                         );
                         break;
                     case 'comment':

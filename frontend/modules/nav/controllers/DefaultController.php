@@ -2,9 +2,8 @@
 
 namespace frontend\modules\nav\controllers;
 
-use yii\web\Controller;
+use common\components\Controller;
 use common\models\Nav;
-use common\models\NavUrl;
 
 class DefaultController extends Controller
 {

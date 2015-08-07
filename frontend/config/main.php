@@ -16,7 +16,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '<alias:login|logout|about|tags|getstart|signup|contact>' => 'site/<alias>',
+                '<alias:login|logout|about|tags|getstart|signup|contact|users>' => 'site/<alias>',
                 '<alias:search>' => 'topic/default/<alias>',
                 'member/<username:\w+>' => 'user/default/show',
                 'member/<username:\w+>/post' => 'user/default/post',
@@ -88,6 +88,9 @@ return [
         ],
         'nav' => [
             'class' => 'frontend\modules\nav\Module',
+        ],
+        'tweet' => [
+            'class' => 'frontend\modules\tweet\Module',
         ],
     ],
     'params' => $params,

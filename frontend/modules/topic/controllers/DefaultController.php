@@ -5,10 +5,7 @@ namespace frontend\modules\topic\controllers;
 use common\models\Post;
 use common\models\Search;
 use common\models\SearchLog;
-use common\models\User;
-use common\services\NotificationService;
 use common\services\TopicService;
-use frontend\models\Notification;
 use frontend\modules\topic\models\Topic;
 use frontend\modules\user\models\UserMeta;
 use Yii;
@@ -63,8 +60,6 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         $searchModel = new PostSearch();
-        $conditions['type'] = 'topic';
-        $conditions['status'] = [1, 2];
 
         // 话题或者分类筛选
         $params = Yii::$app->request->queryParams;
@@ -74,7 +69,8 @@ class DefaultController extends Controller
             ($postMeta) ? $params['PostSearch']['post_meta_id'] = $postMeta->id : '';
         }
 
-        $dataProvider = $searchModel->search($params, $conditions);
+        $dataProvider = $searchModel->search($params);
+        $dataProvider->query->andWhere([Post::tableName() . '.type' => 'topic', 'status'=>[Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]]);
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [
@@ -137,7 +133,6 @@ class DefaultController extends Controller
     public function actionView($id)
     {
         $model = Topic::findTopic($id);
-        $comment = $this->newComment($model);
         $dataProvider = new ActiveDataProvider([
             'query' => PostComment::findCommentList($id),
             'pagination' => [
@@ -154,7 +149,7 @@ class DefaultController extends Controller
         return $this->render('view', [
             'model' => $model,
             'dataProvider' => $dataProvider,
-            'comment' => $comment,
+            'comment' => new PostComment(),
             'admin' => $admin,
         ]);
     }
@@ -279,40 +274,6 @@ class DefaultController extends Controller
         } else {
             throw new NotFoundHttpException();
         }
-    }
-
-    /**
-     * 创建评论
-     * @param Post $post
-     * @return array|PostComment|string
-     */
-    protected function newComment(Post $post)
-    {
-        $model = new PostComment();
-        if ($model->load(Yii::$app->request->post())) {
-            $topService = new TopicService();
-            if (!$topService->filterContent($model->comment)) {
-                $this->flash('回复内容请勿回复无意义的内容，如你想收藏或赞等功能，请直接操作这篇帖子。', 'warning');
-                return $this->redirect(['view', 'id' => $post->id]);
-            }
-            $model->user_id = Yii::$app->user->id;
-            $model->post_id = $post->id;
-            $model->ip = Yii::$app->getRequest()->getUserIP();
-            $rawComment = $model->comment;
-            $model->comment = $model->replace($rawComment);
-            if ($model->save()) {
-                (new UserMeta)->saveNewMeta('topic', $post->id, 'follow');
-                (new NotificationService)->newReplyNotify(Yii::$app->user->identity, $post, $model, $rawComment);
-                // 评论计数器
-                Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
-                // 更新个人总统计
-                UserInfo::updateAllCounters(['comment_count' => 1], ['user_id' => $model->user_id]);
-
-                $this->flash("评论成功", 'success');
-                return $this->redirect(['view', 'id' => $post->id]);
-            }
-        }
-        return $model;
     }
 
 

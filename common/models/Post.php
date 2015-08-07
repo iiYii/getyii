@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use common\components\db\ActiveRecord;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "post".
@@ -50,7 +51,7 @@ class Post extends ActiveRecord
     /**
      * 推荐
      */
-    const STATUS_GOOD = 2;
+    const STATUS_EXCELLENT = 2;
 
     /**
      * 发布
@@ -61,6 +62,7 @@ class Post extends ActiveRecord
      * 删除
      */
     const STATUS_DELETED = 0;
+
 
     /**
      * @inheritdoc
@@ -95,21 +97,23 @@ class Post extends ActiveRecord
             'id' => 'ID',
             'type' => '内容类型',
             'post_meta_id' => '分类',
-            'user_id' => '作者ID',
+            'category_name' => '分类',
+            'user_id' => '用户ID',
+            'username' => '用户',
             'title' => '标题',
             'author' => '作者',
             'excerpt' => '摘要',
             'image' => '封面图片',
             'content' => '内容',
-            'tags' => '标签 用英文逗号隔开',
+            'tags' => '标签',
             'view_count' => '查看数',
             'comment_count' => '评论数',
             'favorite_count' => '收藏数',
             'like_count' => '喜欢数',
             'thanks_count' => '感谢数',
             'hate_count' => '讨厌数',
-            'status' => '状态 1:发布 0：草稿',
-            'order' => '排序 0最大',
+            'status' => '状态',
+            'order' => '排序',
             'created_at' => '创建时间',
             'updated_at' => '修改时间',
         ];
@@ -137,8 +141,21 @@ class Post extends ActiveRecord
         return $this->user_id == Yii::$app->user->id;
     }
 
+    /**
+     * @param bool $status
+     * @return array|mixed
+     */
+    public static function getStatuses($status = false)
+    {
+        $statuses = [
+            self::STATUS_DELETED => Yii::t('common', 'DELETED'),
+            self::STATUS_ACTIVE =>  Yii::t('common', 'ACTIVE'),
+            self::STATUS_EXCELLENT => Yii::t('common', 'EXCELLENT'),
+            self::STATUS_TOP => Yii::t('common', 'TOP'),
+        ];
 
-
+        return $status !== false ? ArrayHelper::getValue($statuses, $status) : $statuses;
+    }
 
 
 }

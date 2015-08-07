@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace frontend\modules\tweet\models;
 
 use Yii;
 use yii\base\Model;
@@ -10,7 +10,7 @@ use common\models\Post;
 /**
  * PostSearch represents the model behind the search form about `common\Models\Post`.
  */
-class PostSearch extends Post
+class TweetSearch extends Tweet
 {
     /**
      * @inheritdoc
@@ -38,12 +38,7 @@ class PostSearch extends Post
      */
     public function search($params)
     {
-        $query = Post::find();
-
-        // 如果有无人区节点 帖子列表过滤无人区节点的帖子
-        if (PostMeta::noManLandId() && (empty($params['PostSearch']['post_meta_id']) || $params['PostSearch']['post_meta_id'] != PostMeta::noManLandId())) {
-            $query->andWhere(['!=', 'post_meta_id', PostMeta::noManLandId()]);
-        }
+        $query = Tweet::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

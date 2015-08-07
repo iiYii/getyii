@@ -5,9 +5,6 @@
  * description:
  */
 
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\widgets\ActiveForm;
 ?>
 <div class="panel panel-default">
     <div class="panel-heading clearfix">

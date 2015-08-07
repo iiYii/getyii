@@ -68,14 +68,14 @@ class Topic extends Post
      */
     public function findModel($id, $condition = '')
     {
-        if (!$model = Yii::$app->cache->get('topic' . $id)) {
-            $model = static::find()
-                ->where($condition)
-                ->andWhere(['id' => $id, 'type' => 'topic'])
-                ->one();
-        }
+//        if (!($model = Yii::$app->cache->get('topic' . $id))) {
+        $model = static::find()
+            ->where($condition)
+            ->andWhere(['id' => $id, 'type' => 'topic'])
+            ->one();
+//        }
         if ($model) {
-            Yii::$app->cache->set('topic' . $id, $model, 0);
+//            Yii::$app->cache->set('topic' . $id, $model, 0);
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -106,8 +106,9 @@ class Topic extends Post
         return static::findModel($id, ['>=', 'status', self::STATUS_DELETED]);
     }
 
-    public function afterSave($insert)
+    public function afterSave($insert, $changedAttributes)
     {
+        parent::afterSave($insert, $changedAttributes);
         if ($insert) {
             $search = new Search();
             $search->topic_id = $this->id;

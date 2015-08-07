@@ -8,14 +8,11 @@
 
 namespace frontend\modules\user\controllers;
 
-use yii\base\Model;
 use yii\helpers\Url;
-use yii\web\Controller;
+use common\components\Controller;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\authclient\ClientInterface;
-use yii\web\Response;
-use yii\widgets\ActiveForm;
 use frontend\modules\user\models\UserAccount;
 
 class SecurityController extends Controller

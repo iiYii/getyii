@@ -157,7 +157,7 @@ a.desc:after {
     color: #008E59;
 }
 
-.topic-view .active .fa, .filter .active, .red {
+.tweet .active .fa, .topic-view .active .fa, .filter .active, .red {
     color: #EB5424;
 }
 
@@ -221,9 +221,12 @@ a.desc:after {
 }
 
 .title-info {
+    margin-top: 10px;
+}
+
+.fade-info, .title-info {
     color: #aaa;
     font-size: 12px;
-    margin-top: 10px;
 }
 
 .title-info .node {

@@ -1,8 +1,5 @@
 <?php
 
-use yii\helpers\Html;
-use yii\bootstrap\Nav;
-
 /* @var $this yii\web\View */
 /* @var $model common\Models\Post */
 

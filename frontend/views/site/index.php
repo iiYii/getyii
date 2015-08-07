@@ -50,12 +50,12 @@ $this->title = \Yii::$app->setting->get('siteName');
                 <div class="col-md-1 col-xs-2">
                     <div class="text-center">
                         <p>
-                            <?= Html::a(Html::img($value->user->userAvatar, ['class' => 'img-responsive img-thumbnail']),
-                                ['/user/default/show', 'username' => $value->user['username']]
+                            <?= Html::a(Html::img($value->userAvatar, ['class' => 'img-responsive img-thumbnail']),
+                                ['/user/default/show', 'username' => $value['username']]
                             ); ?>
                         </p>
                         <h5>
-                            <?= Html::a($value->user['username'], ['/user/default/show', 'username' => $value->user['username']]) ?>
+                            <?= Html::a($value['username'], ['/user/default/show', 'username' => $value['username']]) ?>
                         </h5>
                     </div>
                 </div>

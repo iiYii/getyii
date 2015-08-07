@@ -1,12 +1,11 @@
 <?php
 namespace frontend\controllers;
 
-use common\models\Merit;
 use common\models\Post;
 use common\models\PostComment;
 use common\models\PostTag;
 use common\models\Session;
-use common\services\MeritService;
+use common\services\UserService;
 use dosamigos\qrcode\QrCode;
 use Yii;
 use common\models\LoginForm;
@@ -69,8 +68,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $topics = Post::find()->limit(20)->where(['status' => 2])->orderBy(['created_at' => SORT_DESC])->all();
-//        $users = User::find()->joinWith('userInfo')->orderBy(['(like_count+thanks_count)' => SORT_DESC])->limit(12)->all();
-        $users = MeritService::findActiveUser(12);
+        $users = UserService::findActiveUser(12);
 
         $statistics = array();
         $statistics['post_count'] = Post::find()->count();
@@ -152,7 +150,7 @@ class SiteController extends Controller
 
     public function actionUsers()
     {
-        $model = MeritService::findActiveUser(100);
+        $model = UserService::findActiveUser(100);
         $count = User::find()->where(['status' => 10])->count();
         return $this->render('users', [
             'model' => $model,

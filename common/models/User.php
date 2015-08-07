@@ -226,6 +226,11 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->hasOne(UserInfo::className(), ['user_id' => 'id']);
     }
 
+    public function getMerit()
+    {
+        return $this->hasOne(Merit::className(), ['user_id' => 'id']);
+    }
+
     /**
      * @return Account[] Connected accounts ($provider => $account)
      */

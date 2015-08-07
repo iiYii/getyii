@@ -152,4 +152,19 @@ class UserService
         return [true, null];
     }
 
+
+    /**
+     * 查找活跃用户
+     * @param int $limit
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function findActiveUser($limit = 12)
+    {
+        return User::find()
+            ->joinWith(['merit', 'userInfo'])
+            ->where([User::tableName() . '.status' => 10])
+            ->orderBy(['merit' => SORT_DESC, '(like_count+thanks_count)' => SORT_DESC])
+            ->limit($limit)
+            ->all();
+    }
 }

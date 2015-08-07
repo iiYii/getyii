@@ -4,7 +4,7 @@ namespace frontend\modules\user\controllers;
 
 use frontend\modules\topic\models\Topic;
 use frontend\modules\user\models\UserMeta;
-use yii\web\Controller;
+use common\components\Controller;
 use common\models\User;
 use common\models\UserInfo;
 use common\models\PostComment;

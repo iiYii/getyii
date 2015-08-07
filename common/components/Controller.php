@@ -1,12 +1,32 @@
 <?php
 namespace common\components;
 
+use common\services\MeritService;
 use Yii;
 use yii\helpers\Url;
 use yii\web\Response;
 
 class Controller extends \yii\web\Controller
 {
+
+    public function beforeAction($action)
+    {
+        if (parent::beforeAction($action)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function afterAction($action, $result)
+    {
+        if (!Yii::$app->user->isGuest) {
+            $actionName = "frontend@{$this->module->id}_{$this->id}_{$action->id}";
+            MeritService::update($actionName);
+        }
+        return parent::afterAction($action, $result);
+    }
+
     /**
      * 显示flash信息
      * @param $message 信息显示内容

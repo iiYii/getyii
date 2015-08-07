@@ -44,24 +44,24 @@ use kartik\select2\Select2;
     ])->textarea([
         'placeholder' => '内容',
         'id' => 'md-input',
-        'rows'        => 10
+        'rows' => 10
     ]) ?>
 
     <?= SelectizeTextInput::widget([
-        'name'          => 'Topic[tags]',
-        'value'         => $model->tags,
+        'name' => 'Topic[tags]',
+        'value' => $model->tags,
         'loadUrl' => ['/post-tag/index'],
         'clientOptions' => [
             'placeholder' => '标签（可选）',
             'allowEmptyOption' => false,
-            'delimiter'        => ',',
-            'valueField'       => 'name',
-            'labelField'       => 'name',
-            'searchField'      => 'name',
-            'maxItems'         => 5,
-            'plugins'          => ['remove_button'],
-            'persist'          => false,
-            'create'           => true,
+            'delimiter' => ',',
+            'valueField' => 'name',
+            'labelField' => 'name',
+            'searchField' => 'name',
+            'maxItems' => 5,
+            'plugins' => ['remove_button'],
+            'persist' => false,
+            'create' => true,
         ],
     ]) ?>
 

@@ -67,6 +67,7 @@ class DefaultController extends Controller
             $topService = new TweetService();
             if (!$topService->filterContent($model->content)) {
                 $this->flash('请勿发表无意义的内容', 'warning');
+                return $this->redirect('index');
             }
             $model->user_id = Yii::$app->user->id;
             $model->type = $model::TYPE;

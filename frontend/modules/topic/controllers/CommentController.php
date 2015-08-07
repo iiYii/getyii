@@ -2,11 +2,16 @@
 
 namespace frontend\modules\topic\controllers;
 
+use common\models\UserInfo;
+use common\services\NotificationService;
+use common\services\TopicService;
 use frontend\models\Notification;
 use frontend\modules\topic\models\Topic;
+use frontend\modules\user\models\UserMeta;
 use Yii;
 use common\models\PostComment;
-use yii\web\Controller;
+use common\components\Controller;
+use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -24,7 +29,51 @@ class CommentController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    // 登录用户POST操作
+                    ['allow' => true, 'actions' => ['delete'], 'verbs' => ['POST'], 'roles' => ['@']],
+                    // 登录用户才能操作
+                    ['allow' => true, 'actions' => ['create', 'update'], 'roles' => ['@']],
+                ]
+            ]
         ];
+    }
+
+    /**
+     * 创建评论
+     * @param $id
+     * @return PostComment|\yii\web\Response
+     */
+    public function actionCreate($id)
+    {
+        $post =  Topic::findTopic($id);
+        $model = new PostComment();
+        if ($model->load(Yii::$app->request->post())) {
+            $topService = new TopicService();
+            if (!$topService->filterContent($model->comment)) {
+                $this->flash('回复内容请勿回复无意义的内容，如你想收藏或赞等功能，请直接操作这篇帖子。', 'warning');
+                return $this->redirect(['/topic/default/view', 'id' => $id]);
+            }
+            $model->user_id = Yii::$app->user->id;
+            $model->post_id = $id;
+            $model->ip = Yii::$app->getRequest()->getUserIP();
+            $rawComment = $model->comment;
+            $model->comment = $model->replace($rawComment);
+            if ($model->save()) {
+                (new UserMeta())->saveNewMeta('topic', $id, 'follow');
+                (new NotificationService())->newReplyNotify(Yii::$app->user->identity, $post, $model, $rawComment);
+                // 评论计数器
+                Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
+                // 更新个人总统计
+                UserInfo::updateAllCounters(['comment_count' => 1], ['user_id' => $model->user_id]);
+
+                $this->flash("评论成功", 'success');
+                return $this->redirect(['/topic/default/view', 'id' => $post->id]);
+            }
+        }
+        return $model;
     }
 
     /**

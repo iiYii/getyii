@@ -114,7 +114,7 @@ class Topic extends Post
             $search->topic_id = $this->id;
             $search->status = self::STATUS_ACTIVE;
         } else {
-//            Yii::$app->cache->set('topic' . $this->id, $this, 0);
+            Yii::$app->cache->set('topic' . $this->id, $this, 0);
             $search = Search::findOne($this->id);
             if (!$search) {
                 // 如果立即修改 会因为在 xunsearch 找不到而不能 save

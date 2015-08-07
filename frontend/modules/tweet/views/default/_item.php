@@ -28,7 +28,7 @@ use yii\helpers\Html;
         <div class="title-info pull-right">
             <?php if ($model->isCurrent()) {
                 echo Html::a(
-                    Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count),
+                    Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count . ' '),
                     'javascript:;'
                 );
                 if ($model->comment_count == 0) {
@@ -45,7 +45,7 @@ use yii\helpers\Html;
                 }
             } else {
                 echo Html::a(
-                    Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count),
+                    Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count . ' '),
                     '#',
                     [
                         'data-do' => 'like',

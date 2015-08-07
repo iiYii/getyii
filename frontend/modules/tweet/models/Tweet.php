@@ -19,6 +19,12 @@ class Tweet extends Post
 {
     const TYPE = 'tweet';
 
+    public function getLike()
+    {
+        $model = new UserMeta();
+        return $model->isUserAction(self::TYPE, 'like', $this->id);
+    }
+
     /**
      * @inheritdoc
      */
@@ -58,23 +64,23 @@ class Tweet extends Post
 
 
     /**
-     * 通过ID获取指定话题
+     * 通过ID获取指定动弹
      * @param $id
      * @return array|Topic|null|\yii\db\ActiveRecord
      * @throws NotFoundHttpException
      */
-    public static function findTopic($id)
+    public static function findTweet($id)
     {
         return static::findModel($id, ['>=', 'status', self::STATUS_ACTIVE]);
     }
 
     /**
-     * 获取已经删除过的话题
+     * 获取已经删除过的动弹
      * @param $id
      * @return array|null|\yii\db\ActiveRecord
      * @throws NotFoundHttpException
      */
-    public static function findDeletedTopic($id)
+    public static function findDeletedTweet($id)
     {
         return static::findModel($id, ['>=', 'status', self::STATUS_DELETED]);
     }

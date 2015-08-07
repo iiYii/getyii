@@ -4,17 +4,43 @@ namespace frontend\modules\tweet\controllers;
 
 use common\components\Controller;
 use common\models\Post;
-use common\models\PostSearch;
 use common\services\TweetService;
 use frontend\modules\tweet\models\Tweet;
+use frontend\modules\tweet\models\TweetSearch;
 use frontend\modules\user\models\UserMeta;
 use Yii;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    // 默认只能Get方式访问
+                    ['allow' => true, 'actions' => ['index'], 'verbs' => ['GET']],
+                    // 登录用户POST操作
+                    ['allow' => true, 'actions' => ['delete'], 'verbs' => ['POST'], 'roles' => ['@']],
+                    // 登录用户才能操作
+                    ['allow' => true, 'actions' => ['create'], 'roles' => ['@']],
+                ]
+            ]
+        ];
+    }
+
     public function actionIndex()
     {
-        $searchModel = new PostSearch();
+        $searchModel = new TweetSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->query->andWhere([
             Post::tableName() . '.type' => Tweet::TYPE,
@@ -50,5 +76,28 @@ class DefaultController extends Controller
             }
         }
         return $this->redirect('index');
+    }
+
+    /**
+     * 伪删除
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionDelete($id)
+    {
+        $model = Tweet::findTweet($id);
+        if (!$model->isCurrent()) {
+            throw new NotFoundHttpException();
+        }
+        if ($model->comment_count) {
+            $this->flash("已有评论，属于共有财产，不能删除", 'warning');
+        } else {
+
+            TweetService::delete($model);
+            $this->flash("删除成功。 ", 'success');
+        }
+
+        return $this->redirect(['index']);
     }
 }

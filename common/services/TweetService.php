@@ -7,33 +7,17 @@
 
 namespace common\services;
 
-use frontend\models\Notification;
 use frontend\modules\topic\models\Topic;
+use frontend\modules\tweet\models\Tweet;
 
 class TweetService extends PostService
 {
 
     public function userDoAction($id, $action)
     {
-        $topic = Topic::findTopic($id);
+        $topic = Tweet::findTweet($id);
         $user = \Yii::$app->user->getIdentity();
-        if (in_array($action, ['like', 'hate'])) {
-            return UserService::TopicActionA($user, $topic, $action);
-        } else {
-            return UserService::TopicActionB($user, $topic, $action);
-        }
-    }
-
-    /**
-     * 删除帖子
-     * @param Topic $topic
-     */
-    public static function delete(Topic $topic)
-    {
-        $topic->setAttributes(['status' => Topic::STATUS_DELETED]);
-        $topic->save();
-        Notification::updateAll(['status' => Topic::STATUS_DELETED], ['post_id' => $topic->id]);
-
+        return UserService::TopicActionB($user, $topic, $action);
     }
 
     /**
@@ -57,12 +41,4 @@ class TweetService extends PostService
         $topic->save();
     }
 
-    /**
-     * 更新缓存
-     * @param Topic $topic
-     */
-    public static function updateCache(Topic $topic)
-    {
-        \Yii::$app->cache->set('topic' . $topic->id, $topic, 0);
-    }
 }

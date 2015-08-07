@@ -8,8 +8,23 @@
 namespace common\services;
 
 
+use common\models\Post;
+use frontend\models\Notification;
+
 class PostService
 {
+
+    /**
+     * 删除帖子
+     * @param Post $post
+     */
+    public static function delete(Post $post)
+    {
+        $post->setAttributes(['status' => Post::STATUS_DELETED]);
+        $post->save();
+        Notification::updateAll(['status' => Post::STATUS_DELETED], ['post_id' => $post->id]);
+    }
+
     /**
      * 过滤内容
      */

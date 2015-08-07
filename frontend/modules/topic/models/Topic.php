@@ -68,14 +68,14 @@ class Topic extends Post
      */
     public function findModel($id, $condition = '')
     {
-        if (!$model = Yii::$app->cache->get('topic' . $id)) {
-            $model = static::find()
-                ->where($condition)
-                ->andWhere(['id' => $id, 'type' => 'topic'])
-                ->one();
-        }
+//        if (!($model = Yii::$app->cache->get('topic' . $id))) {
+        $model = static::find()
+            ->where($condition)
+            ->andWhere(['id' => $id, 'type' => 'topic'])
+            ->one();
+//        }
         if ($model) {
-            Yii::$app->cache->set('topic' . $id, $model, 0);
+//            Yii::$app->cache->set('topic' . $id, $model, 0);
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -114,7 +114,7 @@ class Topic extends Post
             $search->topic_id = $this->id;
             $search->status = self::STATUS_ACTIVE;
         } else {
-            Yii::$app->cache->set('topic' . $this->id, $this, 0);
+//            Yii::$app->cache->set('topic' . $this->id, $this, 0);
             $search = Search::findOne($this->id);
             if (!$search) {
                 // 如果立即修改 会因为在 xunsearch 找不到而不能 save

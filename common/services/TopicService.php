@@ -25,18 +25,6 @@ class TopicService extends PostService
     }
 
     /**
-     * 删除帖子
-     * @param Topic $topic
-     */
-    public static function delete(Topic $topic)
-    {
-        $topic->setAttributes(['status' => Topic::STATUS_DELETED]);
-        $topic->save();
-        Notification::updateAll(['status' => Topic::STATUS_DELETED], ['post_id' => $topic->id]);
-
-    }
-
-    /**
      * 撤销帖子
      * @param Topic $topic
      */
@@ -55,14 +43,5 @@ class TopicService extends PostService
         $action = ($topic->status == Topic::STATUS_ACTIVE) ? Topic::STATUS_EXCELLENT : Topic::STATUS_ACTIVE;
         $topic->setAttributes(['status' => $action]);
         $topic->save();
-    }
-
-    /**
-     * 更新缓存
-     * @param Topic $topic
-     */
-    public static function updateCache(Topic $topic)
-    {
-        \Yii::$app->cache->set('topic' . $topic->id, $topic, 0);
     }
 }

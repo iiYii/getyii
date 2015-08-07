@@ -1,11 +1,12 @@
 <?php
 $this->title = '发布新动弹';
 ?>
-    <div class="col-md-10 topic-create" contenteditable="false" style="">
+    <div class="col-md-10 tweet" contenteditable="false" style="">
 
         <div class="panel panel-default">
             <div class="panel-heading clearfix">
                 <?= $this->title ?>
+                <span class="pull-right fade-info">500</span>
             </div>
 
             <?= $this->render('_form', [
@@ -14,31 +15,15 @@ $this->title = '发布新动弹';
         </div>
         <?= \yii\widgets\ListView::widget([
             'dataProvider' => $dataProvider,
-            'id' => 'my-listview-id',
-            'layout' => "<div class=\"items\">{items}</div>\n{pager}",
             'itemView' => '_item',
-            'itemOptions' => ['class' => 'list-group-item'],
+            'itemOptions' => ['class' => 'list-group-item item'],
             'summary' => false,
-            'options' => ['class' => 'list-group'],
+//            'options' => ['class' => ''],
             'pager' => [
-                'class' => \nirvana\infinitescroll\InfiniteScrollPager::className(),
-                'widgetId' => 'my-listview-id',
-                'itemsCssClass' => 'items',
-                'contentLoadedCallback' => 'afterAjaxListViewUpdate',
-                'nextPageLabel' => 'Load more items',
-                'linkOptions' => [
-                    'class' => 'btn btn-lg btn-block',
-                ],
-                'pluginOptions' => [
-                    'loading' => [
-                        'msgText' => "<em>Loading next set of items...</em>",
-                        'finishedMsg' => "<em>No more items to load</em>",
-                    ],
-                    'behavior' => \nirvana\infinitescroll\InfiniteScrollPager::BEHAVIOR_TWITTER,
-                ],
-            ],
-        ]);
-        ?>
+                'class' => \kop\y2sp\ScrollPager::className(),
+                'triggerOffset' => 5
+            ]
+        ]); ?>
     </div>
 
 <?= \frontend\widgets\TopicSidebar::widget([

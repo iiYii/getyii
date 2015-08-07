@@ -58,7 +58,7 @@ class UserService
     {
         $data = [
             'target_id'   => $model->id,
-            'target_type' => $model::TYPE,
+            'target_type' => $model->type,
             'user_id'     => $user->id,
             'value'       => '1',
         ];
@@ -78,7 +78,6 @@ class UserService
         if ($action == 'thanks') {
             UserInfo::updateAllCounters([$action . '_count' => -1], ['user_id' => $model->user_id]);
         }
-        TopicService::updateCache($model);
 
         return [true, null];
     }
@@ -126,7 +125,7 @@ class UserService
     {
         $data = [
             'target_id'   => $model->id,
-            'target_type' => $model::TYPE,
+            'target_type' => $model->type,
             'user_id'     => $user->id,
             'value'       => '1',
         ];
@@ -149,7 +148,6 @@ class UserService
         }
         $model->updateCounters([$action . '_count' => -1]);
         UserInfo::updateAllCounters([$action . '_count' => -1], ['user_id' => $model->user_id]);
-        TopicService::updateCache($model);
 
         return [true, null];
     }

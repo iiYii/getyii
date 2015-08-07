@@ -12,18 +12,50 @@ use yii\helpers\Html;
         ); ?>
     </div>
     <div class="media-body">
-
-        <div class="media-heading">
-            <?= Html::a(Html::encode($model->title),
-                ['/topic/default/view', 'id' => $model->id], ['title' => $model->title]
-            ); ?>
-            <?= ($model->status == 2) ? Html::tag('i', '', ['class' => 'fa fa-trophy excellent']) : null ?>
+        <div class="fade-info">
+            <?= Html::a(
+                $model->user['username'],
+                ['/user/default/show', 'username' => $model->user['username']]
+            ), '•',
+            Html::tag('span', \common\helpers\Formatter::relative($model->updated_at));
+            ?>
         </div>
 
-        <div class="title-info">
-            <?= Html::encode($model->content);
-            Html::tag('span', Yii::$app->formatter->asRelativeTime($model->updated_at));
-            ?>
+        <div class="media-heading">
+            <?= Html::encode($model->content); ?>
+        </div>
+
+        <div class="title-info pull-right">
+            <?php if ($model->isCurrent()) {
+                echo Html::a(
+                    Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count),
+                    'javascript:;'
+                );
+                if ($model->comment_count == 0) {
+                    echo Html::a(
+                        Html::tag('i', '', ['class' => 'fa fa-trash']) . ' 删除',
+                        ['/tweet/default/delete', 'id' => $model->id],
+                        [
+                            'data' => [
+                                'confirm' => "您确认要删除吗？",
+                                'method' => 'post',
+                            ],
+                        ]
+                    );
+                }
+            } else {
+                echo Html::a(
+                    Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count),
+                    '#',
+                    [
+                        'data-do' => 'like',
+                        'data-id' => $model->id,
+                        'data-type' => $model->type,
+                        'class' => ($model->like) ? 'active' : ''
+                    ]
+                );
+            } ?>
+
         </div>
     </div>
 </div>

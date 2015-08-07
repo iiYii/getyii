@@ -213,6 +213,15 @@ jQuery(function ($) {
     //    $(this).find("button[type='submit']").prop('disabled', true);
     //});
 
+    $('.tweet #md-input').keyup(function () {
+        var el = $(this);
+        if (el.val().length > 500) {
+            el.val(el.val().substr(0, 500));
+        } else {
+            $(".tweet .fade-info").text(500 - el.val().length);
+        }
+    });
+
     //add by ruzuojun
     $(document).on("click", "#goTop", function () {
         $('html,body').animate({scrollTop: '0px'}, 800);

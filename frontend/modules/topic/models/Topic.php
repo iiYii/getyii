@@ -71,7 +71,7 @@ class Topic extends Post
 //        if (!($model = Yii::$app->cache->get('topic' . $id))) {
         $model = static::find()
             ->where($condition)
-            ->andWhere(['id' => $id, 'type' => 'topic'])
+            ->andWhere(['id' => $id, 'type' => self::TYPE])
             ->one();
 //        }
         if ($model) {

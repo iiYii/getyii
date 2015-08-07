@@ -59,7 +59,7 @@ class DefaultController extends Controller
 
         $dataProvider = new ActiveDataProvider([
             'query' => Topic::find()
-                ->where(['user_id' => $user->id])
+                ->where(['user_id' => $user->id, 'type' => Topic::TYPE])
                 ->andWhere('status > :status ' , [':status' => Topic::STATUS_DELETED])
                 ->orderBy(['created_at' => SORT_DESC]),
         ]);

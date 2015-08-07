@@ -61,7 +61,7 @@ BowerAsset::register($this);
                 <small>
                     由 <a href="https://github.com/forecho">forecho</a> 创建 项目地址: <a href="https://github.com/iiyii/getyii">GetYii</a></dd>
                     <dd> <?= Yii::powered() ?> <?= Yii::getVersion() ?> </dd>
-                    <dd>&copy; <?= Yii::$app->name?> <?= date('Y') ?>&nbsp;•&nbsp; <?= floor(Yii::getLogger()->getElapsedTime() * 1000).' ms';?></dd>
+                    <dd>&copy; <?= \Yii::$app->setting->get('siteName') ?> <?= date('Y') ?>&nbsp;•&nbsp; <?= floor(Yii::getLogger()->getElapsedTime() * 1000).' ms';?></dd>
                 </small>
             </div>
             <div class="col-sm-3">

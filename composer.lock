@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "81bac2c92d2a1be7cb9234dc76ddc343",
+    "hash": "73d8ac3388f0c65cdc9fe4f16991790b",
     "packages": [
         {
             "name": "2amigos/yii2-qrcode-helper",
@@ -807,6 +807,59 @@
                 "sift",
                 "sort"
             ]
+        },
+        {
+            "name": "bower-asset/twemoji",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twitter/twemoji.git",
+                "reference": "3e21d10e5a01dabcbb7b5bd260b78a909a7b7f28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twitter/twemoji/zipball/3e21d10e5a01dabcbb7b5bd260b78a909a7b7f28",
+                "reference": "3e21d10e5a01dabcbb7b5bd260b78a909a7b7f28",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "./twemoji.amd.js",
+                "bower-asset-ignore": [
+                    ".git",
+                    ".gitignore",
+                    ".npmignore",
+                    "./16x16",
+                    "./36x36",
+                    "./72x72",
+                    "./assets",
+                    "./build",
+                    "./component.json",
+                    "./node_modules",
+                    "./index.html",
+                    "./package.json",
+                    "./preview-generator.js",
+                    "./preview-template.html",
+                    "./svg.sh",
+                    "./test.html",
+                    "./test.js",
+                    "./twemoji-generator.js",
+                    "./twemoji-dist.js",
+                    "./twemoji.js",
+                    "./twemoji.min.js",
+                    "./twemoji.npm.js",
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT",
+                "CC-BY-4.0"
+            ],
+            "description": "A Unicode standard based way to implement emoji across all platforms."
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -2162,16 +2215,16 @@
         },
         {
             "name": "yiisoft/yii2-debug",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "5c7081b2be71c61d3a50d978b31edc3e0b6f2f97"
+                "reference": "1b302e67521d46feb2413d9d96ca94ed82b39b0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/5c7081b2be71c61d3a50d978b31edc3e0b6f2f97",
-                "reference": "5c7081b2be71c61d3a50d978b31edc3e0b6f2f97",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/1b302e67521d46feb2413d9d96ca94ed82b39b0e",
+                "reference": "1b302e67521d46feb2413d9d96ca94ed82b39b0e",
                 "shasum": ""
             },
             "require": {
@@ -2205,7 +2258,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2015-05-10 22:08:56"
+            "time": "2015-08-06 16:14:06"
         },
         {
             "name": "yiisoft/yii2-faker",

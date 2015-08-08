@@ -218,7 +218,7 @@ jQuery(function ($) {
         if (el.val().length > 500) {
             el.val(el.val().substr(0, 500));
         } else {
-            $(".tweet .fade-info").text(500 - el.val().length);
+            $("#remaining").text(500 - el.val().length);
         }
     });
 
@@ -229,5 +229,20 @@ jQuery(function ($) {
         $('html,body').animate({scrollTop: $('.footer').offset().top}, 800);
     }).on("click", "#refresh", function () {
         location.reload();
+    });
+
+    // emoji 显示
+    twemoji.parse(document.body, {
+        folder: 'svg',
+        ext: '.svg',
+        callback: function(icon, options, variant) {
+            switch ( icon ) {
+                case 'a9':      // © copyright
+                case 'ae':      // ® registered trademark
+                case '2122':    // ™ trademark
+                    return false;
+            }
+            return ''.concat(options.base, options.size, '/', icon, options.ext);
+        }
     });
 });

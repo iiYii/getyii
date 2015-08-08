@@ -351,3 +351,10 @@ a:visited .badge-reply-count {
 .select2-container--krajee .select2-results > .select2-results__options {
      max-height: 500px;
 }
+
+img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+}

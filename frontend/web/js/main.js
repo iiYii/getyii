@@ -218,7 +218,7 @@ jQuery(function ($) {
         if (el.val().length > 500) {
             el.val(el.val().substr(0, 500));
         } else {
-            $(".tweet .fade-info").text(500 - el.val().length);
+            $("#remaining").text(500 - el.val().length);
         }
     });
 

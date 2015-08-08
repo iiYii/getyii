@@ -6,7 +6,7 @@ $this->title = '发布新动弹';
         <div class="panel panel-default">
             <div class="panel-heading clearfix">
                 <?= $this->title ?>
-                <span class="pull-right fade-info">500</span>
+                <span class="pull-right fade-info" id="remaining">500</span>
             </div>
 
             <?= $this->render('_form', [

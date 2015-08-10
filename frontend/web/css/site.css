@@ -2,7 +2,7 @@ html,
 body {
     height: 100%;
     background-color: #e1e1e1;
-    font-family: 'Hiragino Sans GB', 'Microsoft YaHei', 微软雅黑, tahoma, arial, simsun, 宋体;
+    font-family: PingFang SC,Lantinghei SC,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans;
 }
 
 .wrap {
@@ -127,7 +127,7 @@ a.desc:after {
 }
 
 .site-index-topic .list-group-item:last-child {
-    border-bottom: 0px;
+    border-bottom: 0;
 }
 
 .topic-view .info {
@@ -353,8 +353,9 @@ a:visited .badge-reply-count {
 }
 
 img.emoji {
-    height: 1em;
-    width: 1em;
-    margin: 0 .05em 0 .1em;
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 .1em;
     vertical-align: -0.1em;
+    display: inline-block;
 }

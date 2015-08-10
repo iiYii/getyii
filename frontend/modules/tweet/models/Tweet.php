@@ -33,7 +33,7 @@ class Tweet extends Post
         return [
             [['content'], 'required'],
             [['post_meta_id', 'user_id', 'view_count', 'comment_count', 'favorite_count', 'like_count', 'thanks_count', 'hate_count', 'status', 'order', 'created_at', 'updated_at'], 'integer'],
-            [['content'], 'string', 'min' => 2, 'max' => 500],
+            [['content'], 'string', 'min' => 3, 'max' => 500],
             [['post_meta_id'], 'default', 'value' => 0],
             [['title'], 'default', 'value' => ''],
         ];

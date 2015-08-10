@@ -22,7 +22,7 @@ use yii\helpers\Html;
         </div>
 
         <div class="media-heading">
-            <?= Html::encode($model->content); ?>
+            <?= \yii\helpers\HtmlPurifier::process(\yii\helpers\Markdown::process($model->content, 'gfm')) ?>
         </div>
 
         <div class="title-info pull-right">

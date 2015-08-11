@@ -53,7 +53,7 @@ class PostComment extends ActiveRecord
         return [
             [['parent', 'post_id', 'status', 'user_id', 'like_count', 'created_at', 'updated_at'], 'integer'],
             [['post_id', 'comment', 'user_id', 'ip'], 'required'],
-//            [['comment'], 'string', 'min' => 2],
+            [['comment'], 'string', 'min' => 1],
             [['ip'], 'string', 'max' => 255]
         ];
     }

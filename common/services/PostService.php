@@ -8,8 +8,11 @@
 namespace common\services;
 
 
+use app\models\User;
 use common\models\Post;
 use frontend\models\Notification;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 class PostService
 {
@@ -41,5 +44,46 @@ class PostService
             return false;
         }
         return true;
+    }
+
+
+    /**
+     * 分别转换@用户和#楼层
+     * @param $content
+     * @return mixed
+     */
+    public static function replace($content)
+    {
+        preg_match_all("/\#(\d*)/i", $content, $floor);
+        if (isset($floor[1])) {
+            foreach ($floor[1] as $key => $value) {
+                $search = "#{$value}楼";
+                $place = "[{$search}](#comment{$value}) ";
+                $content = str_replace($search . ' ', $place, $content);
+            }
+        }
+
+        $users = static::parse($content);
+        foreach ($users as $key => $value) {
+            $search = '@' . $value;
+            $url = Url::to(['/user/default/show', 'username' => $value]);
+            $place = "[{$search}]({$url}) ";
+            $content = str_replace($search . ' ', $place, $content);
+        }
+
+        return $content;
+    }
+
+    public static function parse($content)
+    {
+        preg_match_all("/(\S*)\@([^\r\n\s]*)/i", $content, $atlistTmp);
+        $users = [];
+        foreach ($atlistTmp[2] as $key => $value) {
+            if ($atlistTmp[1][$key] || strlen($value) > 25) {
+                continue;
+            }
+            $users[] = $value;
+        }
+        return ArrayHelper::map(\common\models\User::find()->where(['username' => $users])->all(), 'id', 'username');
     }
 }

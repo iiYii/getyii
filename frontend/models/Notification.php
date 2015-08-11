@@ -70,6 +70,12 @@ class Notification extends ActiveRecord
             case 'at':
                 $lable = Yii::t('app', 'Mention you At:');
                 break;
+            case 'at_topic':
+                $lable = Yii::t('app', 'Mention you topic At:');
+                break;
+            case 'at_tweet':
+                $lable = Yii::t('app', 'Mention you tweet At:');
+                break;
             case 'topic_favorite':
                 $lable = Yii::t('app', 'Favorited your topic:');
                 break;

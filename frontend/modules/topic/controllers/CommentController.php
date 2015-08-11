@@ -24,7 +24,7 @@ class CommentController extends Controller
     {
         return [
             'verbs' => [
-                'class'   => VerbFilter::className(),
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
@@ -48,7 +48,7 @@ class CommentController extends Controller
      */
     public function actionCreate($id)
     {
-        $post =  Topic::findTopic($id);
+        $post = Topic::findTopic($id);
         $model = new PostComment();
         if ($model->load(Yii::$app->request->post())) {
             $topService = new TopicService();
@@ -70,8 +70,10 @@ class CommentController extends Controller
                 UserInfo::updateAllCounters(['comment_count' => 1], ['user_id' => $model->user_id]);
 
                 $this->flash("评论成功", 'success');
-                return $this->redirect(['/topic/default/view', 'id' => $post->id]);
+            } else {
+                $this->flash(array_values($model->getFirstErrors())[0], 'warning');
             }
+            return $this->redirect(['/topic/default/view', 'id' => $post->id]);
         }
         return $model;
     }

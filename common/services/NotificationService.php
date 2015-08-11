@@ -14,6 +14,7 @@ use frontend\modules\topic\models\Topic;
 use common\models\Post;
 use frontend\modules\user\models\UserMeta;
 use yii\base\Exception;
+use yii\helpers\VarDumper;
 
 class NotificationService
 {
@@ -47,6 +48,23 @@ class NotificationService
     }
 
     /**
+     * 内容@用户会有通知
+     * @param User $fromUser
+     * @param Post $post
+     * @param string $rawContent
+     * @throws Exception
+     */
+    public function newPostNotify(User $fromUser, Post $post, $rawContent = '')
+    {
+        $this->batchNotify(
+            'at_' . $post->type,
+            $fromUser,
+            $this->removeDuplication(PostService::parse($rawContent)),
+            $post
+        );
+    }
+
+    /**
      * 点赞和其他动作通知
      * @param $type
      * @param $fromUserId
@@ -57,6 +75,7 @@ class NotificationService
      */
     public function newActionNotify($type, $fromUserId, $toUserId, Post $post, PostComment $comment = null)
     {
+
         $model = new Notification();
 
         $model->setAttributes([
@@ -82,10 +101,9 @@ class NotificationService
      * @param $users
      * @param Post $post
      * @param PostComment $comment
-     * @param null $content
      * @throws Exception
      */
-    public function batchNotify($type, User $fromUser, $users, Post $post, PostComment $comment = null, $content = null)
+    public function batchNotify($type, User $fromUser, $users, Post $post, PostComment $comment = null)
     {
         foreach ($users as $key => $value) {
             if ($fromUser->id == $key) {
@@ -96,8 +114,8 @@ class NotificationService
                 'from_user_id' => $fromUser->id,
                 'user_id' => $key,
                 'post_id' => $post->id,
-                'comment_id' => $content ?: $comment->id,
-                'data' => $content ?: $comment->comment,
+                'comment_id' => $comment ? $comment->id : 0,
+                'data' => $comment ? $comment->comment : $post->content,
                 'type' => $type,
             ]);
             $this->notifiedUsers[] = $key;

@@ -5,6 +5,7 @@ namespace frontend\modules\topic\controllers;
 use common\models\Post;
 use common\models\Search;
 use common\models\SearchLog;
+use common\services\NotificationService;
 use common\services\TopicService;
 use frontend\modules\topic\models\Topic;
 use frontend\modules\user\models\UserMeta;
@@ -172,8 +173,11 @@ class DefaultController extends Controller
             if ($model->tags) {
                 $model->addTags(explode(',', $model->tags));
             }
+            $rawContent = $model->content;
+            $model->content = TopicService::replace($rawContent);
             if ($model->save()) {
                 (new UserMeta)->saveNewMeta('topic', $model->id, 'follow');
+                (new NotificationService())->newPostNotify(Yii::$app->user->identity, $model, $rawContent);
                 // 更新个人总统计
                 UserInfo::updateAllCounters(['post_count' => 1], ['user_id' => $model->user_id]);
                 $this->flash('发表文章成功!', 'success');

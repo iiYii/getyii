@@ -14,7 +14,9 @@ use yii\widgets\ActiveForm;
 <div class="list-group-item">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['/topic/comment/create', 'id' => Yii::$app->request->getQueryParam('id')],
+        'action' => [
+            $model->isNewRecord ? '/topic/comment/create' :'/topic/comment/update' ,
+            'id' => Yii::$app->request->getQueryParam('id')],
         'fieldConfig' => [
             'template' => "{input}\n{hint}\n{error}"
         ]

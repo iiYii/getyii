@@ -14,7 +14,9 @@ use yii\widgets\ActiveForm;
 <div class="list-group-item">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['/topic/comment/create', 'id' => Yii::$app->request->getQueryParam('id')],
+        'action' => [
+            $model->isNewRecord ? '/topic/comment/create' : '/topic/comment/update',
+            'id' => Yii::$app->request->getQueryParam('id')],
         'fieldConfig' => [
             'template' => "{input}\n{hint}\n{error}"
         ]
@@ -34,7 +36,7 @@ use yii\widgets\ActiveForm;
         'placeholder' => '内容',
         'id' => 'md-input',
         'disabled' => Yii::$app->user->getIsGuest(),
-        'rows'        => 6
+        'rows' => 6
     ]) ?>
 
     <div class="form-group">
@@ -44,6 +46,10 @@ use yii\widgets\ActiveForm;
                 'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary',
             ]
         ) ?>
+
+        <div class="pull-right">
+            <?= Html::a('排版说明', ['/site/markdown'], ['target' => '_blank']) ?>
+        </div>
     </div>
 
     <div id="md-preview"><?= HtmlPurifier::process(Markdown::process($model->comment, 'gfm')) ?></div>

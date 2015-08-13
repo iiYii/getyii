@@ -26,6 +26,9 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::submitButton('发布', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <div class="pull-right">
+            <?= Html::a('排版说明', ['/site/markdown'], ['target' => '_blank']) ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>

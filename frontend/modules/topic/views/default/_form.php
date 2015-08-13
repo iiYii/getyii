@@ -72,6 +72,10 @@ use kartik\select2\Select2;
                 'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary',
             ]
         ) ?>
+
+        <div class="pull-right">
+            <?= Html::a('排版说明', ['/site/markdown'], ['target' => '_blank']) ?>
+        </div>
     </div>
 
     <div id="md-preview"><?= HtmlPurifier::process(\yii\helpers\Markdown::process($model->content, 'gfm')) ?></div>

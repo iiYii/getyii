@@ -94,19 +94,19 @@ jQuery(function ($) {
     emojify.run();
 
 
-    function editorPreview() {
-        // Markdown 语法提示
-        $("#md-input").focus(function (event) {
-            $("#reply-notice").fadeIn(1500);
-            // $("#preview-box").fadeIn(1500);
-            // $("#preview-lable").fadeIn(1500);
-
-            // if (!$("#md-input").val()) {
-            //     $("html, body").animate({ scrollTop: $(document).height()}, 10);
-            // }
-        });
-    };
-    editorPreview();
+    //function editorPreview() {
+    //    // Markdown 语法提示
+    //    $("#md-input").focus(function (event) {
+    //        $("#reply-notice").fadeIn(1500);
+    //        // $("#preview-box").fadeIn(1500);
+    //        // $("#preview-lable").fadeIn(1500);
+    //
+    //        // if (!$("#md-input").val()) {
+    //        //     $("html, body").animate({ scrollTop: $(document).height()}, 10);
+    //        // }
+    //    });
+    //};
+    //editorPreview();
 
 
     function localStorage() {

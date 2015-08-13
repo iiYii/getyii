@@ -197,7 +197,7 @@ a.desc:after {
     padding: 0;
 }
 
-.article blockquote, .markdown-reply blockquote, #md-preview blockquote {
+.article blockquote, .markdown-reply blockquote, #md-preview blockquote, blockquote {
     background-color: #f7f7f7;
     font-size: inherit;
 }
@@ -358,4 +358,8 @@ img.emoji {
     margin: 0 .1em;
     vertical-align: -0.1em;
     display: inline-block;
+}
+
+pre {
+    padding: 0;
 }

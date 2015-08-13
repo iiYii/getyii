@@ -163,6 +163,10 @@ class SiteController extends Controller
         return $this->redirect('http://book.getyii.com');
     }
 
+    public function actionMarkdown()
+    {
+        return $this->render('markdown');
+    }
 
     public function actionTimeline()
     {

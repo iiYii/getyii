@@ -42,7 +42,7 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, Yii::t('common','Incorrect username or password.'));
             }
         }
     }
@@ -68,9 +68,9 @@ class LoginForm extends Model
     {
         return [
             'id' => 'ID',
-            'username' => '用户名',
-            'password' => '密码',
-            'rememberMe' => '记住我',
+            'username' => Yii::t('common', 'Username'),
+            'password' => Yii::t('common', 'Password'),
+            'rememberMe' => Yii::t('common', 'Remember Me'),
         ];
     }
 
@@ -120,9 +120,9 @@ class LoginForm extends Model
             if (User::isSuperAdmin($this->username)) {
                 return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
             }
-            $this->addError('username', '你没有权限登录');
+            $this->addError('username', 'You don\'t have permission to login.');
         } else {
-            $this->addError('password', 'Incorrect username or password.');
+            $this->addError('password', Yii::t('common','Incorrect username or password.');
         }
         return false;
     }

@@ -122,7 +122,7 @@ class LoginForm extends Model
             }
             $this->addError('username', 'You don\'t have permission to login.');
         } else {
-            $this->addError('password', Yii::t('common','Incorrect username or password.');
+            $this->addError('password', Yii::t('common','Incorrect username or password.'));
         }
         return false;
     }

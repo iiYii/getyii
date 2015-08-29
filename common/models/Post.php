@@ -20,6 +20,8 @@ use yii\helpers\ArrayHelper;
  * @property string $image
  * @property string $content
  * @property string $tags
+ * @property string $last_comment_time
+ * @property string $last_comment_username
  * @property integer $view_count
  * @property integer $comment_count
  * @property integer $favorite_count
@@ -79,9 +81,10 @@ class Post extends ActiveRecord
     {
         return [
             [['post_meta_id', 'title', 'content'], 'required'],
-            [['post_meta_id', 'user_id', 'view_count', 'comment_count', 'favorite_count', 'like_count', 'thanks_count', 'hate_count', 'status', 'order', 'created_at', 'updated_at'], 'integer'],
+            [['post_meta_id', 'user_id', 'view_count', 'comment_count', 'last_comment_time', 'favorite_count', 'like_count', 'thanks_count', 'hate_count', 'status', 'order', 'created_at', 'updated_at'], 'integer'],
             [['content'], 'string', 'min' => 2],
             [['type'], 'string', 'max' => 32],
+            [['last_comment_username'], 'string', 'max' => 20],
             [['title'], 'string', 'max' => 255, 'min' => 2],
             [['excerpt', 'image', 'tags'], 'string', 'max' => 255],
             [['author'], 'string', 'max' => 100]
@@ -106,6 +109,8 @@ class Post extends ActiveRecord
             'image' => '封面图片',
             'content' => '内容',
             'tags' => '标签',
+            'last_comment_username' => '最后回复用户',
+            'last_comment_time' => '最后评论时间',
             'view_count' => '查看数',
             'comment_count' => '评论数',
             'favorite_count' => '收藏数',
@@ -149,7 +154,7 @@ class Post extends ActiveRecord
     {
         $statuses = [
             self::STATUS_DELETED => Yii::t('common', 'DELETED'),
-            self::STATUS_ACTIVE =>  Yii::t('common', 'ACTIVE'),
+            self::STATUS_ACTIVE => Yii::t('common', 'ACTIVE'),
             self::STATUS_EXCELLENT => Yii::t('common', 'EXCELLENT'),
             self::STATUS_TOP => Yii::t('common', 'TOP'),
         ];

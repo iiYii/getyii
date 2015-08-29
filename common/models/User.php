@@ -201,7 +201,9 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * 获取用户头像
+     * @param int $size
      * @return string
+     * @throws \yii\base\Exception
      */
     public function getUserAvatar($size = 50)
     {

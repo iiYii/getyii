@@ -52,6 +52,7 @@ class PostSearch extends Post
             ],
             'sort' => ['defaultOrder' => [
                 'order' => SORT_ASC,
+                'last_comment_time' => SORT_DESC,
                 'updated_at' => SORT_DESC,
             ]]
         ]);

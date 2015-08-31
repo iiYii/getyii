@@ -1,9 +1,8 @@
 <?php
 
 return [
-    'DELETED' => '已删除',
-    'ACTIVE' => '正常',
-    'EXCELLENT' => '推荐',
-    'TOP' => '置顶',
+    'created_at {datetime}' => '于 {datetime} 发布',
+    'reply_at {datetime}' => '于 {datetime} 回复',
+    'last_by' => '最后由',
 
 ];

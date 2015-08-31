@@ -46,15 +46,15 @@ class MeritLog extends \common\components\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'user_id' => '用户ID',
-            'merit_template_id' => '模板ID',
-            'type' => '分类',
-            'description' => '描述',
-            'action_type' => '操作类型 0减去 1新增',
-            'increment' => '变化值',
-            'created_at' => '创建时间',
-            'updated_at' => '创建时间',
+            'id' => Yii::t('common', 'ID'),
+            'user_id' => Yii::t('common', 'User ID'),
+            'merit_template_id' => Yii::t('common', 'Merit Template ID'),
+            'type' => Yii::t('common', 'Type'),
+            'description' => Yii::t('common', 'Description'),
+            'action_type' => Yii::t('common', 'Action Type'),
+            'increment' => Yii::t('common', 'Increment'),
+            'created_at' => Yii::t('common', 'Created At'),
+            'updated_at' => Yii::t('common', 'Updated At'),
         ];
     }
 }

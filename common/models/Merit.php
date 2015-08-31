@@ -42,12 +42,12 @@ class Merit extends \common\components\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'user_id' => '用户ID',
-            'type' => '分类',
-            'merit' => '总值',
-            'created_at' => '创建时间',
-            'updated_at' => '创建时间',
+            'id' => Yii::t('common', 'ID'),
+            'user_id' => Yii::t('common', 'User ID'),
+            'type' => Yii::t('common', 'Type'),
+            'merit' => Yii::t('common', 'Merit'),
+            'created_at' => Yii::t('common', 'Created At'),
+            'updated_at' => Yii::t('common', 'Updated At'),
         ];
     }
 

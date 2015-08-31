@@ -64,6 +64,8 @@ class CommentController extends Controller
             if ($model->save()) {
                 (new UserMeta())->saveNewMeta('topic', $id, 'follow');
                 (new NotificationService())->newReplyNotify(Yii::$app->user->identity, $post, $model, $rawComment);
+                // 更新回复时间
+                $post->lastCommentToUpdate(Yii::$app->user->identity->username);
                 // 评论计数器
                 Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
                 // 更新个人总统计

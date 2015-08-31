@@ -114,8 +114,9 @@ class Topic extends Post
             $search->topic_id = $this->id;
             $search->status = self::STATUS_ACTIVE;
         } else {
-            Yii::$app->cache->set('topic' . $this->id, $this, 0);
+//            Yii::$app->cache->set('topic' . $this->id, $this, 0);
             $search = Search::findOne($this->id);
+//            $search = false;
             if (!$search) {
                 // 如果立即修改 会因为在 xunsearch 找不到而不能 save
                 return false;
@@ -126,6 +127,20 @@ class Topic extends Post
         $search->content = $this->content;
         $search->updated_at = $this->updated_at;
         $search->save();
+    }
+
+    /**
+     * 最后回复更新
+     * @param string $username
+     * @return bool
+     */
+    public function lastCommentToUpdate($username = '')
+    {
+        $this->setAttributes([
+            'last_comment_username' => $username,
+            'last_comment_time' => time()
+        ]);
+        return $this->save();
     }
 
     /**

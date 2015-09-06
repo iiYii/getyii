@@ -10,11 +10,13 @@ use common\models\UserInfo;
 use yii\console\Controller;
 use yii\db\Expression;
 use yii\db\Query;
+use yii\helpers\ArrayHelper;
+use yii\helpers\VarDumper;
 
 
-class DefaultController extends Controller
+class SyncController extends Controller
 {
-    public function actionSync()
+    public function actionUserInfo()
     {
         UserInfo::updateAll(['thanks_count' => 0, 'like_count' => 0, 'hate_count' => 0]);
         $meta = UserMeta::find()->all();
@@ -51,7 +53,7 @@ class DefaultController extends Controller
         return;
     }
 
-    public function actionPostLastCommonTime()
+    public function actionPost()
     {
         $update = Topic::updateAll(
             ['last_comment_time' => new Expression('created_at')],
@@ -65,12 +67,17 @@ class DefaultController extends Controller
             ->groupBy('post_id')
             ->all();
 
-        foreach ($comment as $key => $value) {
+        foreach ($comment as $value) {
+            $commentCount = PostComment::find()->where(['post_id' => $value->post_id, 'status' => PostComment::STATUS_ACTIVE])->count();
             $updateComment[] = Topic::updateAll(
-                ['last_comment_time' => $value->created_at, 'last_comment_username' => $value->user->username],
+                [
+                    'last_comment_time' => $value->created_at,
+                    'last_comment_username' => $value->user->username,
+                    'comment_count' => $commentCount,
+                ],
                 ['id' => $value->post_id, 'type' => Topic::TYPE]
             );
         }
-        $this->stdout("校正最后回复时间和回复会员，校正" . count($updateComment) . "条数据\n");
+        $this->stdout("校正最后回复时间和回复会员还有评论条数，校正" . count($updateComment) . "条数据\n");
     }
 }

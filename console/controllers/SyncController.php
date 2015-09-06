@@ -57,7 +57,8 @@ class SyncController extends Controller
     {
         $update = Topic::updateAll(
             ['last_comment_time' => new Expression('created_at')],
-            ['type' => Topic::TYPE, 'last_comment_username' => null]
+//            ['or', ['type' => Topic::TYPE, 'last_comment_username' => ''], ['type' => Topic::TYPE, 'last_comment_username' => null]]
+            ['and', ['type' => Topic::TYPE], ['or', ['last_comment_username' => ''], ['last_comment_username' => null]]]
         );
         $this->stdout("同步最后回复时间，同步{$update}条数据\n");
 
@@ -67,6 +68,9 @@ class SyncController extends Controller
             ->groupBy('post_id')
             ->all();
 
+        Topic::updateAll(['comment_count' => 0], ['type' => Topic::TYPE]);
+
+        $updateComment = [];
         foreach ($comment as $value) {
             $commentCount = PostComment::find()->where(['post_id' => $value->post_id, 'status' => PostComment::STATUS_ACTIVE])->count();
             $updateComment[] = Topic::updateAll(

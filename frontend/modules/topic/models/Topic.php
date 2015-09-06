@@ -83,7 +83,6 @@ class Topic extends Post
 
     }
 
-
     /**
      * 通过ID获取指定话题
      * @param $id
@@ -104,6 +103,18 @@ class Topic extends Post
     public static function findDeletedTopic($id)
     {
         return static::findModel($id, ['>=', 'status', self::STATUS_DELETED]);
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($insert) {
+                $this->last_comment_time = $this->created_at;
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function afterSave($insert, $changedAttributes)

@@ -44,7 +44,7 @@ class DefaultController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     // 默认只能Get方式访问
-                    ['allow' => true, 'actions' => ['view', 'index', 'sync', 'search'], 'verbs' => ['GET']],
+                    ['allow' => true, 'actions' => ['view', 'index', 'search'], 'verbs' => ['GET']],
                     // 登录用户才能提交评论或其他内容
                     ['allow' => true, 'actions' => ['api', 'view', 'delete'], 'verbs' => ['POST'], 'roles' => ['@']],
                     // 登录用户才能使用API操作(赞,踩,收藏)
@@ -278,35 +278,5 @@ class DefaultController extends Controller
         } else {
             throw new NotFoundHttpException();
         }
-    }
-
-
-    public function actionSync()
-    {
-        UserInfo::updateAll(['thanks_count' => 0, 'like_count' => 0, 'hate_count' => 0]);
-        $meta = UserMeta::find()->all();
-        foreach ($meta as $key => $value) {
-            if (in_array($value->type, ['thanks', 'like', 'hate'])) {
-                switch ($value->target_type) {
-                    case 'topic':
-                    case 'post':
-                        echo '同步文章操作</br>';
-                        $topic = Topic::findOne($value->target_id);
-                        UserInfo::updateAllCounters([$value->type . '_count' => 1], ['user_id' => $topic->user_id]);
-                        break;
-                    case 'comment':
-                        echo '同步评论操作</br>';
-                        $comment = PostComment::findOne($value->target_id);
-                        UserInfo::updateAllCounters([$value->type . '_count' => 1], ['user_id' => $comment->user_id]);
-                        break;
-
-                    default:
-                        # code...
-                        break;
-                }
-            }
-
-        }
-        return;
     }
 }

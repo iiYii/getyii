@@ -9,6 +9,7 @@ use common\models\PostComment;
 use common\models\UserInfo;
 use yii\console\Controller;
 use yii\db\Expression;
+use yii\db\Query;
 
 
 class DefaultController extends Controller
@@ -52,7 +53,24 @@ class DefaultController extends Controller
 
     public function actionPostLastCommonTime()
     {
-        $update = Topic::updateAll(['last_comment_time' => new Expression('created_at')], ['type' => Topic::TYPE]);
+        $update = Topic::updateAll(
+            ['last_comment_time' => new Expression('created_at')],
+            ['type' => Topic::TYPE, 'last_comment_username' => null]
+        );
         $this->stdout("同步最后回复时间，同步{$update}条数据\n");
+
+        $subQuery = new Query();
+        $subQuery->from(PostComment::tableName())->where(['status' => PostComment::STATUS_ACTIVE])->orderBy(['created_at' => SORT_DESC]);
+        $comment = PostComment::find()->from(['tmpA' => $subQuery])
+            ->groupBy('post_id')
+            ->all();
+
+        foreach ($comment as $key => $value) {
+            $updateComment[] = Topic::updateAll(
+                ['last_comment_time' => $value->created_at, 'last_comment_username' => $value->user->username],
+                ['id' => $value->post_id, 'type' => Topic::TYPE]
+            );
+        }
+        $this->stdout("校正最后回复时间和回复会员，校正" . count($updateComment) . "条数据\n");
     }
 }

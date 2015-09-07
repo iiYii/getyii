@@ -7,10 +7,7 @@
 
 namespace frontend\modules\tweet\models;
 
-
 use common\models\Post;
-use common\models\PostTag;
-use common\models\Search;
 use frontend\modules\user\models\UserMeta;
 use yii\web\NotFoundHttpException;
 use Yii;

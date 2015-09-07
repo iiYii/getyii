@@ -32,7 +32,7 @@ class m150104_071047_init_blog extends Migration
             'excerpt' => Schema::TYPE_STRING . " DEFAULT NULL COMMENT '摘要'",
             'image' => Schema::TYPE_STRING . " DEFAULT NULL COMMENT '封面图片'",
             'content' => Schema::TYPE_TEXT . " NOT NULL COMMENT '内容'",
-            'tags' => Schema::TYPE_STRING . " NOT NULL COMMENT '标签 用英文逗号隔开'",
+            'tags' => Schema::TYPE_STRING . "(255) NOT NULL COMMENT '标签 用英文逗号隔开'",
             'view_count' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '查看数'",
             'comment_count' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '评论数'",
             'favorite_count' => Schema::TYPE_INTEGER . " UNSIGNED NOT NULL DEFAULT '0' COMMENT '收藏数'",

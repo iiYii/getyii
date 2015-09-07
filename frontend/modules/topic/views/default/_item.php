@@ -54,7 +54,7 @@ use common\helpers\Formatter;
             } else {
                 echo Html::tag('span',
                     Yii::t('frontend', 'created_at {datetime}', [
-                        'datetime' => Formatter::relative($model->updated_at)
+                        'datetime' => Formatter::relative($model->created_at)
                     ])
                 );
             }

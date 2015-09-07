@@ -2,6 +2,7 @@
 
 namespace frontend\modules\topic\controllers;
 
+use common\behaviors\RequestThrottleBehavior;
 use common\models\Post;
 use common\models\Search;
 use common\models\SearchLog;
@@ -50,7 +51,11 @@ class DefaultController extends Controller
                     // 登录用户才能使用API操作(赞,踩,收藏)
                     ['allow' => true, 'actions' => ['create', 'update', 'revoke', 'excellent'], 'roles' => ['@']],
                 ]
-            ]
+            ],
+            [
+                'class' => RequestThrottleBehavior::className(),
+                'warning'=>'您操作太频繁了，60秒内不能重复操作。'
+            ],
         ];
     }
 

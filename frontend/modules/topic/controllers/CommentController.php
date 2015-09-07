@@ -2,6 +2,7 @@
 
 namespace frontend\modules\topic\controllers;
 
+use common\behaviors\RequestThrottleBehavior;
 use common\models\UserInfo;
 use common\services\NotificationService;
 use common\services\TopicService;
@@ -37,7 +38,11 @@ class CommentController extends Controller
                     // 登录用户才能操作
                     ['allow' => true, 'actions' => ['create', 'update'], 'roles' => ['@']],
                 ]
-            ]
+            ],
+            [
+                'class' => RequestThrottleBehavior::className(),
+                'warning'=>'您操作太频繁了，60秒内不能重复操作。'
+            ],
         ];
     }
 

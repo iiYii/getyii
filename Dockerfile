@@ -3,7 +3,7 @@ FROM dcb9/php-fpm:latest
 MAINTAINER Bob <bob@phpor.me>
 
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends git \
+  && apt-get install -y --no-install-recommends git vim \
   && rm -rf /var/lib/apt/lists/*
 
 # http://serverfault.com/questions/599103/make-a-docker-application-write-to-stdout
@@ -14,16 +14,17 @@ WORKDIR /app
 
 ENV COMPOSER_HOME /root/.composer
 ENV PATH /root/.composer/vendor/bin:$PATH
-COPY docker-files/root.composer.config.json /root/.composer/config.json
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-  && /usr/local/bin/composer global require "fxp/composer-asset-plugin" \
-# add chinese image http://pkg.phpcomposer.com/
-  && composer config -g repositories.packagist composer http://packagist.phpcomposer.com
+  # add chinese image http://pkg.phpcomposer.com/
+  && composer config -g repositories.packagist composer http://packagist.phpcomposer.com \
+  && /usr/local/bin/composer global require --prefer-source --no-interaction "fxp/composer-asset-plugin"
 
 COPY docker-files/getyii.com.conf /etc/nginx/conf.d/
 COPY . /app/
 
-RUN composer install \
+RUN composer install --prefer-source --no-interaction \
   && chmod 700 docker-files/run.sh init
+
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 CMD ["docker-files/run.sh"]

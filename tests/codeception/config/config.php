@@ -2,7 +2,8 @@
 
 $MYSQL_PORT_3306_TCP_ADDR = env('MYSQL_PORT_3306_TCP_ADDR', 'localhost');
 $MYSQL_TESTS_DB_NAME = env('MYSQL_TESTS_DB_NAME', 'yii2advanced_tests');
-$MYSQL_ROOT_PASSWORD = env('MYSQL_ROOT_PASSWORD', '');
+$MYSQL_USERNAME = env('MYSQL_USERNAME', 'root');
+$MYSQL_PASSWORD = env('MYSQL_PASSWORD', '');
 
 /**
  * Application configuration shared by all applications and test types
@@ -12,8 +13,8 @@ return [
         'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host='.$MYSQL_PORT_3306_TCP_ADDR.';dbname='.$MYSQL_TESTS_DB_NAME,
-            'username' => 'root',
-            'password' => $MYSQL_ROOT_PASSWORD,
+            'username' => $MYSQL_USERNAME,
+            'password' => $MYSQL_PASSWORD,
             'charset' => 'utf8mb4',
         ],
         'mailer' => [

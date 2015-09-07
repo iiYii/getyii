@@ -2,6 +2,10 @@ FROM dcb9/php-fpm:latest
 
 MAINTAINER Bob <bob@phpor.me>
 
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends git \
+  && rm -rf /var/lib/apt/lists/*
+
 # http://serverfault.com/questions/599103/make-a-docker-application-write-to-stdout
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
   && ln -sf /dev/stderr /var/log/nginx/error.log \
@@ -19,7 +23,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY docker-files/getyii.com.conf /etc/nginx/conf.d/
 COPY . /app/
 
-RUN composer install --prefer-dist --no-interaction \
+RUN composer install \
   && chmod 700 docker-files/run.sh init
 
 CMD ["docker-files/run.sh"]

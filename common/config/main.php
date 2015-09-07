@@ -1,7 +1,7 @@
 <?php
 	
 $MYSQL_PORT_3306_TCP_ADDR = env('MYSQL_PORT_3306_TCP_ADDR', 'localhost');
-$MYSQL_DB_NAME = env('MYSQL_DB_NAME', 'yii2advanced');
+$MYSQL_DB_NAME = env('MYSQL_INSTANCE_NAME', 'yii2advanced');
 $MYSQL_USERNAME = env('MYSQL_USERNAME', 'root');
 $MYSQL_PASSWORD = env('MYSQL_PASSWORD', '');
 

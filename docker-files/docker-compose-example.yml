@@ -4,8 +4,7 @@ web:
     - "80:80"
   environment:
     - APP_ENV=Production
-    - MYSQL_DB_NAME=getyii
-    - MYSQL_TESTS_DB_NAME=getyii_tests
+    - MYSQL_INSTANCE_NAME=getyii
     - MYSQL_USERNAME=root
     - MYSQL_PASSWORD=
 

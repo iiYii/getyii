@@ -3,6 +3,7 @@
 set -e -x 
 
 cd /app
+composer install --prefer-source --no-interaction --no-progress --optimize-autoloader
 ./init --env=${APP_ENV:-prod} --overwrite=y
 ./yii migrate --interactive=0
 

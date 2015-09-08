@@ -22,9 +22,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY docker-files/getyii.com.conf /etc/nginx/conf.d/
 COPY . /app/
 
-RUN composer install --prefer-source --no-interaction \
-  && chmod 700 docker-files/run.sh init
+RUN chmod 700 docker-files/run.sh init
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
+VOLUME ["/root/.composer", "/app/vendor"]
 CMD ["docker-files/run.sh"]
+EXPOSE 80

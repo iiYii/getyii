@@ -6,7 +6,7 @@ return [
     'EXCELLENT' => '推荐',
     'TOP' => '置顶',
 
-    'Username' => '用户名',
+    'Username' => '用户名/邮箱',
     'Password' => '密码',
     'Remember Me' => '记住我',
     'Incorrect username or password.' => '用户名密码验证失败。',

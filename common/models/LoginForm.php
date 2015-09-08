@@ -4,6 +4,7 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\web\Session;
+use common\models\User;
 /**
  * Login form
  */
@@ -12,7 +13,6 @@ class LoginForm extends Model
     public $username;
     public $password;
     public $rememberMe = true;
-
     private $_user = false;
 
     /**
@@ -74,15 +74,17 @@ class LoginForm extends Model
         ];
     }
 
-    /**
-     * Finds user by [[username]]
-     *
-     * @return User|null
-     */
+  /*
+   * user:onyony
+   * email 邮箱登录
+   */
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+            if(strstr($this->username,"@"))
+                $this->_user = User::findByEmail($this->username); //email 登录
+            else
+                $this->_user = User::findByUsername($this->username);
         }
 
         return $this->_user;

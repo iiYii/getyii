@@ -29,3 +29,8 @@ phpunit.phar
 # 本地 phpunit 配置文件
 /phpunit.xml
 
+# database config
+/common/config/db-local.php
+
+# install lock file
+install.lock

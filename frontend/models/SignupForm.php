@@ -2,7 +2,6 @@
 namespace frontend\models;
 
 use common\models\User;
-use common\models\UserInfo;
 use yii\base\Model;
 use Yii;
 
@@ -14,6 +13,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $role;
 
     /**
      * @inheritdoc
@@ -34,6 +34,9 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+
+            ['role', 'integer'],
+            ['role', 'default', 'value' => User::ROLE_USER],
         ];
     }
 
@@ -46,6 +49,7 @@ class SignupForm extends Model
             'username' => '用户名',
             'password' => '密码',
             'email' => '邮箱',
+            'role' => '角色',
         ];
     }
 
@@ -60,6 +64,7 @@ class SignupForm extends Model
             $user = new User();
             $user->username = $this->username;
             $user->email = $this->email;
+            $user->role = $this->role;
             $user->setPassword($this->password);
             $user->generateAuthKey();
             $user->save();

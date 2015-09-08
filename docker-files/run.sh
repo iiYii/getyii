@@ -3,8 +3,8 @@
 set -e -x 
 
 cd /app
-composer install --prefer-source --no-interaction --no-progress --optimize-autoloader
-./init --env=${APP_ENV:-prod} --overwrite=y
+composer install --prefer-dist --no-interaction --optimize-autoloader
+./init --env=${APP_ENV:-Production} --overwrite=y
 ./yii migrate --interactive=0
 
 function setEnvironmentVariable() {

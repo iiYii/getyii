@@ -54,6 +54,7 @@ class m150908_055507_init_data extends Migration
                 'type' => Topic::TYPE,
                 'title' => $faker->text(rand(10, 100)),
                 'post_meta_id' => rand(2, 4),
+                'status' => rand(1, 2),
                 'content' => $faker->text(rand(100, 2000)),
                 'user_id' => 1
             ]);

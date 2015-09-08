@@ -7,6 +7,25 @@
 
 ## 项目搭建
 
+### docker
+
+1. 安装好 docker 保证可以运行 docker 和 docker-compose 命令
+2. 克隆代码到你本地，并 cd 到相应目录
+3. 启动 getyii 应用
+
+$ cp docker-files/docker-compose-example.yml docker-compose.yml
+
+$ docker-compose up -d
+
+访问 getyii
+
+添加以下两个域名加到自己机器的 host 里面
+
+	<your_docker_ip> <your_name>.dev.getyii.com 前台
+	<your_docker_ip> <your_name>.dev.admin.getyii.com 后台
+
+### 原始方法
+
 1. 本项目是基于 [Yii2 ](https://github.com/yiisoft/yii2) 高级应用模板开发的，参考文档 [高级应用模板](http://yii2.xlbd.net/web/index.php/guide/3.html)。
 1. 配置环境的时候你要配置两个虚拟目录，对于前台指定 `frontend/web/` ，访问URL为 `http://www.xxx.com/` (域名自己随便配置)
 1. 对于后台指定 `backend/web/` ，访问URL为 `http://admin.xxx.com/` (域名自己随便配置)
@@ -17,6 +36,9 @@
 1. 在终端输入命令 `composer global require "fxp/composer-asset-plugin:~1.0"` 安装 [composer-asset-plugin](https://github.com/francoispluchino/composer-asset-plugin) 来管理静态资源文件。
 1. 最后在终端输入命令 `composer install` 更新包。
 1. 在终端输入命令 `yii migrate` (windows下面可能是 `php yii migrate` 命令)初始化数据。
+
+### 用户相关
+
 1. 把 user 表中的某用户值 role 字段值改为20，即为前台管理员，目前可以给帖子加精华，不能登录后台。
 1. 把 user 表中的某用户值 role 字段值改为30，即为超级管理员，可登录后台。
 

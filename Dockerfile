@@ -20,11 +20,12 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
   && /usr/local/bin/composer global require --prefer-source --no-interaction "fxp/composer-asset-plugin"
 
 COPY docker-files/getyii.com.conf /etc/nginx/conf.d/
+RUN docker-php-ext-install mysqli pdo pdo_mysql \
+  && rm -rf /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/example_ssl.conf
 COPY . /app/
 
-RUN composer install --prefer-source --no-interaction \
-  && chmod 700 docker-files/run.sh init
+RUN chmod 700 docker-files/run.sh init
 
-RUN docker-php-ext-install mysqli pdo pdo_mysql
-
+VOLUME ["/root/.composer", "/app/vendor"]
 CMD ["docker-files/run.sh"]
+EXPOSE 80

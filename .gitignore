@@ -28,4 +28,6 @@ composer.phar
 phpunit.phar
 # 本地 phpunit 配置文件
 /phpunit.xml
-
+/docker-compose.yml
+/supervisord.log
+/supervisord.pid

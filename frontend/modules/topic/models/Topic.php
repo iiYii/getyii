@@ -120,24 +120,24 @@ class Topic extends Post
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
-        if ($insert) {
-            $search = new Search();
-            $search->topic_id = $this->id;
-            $search->status = self::STATUS_ACTIVE;
-        } else {
-//            Yii::$app->cache->set('topic' . $this->id, $this, 0);
-            $search = Search::findOne($this->id);
-//            $search = false;
-            if (!$search) {
-                // 如果立即修改 会因为在 xunsearch 找不到而不能 save
-                return false;
+        if (Yii::$app->params['setting']['xunsearch']) {
+            if ($insert) {
+                $search = new Search();
+                $search->topic_id = $this->id;
+                $search->status = self::STATUS_ACTIVE;
+            } else {
+                $search = Search::findOne($this->id);
+                if (!$search) {
+                    // 如果立即修改 会因为在 xunsearch 找不到而不能 save
+                    return false;
+                }
+                $search->status = $this->status;
             }
-            $search->status = $this->status;
+            $search->title = $this->title;
+            $search->content = $this->content;
+            $search->updated_at = $this->updated_at;
+            $search->save();
         }
-        $search->title = $this->title;
-        $search->content = $this->content;
-        $search->updated_at = $this->updated_at;
-        $search->save();
     }
 
     /**

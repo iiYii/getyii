@@ -2,7 +2,6 @@
 
 namespace frontend\modules\topic\controllers;
 
-use common\behaviors\RequestThrottleBehavior;
 use common\models\Post;
 use common\models\Search;
 use common\models\SearchLog;
@@ -21,6 +20,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
+use yiier\request\ThrottleBehavior;
 
 class DefaultController extends Controller
 {
@@ -53,8 +53,8 @@ class DefaultController extends Controller
                 ]
             ],
             [
-                'class' => RequestThrottleBehavior::className(),
-                'warning'=>'您操作太频繁了，60秒内不能重复操作。'
+                'class' => ThrottleBehavior::className(),
+                'message'=>'您操作太频繁了，10秒内不能重复操作。'
             ],
         ];
     }

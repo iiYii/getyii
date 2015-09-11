@@ -2,7 +2,6 @@
 
 namespace frontend\modules\topic\controllers;
 
-use common\behaviors\RequestThrottleBehavior;
 use common\models\UserInfo;
 use common\services\NotificationService;
 use common\services\TopicService;
@@ -15,6 +14,7 @@ use common\components\Controller;
 use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yiier\request\ThrottleBehavior;
 
 /**
  * CommentController implements the CRUD actions for PostComment model.
@@ -40,8 +40,8 @@ class CommentController extends Controller
                 ]
             ],
             [
-                'class' => RequestThrottleBehavior::className(),
-                'warning'=>'您操作太频繁了，60秒内不能重复操作。'
+                'class' => ThrottleBehavior::className(),
+                'message'=>'您操作太频繁了，10秒内不能重复操作。'
             ],
         ];
     }

@@ -21,6 +21,8 @@ return [
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
+            //'class' => 'yii\caching\ApcCache',
+            'cachePath' => '@backend/runtime/cache',
         ],
         'session' => [
             'class' => 'yii\web\DbSession',

@@ -33,7 +33,7 @@
     "bower-asset/emojify.js": "*",
     "bower-asset/PACE": "*",
     "bower-asset/localforage": "*",
-    "bower-asset/twemoji": "*",
+    "bower-asset/emoji": "*",
     "yiisoft/yii2-authclient": "*",
     "yzalis/identicon": "*",
     "funson86/yii2-setting": "*",
@@ -44,7 +44,9 @@
     "kartik-v/yii2-widget-select2": "*",
     "yiier/yii2-backup": "*",
     "2amigos/yii2-qrcode-helper": "~1.0",
-    "kop/yii2-scroll-pager": "dev-master"
+    "kop/yii2-scroll-pager": "dev-master",
+    "devgroup/yii2-tag-dependency-helper": "*",
+    "yiier/yii2-request-behavior": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",

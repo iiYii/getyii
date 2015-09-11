@@ -2,6 +2,7 @@
 namespace common\models;
 
 use common\helpers\Avatar;
+use devgroup\TagDependencyHelper\ActiveRecordHelper;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -51,8 +52,11 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             TimestampBehavior::className(),
+            'class' => ActiveRecordHelper::className(),
         ];
     }
+
+
 
     /**
      * @inheritdoc

@@ -11,8 +11,10 @@ use common\models\Post;
 use common\models\PostComment;
 use common\models\User;
 use common\models\UserInfo;
+use devgroup\TagDependencyHelper\ActiveRecordHelper;
 use frontend\modules\topic\models\Topic;
 use frontend\modules\user\models\UserMeta;
+use yii\caching\TagDependency;
 
 class UserService
 {
@@ -57,10 +59,10 @@ class UserService
     public static function TopicActionB(User $user, Post $model, $action)
     {
         $data = [
-            'target_id'   => $model->id,
+            'target_id' => $model->id,
             'target_type' => $model->type,
-            'user_id'     => $user->id,
-            'value'       => '1',
+            'user_id' => $user->id,
+            'value' => '1',
         ];
         if (!UserMeta::deleteOne($data + ['type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
             $userMeta = new UserMeta();
@@ -92,10 +94,10 @@ class UserService
     public static function CommentAction(User $user, PostComment $comment, $action)
     {
         $data = [
-            'target_id'   => $comment->id,
+            'target_id' => $comment->id,
             'target_type' => $comment::TYPE,
-            'user_id'     => $user->id,
-            'value'       => '1',
+            'user_id' => $user->id,
+            'value' => '1',
         ];
         if (!UserMeta::deleteOne($data + ['type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
             $userMeta = new UserMeta();
@@ -124,10 +126,10 @@ class UserService
     protected static function toggleType(User $user, Post $model, $action)
     {
         $data = [
-            'target_id'   => $model->id,
+            'target_id' => $model->id,
             'target_type' => $model->type,
-            'user_id'     => $user->id,
-            'value'       => '1',
+            'user_id' => $user->id,
+            'value' => '1',
         ];
         if (!UserMeta::deleteOne($data + ['type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
             $userMeta = new UserMeta();
@@ -160,11 +162,21 @@ class UserService
      */
     public static function findActiveUser($limit = 12)
     {
-        return User::find()
-            ->joinWith(['merit', 'userInfo'])
-            ->where([User::tableName() . '.status' => 10])
-            ->orderBy(['merit' => SORT_DESC, '(like_count+thanks_count)' => SORT_DESC])
-            ->limit($limit)
-            ->all();
+        $cacheKey = md5(__METHOD__ . $limit);
+        if (false === $items = \Yii::$app->cache->get($cacheKey)) {
+            $items = User::find()
+                ->joinWith(['merit', 'userInfo'])
+                ->where([User::tableName() . '.status' => 10])
+                ->orderBy(['merit' => SORT_DESC, '(like_count+thanks_count)' => SORT_DESC])
+                ->limit($limit)
+                ->all();
+            //一天缓存
+            \Yii::$app->cache->set($cacheKey, $items, 86400,
+                new TagDependency([
+                    'tags' => [ActiveRecordHelper::getCommonTag(User::className())]
+                ])
+            );
+        }
+        return $items;
     }
 }

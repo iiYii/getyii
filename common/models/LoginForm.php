@@ -1,10 +1,11 @@
 <?php
 namespace common\models;
 
+use common\models\User;
 use Yii;
 use yii\base\Model;
 use yii\web\Session;
-use common\models\User;
+
 /**
  * Login form
  */
@@ -42,7 +43,7 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, Yii::t('common','Incorrect username or password.'));
+                $this->addError($attribute, Yii::t('common', 'Incorrect username or password.'));
             }
         }
     }
@@ -74,17 +75,21 @@ class LoginForm extends Model
         ];
     }
 
-  /*
-   * user:onyony
-   * email 邮箱登录
-   */
+    /*
+     * user:onyony
+     * email 邮箱登录
+     */
     public function getUser()
     {
         if ($this->_user === false) {
-            if(strstr($this->username,"@"))
-                $this->_user = User::findByEmail($this->username); //email 登录
-            else
+            if (false === strpos($this->username, "@")) {
                 $this->_user = User::findByUsername($this->username);
+            } else {
+                //email 登录
+                $this->_user = User::findByEmail($this->username);
+
+            }
+
         }
 
         return $this->_user;
@@ -103,10 +108,10 @@ class LoginForm extends Model
         $model->last_login_time = time();
         $model->last_login_ip = Yii::$app->getRequest()->getUserIP();
 
-        if(!Yii::$app->session->isActive){
+        if (!Yii::$app->session->isActive) {
             Yii::$app->session->open();
         }
-        $model->session_id=Yii::$app->session->id;
+        $model->session_id = Yii::$app->session->id;
         Yii::$app->session->close();
 
         if ($model->save()) {
@@ -124,7 +129,7 @@ class LoginForm extends Model
             }
             $this->addError('username', 'You don\'t have permission to login.');
         } else {
-            $this->addError('password', Yii::t('common','Incorrect username or password.'));
+            $this->addError('password', Yii::t('common', 'Incorrect username or password.'));
         }
         return false;
     }

@@ -38,10 +38,6 @@ class DefaultController extends Controller
                     ['allow' => true, 'actions' => ['create'], 'roles' => ['@']],
                 ]
             ],
-            [
-                'class' => ThrottleBehavior::className(),
-                'message'=>'您操作太频繁了，10秒内不能重复操作。'
-            ],
         ];
     }
 

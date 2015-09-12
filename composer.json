@@ -33,7 +33,6 @@
     "bower-asset/emojify.js": "*",
     "bower-asset/PACE": "*",
     "bower-asset/localforage": "*",
-    "bower-asset/emoji": "*",
     "yiisoft/yii2-authclient": "*",
     "yzalis/identicon": "*",
     "funson86/yii2-setting": "*",
@@ -45,8 +44,7 @@
     "yiier/yii2-backup": "*",
     "2amigos/yii2-qrcode-helper": "~1.0",
     "kop/yii2-scroll-pager": "dev-master",
-    "devgroup/yii2-tag-dependency-helper": "*",
-    "yiier/yii2-request-behavior": "dev-master"
+    "devgroup/yii2-tag-dependency-helper": "*"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",
@@ -62,5 +60,8 @@
       "npm-asset-library": "vendor/npm",
       "bower-asset-library": "vendor/bower"
     }
-  }
+  },"repositories": [
+  {"type": "composer", "url": "http://packagist.phpcomposer.com"},
+  {"packagist": false}
+]
 }

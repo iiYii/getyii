@@ -120,7 +120,7 @@ class Topic extends Post
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
-        if (Yii::$app->params['setting']['xunsearch']) {
+        if (isset(Yii::$app->params['setting']) && Yii::$app->params['setting']['xunsearch']) {
             if ($insert) {
                 $search = new Search();
                 $search->topic_id = $this->id;

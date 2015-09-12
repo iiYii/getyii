@@ -14,7 +14,6 @@ use common\components\Controller;
 use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yiier\request\ThrottleBehavior;
 
 /**
  * CommentController implements the CRUD actions for PostComment model.
@@ -38,10 +37,6 @@ class CommentController extends Controller
                     // 登录用户才能操作
                     ['allow' => true, 'actions' => ['create', 'update'], 'roles' => ['@']],
                 ]
-            ],
-            [
-                'class' => ThrottleBehavior::className(),
-                'message'=>'您操作太频繁了，10秒内不能重复操作。'
             ],
         ];
     }

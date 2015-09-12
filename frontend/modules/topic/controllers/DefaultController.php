@@ -20,7 +20,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
-use yiier\request\ThrottleBehavior;
 
 class DefaultController extends Controller
 {
@@ -51,10 +50,6 @@ class DefaultController extends Controller
                     // 登录用户才能使用API操作(赞,踩,收藏)
                     ['allow' => true, 'actions' => ['create', 'update', 'revoke', 'excellent'], 'roles' => ['@']],
                 ]
-            ],
-            [
-                'class' => ThrottleBehavior::className(),
-                'message'=>'您操作太频繁了，10秒内不能重复操作。'
             ],
         ];
     }

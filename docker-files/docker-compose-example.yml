@@ -1,0 +1,22 @@
+mysql:
+  image: mysql
+  environment:
+    - MYSQL_DATABASE=getyii
+    - MYSQL_ROOT_PASSWORD=getyii.com
+  ports:
+    - 3306:3306
+
+web:
+  build: .
+  links:
+    - mysql:mysql
+  ports:
+    - 80:80
+  environment:
+    - MYSQL_INSTANCE_NAME=getyii
+    - MYSQL_PASSWORD=getyii.com
+    - APP_ENV=Production
+  volumes:
+    - ./vendor:/app/vendor:rw
+    - ~/.composer/cache:/root/.composer/cache:rw
+    # - .:/app:rw # you should uncomment this line if you want to develop the app.

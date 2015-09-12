@@ -82,7 +82,7 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            if (false === strpos($this->username, "@")) {
+            if (false === strpos($this->username, '@')) {
                 $this->_user = User::findByUsername($this->username);
             } else {
                 //email 登录

@@ -7,7 +7,17 @@
 
 ## 项目搭建
 
-### docker
+### 原始安装方法
+
+```
+composer global require fxp/composer-asset-plugin 1.0
+composer create-project --prefer-dist --stability=dev iiyii/getyii getyii
+cd getyii
+php init
+php yii install
+```
+
+### docker搭建
 
 1. 安装好 docker 保证可以运行 docker 和 docker-compose 命令
 2. 克隆代码到你本地，并 cd 到相应目录
@@ -24,26 +34,10 @@ $ docker-compose up -d
 	<your_docker_ip> <your_name>.dev.getyii.com 前台
 	<your_docker_ip> <your_name>.dev.admin.getyii.com 后台
 
-### 原始方法
-
-1. 本项目是基于 [Yii2 ](https://github.com/yiisoft/yii2) 高级应用模板开发的，参考文档 [高级应用模板](http://yii2.xlbd.net/web/index.php/guide/3.html)。
-1. 配置环境的时候你要配置两个虚拟目录，对于前台指定 `frontend/web/` ，访问URL为 `http://www.xxx.com/` (域名自己随便配置)
-1. 对于后台指定 `backend/web/` ，访问URL为 `http://admin.xxx.com/` (域名自己随便配置)
-1. git clone 一份代码之后要在项目根目录下在终端运行 `php init` 初始化一下。
-1. 手动新建一个数据库名为 getyii，然后更改 `common/config/main.php` 里面的 `dbname=getyii`。
-1. 在终端输入命令 `curl -sS https://getcomposer.org/installer | php` 安装 PHP 的 [Composer](http://docs.phpcomposer.com/download/)。
-1. 在终端输入命令 `mv composer.phar /usr/local/bin/composer` 添加环境变量。
-1. 在终端输入命令 `composer global require "fxp/composer-asset-plugin:~1.0"` 安装 [composer-asset-plugin](https://github.com/francoispluchino/composer-asset-plugin) 来管理静态资源文件。
-1. 最后在终端输入命令 `composer install` 更新包。
-1. 在终端输入命令 `yii migrate` (windows下面可能是 `php yii migrate` 命令)初始化数据。
-
 ### 用户相关
 
 1. 把 user 表中的某用户值 role 字段值改为20，即为前台管理员，目前可以给帖子加精华，不能登录后台。
 1. 把 user 表中的某用户值 role 字段值改为30，即为超级管理员，可登录后台。
-
-
-~~1. 在终端输入命令 `yii migrate --migrationPath=@funson86/setting/migrations` 初始化数据。~~
 
 
 ## 文档和手册
@@ -65,7 +59,11 @@ $ docker-compose up -d
 
 ![微信支付](https://raw.githubusercontent.com/iiYii/getyii/master/wechat-pay.png)
 
-手机微信扫描上方二维码可向本项目捐款
+或者
+
+![支付宝支付](https://raw.githubusercontent.com/iiYii/getyii/master/ali-pay.png)
+
+手机微信或者支付宝扫描上方二维码可向本项目捐款
 
 
 感谢以下这些朋友的资金支持，所得捐赠将用于改善网站服务器、购买开发/调试设备&工具。
@@ -75,6 +73,7 @@ $ docker-compose up -d
 -------|------|------ | ------
 张**  | 1.00  | 2015年7月7日 | http://iamtutu.com/
 *作军  | 100.00 | 2015年08月07日 | http://www.dba-china.com/
+树*  | 333.00 | 2015年09月11日 | http://www.21cnjy.com/
 
 
 ## 感谢
@@ -86,5 +85,5 @@ $ docker-compose up -d
 
 PS:
 
-如果你暂时无法使用 `composer` 的话，访问 <http://git.oschina.net/forecho/getyii-vendor> 下载 zip 文件解压就可以用了。
+如果你暂时无法使用 `composer` 的话，访问 <http://pan.baidu.com/s/1hoSUU> 下载 zip 文件解压放在项目根目录就可以用了。
 但是本人不推荐这种做法。

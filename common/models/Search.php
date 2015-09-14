@@ -4,6 +4,15 @@ namespace common\models;
 
 use yii\data\ActiveDataProvider;
 
+/**
+ * This is the model class for table "topic".
+ *
+ * @property integer $topic_id
+ * @property string $title
+ * @property string $content
+ * @property integer $status
+ * @property integer $updated_at
+ */
 class Search extends \hightman\xunsearch\ActiveRecord
 {
     public function search($keyword)

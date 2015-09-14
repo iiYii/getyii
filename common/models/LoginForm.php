@@ -74,14 +74,15 @@ class LoginForm extends Model
         ];
     }
 
-  /*
-   * user:onyony
-   * email 邮箱登录
-   */
+    /**
+     * email 邮箱登录
+     * @user onyony
+     * @return bool|null|static
+     */
     public function getUser()
     {
         if ($this->_user === false) {
-            if(strstr($this->username,"@"))
+            if(strpos($this->username,"@"))
                 $this->_user = User::findByEmail($this->username); //email 登录
             else
                 $this->_user = User::findByUsername($this->username);

@@ -48,11 +48,14 @@ echo Nav::widget([
     ],
     'encodeLabels' => false
 ]);
-echo '<form class="navbar-form navbar-left" role="search" action="/search" method="get">
+if (Yii::$app->params['setting']['xunsearch']) {
+    echo '<form class="navbar-form navbar-left" role="search" action="/search" method="get">
                 <div class="form-group">
                     <input type="text" value="' . $keyword . '" name="keyword" class="form-control search_input" id="navbar-search" placeholder="搜索..." data-placement="bottom" data-content="请输入要搜索的关键词！">
                 </div>
             </form>';
+}
+
 
 if (Yii::$app->user->isGuest) {
     $menuItems[] = ['label' => '注册', 'url' => ['/site/signup']];

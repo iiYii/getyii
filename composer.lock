@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "73d8ac3388f0c65cdc9fe4f16991790b",
+    "hash": "e1bad32c469dc457f442f673cd200272",
     "packages": [
         {
             "name": "2amigos/yii2-qrcode-helper",
@@ -248,22 +248,22 @@
         },
         {
             "name": "bower-asset/highlightjs",
-            "version": "8.7.0",
+            "version": "8.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/components/highlightjs.git",
-                "reference": "3c0b4bc4a70ca3312437829c6d48ccd342467d74"
+                "reference": "950ac24569cbadfd82fd4fe2a7b60e5fbd14fef6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/highlightjs/zipball/3c0b4bc4a70ca3312437829c6d48ccd342467d74",
-                "reference": "3c0b4bc4a70ca3312437829c6d48ccd342467d74",
+                "url": "https://api.github.com/repos/components/highlightjs/zipball/950ac24569cbadfd82fd4fe2a7b60e5fbd14fef6",
+                "reference": "950ac24569cbadfd82fd4fe2a7b60e5fbd14fef6",
                 "shasum": ""
             },
             "type": "bower-asset-library",
             "extra": {
                 "bower-asset-main": [
-                    "highlight.pack.min.js",
+                    "highlight.pack.js",
                     "styles/default.css"
                 ],
                 "bower-asset-ignore": [
@@ -320,16 +320,16 @@
         },
         {
             "name": "bower-asset/jquery-textcomplete",
-            "version": "v0.7.0",
+            "version": "v0.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yuku-t/jquery-textcomplete.git",
-                "reference": "c09e9dd9460a58174d064ca698ead8618de881aa"
+                "reference": "31cf39f6c201569e63434d5ed650f1a9eebb29c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yuku-t/jquery-textcomplete/zipball/c09e9dd9460a58174d064ca698ead8618de881aa",
-                "reference": "c09e9dd9460a58174d064ca698ead8618de881aa",
+                "url": "https://api.github.com/repos/yuku-t/jquery-textcomplete/zipball/31cf39f6c201569e63434d5ed650f1a9eebb29c6",
+                "reference": "31cf39f6c201569e63434d5ed650f1a9eebb29c6",
                 "shasum": ""
             },
             "require": {
@@ -429,25 +429,25 @@
         },
         {
             "name": "bower-asset/localforage",
-            "version": "1.2.7",
+            "version": "1.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mozilla/localForage.git",
-                "reference": "61540a96db7e9afdae43e1a6baa0d554117a5cbf"
+                "reference": "da84e056c9097bfe452fadfd34bd2522588a51e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mozilla/localForage/zipball/61540a96db7e9afdae43e1a6baa0d554117a5cbf",
-                "reference": "61540a96db7e9afdae43e1a6baa0d554117a5cbf",
+                "url": "https://api.github.com/repos/mozilla/localForage/zipball/da84e056c9097bfe452fadfd34bd2522588a51e6",
+                "reference": "da84e056c9097bfe452fadfd34bd2522588a51e6",
                 "shasum": ""
             },
             "require-dev": {
-                "bower-asset/assert": ">=0.1.0,<0.2",
-                "bower-asset/es6-promise": ">=1.0.0,<1.1",
-                "bower-asset/expect": ">=0.3.1,<0.4",
-                "bower-asset/mocha": ">=1.18.2,<1.19",
-                "bower-asset/modernizr": ">=2.8.1,<2.9",
-                "bower-asset/requirejs": ">=2.1.10,<2.2"
+                "bower-asset/assert": "~0.1.0",
+                "bower-asset/es6-promise": "~1.0.0",
+                "bower-asset/expect": "~0.3.1",
+                "bower-asset/mocha": "~1.18.2",
+                "bower-asset/modernizr": "~2.8.1",
+                "bower-asset/requirejs": "~2.1.10"
             },
             "type": "bower-asset-library",
             "extra": {
@@ -809,59 +809,6 @@
             ]
         },
         {
-            "name": "bower-asset/twemoji",
-            "version": "v1.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twitter/twemoji.git",
-                "reference": "3e21d10e5a01dabcbb7b5bd260b78a909a7b7f28"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twitter/twemoji/zipball/3e21d10e5a01dabcbb7b5bd260b78a909a7b7f28",
-                "reference": "3e21d10e5a01dabcbb7b5bd260b78a909a7b7f28",
-                "shasum": ""
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "./twemoji.amd.js",
-                "bower-asset-ignore": [
-                    ".git",
-                    ".gitignore",
-                    ".npmignore",
-                    "./16x16",
-                    "./36x36",
-                    "./72x72",
-                    "./assets",
-                    "./build",
-                    "./component.json",
-                    "./node_modules",
-                    "./index.html",
-                    "./package.json",
-                    "./preview-generator.js",
-                    "./preview-template.html",
-                    "./svg.sh",
-                    "./test.html",
-                    "./test.js",
-                    "./twemoji-generator.js",
-                    "./twemoji-dist.js",
-                    "./twemoji.js",
-                    "./twemoji.min.js",
-                    "./twemoji.npm.js",
-                    "**/.*",
-                    "node_modules",
-                    "bower_components",
-                    "test",
-                    "tests"
-                ]
-            },
-            "license": [
-                "MIT",
-                "CC-BY-4.0"
-            ],
-            "description": "A Unicode standard based way to implement emoji across all platforms."
-        },
-        {
             "name": "bower-asset/yii2-pjax",
             "version": "v2.0.4",
             "source": {
@@ -956,16 +903,16 @@
         },
         {
             "name": "components/flag-icon-css",
-            "version": "0.7.1",
+            "version": "0.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lipis/flag-icon-css.git",
-                "reference": "db9d702ac15e74a84d5d859c9f3b1ce4c1882304"
+                "reference": "63b89f891914b589d12c6e71989a0eb54d35a7a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lipis/flag-icon-css/zipball/db9d702ac15e74a84d5d859c9f3b1ce4c1882304",
-                "reference": "db9d702ac15e74a84d5d859c9f3b1ce4c1882304",
+                "url": "https://api.github.com/repos/lipis/flag-icon-css/zipball/63b89f891914b589d12c6e71989a0eb54d35a7a3",
+                "reference": "63b89f891914b589d12c6e71989a0eb54d35a7a3",
                 "shasum": ""
             },
             "type": "component",
@@ -990,7 +937,55 @@
                 }
             ],
             "description": "CSS for vector based country flags",
-            "time": "2015-03-26 16:41:06"
+            "time": "2015-09-05 08:34:56"
+        },
+        {
+            "name": "devgroup/yii2-tag-dependency-helper",
+            "version": "0.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DevGroup-ru/yii2-tag-dependency-helper.git",
+                "reference": "eb9b64783954080fea49cb44cb6f226a22fe780d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DevGroup-ru/yii2-tag-dependency-helper/zipball/eb9b64783954080fea49cb44cb6f226a22fe780d",
+                "reference": "eb9b64783954080fea49cb44cb6f226a22fe780d",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "devgroup\\TagDependencyHelper\\": ""
+                }
+            },
+            "notification-url": "http://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Kozhevnikov",
+                    "email": "b37hr3z3n@gmail.com"
+                },
+                {
+                    "name": "Evgeny Dubovitsky",
+                    "email": "flynn068@gmail.com"
+                },
+                {
+                    "name": "Pavel Fedotov",
+                    "email": "fps.06@mail.ru"
+                }
+            ],
+            "description": "Helper for unifying cache tag names with invalidation support in yii2",
+            "keywords": [
+                "cache",
+                "yii2"
+            ],
+            "time": "2015-07-01 09:08:43"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -1390,16 +1385,16 @@
         },
         {
             "name": "kartik-v/yii2-widget-select2",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-select2.git",
-                "reference": "585e8797d7982e0c9d09370b98b451a028a59439"
+                "reference": "e72880e7e8dfc845c112ed7df275bf1c929be6db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/585e8797d7982e0c9d09370b98b451a028a59439",
-                "reference": "585e8797d7982e0c9d09370b98b451a028a59439",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/e72880e7e8dfc845c112ed7df275bf1c929be6db",
+                "reference": "e72880e7e8dfc845c112ed7df275bf1c929be6db",
                 "shasum": ""
             },
             "require": {
@@ -1411,7 +1406,7 @@
                     "kartik\\select2\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1434,7 +1429,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-07-01 15:20:59"
+            "time": "2015-09-12 19:56:48"
         },
         {
             "name": "kop/yii2-scroll-pager",
@@ -1442,12 +1437,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kop/yii2-scroll-pager.git",
-                "reference": "9f0b76b1b695c53f09fdcf62eefc0b6c39e6697c"
+                "reference": "9e2f1a53db8bb5f50b906a0874b21a071a6215fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kop/yii2-scroll-pager/zipball/9f0b76b1b695c53f09fdcf62eefc0b6c39e6697c",
-                "reference": "9f0b76b1b695c53f09fdcf62eefc0b6c39e6697c",
+                "url": "https://api.github.com/repos/kop/yii2-scroll-pager/zipball/9e2f1a53db8bb5f50b906a0874b21a071a6215fc",
+                "reference": "9e2f1a53db8bb5f50b906a0874b21a071a6215fc",
                 "shasum": ""
             },
             "require": {
@@ -1485,7 +1480,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2015-04-18 11:16:23"
+            "time": "2015-08-13 19:58:46"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1628,12 +1623,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "cf882497cb749e4ef65dadcde9aec6ad6cfddce0"
+                "reference": "42749cbc9e36cbdd4b7659a0055f15598619decb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/cf882497cb749e4ef65dadcde9aec6ad6cfddce0",
-                "reference": "cf882497cb749e4ef65dadcde9aec6ad6cfddce0",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/42749cbc9e36cbdd4b7659a0055f15598619decb",
+                "reference": "42749cbc9e36cbdd4b7659a0055f15598619decb",
                 "shasum": ""
             },
             "require": {
@@ -1642,6 +1637,7 @@
                 "bower-asset/punycode": "1.3.*",
                 "bower-asset/yii2-pjax": ">=2.0.1",
                 "cebe/markdown": "~1.0.0 | ~1.1.0",
+                "ext-ctype": "*",
                 "ext-mbstring": "*",
                 "ezyang/htmlpurifier": "4.6.*",
                 "lib-pcre": "*",
@@ -1662,7 +1658,7 @@
                     "yii\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1708,7 +1704,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-08-05 22:04:24"
+            "time": "2015-09-13 23:12:35"
         },
         {
             "name": "yiisoft/yii2-authclient",

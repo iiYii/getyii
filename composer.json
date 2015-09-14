@@ -1,21 +1,21 @@
 {
-  "name": "yiisoft/yii2-app-advanced",
-  "description": "Yii 2 Advanced Application Template",
+  "name": "iiyii/getyii",
+  "description": "Yii 2 Community",
   "keywords": [
     "yii2",
     "framework",
     "advanced",
+    "community",
     "application template"
   ],
-  "homepage": "http://www.yiiframework.com/",
+  "homepage": "https://github.com/iiYii/getyii/",
   "type": "project",
   "license": "BSD-3-Clause",
   "support": {
-    "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-    "forum": "http://www.yiiframework.com/forum/",
-    "wiki": "http://www.yiiframework.com/wiki/",
-    "irc": "irc://irc.freenode.net/yii",
-    "source": "https://github.com/yiisoft/yii2"
+    "issues": "https://github.com/iiYii/getyii/issues?state=open",
+    "forum": "http://www.getyii.com/",
+    "wiki": "https://github.com/iiYii/getyii/wiki/",
+    "source": "https://github.com/iiYii/getyii"
   },
   "minimum-stability": "stable",
   "require": {
@@ -33,7 +33,6 @@
     "bower-asset/emojify.js": "*",
     "bower-asset/PACE": "*",
     "bower-asset/localforage": "*",
-    "bower-asset/twemoji": "*",
     "yiisoft/yii2-authclient": "*",
     "yzalis/identicon": "*",
     "funson86/yii2-setting": "*",
@@ -44,7 +43,8 @@
     "kartik-v/yii2-widget-select2": "*",
     "yiier/yii2-backup": "*",
     "2amigos/yii2-qrcode-helper": "~1.0",
-    "kop/yii2-scroll-pager": "dev-master"
+    "kop/yii2-scroll-pager": "dev-master",
+    "devgroup/yii2-tag-dependency-helper": "*"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",

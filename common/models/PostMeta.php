@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use devgroup\TagDependencyHelper\ActiveRecordHelper;
 use Yii;
 use yii\helpers\ArrayHelper;
 use common\components\db\ActiveRecord;
@@ -27,6 +28,16 @@ class PostMeta extends ActiveRecord
     public static function tableName()
     {
         return 'post_meta';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'class' => ActiveRecordHelper::className(),
+        ]);
     }
 
     /**
@@ -70,7 +81,10 @@ class PostMeta extends ActiveRecord
 
     public static function topicCategory()
     {
-        $parents = ArrayHelper::map(static::find()->where(['parent' => null])->orWhere(['parent' => 0])->orderBy(['order' => SORT_ASC])->all(), 'id', 'name');
+        $parents = ArrayHelper::map(
+            static::find()->where(['parent' => null])->orWhere(['parent' => 0])->orderBy(['order' => SORT_ASC])->all(),
+            'id', 'name'
+        );
         $nodes = [];
         foreach ($parents as $key => $value) {
             $nodes[$value] = ArrayHelper::map(static::find()->where(['parent' => $key])->asArray()->all(), 'id', 'name');

@@ -2,7 +2,6 @@
 
 namespace frontend\modules\tweet\controllers;
 
-use common\behaviors\RequestThrottleBehavior;
 use common\components\Controller;
 use common\models\Post;
 use common\services\NotificationService;
@@ -14,6 +13,8 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
+use yiier\AutoloadExample;
+use yiier\request\ThrottleBehavior;
 
 class DefaultController extends Controller
 {
@@ -36,10 +37,6 @@ class DefaultController extends Controller
                     // 登录用户才能操作
                     ['allow' => true, 'actions' => ['create'], 'roles' => ['@']],
                 ]
-            ],
-            [
-                'class' => RequestThrottleBehavior::className(),
-                'warning'=>'您操作太频繁了，60秒内不能重复操作。'
             ],
         ];
     }

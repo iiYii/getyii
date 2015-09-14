@@ -52,7 +52,7 @@ class m150908_055507_init_data extends Migration
             $_topic = clone $topic;
             $_topic->setAttributes([
                 'type' => Topic::TYPE,
-                'title' => $faker->text(rand(10, 100)),
+                'title' => $faker->text(rand(10, 50)),
                 'post_meta_id' => rand(2, 4),
                 'status' => rand(1, 2),
                 'content' => $faker->text(rand(100, 2000)),

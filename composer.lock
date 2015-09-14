@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1719fa5a956404e6738442dae61ee24d",
+    "hash": "e1bad32c469dc457f442f673cd200272",
     "packages": [
         {
             "name": "2amigos/yii2-qrcode-helper",
@@ -175,40 +175,6 @@
                 "mobile-first",
                 "responsive",
                 "web"
-            ]
-        },
-        {
-            "name": "bower-asset/emoji",
-            "version": "0.3.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/node-modules/emoji.git",
-                "reference": "377b16159d10f59ce31c4dbf95f37c640291bbcb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/node-modules/emoji/zipball/377b16159d10f59ce31c4dbf95f37c640291bbcb",
-                "reference": "377b16159d10f59ce31c4dbf95f37c640291bbcb",
-                "shasum": ""
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "lib/emoji.js",
-                "bower-asset-ignore": [
-                    "node_modules",
-                    "bower_components",
-                    "test",
-                    "bin",
-                    "tpl",
-                    ".gitignore",
-                    ".npmignore",
-                    ".travis.yml",
-                    "*.txt",
-                    "logo.png"
-                ]
-            },
-            "license": [
-                "MIT"
             ]
         },
         {
@@ -996,7 +962,7 @@
                     "devgroup\\TagDependencyHelper\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1419,16 +1385,16 @@
         },
         {
             "name": "kartik-v/yii2-widget-select2",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-select2.git",
-                "reference": "585e8797d7982e0c9d09370b98b451a028a59439"
+                "reference": "e72880e7e8dfc845c112ed7df275bf1c929be6db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/585e8797d7982e0c9d09370b98b451a028a59439",
-                "reference": "585e8797d7982e0c9d09370b98b451a028a59439",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/e72880e7e8dfc845c112ed7df275bf1c929be6db",
+                "reference": "e72880e7e8dfc845c112ed7df275bf1c929be6db",
                 "shasum": ""
             },
             "require": {
@@ -1440,7 +1406,7 @@
                     "kartik\\select2\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1463,7 +1429,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-07-01 15:20:59"
+            "time": "2015-09-12 19:56:48"
         },
         {
             "name": "kop/yii2-scroll-pager",
@@ -1652,58 +1618,17 @@
             "time": "2015-06-29 14:02:21"
         },
         {
-            "name": "yiier/yii2-request-behavior",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiier/yii2-request-behavior.git",
-                "reference": "608be2649835a52bb9d767f7e7bf67ee917b03a0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiier/yii2-request-behavior/zipball/608be2649835a52bb9d767f7e7bf67ee917b03a0",
-                "reference": "608be2649835a52bb9d767f7e7bf67ee917b03a0",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2": "*"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "yiier\\request\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-4-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "forecho",
-                    "email": "caizhenghai@gmail.com"
-                }
-            ],
-            "description": "The request behavior for the Yii framework",
-            "keywords": [
-                "Behavior",
-                "extension",
-                "yii2"
-            ],
-            "time": "2015-09-11 07:12:26"
-        },
-        {
             "name": "yiisoft/yii2",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "bcc82b086d7ccca09d64e44c92f98da0054e2974"
+                "reference": "42749cbc9e36cbdd4b7659a0055f15598619decb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/bcc82b086d7ccca09d64e44c92f98da0054e2974",
-                "reference": "bcc82b086d7ccca09d64e44c92f98da0054e2974",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/42749cbc9e36cbdd4b7659a0055f15598619decb",
+                "reference": "42749cbc9e36cbdd4b7659a0055f15598619decb",
                 "shasum": ""
             },
             "require": {
@@ -1733,7 +1658,7 @@
                     "yii\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1779,7 +1704,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-09-10 12:22:14"
+            "time": "2015-09-13 23:12:35"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -2437,8 +2362,7 @@
     "stability-flags": {
         "yiisoft/yii2": 20,
         "hightman/xunsearch": 10,
-        "kop/yii2-scroll-pager": 20,
-        "yiier/yii2-request-behavior": 20
+        "kop/yii2-scroll-pager": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

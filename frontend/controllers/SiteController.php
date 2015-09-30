@@ -67,6 +67,10 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        if (\Yii::$app->user->isGuest) {
+            exit('<h1>Not Found. Resolve Domain Error.</h1>');
+        }
+
         $topics = Post::find()->limit(20)->where(['status' => 2])->orderBy(['created_at' => SORT_DESC])->all();
         $users = UserService::findActiveUser(12);
 

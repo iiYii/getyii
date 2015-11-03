@@ -36,6 +36,8 @@ class NavUrlController extends Controller
             'query' => NavUrl::find(),
         ]);
 
+        $dataProvider->query->joinWith('type');
+
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);

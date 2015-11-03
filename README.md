@@ -85,5 +85,8 @@ $ docker-compose up -d
 
 PS:
 
-如果你暂时无法使用 `composer` 的话，访问 <http://pan.baidu.com/s/1hoSUU> 下载 zip 文件解压放在项目根目录就可以用了。
-但是本人不推荐这种做法。
+如果你暂时无法使用 `composer` 的话，访问链接: <http://pan.baidu.com/s/1eQnsn7s> 密码: ux6c 下载 zip 文件解压就可以用了。然后你要做的是：
+
+- 新建数据库导入 getyii-2015-11-3.sql 数据库
+- 修改 `common\config\db-local.php` 文件的数据库配置
+- 默认用户名是`admin`，密码是`123456`

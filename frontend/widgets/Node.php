@@ -8,7 +8,7 @@
 namespace frontend\widgets;
 
 use common\models\PostMeta;
-use devgroup\TagDependencyHelper\ActiveRecordHelper;
+use DevGroup\TagDependencyHelper\NamingHelper;
 use yii\caching\TagDependency;
 use yii\helpers\ArrayHelper;
 
@@ -29,7 +29,7 @@ class Node extends \yii\bootstrap\Widget
             //一天缓存
             \Yii::$app->cache->set($cacheKey, $items, 86400,
                 new TagDependency([
-                    'tags' => [ActiveRecordHelper::getCommonTag(PostMeta::className())]
+                    'tags' => [NamingHelper::getCommonTag(PostMeta::className())]
                 ])
             );
         }

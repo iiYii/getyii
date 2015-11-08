@@ -2,7 +2,8 @@
 
 namespace common\models;
 
-use devgroup\TagDependencyHelper\ActiveRecordHelper;
+use DevGroup\TagDependencyHelper\CacheableActiveRecord;
+use DevGroup\TagDependencyHelper\TagDependencyTrait;
 use Yii;
 use yii\helpers\ArrayHelper;
 use common\components\db\ActiveRecord;
@@ -22,6 +23,8 @@ use common\components\db\ActiveRecord;
  */
 class PostMeta extends ActiveRecord
 {
+
+    use TagDependencyTrait;
     /**
      * @inheritdoc
      */
@@ -36,7 +39,7 @@ class PostMeta extends ActiveRecord
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-            'class' => ActiveRecordHelper::className(),
+            'class' => CacheableActiveRecord::className(),
         ]);
     }
 

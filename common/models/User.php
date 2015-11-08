@@ -2,14 +2,13 @@
 namespace common\models;
 
 use common\helpers\Avatar;
-use devgroup\TagDependencyHelper\ActiveRecordHelper;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\helpers\FileHelper;
 use yii\web\IdentityInterface;
-use common\components\db\Mailer;
+//use common\components\db\Mailer;
 use frontend\modules\user\models\UserAccount;
 
 /**
@@ -37,6 +36,8 @@ class User extends ActiveRecord implements IdentityInterface
     const ROLE_ADMIN = 20;
     const ROLE_SUPER_ADMIN = 30;
 
+    use \DevGroup\TagDependencyHelper\TagDependencyTrait;
+
     /**
      * @inheritdoc
      */
@@ -52,10 +53,11 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             TimestampBehavior::className(),
-            'class' => ActiveRecordHelper::className(),
+            'CacheableActiveRecord' => [
+                'class' => \DevGroup\TagDependencyHelper\CacheableActiveRecord::className(),
+            ],
         ];
     }
-
 
 
     /**
@@ -109,6 +111,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
     }
+
     /**
      * Finds user by password reset token
      *

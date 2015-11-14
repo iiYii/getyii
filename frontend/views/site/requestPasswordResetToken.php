@@ -8,20 +8,18 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = '找回密码';
 ?>
-<div class="container p0 site-login">
 
-    <div class="row">
-        <div class="col-md-4 col-sm-offset-3">
-            <div class="panel panel-default">
-                <div class="panel-heading"><?= Html::encode($this->title) ?></div>
-                <div class="panel-body">
-                    <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
-                    <?= $form->field($model, 'email') ?>
-                    <div class="form-group">
-                        <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
-                    </div>
-                    <?php ActiveForm::end(); ?>
+<div class="row">
+    <div class="col-md-4 col-sm-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading"><?= Html::encode($this->title) ?></div>
+            <div class="panel-body">
+                <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
+                <?= $form->field($model, 'email') ?>
+                <div class="form-group">
+                    <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
                 </div>
+                <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>

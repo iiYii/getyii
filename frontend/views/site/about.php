@@ -26,13 +26,11 @@ enjoy coding! enjoy yii!
 - 最后再感谢一下女朋友的支持 <(▰˘◡˘▰)>。
 ';
 ?>
-<div class="container p0">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            关于
-        </div>
-        <div class="panel-body">
-            <?= Markdown::process($content, 'gfm') ?>
-        </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        关于
+    </div>
+    <div class="panel-body">
+        <?= Markdown::process($content, 'gfm') ?>
     </div>
 </div>

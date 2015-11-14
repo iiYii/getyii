@@ -36,16 +36,19 @@ use kartik\select2\Select2;
 
     <?= $this->render('@frontend/views/partials/markdwon_help') ?>
 
-    <?= $form->field($model, 'content', [
-        'selectors' => [
-            'input' => '#md-input'
-        ],
-
-    ])->textarea([
-        'placeholder' => '内容',
-        'id' => 'md-input',
-        'rows' => 10
-    ]) ?>
+    <div class="form-group" id="editor">
+        <?= $form->field($model, 'content')->widget(
+            'trntv\aceeditor\AceEditor',
+            [
+                'id' => 'markdown',
+                'mode' => 'markdown',
+                'containerOptions' => [
+                    'style' => 'width: 100%; min-height: 350px'
+                ],
+                'theme' => 'github'
+            ]
+        ) ?>
+    </div>
 
     <?= SelectizeTextInput::widget([
         'name' => 'Topic[tags]',
@@ -78,7 +81,9 @@ use kartik\select2\Select2;
         </div>
     </div>
 
-    <div id="md-preview"><?= HtmlPurifier::process(\yii\helpers\Markdown::process($model->content, 'gfm')) ?></div>
+    <div id="md-preview" class="pt10">
+        <?= HtmlPurifier::process(\yii\helpers\Markdown::process($model->content, 'gfm')) ?>
+    </div>
 
     <?php ActiveForm::end(); ?>
 

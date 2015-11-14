@@ -2,7 +2,7 @@ html,
 body {
     height: 100%;
     background-color: #e1e1e1;
-    font-family: PingFang SC,Lantinghei SC,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans;
+    font-family: PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
 }
 
 .wrap {
@@ -348,8 +348,13 @@ a:visited .badge-reply-count {
     margin-top: 3px;
 }
 
+#editor {
+    border: 1px solid #ddd;
+    padding: 6px 6px 0 6px;
+}
+
 .select2-container--krajee .select2-results > .select2-results__options {
-     max-height: 500px;
+    max-height: 500px;
 }
 
 img.emoji {

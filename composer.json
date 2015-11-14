@@ -37,14 +37,14 @@
     "yzalis/identicon": "*",
     "funson86/yii2-setting": "*",
     "yiisoft/yii2-imagine": "^2.0",
-    "fxp/composer-asset-plugin": "~1.0",
     "kartik-v/yii2-icons": "*",
     "hightman/xunsearch": "*@beta",
     "kartik-v/yii2-widget-select2": "*",
     "yiier/yii2-backup": "*",
     "2amigos/yii2-qrcode-helper": "~1.0",
     "kop/yii2-scroll-pager": "dev-master",
-    "devgroup/yii2-tag-dependency-helper": "*"
+    "devgroup/yii2-tag-dependency-helper": "*",
+    "trntv/yii2-aceeditor": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",

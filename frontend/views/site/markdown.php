@@ -120,16 +120,14 @@ public function getDataCellValue($model, $key, $index)
 请注意后面 Markdown 源代码的换行留空情况。
 ';
 ?>
-<div class="container p0">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <?= $this->title; ?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <?= $this->title; ?>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-6">
+            <pre><code><?= $content ?></code></pre>
         </div>
-        <div class="panel-body">
-            <div class="col-md-6">
-                <pre><code><?= $content ?></code></pre>
-            </div>
-            <div class="col-md-6"><?= Markdown::process($content, 'gfm') ?></div>
-        </div>
+        <div class="col-md-6"><?= Markdown::process($content, 'gfm') ?></div>
     </div>
 </div>

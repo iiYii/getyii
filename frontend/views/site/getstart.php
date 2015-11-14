@@ -76,13 +76,11 @@ $content = '
 欢迎大家跟我联系提供更多资料。
 ';
 ?>
-<div class="container p0">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Wiki 列表
-        </div>
-        <div class="panel-body">
-            <?= Markdown::process($content, 'gfm') ?>
-        </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Wiki 列表
+    </div>
+    <div class="panel-body">
+        <?= Markdown::process($content, 'gfm') ?>
     </div>
 </div>

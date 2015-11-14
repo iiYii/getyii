@@ -18,9 +18,7 @@ jQuery(function ($) {
             if ($.inArray(user, atUsers) == -1) {
                 atUsers.push(user);
             }
-            ;
         }
-        ;
 
         $('#md-input').textcomplete([{
             mentions: atUsers,
@@ -38,7 +36,7 @@ jQuery(function ($) {
             appendTo: 'body'
         });
 
-    };
+    }
     autocompleteAtUser();
 
     function notificationsCount() {
@@ -59,10 +57,10 @@ jQuery(function ($) {
                     }
                     setTimeout(scheduleGetNotification, 15000);
                 });
-            };
+            }
             setTimeout(scheduleGetNotification, 15000);
         }
-    };
+    }
     notificationsCount();
 
 
@@ -160,19 +158,26 @@ jQuery(function ($) {
 
     localStorage();
 
+
+
     /**
      * 监听键盘
      */
+    $('#markdown').keyup(function () {
+        var editor = ace.edit("markdown");
+        var oldContent = editor.getValue();
+        runPreview(oldContent);
+    });
+
     $('#md-input').keyup(function () {
-        runPreview();
+        var oldContent = $("#md-input").val();
+        runPreview(oldContent);
     });
 
     /**
      * markdown预览
      */
-    function runPreview() {
-        var replyContent = $("#md-input");
-        var oldContent = replyContent.val();
+    function runPreview(oldContent) {
         if (oldContent) {
             marked(oldContent, function (err, content) {
                 $('#md-preview').html(content);

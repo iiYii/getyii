@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0f13c2c6b71a32077886438631ac3244",
-    "content-hash": "ac6cd3ca69d6caf277cb2cadb8a54994",
+    "hash": "6956d3071f4ff99dac828cc2822d973f",
+    "content-hash": "5db3e9441e35e49cf164c80fe3bad571",
     "packages": [
         {
             "name": "2amigos/yii2-qrcode-helper",
@@ -128,6 +128,22 @@
                 "yii2"
             ],
             "time": "2015-03-20 18:56:41"
+        },
+        {
+            "name": "bower-asset/ace-builds",
+            "version": "v1.1.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ajaxorg/ace-builds.git",
+                "reference": "e3ccd2c654cf45ee41ffb09d0e7fa5b40cf91a8f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ajaxorg/ace-builds/zipball/e3ccd2c654cf45ee41ffb09d0e7fa5b40cf91a8f",
+                "reference": "e3ccd2c654cf45ee41ffb09d0e7fa5b40cf91a8f",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -378,16 +394,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.2.2",
+            "version": "3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-                "reference": "ebceb88a131e1fbc159733a88a6778ffc02debab"
+                "reference": "85b94d8c8158d610b148317608bf67b678b40659"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/ebceb88a131e1fbc159733a88a6778ffc02debab",
-                "reference": "ebceb88a131e1fbc159733a88a6778ffc02debab",
+                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/85b94d8c8158d610b148317608bf67b678b40659",
+                "reference": "85b94d8c8158d610b148317608bf67b678b40659",
                 "shasum": ""
             },
             "require": {
@@ -396,33 +412,12 @@
             "type": "bower-asset-library",
             "extra": {
                 "bower-asset-main": [
-                    "./dist/inputmask/inputmask.dependencyLib.jquery.js",
-                    "./dist/inputmask/inputmask.js",
-                    "./dist/inputmask/inputmask.extensions.js",
-                    "./dist/inputmask/inputmask.date.extensions.js",
-                    "./dist/inputmask/inputmask.numeric.extensions.js",
-                    "./dist/inputmask/inputmask.phone.extensions.js",
-                    "./dist/inputmask/inputmask.regex.extensions.js",
-                    "./dist/inputmask/jquery.inputmask.js",
-                    "./dist/jquery.inputmask.bundle.js",
-                    "./extra/dependencyLibs/inputmask.dependencyLib.jqlite.js",
-                    "./extra/dependencyLibs/inputmask.dependencyLib.js",
-                    "./extra/phone-codes/phone-be.js",
-                    "./extra/phone-codes/phone-codes.js",
-                    "./extra/phone-codes/phone-nl.js",
-                    "./extra/phone-codes/phone-ru.js",
-                    "./extra/phone-codes/phone-uk.js"
+                    "./dist/inputmask/inputmask.js"
                 ],
                 "bower-asset-ignore": [
-                    "**/.*",
-                    "qunit/",
-                    "nuget/",
-                    "tools/",
-                    "js/",
-                    "*.md",
-                    "build.properties",
-                    "build.xml",
-                    "jquery.inputmask.jquery.json"
+                    "*",
+                    "!dist/*",
+                    "!extra/*"
                 ]
             },
             "license": [
@@ -821,16 +816,16 @@
         },
         {
             "name": "bower-asset/yii2-pjax",
-            "version": "v2.0.4",
+            "version": "v2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/jquery-pjax.git",
-                "reference": "3f20897307cca046fca5323b318475ae9dac0ca0"
+                "reference": "6818718408086db6bdcf33649cecb86b6b4f9b67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/3f20897307cca046fca5323b318475ae9dac0ca0",
-                "reference": "3f20897307cca046fca5323b318475ae9dac0ca0",
+                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/6818718408086db6bdcf33649cecb86b6b4f9b67",
+                "reference": "6818718408086db6bdcf33649cecb86b6b4f9b67",
                 "shasum": ""
             },
             "require": {
@@ -1137,62 +1132,6 @@
                 "yii2"
             ],
             "time": "2015-01-27 00:39:55"
-        },
-        {
-            "name": "fxp/composer-asset-plugin",
-            "version": "v1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/francoispluchino/composer-asset-plugin.git",
-                "reference": "8e22c18bbe6a5b7831a9b8488e02b85398048c04"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/francoispluchino/composer-asset-plugin/8e22c18bbe6a5b7831a9b8488e02b85398048c04.zip",
-                "reference": "8e22c18bbe6a5b7831a9b8488e02b85398048c04",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0",
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "composer/composer": "~1.0@dev"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "Fxp\\Composer\\AssetPlugin\\FxpAssetPlugin",
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Fxp\\Composer\\AssetPlugin\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Pluchino",
-                    "email": "francois.pluchino@gmail.com"
-                }
-            ],
-            "description": "NPM/Bower Dependency Manager for Composer",
-            "homepage": "https://github.com/francoispluchino/composer-asset-plugin",
-            "keywords": [
-                "asset",
-                "bower",
-                "composer",
-                "dependency manager",
-                "nodejs",
-                "npm",
-                "package"
-            ],
-            "time": "2015-10-17 09:47:56"
         },
         {
             "name": "hightman/xunsearch",
@@ -1551,6 +1490,48 @@
             "time": "2015-06-06 14:19:39"
         },
         {
+            "name": "trntv/yii2-aceeditor",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/trntv/yii2-aceeditor.git",
+                "reference": "e7feee2e04049248183f6dde89b40067b891bddb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://packagist.phpcomposer.com/files/trntv/yii2-aceeditor/e7feee2e04049248183f6dde89b40067b891bddb.zip",
+                "reference": "e7feee2e04049248183f6dde89b40067b891bddb",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/ace-builds": "~1.1.8",
+                "yiisoft/yii2": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "trntv\\aceeditor\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Eugine Terentev",
+                    "email": "eugine@terentev.net"
+                }
+            ],
+            "description": "Yii2 ajax.org Ace Editor widget",
+            "keywords": [
+                "aceeditor",
+                "code editor",
+                "yii"
+            ],
+            "time": "2015-04-26 18:58:15"
+        },
+        {
             "name": "webcreate/jquery-ias",
             "version": "v2.2.1",
             "source": {
@@ -1638,12 +1619,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "7f2fe7317a11e8fb2c1b414f6e11cdb35b9e44d5"
+                "reference": "d8c260d9fcd6a656a585291d27c1a0a36cd43512"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-framework/7f2fe7317a11e8fb2c1b414f6e11cdb35b9e44d5.zip",
-                "reference": "7f2fe7317a11e8fb2c1b414f6e11cdb35b9e44d5",
+                "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-framework/d8c260d9fcd6a656a585291d27c1a0a36cd43512.zip",
+                "reference": "d8c260d9fcd6a656a585291d27c1a0a36cd43512",
                 "shasum": ""
             },
             "require": {
@@ -1719,7 +1700,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-11-07 15:59:24"
+            "time": "2015-11-12 12:25:07"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -2377,7 +2358,8 @@
     "stability-flags": {
         "yiisoft/yii2": 20,
         "hightman/xunsearch": 10,
-        "kop/yii2-scroll-pager": 20
+        "kop/yii2-scroll-pager": 20,
+        "trntv/yii2-aceeditor": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6956d3071f4ff99dac828cc2822d973f",
-    "content-hash": "5db3e9441e35e49cf164c80fe3bad571",
+    "hash": "5076fbd8db8b6cfbe5820f812e74d64e",
     "packages": [
         {
             "name": "2amigos/yii2-qrcode-helper",
@@ -195,6 +194,40 @@
             ]
         },
         {
+            "name": "bower-asset/caret.js",
+            "version": "v0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ichord/Caret.js.git",
+                "reference": "2af4966a6bfb61d23eb6da6031add29bb3b14bcb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ichord/Caret.js/zipball/2af4966a6bfb61d23eb6da6031add29bb3b14bcb",
+                "reference": "2af4966a6bfb61d23eb6da6031add29bb3b14bcb",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.7.0"
+            },
+            "require-dev": {
+                "bower-asset/jasmine-jquery": "~1.5.8"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "src/jquery.caret.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests",
+                    "spec",
+                    "index.html"
+                ]
+            }
+        },
+        {
             "name": "bower-asset/emojify.js",
             "version": "1.1.0",
             "source": {
@@ -228,16 +261,16 @@
         },
         {
             "name": "bower-asset/font-awesome",
-            "version": "v4.4.0",
+            "version": "v4.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "e554555d73a44e0a7d11b0361ad7a5325a5f551c"
+                "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/e554555d73a44e0a7d11b0361ad7a5325a5f551c",
-                "reference": "e554555d73a44e0a7d11b0361ad7a5325a5f551c",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/fddd2c240452e6c8990c4ef75e0265b455aa7968",
+                "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -394,16 +427,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.2.3",
+            "version": "3.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-                "reference": "85b94d8c8158d610b148317608bf67b678b40659"
+                "reference": "d08264a678865849c808359d126e3bddb9ec87a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/85b94d8c8158d610b148317608bf67b678b40659",
-                "reference": "85b94d8c8158d610b148317608bf67b678b40659",
+                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/d08264a678865849c808359d126e3bddb9ec87a6",
+                "reference": "d08264a678865849c808359d126e3bddb9ec87a6",
                 "shasum": ""
             },
             "require": {
@@ -415,9 +448,14 @@
                     "./dist/inputmask/inputmask.js"
                 ],
                 "bower-asset-ignore": [
-                    "*",
+                    "**/*",
                     "!dist/*",
-                    "!extra/*"
+                    "!dist/inputmask/*",
+                    "!dist/min/*",
+                    "!dist/min/inputmask/*",
+                    "!extra/bindings/*",
+                    "!extra/dependencyLibs/*",
+                    "!extra/phone-codes/*"
                 ]
             },
             "license": [
@@ -909,16 +947,16 @@
         },
         {
             "name": "components/flag-icon-css",
-            "version": "0.8.4",
+            "version": "0.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lipis/flag-icon-css.git",
-                "reference": "ee0f8d5bdfdcd75b2fe1db21e4486b18c250b227"
+                "reference": "d590670d79de70237f09b67f473cb20a3b52352b"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/lipis/flag-icon-css/ee0f8d5bdfdcd75b2fe1db21e4486b18c250b227.zip",
-                "reference": "ee0f8d5bdfdcd75b2fe1db21e4486b18c250b227",
+                "url": "http://packagist.phpcomposer.com/files/lipis/flag-icon-css/d590670d79de70237f09b67f473cb20a3b52352b.zip",
+                "reference": "d590670d79de70237f09b67f473cb20a3b52352b",
                 "shasum": ""
             },
             "type": "component",
@@ -943,7 +981,7 @@
                 }
             ],
             "description": "CSS for vector based country flags",
-            "time": "2015-10-27 15:07:00"
+            "time": "2015-11-15 18:25:09"
         },
         {
             "name": "devgroup/yii2-tag-dependency-helper",
@@ -1619,12 +1657,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "d8c260d9fcd6a656a585291d27c1a0a36cd43512"
+                "reference": "6dc9fcefe611fcc6af92c2b8297d0dcb00f8cc9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-framework/d8c260d9fcd6a656a585291d27c1a0a36cd43512.zip",
-                "reference": "d8c260d9fcd6a656a585291d27c1a0a36cd43512",
+                "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-framework/6dc9fcefe611fcc6af92c2b8297d0dcb00f8cc9c.zip",
+                "reference": "6dc9fcefe611fcc6af92c2b8297d0dcb00f8cc9c",
                 "shasum": ""
             },
             "require": {
@@ -1700,7 +1738,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-11-12 12:25:07"
+            "time": "2015-11-19 21:12:59"
         },
         {
             "name": "yiisoft/yii2-authclient",

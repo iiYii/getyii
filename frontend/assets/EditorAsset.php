@@ -13,7 +13,7 @@ class EditorAsset extends AssetBundle
     ];
 
     public $js = [
-        'js/jquery.caret.js',
+//        'js/jquery.caret.js',
         'js/editor.js',
     ];
 }

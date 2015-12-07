@@ -1,8 +1,10 @@
-$('.insert-codes a').click(function(e){
+$('.insert-codes a').click(function (e) {
     e.preventDefault();
-    var language = $(this).data('lang');
     var editor = ace.edit("markdown");
-    var srcMerged = "```"+language+"\n\n```\n"
-    console.log(language);
-    editor.setValue(srcMerged).caret(10);
+    var source = editor.getSession().getValue();
+    var language = $(this).data('lang');
+    var prefixBreak = source ? "\n" : '';
+    var srcMerged = prefixBreak + "```" + language + "\n\n```\n";
+    console.log(source);
+    editor.getSession().setValue(source + srcMerged);
 });

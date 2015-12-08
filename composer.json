@@ -25,7 +25,6 @@
     "yiisoft/yii2-swiftmailer": "*",
     "2amigos/yii2-selectize-widget": "*",
     "bower-asset/sb-admin-2-assets": "*",
-    "bower-asset/Caret.js": "*",
     "bower-asset/font-awesome": "*",
     "bower-asset/marked": "*",
     "bower-asset/highlightjs": "*",

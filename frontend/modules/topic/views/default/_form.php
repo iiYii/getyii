@@ -55,9 +55,9 @@ use kartik\select2\Select2;
             <li><a data-lang="shell" href="#">Shell / Bash</a></li>
         </ul>
     </span>
-        <a id="topic-upload-image" rel="twipsy" title="" href="#" data-original-title="上传图片">
-            <i class="fa fa-fa fa-image"></i>
-        </a>
+<!--        <a id="topic-upload-image" rel="twipsy" title="" href="#" data-original-title="上传图片">-->
+<!--            <i class="fa fa-fa fa-image"></i>-->
+<!--        </a>-->
     </div>
 
     <div class="form-group" id="editor">

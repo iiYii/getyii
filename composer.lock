@@ -228,16 +228,16 @@
         },
         {
             "name": "bower-asset/font-awesome",
-            "version": "v4.4.0",
+            "version": "v4.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "e554555d73a44e0a7d11b0361ad7a5325a5f551c"
+                "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/e554555d73a44e0a7d11b0361ad7a5325a5f551c",
-                "reference": "e554555d73a44e0a7d11b0361ad7a5325a5f551c",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/fddd2c240452e6c8990c4ef75e0265b455aa7968",
+                "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -394,16 +394,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.2.3",
+            "version": "3.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-                "reference": "85b94d8c8158d610b148317608bf67b678b40659"
+                "reference": "d08264a678865849c808359d126e3bddb9ec87a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/85b94d8c8158d610b148317608bf67b678b40659",
-                "reference": "85b94d8c8158d610b148317608bf67b678b40659",
+                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/d08264a678865849c808359d126e3bddb9ec87a6",
+                "reference": "d08264a678865849c808359d126e3bddb9ec87a6",
                 "shasum": ""
             },
             "require": {
@@ -415,9 +415,14 @@
                     "./dist/inputmask/inputmask.js"
                 ],
                 "bower-asset-ignore": [
-                    "*",
+                    "**/*",
                     "!dist/*",
-                    "!extra/*"
+                    "!dist/inputmask/*",
+                    "!dist/min/*",
+                    "!dist/min/inputmask/*",
+                    "!extra/bindings/*",
+                    "!extra/dependencyLibs/*",
+                    "!extra/phone-codes/*"
                 ]
             },
             "license": [
@@ -909,16 +914,16 @@
         },
         {
             "name": "components/flag-icon-css",
-            "version": "0.8.4",
+            "version": "0.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lipis/flag-icon-css.git",
-                "reference": "ee0f8d5bdfdcd75b2fe1db21e4486b18c250b227"
+                "reference": "d590670d79de70237f09b67f473cb20a3b52352b"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/lipis/flag-icon-css/ee0f8d5bdfdcd75b2fe1db21e4486b18c250b227.zip",
-                "reference": "ee0f8d5bdfdcd75b2fe1db21e4486b18c250b227",
+                "url": "http://packagist.phpcomposer.com/files/lipis/flag-icon-css/d590670d79de70237f09b67f473cb20a3b52352b.zip",
+                "reference": "d590670d79de70237f09b67f473cb20a3b52352b",
                 "shasum": ""
             },
             "type": "component",
@@ -943,7 +948,7 @@
                 }
             ],
             "description": "CSS for vector based country flags",
-            "time": "2015-10-27 15:07:00"
+            "time": "2015-11-15 18:25:09"
         },
         {
             "name": "devgroup/yii2-tag-dependency-helper",
@@ -1043,16 +1048,16 @@
         },
         {
             "name": "fortawesome/font-awesome",
-            "version": "v4.4.0",
+            "version": "v4.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "e554555d73a44e0a7d11b0361ad7a5325a5f551c"
+                "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/FortAwesome/Font-Awesome/e554555d73a44e0a7d11b0361ad7a5325a5f551c.zip",
-                "reference": "e554555d73a44e0a7d11b0361ad7a5325a5f551c",
+                "url": "http://packagist.phpcomposer.com/files/FortAwesome/Font-Awesome/fddd2c240452e6c8990c4ef75e0265b455aa7968.zip",
+                "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968",
                 "shasum": ""
             },
             "require-dev": {
@@ -1087,7 +1092,7 @@
                 "font",
                 "icon"
             ],
-            "time": "2015-07-28 21:55:03"
+            "time": "2015-11-30 17:28:02"
         },
         {
             "name": "funson86/yii2-setting",
@@ -1293,16 +1298,16 @@
         },
         {
             "name": "kartik-v/yii2-krajee-base",
-            "version": "v1.7.7",
+            "version": "v1.7.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-krajee-base.git",
-                "reference": "c0adff9d9762f4fd3bf0e7cd0000fcab0bf00f19"
+                "reference": "6f10fd0a0bfccd729764c65fa65eb4ccf2cbade9"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/kartik-v/yii2-krajee-base/c0adff9d9762f4fd3bf0e7cd0000fcab0bf00f19.zip",
-                "reference": "c0adff9d9762f4fd3bf0e7cd0000fcab0bf00f19",
+                "url": "http://packagist.phpcomposer.com/files/kartik-v/yii2-krajee-base/6f10fd0a0bfccd729764c65fa65eb4ccf2cbade9.zip",
+                "reference": "6f10fd0a0bfccd729764c65fa65eb4ccf2cbade9",
                 "shasum": ""
             },
             "require": {
@@ -1335,7 +1340,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-06-16 05:19:57"
+            "time": "2015-11-25 07:03:35"
         },
         {
             "name": "kartik-v/yii2-widget-select2",
@@ -1573,16 +1578,16 @@
         },
         {
             "name": "yiier/yii2-backup",
-            "version": "v1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiier/yii2-backup.git",
-                "reference": "b659dcf0646e0f2d9668dea1923658d36336fafe"
+                "reference": "338b7ed33b82b939ce63c1e3447c357e2450182d"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/yiier/yii2-backup/b659dcf0646e0f2d9668dea1923658d36336fafe.zip",
-                "reference": "b659dcf0646e0f2d9668dea1923658d36336fafe",
+                "url": "http://packagist.phpcomposer.com/files/yiier/yii2-backup/338b7ed33b82b939ce63c1e3447c357e2450182d.zip",
+                "reference": "338b7ed33b82b939ce63c1e3447c357e2450182d",
                 "shasum": ""
             },
             "require": {
@@ -1611,7 +1616,7 @@
                 "yii2",
                 "yii2-backup"
             ],
-            "time": "2015-06-29 14:02:21"
+            "time": "2015-11-30 02:34:48"
         },
         {
             "name": "yiisoft/yii2",
@@ -1619,12 +1624,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "d8c260d9fcd6a656a585291d27c1a0a36cd43512"
+                "reference": "2fdfdc5aaefee5513eec5df9137be264360e8d0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-framework/d8c260d9fcd6a656a585291d27c1a0a36cd43512.zip",
-                "reference": "d8c260d9fcd6a656a585291d27c1a0a36cd43512",
+                "url": "http://packagist.phpcomposer.com/files/yiisoft/yii2-framework/2fdfdc5aaefee5513eec5df9137be264360e8d0d.zip",
+                "reference": "2fdfdc5aaefee5513eec5df9137be264360e8d0d",
                 "shasum": ""
             },
             "require": {
@@ -1692,6 +1697,11 @@
                     "name": "Paul Klimov",
                     "email": "klimov.paul@gmail.com",
                     "role": "Core framework development"
+                },
+                {
+                    "name": "Dmitry Naumenko",
+                    "email": "d.naumenko.a@gmail.com",
+                    "role": "Core framework development"
                 }
             ],
             "description": "Yii PHP Framework Version 2",
@@ -1700,7 +1710,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-11-12 12:25:07"
+            "time": "2015-12-06 19:50:33"
         },
         {
             "name": "yiisoft/yii2-authclient",

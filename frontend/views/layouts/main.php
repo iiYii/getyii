@@ -13,11 +13,13 @@ use yii\widgets\Breadcrumbs;
 
 AppAsset::register($this);
 BowerAsset::register($this);
+
+\frontend\assets\EditorAsset::register($this);
 $emojify = EmojifyAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>" xmlns="http://www.w3.org/1999/html">
+<html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">

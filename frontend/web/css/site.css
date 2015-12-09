@@ -157,6 +157,10 @@ a.desc:after {
     color: #008E59;
 }
 
+.article img, .markdown-reply img{
+    width: 100%;
+}
+
 .tweet .active .fa, .topic-view .active .fa, .filter .active, .red {
     color: #EB5424;
 }

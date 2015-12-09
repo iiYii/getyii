@@ -43,7 +43,7 @@ use kartik\select2\Select2;
         </a>
         <ul class="dropdown-menu insert-codes" role="menu">
             <li><a data-lang="php" href="#">PHP</a></li>
-            <li><a data-lang="erb" href="#">HTML</a></li>
+            <li><a data-lang="html" href="#">HTML</a></li>
             <li><a data-lang="scss" href="#">CSS / SCSS</a></li>
             <li><a data-lang="js" href="#">JavaScript</a></li>
             <li><a data-lang="yml" href="#">YAML <i>(.yml)</i></a></li>

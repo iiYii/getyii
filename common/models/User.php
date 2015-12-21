@@ -230,12 +230,15 @@ class User extends ActiveRecord implements IdentityInterface
             $avatarCachePath = Yii::$app->basePath . Yii::$app->params['avatarCachePath'];
             FileHelper::createDirectory($avatarCachePath); // 创建文件夹
             if (file_exists($avatarCachePath . $size . '_' . $this->avatar)) {
-                // 头像是否存在
+                // 缓存头像是否存在
                 return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
             }
-            \yii\imagine\Image::thumbnail($avatarPath . $this->avatar, $size, $size)
-                ->save($avatarCachePath . $size . '_' . $this->avatar, ['quality' => 100]);
-            return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
+            if (file_exists($avatarPath  . $this->avatar)) {
+                // 原始头像是否存在
+                \yii\imagine\Image::thumbnail($avatarPath . $this->avatar, $size, $size)
+                    ->save($avatarCachePath . $size . '_' . $this->avatar, ['quality' => 100]);
+                return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
+            }
         }
         return (new Avatar($this->email, $size))->getAvater();
     }

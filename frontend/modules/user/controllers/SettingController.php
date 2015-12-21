@@ -134,14 +134,30 @@ class SettingController extends Controller
                 $model->deleteImage();
             }
             $image = $model->uploadImage();
-            if ($model->save()) {
-                if ($image !== false) {
-                    $path = $model->getImageFile();
-                    $image->saveAs($path);
+            $hasError = true;
+
+            if ($image !== false) {
+                $path = $model->getNewUploadedImageFile();
+                if( $image->saveAs($path) ) {
+                    $hasError = false;
                 }
-                Yii::$app->session->setFlash('success', '您的用户信息修改成功');
-                return $this->refresh();
             }
+
+            if( $hasError ) {
+                $model->useDefaultImage();
+            }
+
+            if ($model->save() === false) {
+                $hasError = true;
+            }
+
+            if( $hasError ) {
+                Yii::$app->session->setFlash('error', '您的头像更新失败');
+            }
+            else {
+                Yii::$app->session->setFlash('success', '您的用户信息修改成功');
+            }
+            return $this->refresh();
         }
 
         return $this->render('avatar', [

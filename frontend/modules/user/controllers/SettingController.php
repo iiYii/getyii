@@ -153,8 +153,7 @@ class SettingController extends Controller
 
             if( $hasError ) {
                 Yii::$app->session->setFlash('error', '您的头像更新失败');
-            }
-            else {
+            } else {
                 Yii::$app->session->setFlash('success', '您的用户信息修改成功');
             }
             return $this->refresh();

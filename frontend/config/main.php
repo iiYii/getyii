@@ -32,6 +32,7 @@ return [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
+            'as afterLogin' => 'frontend\behaviors\AfterLoginBehavior',
         ],
         'xunsearch' => [
             'class' => 'hightman\xunsearch\Connection', // 此行必须

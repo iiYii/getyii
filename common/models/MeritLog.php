@@ -24,7 +24,7 @@ class MeritLog extends \common\components\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'merit_log';
+        return '{{%merit_log}}';
     }
 
     /**

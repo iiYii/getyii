@@ -22,7 +22,7 @@ class Nav extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'nav';
+        return '{{%nav}}';
     }
 
     /**

@@ -38,7 +38,7 @@ class RightLink extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'right_link';
+        return '{{%right_link}}';
     }
 
     /**

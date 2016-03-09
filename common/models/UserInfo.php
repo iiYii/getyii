@@ -36,7 +36,7 @@ class UserInfo extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'user_info';
+        return '{{%user_info}}';
     }
 
     /**

@@ -30,7 +30,7 @@ class PostMeta extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'post_meta';
+        return '{{%post_meta}}';
     }
 
     /**

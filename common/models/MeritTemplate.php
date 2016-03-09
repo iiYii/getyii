@@ -23,7 +23,7 @@ class MeritTemplate extends \common\components\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'merit_template';
+        return '{{%merit_template}}';
     }
 
     /**

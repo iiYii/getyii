@@ -21,7 +21,7 @@ class Merit extends \common\components\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'merit';
+        return '{{%merit}}';
     }
 
     /**

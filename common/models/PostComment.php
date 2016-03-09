@@ -42,7 +42,7 @@ class PostComment extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'post_comment';
+        return '{{%post_comment}}';
     }
 
     /**

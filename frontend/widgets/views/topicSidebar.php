@@ -41,7 +41,7 @@ $node = $config['node'];
                     echo Html::a(
                         Html::img($value->image),
                         $value->url,
-                        ['target' => '_blank', 'title' => $value->title]
+                        ['class' =>'list-group-item', 'target' => '_blank', 'title' => $value->title]
                     );
                 } ?>
             </div>

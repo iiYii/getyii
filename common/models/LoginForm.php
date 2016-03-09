@@ -98,6 +98,7 @@ class LoginForm extends Model
      */
     public function updateUserInfo()
     {
+        /** @var UserInfo $model */
         $model = UserInfo::findOne(['user_id' => Yii::$app->user->getId()]);
         $model->login_count += 1;
         $model->prev_login_time = $model->last_login_time;

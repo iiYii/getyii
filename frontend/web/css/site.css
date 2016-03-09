@@ -157,7 +157,7 @@ a.desc:after {
     color: #008E59;
 }
 
-.article img, .markdown-reply img{
+.article img, .markdown-reply img, .text-center img{
     max-width: 100%;
 }
 

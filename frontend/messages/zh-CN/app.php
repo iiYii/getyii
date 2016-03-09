@@ -11,7 +11,7 @@ return [
     'Sign up' => '注册',
     'Notifications' => '通知提醒',
     'New Topic' => '发 布 新 帖',
-    'Links' => '友情社区',
+    'Links' => '友情链接',
     'Same Node Topics' => '节点下其他主题',
     'Tips and Tricks' => '小贴士',
     'Site Status' => '统计信息',

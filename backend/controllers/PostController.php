@@ -5,27 +5,13 @@ namespace backend\controllers;
 use Yii;
 use common\models\Post;
 use backend\models\PostSearch;
-use common\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * PostController implements the CRUD actions for Post model.
  */
 class PostController extends Controller
 {
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Post models.
      * @return mixed

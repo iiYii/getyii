@@ -5,26 +5,13 @@ namespace backend\controllers;
 use Yii;
 use common\models\NavUrl;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * NavUrlController implements the CRUD actions for NavUrl model.
  */
 class NavUrlController extends Controller
 {
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all NavUrl models.

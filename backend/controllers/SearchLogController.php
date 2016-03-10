@@ -5,27 +5,13 @@ namespace backend\controllers;
 use Yii;
 use common\models\SearchLog;
 use backend\models\SearchLogSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * SearchLogController implements the CRUD actions for SearchLog model.
  */
 class SearchLogController extends Controller
 {
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all SearchLog models.
      * @return mixed

@@ -8,37 +8,6 @@ jQuery(function ($) {
         }, 500);
     });
 
-    // @ 用户
-    function autocompleteAtUser() {
-        var atUsers = [],
-            user;
-        $users = $('.media-heading').find('a.author');
-        for (var i = 0; i < $users.length; i++) {
-            user = $users.eq(i).text().trim();
-            if ($.inArray(user, atUsers) == -1) {
-                atUsers.push(user);
-            }
-        }
-
-        $('#md-input').textcomplete([{
-            mentions: atUsers,
-            match: /\B@(\w*)$/,
-            search: function (term, callback) {
-                callback($.map(this.mentions, function (mention) {
-                    return mention.indexOf(term) === 0 ? mention : null;
-                }));
-            },
-            index: 1,
-            replace: function (mention) {
-                return '@' + mention + ' ';
-            }
-        }], {
-            appendTo: 'body'
-        });
-
-    }
-    autocompleteAtUser();
-
     function notificationsCount() {
         var notification = $('.notification-count');
         var originalTitle = document.title;
@@ -63,7 +32,6 @@ jQuery(function ($) {
     }
     notificationsCount();
 
-
     // 新窗口打开外链
     $('a[href^="http://"], a[href^="https://"]').each(function () {
         var a = new RegExp('/' + window.location.host + '/');
@@ -80,6 +48,7 @@ jQuery(function ($) {
     hljs.initHighlightingOnLoad();
 
     emojify.setConfig({
+        emojify_tag_type : 'p',
         img_dir : Config.emojiBaseUrl + '/dist/images/basic',
         ignored_tags : {
             'SCRIPT'  : 1,

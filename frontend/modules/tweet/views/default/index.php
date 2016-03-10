@@ -1,5 +1,7 @@
 <?php
 $this->title = '发布新动弹';
+/** @var \frontend\modules\tweet\models\Tweet $model*/
+/** @var \yii\data\ActiveDataProvider $dataProvider*/
 ?>
     <div class="col-md-10 tweet" contenteditable="false" style="">
 
@@ -21,6 +23,7 @@ $this->title = '发布新动弹';
 //            'options' => ['class' => ''],
             'pager' => [
                 'class' => \kop\y2sp\ScrollPager::className(),
+                'eventOnRendered' => 'function() {emojify.run();}',
                 'triggerOffset' => 5
             ]
         ]); ?>

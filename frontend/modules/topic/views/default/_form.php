@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 use dosamigos\selectize\SelectizeTextInput;
 use kartik\select2\Select2;
 
+\frontend\assets\AtJsAsset::register($this);
 ?>
 <div class="list-group-item">
 

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+\frontend\assets\AtJsAsset::register($this);
 ?>
 <div class="list-group-item">
 

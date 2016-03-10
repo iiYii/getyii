@@ -8,6 +8,7 @@ use yii\helpers\Markdown;
 /* @var $model common\Models\Post */
 
 $this->title = $model->title;
+\frontend\assets\AtJsAsset::register($this);
 ?>
 
 <div class="col-md-10 topic-view" contenteditable="false" style="">

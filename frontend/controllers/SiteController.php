@@ -14,6 +14,8 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\web\BadRequestHttpException;
 use common\components\Controller;
 use yii\filters\VerbFilter;
@@ -155,6 +157,12 @@ class SiteController extends Controller
             'model' => $model,
             'count' => $count,
         ]);
+    }
+
+    public function actionAtUsers()
+    {
+        $model = UserService::findActiveUser(400);
+        return Json::encode(ArrayHelper::getColumn($model, 'username'));
     }
 
     public function actionBook()

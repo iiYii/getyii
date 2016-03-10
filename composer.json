@@ -33,6 +33,7 @@
     "bower-asset/emojify.js": "*",
     "bower-asset/PACE": "*",
     "bower-asset/localforage": "*",
+    "bower-asset/At.js": "*",
     "yiisoft/yii2-authclient": "*",
     "yzalis/identicon": "*",
     "funson86/yii2-setting": "*",

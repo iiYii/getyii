@@ -43,7 +43,7 @@ class Tweet extends Post
      * @return array|null|\yii\db\ActiveRecord|static
      * @throws NotFoundHttpException
      */
-    public function findModel($id, $condition = '')
+    public static function findModel($id, $condition = '')
     {
         if (!$model = Yii::$app->cache->get('topic' . $id)) {
             $model = static::find()

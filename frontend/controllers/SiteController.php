@@ -216,7 +216,7 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionQrcode($url='')
+    public function actionQrcode($url = '')
     {
         return QrCode::png($url);
     }

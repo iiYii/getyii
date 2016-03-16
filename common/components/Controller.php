@@ -8,16 +8,19 @@ use yii\web\Response;
 
 class Controller extends \yii\web\Controller
 {
+    public function behaviors()
+    {
+        return [
+            'returnUrl' => [
+                'class' => 'common\behaviors\ReturnUrl',
+                'uniqueIds' => ['site/qrcode', 'site/login', 'user/security/auth']
+            ],
+        ];
+    }
 
     public function beforeAction($action)
     {
         if (parent::beforeAction($action)) {
-            if (Yii::$app->user->isGuest) {
-                $request = Yii::$app->getRequest();
-                if (!($request->getIsAjax() || strpos($request->getUrl(), 'login') !== false)) {
-                    Yii::$app->user->setReturnUrl($request->getUrl());
-                }
-            }
             return true;
         } else {
             return false;

@@ -13,13 +13,14 @@ use common\services\TweetService;
 use Yii;
 use yii\filters\AccessControl;
 use common\components\Controller;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 
 class ActionController extends Controller
 {
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
@@ -29,7 +30,7 @@ class ActionController extends Controller
                     ]
                 ]
             ]
-        ];
+        ]);
     }
 
     /**

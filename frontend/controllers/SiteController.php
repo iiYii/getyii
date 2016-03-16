@@ -35,7 +35,7 @@ class SiteController extends Controller
      */
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'signup', 'connect'],
@@ -48,7 +48,7 @@ class SiteController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => ['logout' => ['post']],
             ],
-        ];
+        ]);
     }
 
     /**

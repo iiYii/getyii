@@ -12,6 +12,7 @@ use Yii;
 use common\models\PostComment;
 use common\components\Controller;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -22,7 +23,7 @@ class CommentController extends Controller
 {
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -38,7 +39,7 @@ class CommentController extends Controller
                     ['allow' => true, 'actions' => ['create', 'update'], 'roles' => ['@']],
                 ]
             ],
-        ];
+        ]);
     }
 
     /**

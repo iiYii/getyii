@@ -16,6 +16,7 @@ use common\models\PostComment;
 use common\models\PostMeta;
 use common\models\UserInfo;
 use common\components\Controller;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
@@ -33,7 +34,7 @@ class DefaultController extends Controller
 
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -51,7 +52,7 @@ class DefaultController extends Controller
                     ['allow' => true, 'actions' => ['create', 'update', 'revoke', 'excellent'], 'roles' => ['@']],
                 ]
             ],
-        ];
+        ]);
     }
 
     /**
@@ -71,7 +72,7 @@ class DefaultController extends Controller
         }
 
         $dataProvider = $searchModel->search($params);
-        $dataProvider->query->andWhere([Post::tableName() . '.type' => 'topic', 'status'=>[Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]]);
+        $dataProvider->query->andWhere([Post::tableName() . '.type' => 'topic', 'status' => [Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]]);
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [

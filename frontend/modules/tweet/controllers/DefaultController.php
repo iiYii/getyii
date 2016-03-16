@@ -12,6 +12,7 @@ use frontend\modules\user\models\UserMeta;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yiier\AutoloadExample;
 use yiier\request\ThrottleBehavior;
@@ -20,7 +21,7 @@ class DefaultController extends Controller
 {
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -38,7 +39,7 @@ class DefaultController extends Controller
                     ['allow' => true, 'actions' => ['create'], 'roles' => ['@']],
                 ]
             ],
-        ];
+        ]);
     }
 
     public function actionIndex()

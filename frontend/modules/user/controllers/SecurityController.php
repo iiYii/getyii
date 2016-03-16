@@ -8,6 +8,7 @@
 
 namespace frontend\modules\user\controllers;
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use common\components\Controller;
 use yii\filters\AccessControl;
@@ -22,7 +23,7 @@ class SecurityController extends Controller
      */
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
@@ -36,7 +37,7 @@ class SecurityController extends Controller
                     'logout' => ['post']
                 ]
             ]
-        ];
+        ]);
     }
 
     public function init()
@@ -78,20 +79,20 @@ class SecurityController extends Controller
     public function authenticate(ClientInterface $client)
     {
         $attributes = $client->getUserAttributes();
-        $provider   = $client->getId();
-        $clientId   = $attributes['id'];
+        $provider = $client->getId();
+        $clientId = $attributes['id'];
 
-        $account =  UserAccount::find()->where([
-            'provider'  => $provider,
+        $account = UserAccount::find()->where([
+            'provider' => $provider,
             'client_id' => $clientId
         ])->one();
 
         if ($account === null) {
             $account = \Yii::createObject([
-                'class'      => UserAccount::className(),
-                'provider'   => $provider,
-                'client_id'  => $clientId,
-                'data'       => json_encode($attributes),
+                'class' => UserAccount::className(),
+                'provider' => $provider,
+                'client_id' => $clientId,
+                'data' => json_encode($attributes),
                 'created_at' => time()
             ]);
             $account->save(false);

@@ -14,7 +14,7 @@ $this->title = \Yii::$app->setting->get('siteName');
 ?>
     <div class="panel panel-default">
         <div class="panel-body text-center mp0">
-            <?= ($headline) ? HtmlPurifier::process(Markdown::process($headline[0], 'gfm')) : \Yii::t('app', 'site_intro') ?>
+            <?= ($headline) ? HtmlPurifier::process(Markdown::process(reset($headline), 'gfm')) : \Yii::t('app', 'site_intro') ?>
         </div>
     </div>
 

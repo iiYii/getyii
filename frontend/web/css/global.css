@@ -28,6 +28,10 @@ body > iframe {
     padding: 0
 }
 
+.mp0 p, .m0 {
+    margin: 0;
+}
+
 .mt10 {
     margin-top: 10px;
 }
@@ -57,7 +61,7 @@ h1 {
 }
 
 abbr[title] {
-    border-bottom: 0px;
+    border-bottom: 0;
 }
 
 .divider {

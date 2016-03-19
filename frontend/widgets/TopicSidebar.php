@@ -7,6 +7,7 @@
 
 namespace frontend\widgets;
 
+use common\helpers\Arr;
 use common\models\PostMeta;
 use common\models\RightLink;
 use frontend\modules\topic\models\Topic;
@@ -39,7 +40,7 @@ class TopicSidebar extends \yii\bootstrap\Widget
             'url'
         );
 
-        $links = RightLink::find()->where(['type' => RightLink::RIGHT_LINK_TYPE_Links])->all();
+        $links = RightLink::find()->where(['type' => RightLink::RIGHT_LINK_TYPE_LINKS])->all();
 
         $sameTopics = [];
         if ($this->node) {
@@ -54,7 +55,7 @@ class TopicSidebar extends \yii\bootstrap\Widget
                 }
             );
             if (count($sameTopics) > 10) {
-                $sameTopics = $this->arrayRandomAssoc($sameTopics, 10);
+                $sameTopics = Arr::arrayRandomAssoc($sameTopics, 10);
             }
         }
 
@@ -71,23 +72,5 @@ class TopicSidebar extends \yii\bootstrap\Widget
             'recommendResources' => $recommendResources,
             'links'              => $links,
         ]);
-    }
-
-    /**
-     * 随机筛选$num个数组
-     * @param $arr
-     * @param int $num
-     * @return array
-     */
-    public function arrayRandomAssoc($arr, $num = 1)
-    {
-        $keys = array_keys($arr);
-        shuffle($keys);
-
-        $r = [];
-        for ($i = 0; $i < $num; $i++) {
-            $r[$keys[$i]] = $arr[$keys[$i]];
-        }
-        return $r;
     }
 }

@@ -1,18 +1,22 @@
 <?php
 use yii\helpers\Html;
 use kartik\icons\Icon;
+use yii\helpers\HtmlPurifier;
+use yii\helpers\Markdown;
 
 Icon::map($this);
 
 $this->title = \Yii::$app->setting->get('siteName');
+/** @var array $headline */
+/** @var array $topics */
+/** @var array $statistics */
+/** @var array $users */
 ?>
     <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="text-center"><?= \Yii::t('app', 'site_intro') ?></div>
+        <div class="panel-body text-center mp0">
+            <?= ($headline) ? HtmlPurifier::process(Markdown::process($headline[0], 'gfm')) : \Yii::t('app', 'site_intro') ?>
         </div>
     </div>
-
-
 
     <div class="panel panel-default list-panel">
         <div class="panel-heading">

@@ -1,9 +1,11 @@
 <?php
 namespace frontend\controllers;
 
+use common\helpers\Arr;
 use common\models\Post;
 use common\models\PostComment;
 use common\models\PostTag;
+use common\models\RightLink;
 use common\models\Session;
 use common\services\UserService;
 use dosamigos\qrcode\QrCode;
@@ -14,7 +16,6 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\web\BadRequestHttpException;
 use common\components\Controller;
@@ -35,7 +36,7 @@ class SiteController extends Controller
      */
     public function behaviors()
     {
-        return ArrayHelper::merge(parent::behaviors(), [
+        return Arr::merge(parent::behaviors(), [
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'signup', 'connect'],
@@ -71,8 +72,9 @@ class SiteController extends Controller
     {
         $topics = Post::find()->limit(20)->where(['status' => 2])->orderBy(['created_at' => SORT_DESC])->all();
         $users = UserService::findActiveUser(12);
+        $headline = Arr::getColumn(RightLink::find()->where(['type' => RightLink::RIGHT_LINK_TYPE_HEADLINE])->all(), 'content');
 
-        $statistics = array();
+        $statistics = [];
         $statistics['post_count'] = Post::find()->count();
         $statistics['comment_count'] = PostComment::find()->count();
         $statistics['online_count'] = Session::find()->where(['>', 'expire', time()])->count();
@@ -81,6 +83,7 @@ class SiteController extends Controller
             'topics' => $topics,
             'users' => $users,
             'statistics' => $statistics,
+            'headline' => Arr::arrayRandomAssoc($headline),
         ]);
     }
 
@@ -162,7 +165,7 @@ class SiteController extends Controller
     public function actionAtUsers()
     {
         $model = UserService::findActiveUser(400);
-        return Json::encode(ArrayHelper::getColumn($model, 'username'));
+        return Json::encode(Arr::getColumn($model, 'username'));
     }
 
     public function actionBook()

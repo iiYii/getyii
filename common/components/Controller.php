@@ -5,7 +5,6 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\Response;
-use yiier\merit\MeritBehavior;
 
 class Controller extends \yii\web\Controller
 {
@@ -16,7 +15,6 @@ class Controller extends \yii\web\Controller
                 'class' => 'common\behaviors\ReturnUrl',
                 'uniqueIds' => ['site/qrcode', 'site/login', 'user/security/auth']
             ],
-            MeritBehavior::className(),
         ]);
     }
 

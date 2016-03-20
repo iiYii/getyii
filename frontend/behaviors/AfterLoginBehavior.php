@@ -27,6 +27,7 @@ class AfterLoginBehavior extends Behavior
 
     /**
      * @param \yii\web\UserEvent $event
+     * @return bool
      */
     public function afterLogin($event)
     {

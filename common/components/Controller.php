@@ -1,21 +1,23 @@
 <?php
 namespace common\components;
 
-use common\services\MeritService;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\Response;
+use yiier\merit\MeritBehavior;
 
 class Controller extends \yii\web\Controller
 {
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'returnUrl' => [
                 'class' => 'common\behaviors\ReturnUrl',
                 'uniqueIds' => ['site/qrcode', 'site/login', 'user/security/auth']
             ],
-        ];
+            MeritBehavior::className(),
+        ]);
     }
 
     public function beforeAction($action)
@@ -31,7 +33,6 @@ class Controller extends \yii\web\Controller
     {
         if (!Yii::$app->user->isGuest) {
             $actionName = "frontend@{$this->module->id}_{$this->id}_{$action->id}";
-            MeritService::update($actionName);
         }
         return parent::afterAction($action, $result);
     }

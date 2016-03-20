@@ -61,9 +61,6 @@ $ docker-compose up -d
 ## 捐赠
 
 ![微信支付](https://raw.githubusercontent.com/iiYii/getyii/master/wechat-pay.png)
-
-或者
-
 ![支付宝支付](https://raw.githubusercontent.com/iiYii/getyii/master/ali-pay.png)
 
 手机微信或者支付宝扫描上方二维码可向本项目捐款

@@ -3,6 +3,7 @@
 namespace frontend\modules\user\controllers;
 
 use frontend\modules\user\models\AvatarForm;
+use frontend\modules\user\models\Donate;
 use Yii;
 use frontend\modules\user\models\AccountForm;
 use common\models\UserInfo;
@@ -41,7 +42,7 @@ class SettingController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['profile', 'account', 'avatar', 'confirm', 'networks', 'connect', 'disconnect'],
+                        'actions' => ['profile', 'account', 'avatar', 'confirm', 'networks', 'connect', 'disconnect', 'donate'],
                         'roles' => ['@']
                     ],
                 ]
@@ -162,6 +163,37 @@ class SettingController extends Controller
         }
 
         return $this->render('avatar', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     *   打赏设置
+     * @return mixed
+     */
+    public function actionDonate()
+    {
+        /** @var Donate $model */
+        $model = Donate::findOne(['user_id' => Yii::$app->user->id]) ?: new Donate();
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            if ($image = $model->uploadImage()) {
+                \yii\helpers\FileHelper::createDirectory(\Yii::$app->basePath . \Yii::$app->params['qrCodePath']);
+                $model->deleteImage();
+                $image->saveAs(\Yii::$app->basePath . \Yii::$app->params['qrCodePath'] . $model->qr_code);
+            }
+
+            $model->user_id = Yii::$app->user->id;
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', '您的打赏信息修改成功');
+            } else {
+                Yii::$app->session->setFlash('error', '您的打赏信息更新失败');
+            }
+            return $this->refresh();
+        }
+
+        return $this->render('donate', [
             'model' => $model,
         ]);
     }

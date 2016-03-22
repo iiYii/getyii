@@ -308,4 +308,23 @@ class User extends ActiveRecord implements IdentityInterface
             return false;
         }
     }
+
+    public static function getRole($role)
+    {
+        $data = [
+            self::ROLE_ADMIN => [
+                'name' => '高级会员',
+                'color' => 'primary',
+            ],
+            self::ROLE_USER => [
+                'name' => '会员',
+                'color' => 'info',
+            ],
+            self::ROLE_SUPER_ADMIN => [
+                'name' => '管理员',
+                'color' => 'success',
+            ]
+        ];
+        return $data[$role];
+    }
 }

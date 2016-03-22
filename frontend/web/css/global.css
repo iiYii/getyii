@@ -40,6 +40,10 @@ body > iframe {
     margin-top: 0;
 }
 
+.mt5 {
+    margin-top: 5px;
+}
+
 .mb0 {
     margin-bottom: 0;
 }

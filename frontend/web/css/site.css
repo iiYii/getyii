@@ -378,3 +378,24 @@ pre {
     font-size: 12px;
     color: #666;
 }
+
+.follow-info {
+    border-top: 1px solid #f0f0f0;
+    text-align: center;
+    margin-top: 15px;
+    padding-top: 15px;
+}
+
+.follow-info a {
+    display: block;
+    text-decoration: none;
+}
+
+.follow-info a.text {
+    color: #999;
+}
+
+.follow-info a.counter {
+    font-size: 32px;
+    color: #5CB85C;
+}

@@ -34,7 +34,7 @@ $this->title = Yii::t('app', 'Donate');
                 <?php if ($model->qr_code): ?>
                     <div class="form-group">
                         <div class="col-lg-offset-3 col-lg-9">
-                            <?= Html::img(Yii::$app->params['qrCodeUrl'] . $model->qr_code) ?>
+                            <?= Html::img(Yii::$app->params['qrCodeUrl'] . $model->qr_code, ['class' => 'img']) ?>
                         </div>
                     </div>
                 <?php endif ?>
@@ -42,7 +42,7 @@ $this->title = Yii::t('app', 'Donate');
 
                 <?= $form->field($model, 'status')->dropDownList(\frontend\modules\user\models\Donate::getStatuses()) ?>
 
-                <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+                <?= $form->field($model, 'description')->textarea(['rows' => 2]) ?>
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">

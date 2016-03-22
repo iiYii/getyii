@@ -156,4 +156,10 @@ return [
     'Online Count' => '当前在线人数',
     'Post Count' => '主题数',
     'Comment Count' => '回答数',
+
+    'Donate' => '打赏',
+    'Qr Code' => '二维码',
+    'Status' => '状态',
+    'Save' => '保存',
+    'Description' => '描述',
 ];

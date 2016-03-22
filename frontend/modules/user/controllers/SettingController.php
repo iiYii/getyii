@@ -175,6 +175,7 @@ class SettingController extends Controller
     {
         /** @var Donate $model */
         $model = Donate::findOne(['user_id' => Yii::$app->user->id]) ?: new Donate();
+        $oldQrCode = $model->qr_code;
 
         if ($model->load(Yii::$app->request->post())) {
 
@@ -184,12 +185,18 @@ class SettingController extends Controller
                 $image->saveAs(\Yii::$app->basePath . \Yii::$app->params['qrCodePath'] . $model->qr_code);
             }
 
+            if ($image === false && !empty($oldQrCode)) {
+                $model->qr_code = $oldQrCode;
+            }
+
             $model->user_id = Yii::$app->user->id;
+
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', '您的打赏信息修改成功');
             } else {
                 Yii::$app->session->setFlash('error', '您的打赏信息更新失败');
             }
+
             return $this->refresh();
         }
 

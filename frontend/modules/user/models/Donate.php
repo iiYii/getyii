@@ -19,6 +19,9 @@ use yii\web\UploadedFile;
  */
 class Donate extends ActiveRecord
 {
+    const STATUS_ACTIVE = 1;
+    const STATUS_DELETE = 0;
+
     /**
      * @inheritdoc
      */
@@ -36,7 +39,7 @@ class Donate extends ActiveRecord
             [['user_id'], 'required'],
             [['user_id', 'status', 'created_at', 'updated_at'], 'integer'],
             [['qr_code'], 'file', 'extensions' => 'gif, jpg, png', 'maxSize' => 1024 * 1024 * 2, 'tooBig' => \Yii::t('app', 'File has to be smaller than 2MB')],
-            [['description', 'qr_code'], 'string', 'max' => 255]
+            [['description', 'qr_code'], 'string', 'max' => 50]
         ];
     }
 

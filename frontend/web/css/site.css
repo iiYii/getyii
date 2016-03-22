@@ -157,7 +157,7 @@ a.desc:after {
     color: #008E59;
 }
 
-.article img, .markdown-reply img, .text-center img{
+.article img, .markdown-reply img, .text-center img, .img {
     max-width: 100%;
 }
 
@@ -371,4 +371,10 @@ img.emoji {
 
 pre {
     padding: 0;
+}
+
+.donate p {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
 }

@@ -8,7 +8,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\helpers\FileHelper;
 use yii\web\IdentityInterface;
-//use common\components\db\Mailer;
+use yiier\merit\models\Merit;
 use frontend\modules\user\models\UserAccount;
 
 /**

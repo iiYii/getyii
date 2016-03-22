@@ -45,7 +45,9 @@
     "2amigos/yii2-qrcode-helper": "~1.0",
     "kop/yii2-scroll-pager": "dev-master",
     "devgroup/yii2-tag-dependency-helper": "*",
-    "trntv/yii2-aceeditor": "dev-master"
+    "trntv/yii2-aceeditor": "dev-master",
+    "yiier/yii2-return-url": "*",
+    "yiier/yii2-merit": "*"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",
@@ -66,9 +68,5 @@
       "npm-asset-library": "vendor/npm",
       "bower-asset-library": "vendor/bower"
     }
-  },
-  "repositories": [
-    {"type": "composer", "url": "http://packagist.phpcomposer.com"},
-    {"packagist": false}
-  ]
+  }
 }

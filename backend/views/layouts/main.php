@@ -80,6 +80,14 @@ AppAsset::register($this);
                                     ['label' => '导航链接', 'url' => ['/nav-url/index']],
                                 ]
                             ],
+                            [
+                                'label' => '积分模块', 'url' => '#',
+                                'items' => [
+                                    ['label' => '积分模板', 'url' => ['/merit/merit-template']],
+                                    ['label' => '会员积分', 'url' => ['/merit/merit']],
+                                    ['label' => '积分日志', 'url' => ['/merit/merit-log']],
+                                ]
+                            ],
                             ['label' => '搜索日志', 'url' => ['/search-log/index']],
                             ['label' => '右边栏设置', 'url' => ['/right-link/index']],
                             ['label' => 'Login', 'url' => ['/site/login'], 'visible' => Yii::$app->user->isGuest],

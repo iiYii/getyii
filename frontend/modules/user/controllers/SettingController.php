@@ -174,8 +174,9 @@ class SettingController extends Controller
     public function actionDonate()
     {
         /** @var Donate $model */
-        $model = Donate::findOne(['user_id' => Yii::$app->user->id]) ?: new Donate();
+        $model = Donate::findOne(['user_id' => Yii::$app->user->id]) ?: new Donate(['scenario' => 'create']);
         $oldQrCode = $model->qr_code;
+        $model->description ?: $model->description = '如果这篇文章对您有帮助，不妨微信小额赞助我一下，让我有动力继续写出高质量的教程。';
 
         if ($model->load(Yii::$app->request->post())) {
 

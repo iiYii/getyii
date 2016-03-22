@@ -37,6 +37,7 @@ class Donate extends ActiveRecord
     {
         return [
             [['user_id'], 'required'],
+            ['qr_code', 'required', 'on' => 'create'],
             [['user_id', 'status', 'created_at', 'updated_at'], 'integer'],
             [['qr_code'], 'file', 'extensions' => 'gif, jpg, png', 'maxSize' => 1024 * 1024 * 2, 'tooBig' => \Yii::t('app', 'File has to be smaller than 2MB')],
             [['description', 'qr_code'], 'string', 'max' => 50]

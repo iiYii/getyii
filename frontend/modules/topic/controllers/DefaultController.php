@@ -140,6 +140,7 @@ class DefaultController extends Controller
             'pagination' => [
                 'pageSize' => self::PAGE_SIZE,
             ],
+            'sort' => ['defaultOrder' => ['created_at' => SORT_ASC]]
         ]);
 
         // 文章浏览次数

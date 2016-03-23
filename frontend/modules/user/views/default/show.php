@@ -83,10 +83,12 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
                     <span class="pull-left"><strong class="">最后登录时间</strong></span>
                     <?= Yii::$app->formatter->asRelativeTime($user->userInfo->last_login_time) ?>
                 </li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left"><strong class="">签名</strong></span>
-                    <?= Html::encode($user->tagline) ?>
-                </li>
+                <?php if ($user->tagline): ?>
+                    <li class="list-group-item text-right">
+                        <span class="pull-left"><strong class="">签名</strong></span>
+                        <?= Html::encode($user->tagline) ?>
+                    </li>
+                <?php endif ?>
             </ul>
         </div>
 

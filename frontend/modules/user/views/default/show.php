@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\Menu;
 use yii\widgets\ListView;
 use common\models\User;
+use yii\helpers\Url;
 
 $this->title = Html::encode($user->username);
 // $this->params['breadcrumbs'][] = $this->title;
@@ -31,8 +32,10 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
 
                 <div class="follow-info row">
                     <div class="col-sm-4 followers" data-login="rei">
-                        <a class="counter" href="#"><?= $user->merit ? $user->merit->merit : 0 ?></a>
-                        <a class="text" href="#">积分</a>
+                        <a class="counter" href="<?= Url::to(['/user/default/point', 'username'=> $username])?>">
+                            <?= $user->merit ? $user->merit->merit : 0 ?>
+                        </a>
+                        <a class="text" href="<?= Url::to(['/user/default/point', 'username'=> $username])?>">积分</a>
                     </div>
                     <div class="col-sm-4 following">
                         <a class="counter" href="#"><?= $user->userInfo->like_count ?></a>
@@ -147,6 +150,7 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
                 ['label' => '最新评论',  'url' => ['/user/default/show', 'username'=> $username]],
                 ['label' => '最新主题',  'url' => ['/user/default/post', 'username'=> $username]],
                 ['label' => '最新收藏',  'url' => ['/user/default/favorite', 'username'=> $username]],
+                ['label' => '积分动态',  'url' => ['/user/default/point', 'username'=> $username]],
             ]
         ]) ?>
         </nav>

@@ -34,24 +34,6 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
         ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning', 'info', 'trace'],
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['info'],
-                    'categories' => ['backups'],
-                    'logFile' => '@backend/runtime/logs/backup/app.log',
-                    'maxFileSize' => 1024 * 2,
-                    'maxLogFiles' => 20,
-                ],
-            ],
-
-        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],

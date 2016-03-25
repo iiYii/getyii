@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0d43aea02c6e84c6870f0cec9a3eb625",
-    "content-hash": "7e4a9990dbc79e2b33caed2b8198837c",
+    "hash": "a2dfb74aa677457cce4b75ea27962aad",
     "packages": [
         {
             "name": "2amigos/yii2-qrcode-helper",
@@ -1614,6 +1613,38 @@
             "time": "2015-04-26 18:58:15"
         },
         {
+            "name": "understeam/yii2-slack",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Understeam/yii2-slack.git",
+                "reference": "8d931ab8b02f3acec8c1b134633cb153a59536b5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Understeam/yii2-slack/zipball/8d931ab8b02f3acec8c1b134633cb153a59536b5",
+                "reference": "8d931ab8b02f3acec8c1b134633cb153a59536b5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": ">=2.0.0",
+                "yiisoft/yii2-httpclient": "dev-master"
+            },
+            "type": "extension",
+            "autoload": {
+                "psr-4": {
+                    "understeam\\slack\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-v3"
+            ],
+            "description": "Yii2 slack client based on GuzzleHttp library",
+            "time": "2016-02-15 07:07:37"
+        },
+        {
             "name": "webcreate/jquery-ias",
             "version": "v2.2.1",
             "source": {
@@ -2016,6 +2047,53 @@
                 "yii2"
             ],
             "time": "2016-02-06 00:49:24"
+        },
+        {
+            "name": "yiisoft/yii2-httpclient",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-httpclient.git",
+                "reference": "32ed4fe4513855690d7e54e2441fe52507510451"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-httpclient/zipball/32ed4fe4513855690d7e54e2441fe52507510451",
+                "reference": "32ed4fe4513855690d7e54e2441fe52507510451",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\httpclient\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "HTTP client extension for the Yii framework",
+            "keywords": [
+                "curl",
+                "http",
+                "httpclient",
+                "yii2"
+            ],
+            "time": "2016-02-15 09:27:06"
         },
         {
             "name": "yiisoft/yii2-imagine",
@@ -2529,7 +2607,8 @@
         "yiisoft/yii2": 20,
         "hightman/xunsearch": 10,
         "kop/yii2-scroll-pager": 20,
-        "trntv/yii2-aceeditor": 20
+        "trntv/yii2-aceeditor": 20,
+        "yiisoft/yii2-httpclient": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

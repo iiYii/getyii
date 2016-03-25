@@ -55,24 +55,6 @@ return [
                 ],
             ],
         ],
-        'log' => [
-            // 'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning', 'info', 'trace'],
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['info'],
-                    'categories' => ['log'],
-                    'logVars' => [], //除了except对应的分类之外，其他的都写入到
-                    'logFile' => '@frontend/runtime/logs/log/app.log',
-                    'maxFileSize' => 1024 * 1,
-                    'maxLogFiles' => 100,
-                ],
-            ],
-        ],
         'i18n' => [
             'translations' => [
                 'exception*' => [

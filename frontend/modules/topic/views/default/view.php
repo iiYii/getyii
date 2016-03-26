@@ -154,6 +154,5 @@ $this->title = $model->title;
 
 </div>
 <?= \frontend\widgets\TopicSidebar::widget([
-    'type' => 'view',
     'node' => $model->category
 ]); ?>

@@ -82,7 +82,7 @@ class Post extends ActiveRecord
         return [
             [['post_meta_id', 'title', 'content'], 'required'],
             [['post_meta_id', 'user_id', 'view_count', 'comment_count', 'last_comment_time', 'favorite_count', 'like_count', 'thanks_count', 'hate_count', 'status', 'order', 'created_at', 'updated_at'], 'integer'],
-            [['content'], 'string', 'min' => 2],
+            [['content'], 'string', 'min' => 10],
             [['type'], 'string', 'max' => 32],
             [['last_comment_username'], 'string', 'max' => 20],
             [['title'], 'string', 'max' => 255, 'min' => 2],

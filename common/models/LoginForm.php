@@ -62,6 +62,11 @@ class LoginForm extends Model
         }
     }
 
+    public function switchUser($user_id)
+    {
+            return Yii::$app->user->login(User::findIdentity($user_id));
+    }
+
     /**
      * @inheritdoc
      */

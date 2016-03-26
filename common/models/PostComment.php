@@ -93,7 +93,7 @@ class PostComment extends ActiveRecord
      * @return array|null|\yii\db\ActiveRecord|static
      * @throws NotFoundHttpException
      */
-    public function findModel($id, $condition = '')
+    public static function findModel($id, $condition = '')
     {
         if (!$model = Yii::$app->cache->get('comment' . $id)) {
             $model = static::find()

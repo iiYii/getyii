@@ -26,6 +26,13 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
                         <p>第 <?= $user->id ?> 位会员</p>
                         <div class="pull-left">
                             <span class="label label-<?= User::getRole($user->role)['color']?> role"><?= User::getRole($user->role)['name']?></span>
+                            <?php
+                            $currentUser = Yii::$app->user->identity;
+                            $superAdmin = ($currentUser && $currentUser->isSuperAdmin($currentUser->username)) ? true : false;
+                            if($superAdmin){
+                                echo "<a href=".Yii::$app->urlManager->createUrl(['/site/switch','user_id'=>$user->id] )."><span class='label label-danger'>管理</span></a>";
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

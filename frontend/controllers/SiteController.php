@@ -39,10 +39,10 @@ class SiteController extends Controller
         return Arr::merge(parent::behaviors(), [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup', 'connect'],
+                'only' => ['logout', 'signup', 'connect','switch'],
                 'rules' => [
                     ['actions' => ['signup', 'connect'], 'allow' => true, 'roles' => ['?']],
-                    ['actions' => ['logout'], 'allow' => true, 'roles' => ['@']],
+                    ['actions' => ['logout','switch'], 'allow' => true, 'roles' => ['@']],
                 ],
             ],
             'verbs' => [
@@ -291,6 +291,20 @@ class SiteController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             echo json_encode(\yii\widgets\ActiveForm::validate($model));
             Yii::$app->end();
+        }
+    }
+
+
+    public function actionSwitch($user_id){
+        $currentUser = Yii::$app->user->identity;
+        $superAdmin = ($currentUser && $currentUser->isSuperAdmin($currentUser->username)) ? true : false;
+        if($superAdmin){
+            $model = new LoginForm();
+            $model->switchUser($user_id);
+            return $this->goHome();
+        }
+        else{
+            return $this->goHome();
         }
     }
 }

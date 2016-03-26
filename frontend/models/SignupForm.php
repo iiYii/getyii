@@ -25,7 +25,7 @@ class SignupForm extends Model
             ['username', 'required'],
             ['username', 'match', 'pattern' => '/^[a-z]\w*$/i', 'message' => '{attribute}只能为数字和字母'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => '此{attribute}已经被使用'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'string', 'min' => 4, 'max' => 12],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],

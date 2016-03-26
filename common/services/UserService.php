@@ -163,6 +163,7 @@ class UserService
     public static function findActiveUser($limit = 12)
     {
         $cacheKey = md5(__METHOD__ . $limit);
+        \Yii::$app->cache->delete($cacheKey);
         if (false === $items = \Yii::$app->cache->get($cacheKey)) {
             $items = User::find()
                 ->joinWith(['merit', 'userInfo'])

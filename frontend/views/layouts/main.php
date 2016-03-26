@@ -34,7 +34,7 @@ $emojify = EmojifyAsset::register($this);
 
     <?= \frontend\widgets\Nav::widget(); ?>
 
-    <div class="container">
+    <div class="container" style="margin-top: 70px;">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
@@ -62,7 +62,7 @@ $emojify = EmojifyAsset::register($this);
             <dl class="col-sm-3">
                 <dt> 技术采用</dt>
                 <dd class="fs12">
-                    由 <a href="https://github.com/forecho">forecho</a> 创建 项目地址: <a href="https://github.com/iiyii/getyii">GetYii</a>
+                    网站由 <a href="http:www.dba-china.com">DBA-CHINA</a> 创建 项目源码地址: <a href="https://github.com/iiyii/getyii">GetYii</a>
                     <br/>
                     <?= Yii::powered() ?> <?= Yii::getVersion() ?>
                     <br/>

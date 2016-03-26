@@ -1,0 +1,5 @@
+
+.navbar, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background: #FFF;
+    border-bottom: 1px solid #E5E5E5;
+}

@@ -29,20 +29,20 @@ return [
             //'class' => 'yii\caching\ApcCache',
             'cachePath' => '@backend/runtime/cache',
         ],
-        'slack' => [
-            'httpclient' => ['class' => 'yii\httpclient\Client'],
-            'class' => 'understeam\slack\Client',
-            'url' => '',
-        ],
+        //'slack' => [
+        //    'httpclient' => ['class' => 'yii\httpclient\Client'],
+        //    'class' => 'understeam\slack\Client',
+        //    'url' => '',
+        //],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
-                [
-                    'class' => 'understeam\slack\LogTarget',
-                    'levels' => ['error'],
-                    'exportInterval' => 1, // Send logs on every message
-                    'logVars' => [],
-                ],
+                //[
+                    //'class' => 'understeam\slack\LogTarget',
+                    //'levels' => ['error'],
+                    //'exportInterval' => 1, // Send logs on every message
+                    //'logVars' => [],
+                //],
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning', 'info', 'trace'],

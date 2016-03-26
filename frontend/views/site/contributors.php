@@ -32,17 +32,17 @@ Github 项目地址： [https://github.com/iiyii/getyii](https://github.com/iiyi
 
 #### 如何赞助？
 
-![加我微信](/images/wechat-pay.png)
-
-![加我支付宝](/images/ali-pay.png)
+![加我微信](/images/wechat.jpeg)
 ';
 ?>
+<div class="container p0 site-login">
 
-<div class="row">
-    <div class="panel panel-default">
-        <div class="panel-heading"><?= Html::encode($this->title) ?></div>
-        <div class="panel-body">
-            <?= Markdown::process($content, 'gfm') ?>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading"><?= Html::encode($this->title) ?></div>
+            <div class="panel-body">
+                <?= Markdown::process($content, 'gfm') ?>
+            </div>
         </div>
     </div>
 </div>

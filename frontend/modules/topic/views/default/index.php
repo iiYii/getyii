@@ -15,6 +15,7 @@ $tag = Yii::$app->request->getQueryParam('tag');
 if ($node = Yii::$app->request->getQueryParam('node')) {
     $node = \common\models\PostMeta::find()->where(['alias' => $node])->one();
 }
+$bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
 ?>
 <div class="col-md-10 topic">
     <div class="panel panel-default">
@@ -60,3 +61,6 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
     'node' => $node
 ]); ?>
 
+<script type="text/javascript">
+    document.getElementById('wrap').style.backgroundColor="<?= $bg_color ?>";
+</script>

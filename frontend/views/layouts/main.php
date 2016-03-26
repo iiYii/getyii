@@ -30,11 +30,11 @@ $emojify = EmojifyAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="wrap">
+<div class="wrap" id="wrap">
 
     <?= \frontend\widgets\Nav::widget(); ?>
 
-    <div class="container" style="margin-top: 70px;">
+    <div class="container" style="padding-top: 70px;">
         <div class="row">
             <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

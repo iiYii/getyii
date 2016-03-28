@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
             'input' => '#md-input'
         ],
         ])->textarea([
-            'placeholder' => '内容',
+            'placeholder' => t('app', 'Tweet Content'),
             'id' => 'md-input',
             'rows' => 5
         ]) ?>

@@ -5,6 +5,7 @@ namespace frontend\modules\topic\controllers;
 use common\models\Post;
 use common\models\Search;
 use common\models\SearchLog;
+use common\models\User;
 use common\services\NotificationService;
 use common\services\TopicService;
 use frontend\modules\topic\models\Topic;
@@ -203,7 +204,7 @@ class DefaultController extends Controller
     {
         $model = Topic::findTopic($id);
 
-        if ($model === null || !$model->isCurrent()) {
+        if ($model === null || (!User::getThrones() || $model->isCurrent())) {
             throw new NotFoundHttpException;
         }
 

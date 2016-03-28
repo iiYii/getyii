@@ -162,4 +162,6 @@ return [
     'Status' => '状态',
     'Save' => '保存',
     'Description' => '描述',
+
+    'Tweet Content' => '今天你有什么想分享的或者想吐槽的？',
 ];

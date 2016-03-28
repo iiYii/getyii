@@ -118,7 +118,7 @@ $this->title = $model->title;
                     );
                 }
             ?>
-            <?php if ($model->isCurrent()): ?>
+            <?php if ($model->isCurrent() || \common\models\User::getThrones()): ?>
                 <span class="pull-right">
                     <?= Html::a(
                         Html::tag('i', '', ['class' => 'fa fa-pencil']) . ' 修改',

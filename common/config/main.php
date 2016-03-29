@@ -40,7 +40,13 @@ return [
                 [
                     'class' => 'understeam\slack\LogTarget',
                     'levels' => ['error'],
-                    'categories' => ['yii\db\*'], // 只关注 DB 错误
+                    'categories' => [
+                        'yii\db\*',
+                        'yii\web\HttpException:*',
+                    ],
+                    'except' => [
+                        'yii\web\HttpException:404', // 除了404错误
+                    ],
                     'exportInterval' => 1, // Send logs on every message
                     'logVars' => [],
                 ],

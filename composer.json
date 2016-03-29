@@ -29,7 +29,6 @@
     "bower-asset/marked": "*",
     "bower-asset/highlightjs": "*",
     "bower-asset/metisMenu": "*",
-    "bower-asset/jquery-textcomplete": "*",
     "bower-asset/emojify.js": "*",
     "bower-asset/PACE": "*",
     "bower-asset/localforage": "*",

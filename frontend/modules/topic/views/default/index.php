@@ -43,7 +43,11 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
 
         </div>
 
-        <?php Pjax::begin(['scrollTo' => 0]); ?>
+        <?php Pjax::begin([
+            'scrollTo' => 0,
+            'formSelector' => false,
+            'linkSelector' => '.pagination a'
+        ]); ?>
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
             'itemOptions' => ['class' => 'list-group-item'],

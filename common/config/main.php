@@ -37,12 +37,20 @@ return [
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
-                //[
-                    //'class' => 'understeam\slack\LogTarget',
-                    //'levels' => ['error'],
-                    //'exportInterval' => 1, // Send logs on every message
-                    //'logVars' => [],
-                //],
+                [
+                    'class' => 'understeam\slack\LogTarget',
+                    'levels' => ['error'],
+                    'categories' => [
+                        'yii\db\*',
+                        'yii\web\HttpException:*',
+                    ],
+                    'except' => [
+                        'yii\web\HttpException:404', // 除了404错误
+                    ],
+                    'exportInterval' => 1, // Send logs on every message
+                    'logVars' => [],
+                ],
+
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning', 'info', 'trace'],

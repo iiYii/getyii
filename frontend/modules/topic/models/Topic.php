@@ -97,7 +97,7 @@ class Topic extends Post
     /**
      * 获取已经删除过的话题
      * @param $id
-     * @return array|null|\yii\db\ActiveRecord
+     * @return array|Topic|null|\yii\db\ActiveRecord
      * @throws NotFoundHttpException
      */
     public static function findDeletedTopic($id)

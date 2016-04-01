@@ -233,7 +233,7 @@ class User extends ActiveRecord implements IdentityInterface
                 // 缓存头像是否存在
                 return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
             }
-            if (file_exists($avatarPath  . $this->avatar)) {
+            if (file_exists($avatarPath . $this->avatar)) {
                 // 原始头像是否存在
                 \yii\imagine\Image::thumbnail($avatarPath . $this->avatar, $size, $size)
                     ->save($avatarCachePath . $size . '_' . $this->avatar, ['quality' => 100]);
@@ -254,7 +254,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @return Account[] Connected accounts ($provider => $account)
+     * @return array
      */
     public function getAccounts()
     {
@@ -307,6 +307,24 @@ class User extends ActiveRecord implements IdentityInterface
         } else {
             return false;
         }
+    }
+
+    /**
+     * 获取权限
+     * @param $username
+     * @return bool
+     */
+    public static function getThrones($username = '')
+    {
+        if (!$username && Yii::$app->user->id) {
+            $username = Yii::$app->user->identity->username;
+        } else {
+            return false;
+        }
+        if ($isAdmin = self::isAdmin($username)) {
+            return $isAdmin;
+        }
+        return self::isSuperAdmin($username);
     }
 
     public static function getRole($role)

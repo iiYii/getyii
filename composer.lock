@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a2dfb74aa677457cce4b75ea27962aad",
+    "hash": "b6e121b3bda9cebe3a8b66b73b147edb",
+    "content-hash": "af94fa13b2ce4fa59cb1fdbf9db14752",
     "packages": [
         {
             "name": "2amigos/yii2-qrcode-helper",
@@ -399,38 +400,6 @@
                 "javascript",
                 "jquery",
                 "library"
-            ]
-        },
-        {
-            "name": "bower-asset/jquery-textcomplete",
-            "version": "v1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yuku-t/jquery-textcomplete.git",
-                "reference": "2142c00f95ac5dc5b9357710f3f49514201d9012"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yuku-t/jquery-textcomplete/zipball/2142c00f95ac5dc5b9357710f3f49514201d9012",
-                "reference": "2142c00f95ac5dc5b9357710f3f49514201d9012",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/jquery": ">=1.7.0"
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "dist/jquery.textcomplete.js",
-                "bower-asset-ignore": [
-                    "**/.*",
-                    "node_modules",
-                    "bower_components",
-                    "test",
-                    "tests"
-                ]
-            },
-            "license": [
-                "MIT"
             ]
         },
         {
@@ -1476,7 +1445,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kop/yii2-scroll-pager/zipball/08b19abb2139ff18c91d5178f17891ab2fa14316",
+                "url": "https://api.github.com/repos/kop/yii2-scroll-pager/zipball/3dedbd3203e5a05123e1a024dff2dbbce4cfca19",
                 "reference": "08b19abb2139ff18c91d5178f17891ab2fa14316",
                 "shasum": ""
             },
@@ -1819,7 +1788,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/1a6d5e89ba4b30e7c658fbd3c268ef0ce750ae95",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/d44ea5685555d6f768632e0f08301f55616617a3",
                 "reference": "1a6d5e89ba4b30e7c658fbd3c268ef0ce750ae95",
                 "shasum": ""
             },

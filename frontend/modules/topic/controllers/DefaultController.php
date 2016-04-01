@@ -5,6 +5,7 @@ namespace frontend\modules\topic\controllers;
 use common\models\Post;
 use common\models\Search;
 use common\models\SearchLog;
+use common\models\User;
 use common\services\NotificationService;
 use common\services\TopicService;
 use frontend\modules\topic\models\Topic;
@@ -203,7 +204,7 @@ class DefaultController extends Controller
     {
         $model = Topic::findTopic($id);
 
-        if ($model === null || !$model->isCurrent()) {
+        if (!($model && (User::getThrones() || $model->isCurrent()))) {
             throw new NotFoundHttpException;
         }
 
@@ -231,9 +232,10 @@ class DefaultController extends Controller
     public function actionDelete($id)
     {
         $model = Topic::findTopic($id);
-        if (!$model->isCurrent()) {
-            throw new NotFoundHttpException();
+        if (!($model && (User::getThrones() || $model->isCurrent()))) {
+            throw new NotFoundHttpException;
         }
+
         if ($model->comment_count) {
             $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'warning');
         } else {
@@ -255,8 +257,8 @@ class DefaultController extends Controller
     public function actionRevoke($id)
     {
         $model = Topic::findDeletedTopic($id);
-        if (!$model->isCurrent()) {
-            throw new NotFoundHttpException();
+        if (!($model && (User::getThrones() || $model->isCurrent()))) {
+            throw new NotFoundHttpException;
         }
         TopicService::revoke($model);
         $this->flash("「{$model->title}」文章撤销删除成功。", 'success');

@@ -19,6 +19,7 @@ class TopicSidebar extends \yii\bootstrap\Widget
 {
     public $type = 'node';
     public $node;
+    public $tags;
 
     public function init()
     {
@@ -58,7 +59,7 @@ class TopicSidebar extends \yii\bootstrap\Widget
                 $sameTopics = Arr::arrayRandomAssoc($sameTopics, 10);
             }
 
-            if ($this->type == 'view' && in_array($this->node->alias, params('donateNode'))) {
+            if ($this->type == 'view' && (in_array($this->node->alias, params('donateNode')) || array_intersect(explode(',', $this->tags), params('donateTag')))) {
                 $donate = Donate::findOne(['user_id' => Topic::findOne(['id' => request()->get('id')])->user_id, 'status' => Donate::STATUS_ACTIVE]);
             }
         }

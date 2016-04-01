@@ -87,7 +87,8 @@ class Post extends ActiveRecord
             [['last_comment_username'], 'string', 'max' => 20],
             [['title'], 'string', 'max' => 255, 'min' => 2],
             [['excerpt', 'image', 'tags'], 'string', 'max' => 255],
-            [['author'], 'string', 'max' => 100]
+            [['author'], 'string', 'max' => 100],
+            [['cc'], 'safe']
         ];
     }
 
@@ -121,6 +122,7 @@ class Post extends ActiveRecord
             'order' => '排序',
             'created_at' => '创建时间',
             'updated_at' => '修改时间',
+            'cc' => '注明版权信息（原创文章欢迎使用）',
         ];
     }
 

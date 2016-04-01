@@ -94,6 +94,10 @@ use kartik\select2\Select2;
     ]) ?>
 
     <div class="form-group">
+        <?= $form->field($model, 'cc')->checkbox()  ?>
+    </div>
+
+    <div class="form-group">
         <?= Html::submitButton(
             $model->isNewRecord ? '创建话题' : '修改话题',
             [

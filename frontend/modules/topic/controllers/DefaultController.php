@@ -18,6 +18,7 @@ use common\models\PostMeta;
 use common\models\UserInfo;
 use common\components\Controller;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
@@ -171,16 +172,10 @@ class DefaultController extends Controller
                 $this->flash('请勿发表无意义的内容', 'warning');
                 return $this->redirect('create');
             }
-            $model->user_id = Yii::$app->user->id;
-            $model->type = 'topic';
-            if ($model->tags) {
-                $model->addTags(explode(',', $model->tags));
-            }
-            $rawContent = $model->content;
-            $model->content = TopicService::replace($rawContent);
+
             if ($model->save()) {
                 (new UserMeta)->saveNewMeta('topic', $model->id, 'follow');
-                (new NotificationService())->newPostNotify(Yii::$app->user->identity, $model, $rawContent);
+                (new NotificationService())->newPostNotify(Yii::$app->user->identity, $model, $model->content);
                 // 更新个人总统计
                 UserInfo::updateAllCounters(['post_count' => 1], ['user_id' => $model->user_id]);
                 $this->flash('发表文章成功!', 'success');
@@ -209,9 +204,6 @@ class DefaultController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->tags) {
-                $model->addTags(explode(',', $model->tags));
-            }
             if ($model->save()) {
                 $this->flash('发表更新成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->id]);

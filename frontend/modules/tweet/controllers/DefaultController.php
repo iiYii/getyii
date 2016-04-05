@@ -45,7 +45,9 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         $searchModel = new TweetSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $params = Yii::$app->request->queryParams;
+        $params['TweetSearch']['content'] = empty($params['topic']) ? '' : $params['topic'];
+        $dataProvider = $searchModel->search($params);
         $dataProvider->query->andWhere([
             Post::tableName() . '.type' => Tweet::TYPE,
             'status' => [Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]
@@ -76,7 +78,7 @@ class DefaultController extends Controller
             $model->user_id = Yii::$app->user->id;
             $model->type = $model::TYPE;
             $rawContent = $model->content;
-            $model->content = TweetService::replace($rawContent);
+            $model->content = TweetService::replaceTopic(TweetService::replace($rawContent));
             if ($model->save()) {
                 (new UserMeta())->saveNewMeta($model->type, $model->id, 'follow');
                 (new NotificationService())->newPostNotify(Yii::$app->user->identity, $model, $rawContent);
@@ -95,6 +97,7 @@ class DefaultController extends Controller
      */
     public function actionDelete($id)
     {
+        /** @var Tweet $model */
         $model = Tweet::findTweet($id);
         if (!$model->isCurrent()) {
             throw new NotFoundHttpException();
@@ -102,7 +105,6 @@ class DefaultController extends Controller
         if ($model->comment_count) {
             $this->flash("已有评论，属于共有财产，不能删除", 'warning');
         } else {
-
             TweetService::delete($model);
             $this->flash("删除成功。 ", 'success');
         }

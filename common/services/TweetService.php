@@ -45,14 +45,15 @@ class TweetService extends PostService
 
     public static function replaceTopic($content)
     {
-        preg_match_all("/\#(.*)\#/i", $content, $topic);
+        preg_match_all("/\#([^\#\r\n\s]*)\#/i", $content, $topic);
         if (isset($topic[1])) {
-            pr($topic[1], 0);
             foreach ($topic[1] as $key => $value) {
-                $search = '#' . $value . '#';
-                $url = Url::to(['/tweet/default/index', 'topic' => $value]);
-                $place = "[{$search}]({$url}) ";
-                $content = str_replace($search, $place, $content);
+                if ($value) {
+                    $search = '#' . $value . '#';
+                    $url = Url::to(['/tweet/default/index', 'topic' => $value]);
+                    $place = "[{$search}]({$url}) ";
+                    $content = str_replace($search, $place, $content);
+                }
             }
         }
         return $content;

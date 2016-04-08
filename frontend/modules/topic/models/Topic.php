@@ -122,7 +122,7 @@ class Topic extends Post
                 . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->username]) : '');
 
             if ($insert) {
-                $this->user_id = Yii::$app->user->id;
+                $this->user_id = (($this->user_id) ?: Yii::$app->user->id);
                 $this->type = self::TYPE;
                 $this->last_comment_time = $this->created_at;
             }

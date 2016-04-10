@@ -9,6 +9,7 @@ namespace common\services;
 
 use frontend\modules\topic\models\Topic;
 use frontend\modules\tweet\models\Tweet;
+use yii\helpers\Url;
 
 class TweetService extends PostService
 {
@@ -41,4 +42,20 @@ class TweetService extends PostService
         $topic->save();
     }
 
+
+    public static function replaceTopic($content)
+    {
+        preg_match_all("/\#([^\#\r\n\s]*)\#/i", $content, $topic);
+        if (isset($topic[1])) {
+            foreach ($topic[1] as $key => $value) {
+                if ($value) {
+                    $search = '#' . $value . '#';
+                    $url = Url::to(['/tweet/default/index', 'topic' => $value]);
+                    $place = "[{$search}]({$url}) ";
+                    $content = str_replace($search, $place, $content);
+                }
+            }
+        }
+        return $content;
+    }
 }

@@ -389,3 +389,7 @@ pre {
     font-size: 32px;
     color: #5CB85C;
 }
+
+.tweet h1, .tweet h2, .tweet h3, .tweet h4 {
+    font-size: 14px;
+}

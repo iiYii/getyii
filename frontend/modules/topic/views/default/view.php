@@ -158,7 +158,8 @@ $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
 </div>
 <?= \frontend\widgets\TopicSidebar::widget([
     'type' => 'view',
-    'node' => $model->category
+    'node' => $model->category,
+    'tags' => $model->tags
 ]); ?>
 
 <script type="text/javascript">

@@ -15,4 +15,8 @@ $(".field-md-input textarea").atwho({
     data: "/at-users",
     //data: ["one", "two", "three"],
     limit: 6
+}).atwho({
+    at: "#",
+    data: ["干货分享#", "心情#", "小贴士#"],
+    limit: 6
 });

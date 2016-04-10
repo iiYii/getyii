@@ -163,5 +163,8 @@ return [
     'Save' => '保存',
     'Description' => '描述',
 
-    'Tweet Content' => '在这里，您可以发表数据库、运维、开发等技术相关的最新快讯、心得技巧，也可以发表您在生活工作中的趣事、有趣段子，在发布时通过使用@功能将内容通知其他用户阅读。在这里，禁止发表违法国家政策和法律法规的言论，禁止发表毫无意义的内容和无聊话题。',
+    'Tweet Content' => '今天你有什么想分享的或者想吐槽的？（你可以 @forecho AT用户，支持 :joy: emoji 表情，支持 #干货分享# 话题功能）',
+    'cc {username}' => '
+> 本文由 [{username}](http://www.getyii.com/member/{username}) 创作，采用 [知识共享署名 3.0 中国大陆许可协议](http://creativecommons.org/licenses/by/3.0/cn) 进行许可。
+可自由转载、引用，但需署名作者且注明文章出处。',
 ];

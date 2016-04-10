@@ -11,6 +11,7 @@ namespace frontend\modules\topic\models;
 use common\models\Post;
 use common\models\PostTag;
 use common\models\Search;
+use common\services\TopicService;
 use frontend\modules\user\models\UserMeta;
 use yii\web\NotFoundHttpException;
 use Yii;
@@ -18,6 +19,11 @@ use Yii;
 class Topic extends Post
 {
     const TYPE = 'topic';
+
+    /**
+     * @var boolean CC 协议
+     */
+    public $cc;
 
     public function getLike()
     {
@@ -108,7 +114,16 @@ class Topic extends Post
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
+
+            if ($this->tags) {
+                $this->addTags(explode(',', $this->tags));
+            }
+            $this->content = TopicService::replace($this->content)
+                . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->username]) : '');
+
             if ($insert) {
+                $this->user_id = Yii::$app->user->id;
+                $this->type = self::TYPE;
                 $this->last_comment_time = $this->created_at;
             }
             return true;

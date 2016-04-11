@@ -34,9 +34,12 @@ return [
         //    'class' => 'understeam\slack\Client',
         //    'url' => '',
         //],
+
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
+
             'targets' => [
+                /*
                 [
                     'class' => 'understeam\slack\LogTarget',
                     'levels' => ['error'],
@@ -53,8 +56,9 @@ return [
 
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning', 'info', 'trace'],
+                    'levels' => ['error', 'warning', 'info', 'trace']
                 ],
+                */
                 /**
                  * 错误级别日志：当某些需要立马解决的致命问题发生的时候，调用此方法记录相关信息。
                  * 使用方法：Yii::error()
@@ -117,6 +121,7 @@ return [
                 ],
             ],
         ],
+
         'session' => [
             'class' => 'yii\web\DbSession',
             // 'db' => 'mydb',  // 数据库连接的应用组件ID，默认为'db'.
@@ -139,5 +144,6 @@ return [
                 ],
             ],
         ],
+
     ],
 ];

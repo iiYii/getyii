@@ -1,5 +1,13 @@
 
+html,
+body {
+    height: 100%;
+    background-color: #fff;
+    font-family: PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
+}
+
 .navbar, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background: #FFF;
     border-bottom: 1px solid #E5E5E5;
 }
+

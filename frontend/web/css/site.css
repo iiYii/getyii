@@ -242,7 +242,12 @@ a.desc:after {
 
 .badge-reply-count {
     margin-top: 15px;
-    background-color: #98ACDF;
+    background-color: #FFCC66;
+}
+
+.badge-reply-count-new {
+    margin-top: 15px;
+    background-color: #66CC66;
 }
 
 a:visited .badge-reply-count {

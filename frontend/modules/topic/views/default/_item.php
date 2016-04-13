@@ -7,7 +7,8 @@ use common\helpers\Formatter;
 /* @var $this yii\web\View */
 ?>
 <div class="media">
-    <?= Html::a(Html::tag('span', $model['comment_count'], ['class' => 'badge badge-reply-count']),
+    <?php if($model['comment_count']==0){ $class="badge badge-reply-count" ;}else{$class="badge badge-reply-count-new"; } ?>
+    <?= Html::a(Html::tag('span', $model['comment_count'],['class' => $class ]),
         ['/topic/default/view', 'id' => $model->id, '#' => 'comment' . $model['comment_count']], ['class' => 'pull-right']
     ); ?>
 

@@ -14,7 +14,7 @@ $node = \common\models\PostMeta::find()->where(['alias' => $model->category->ali
 $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#FFFFFF';
 ?>
 
-<div class="col-md-10 topic-view" contenteditable="false" style="">
+<div class="col-md-9 topic-view" contenteditable="false" style="">
     <div class="panel panel-default">
         <div class="panel-heading media clearfix">
             <div class="media-body">

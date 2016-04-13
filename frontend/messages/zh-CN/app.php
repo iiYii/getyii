@@ -163,6 +163,11 @@ return [
     'Save' => '保存',
     'Description' => '描述',
 
+    'Community' => '社区',
+    'Join Us' => '加我我们',
+    'Now Register' => '现在注册',
+    'Now Login' => '登录社区',
+
     'Tweet Content' => '今天你有什么想分享的或者想吐槽的？（你可以 @ruyi AT用户，支持 :joy: emoji 表情，支持 #干货分享# 话题功能）',
     'cc {username}' => '
 > 本文由 [{username}](http://www.dba-china.com/member/{username}) 创作，采用 [知识共享署名 3.0 中国大陆许可协议](http://creativecommons.org/licenses/by/3.0/cn) 进行许可。

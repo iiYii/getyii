@@ -17,7 +17,7 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
 }
 $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#FFFFFF';
 ?>
-<div class="col-md-10 topic">
+<div class="col-md-9 topic">
     <div class="panel panel-default">
         <?php if($node): ?>
         <div class="panel-heading clearfix">

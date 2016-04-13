@@ -137,6 +137,14 @@ class DefaultController extends Controller
     public function actionView($id)
     {
         $model = Topic::findTopic($id);
+
+        //登录才能访问的节点内容
+        $MetaId = $model->post_meta_id;
+        $node = PostMeta::findOne(['id'=>$MetaId]);
+        if (\Yii::$app->user->isGuest && in_array($node->alias, params('LoginNode')) ) {
+            return $this->redirect('/login');
+        }
+
         $dataProvider = new ActiveDataProvider([
             'query' => PostComment::findCommentList($id),
             'pagination' => [

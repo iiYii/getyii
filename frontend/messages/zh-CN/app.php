@@ -157,7 +157,7 @@ return [
     'Post Count' => '主题数',
     'Comment Count' => '回答数',
 
-    'Donate' => '打赏',
+    'Donate' => '打赏作者',
     'Qr Code' => '二维码',
     'Status' => '状态',
     'Save' => '保存',

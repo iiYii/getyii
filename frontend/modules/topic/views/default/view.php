@@ -133,7 +133,7 @@ $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
                         ['/topic/default/delete', 'id' => $model->id],
                         [
                             'data' => [
-                                'confirm' => "您确认要删除文章「{$model->title}」吗？",
+                                'confirm' => "您确认要删除主题「{$model->title}」吗？",
                                 'method' => 'post',
                             ],
                         ]

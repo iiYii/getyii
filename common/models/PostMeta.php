@@ -108,6 +108,19 @@ class PostMeta extends ActiveRecord
         return $postMeta;
     }
 
+    /**
+     * 返回招聘节点id
+     * @return mixed|static
+     */
+    public static function jobsId()
+    {
+        $postMeta = self::find()->where(['alias' => 'jobs'])->one();
+        if ($postMeta) {
+            return $postMeta->id;
+        }
+        return $postMeta;
+    }
+
     public function getParents()
     {
         return ArrayHelper::map(static::find()->where(['parent' => null])->orWhere(['parent' => 0])->all(), 'id', 'name');

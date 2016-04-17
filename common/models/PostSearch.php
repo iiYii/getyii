@@ -44,6 +44,10 @@ class PostSearch extends Post
         if (PostMeta::noManLandId() && (empty($params['PostSearch']['post_meta_id']) || $params['PostSearch']['post_meta_id'] != PostMeta::noManLandId())) {
             $query->andWhere(['!=', 'post_meta_id', PostMeta::noManLandId()]);
         }
+        // 如果有招聘节点 帖子列表过滤招聘节点的帖子
+        if (PostMeta::jobsId() && (empty($params['PostSearch']['post_meta_id']) || $params['PostSearch']['post_meta_id'] != PostMeta::jobsId())) {
+            $query->andWhere(['!=', 'post_meta_id', PostMeta::jobsId()]);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

@@ -29,6 +29,8 @@ use yii\helpers\ArrayHelper;
  * @property integer $thanks_count
  * @property integer $hate_count
  * @property integer $status
+ * @property integer $top
+ * @property integer $recommend
  * @property integer $order
  * @property integer $created_at
  * @property integer $updated_at
@@ -48,10 +50,23 @@ class Post extends ActiveRecord
     /**
      * 置顶
      */
-    const STATUS_TOP = 3;
+    const TOP_ACTIVE = 1;
+    /**
+     * 非置顶
+     */
+    const TOP_INACTIVE = 0;
 
     /**
      * 推荐
+     */
+    const RECOMMEND_ACTIVE = 1;
+    /**
+     * 非推荐
+     */
+    const RECOMMEND_INACTIVE = 0;
+
+    /**
+     * 精华
      */
     const STATUS_EXCELLENT = 2;
 
@@ -81,7 +96,7 @@ class Post extends ActiveRecord
     {
         return [
             [['post_meta_id', 'title', 'content'], 'required'],
-            [['post_meta_id', 'user_id', 'view_count', 'comment_count', 'last_comment_time', 'favorite_count', 'like_count', 'thanks_count', 'hate_count', 'status', 'order', 'created_at', 'updated_at'], 'integer'],
+            [['post_meta_id', 'user_id', 'view_count', 'comment_count', 'last_comment_time', 'favorite_count', 'like_count', 'thanks_count', 'hate_count', 'status','top','recommend', 'order', 'created_at', 'updated_at'], 'integer'],
             [['content'], 'string', 'min' => 10],
             [['type'], 'string', 'max' => 32],
             [['last_comment_username'], 'string', 'max' => 20],
@@ -119,6 +134,8 @@ class Post extends ActiveRecord
             'thanks_count' => '感谢数',
             'hate_count' => '讨厌数',
             'status' => '状态',
+            'top' => '置顶',
+            'recommend' => '推荐',
             'order' => '排序',
             'created_at' => '创建时间',
             'updated_at' => '修改时间',
@@ -161,6 +178,32 @@ class Post extends ActiveRecord
             self::STATUS_TOP => Yii::t('common', 'TOP'),
         ];
 
+        return $status !== false ? ArrayHelper::getValue($statuses, $status) : $statuses;
+    }
+
+    /**
+     * @param bool $status
+     * @return array|mixed
+     */
+    public static function getTopStatus($status = false)
+    {
+        $statuses = [
+            self::TOP_ACTIVE => Yii::t('common', 'TOP_ACTIVE'),
+            self::TOP_INACTIVE => Yii::t('common', 'TOP_INACTIVE'),
+        ];
+        return $status !== false ? ArrayHelper::getValue($statuses, $status) : $statuses;
+    }
+
+    /**
+     * @param bool $status
+     * @return array|mixed
+     */
+    public static function getRecommendStatus($status = false)
+    {
+        $statuses = [
+            self::RECOMMEND_ACTIVE => Yii::t('common', 'RECOMMEND_ACTIVE'),
+            self::RECOMMEND_INACTIVE => Yii::t('common', 'RECOMMEND_INACTIVE'),
+        ];
         return $status !== false ? ArrayHelper::getValue($statuses, $status) : $statuses;
     }
 

@@ -51,6 +51,7 @@ $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
             'summary' => false,
             'itemView' => '_item',
             'options' => ['class' => 'list-group'],
+            'pager' => ['maxButtonCount'=>15],
         ]) ?>
         <?php Pjax::end(); ?>
 

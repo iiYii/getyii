@@ -44,4 +44,26 @@ class TopicService extends PostService
         $topic->setAttributes(['status' => $action]);
         $topic->save();
     }
+
+    /**
+     * 加推荐
+     * @param Topic $topic
+     */
+    public static function recommend(Topic $topic)
+    {
+        $action = ($topic->recommend == Topic::RECOMMEND_INACTIVE) ? Topic::RECOMMEND_ACTIVE : Topic::RECOMMEND_INACTIVE;
+        $topic->setAttributes(['recommend' => $action]);
+        $topic->save();
+    }
+
+    /**
+     * 加置顶
+     * @param Topic $topic
+     */
+    public static function top(Topic $topic)
+    {
+        $action = ($topic->top == Topic::TOP_INACTIVE) ? Topic::TOP_ACTIVE : Topic::TOP_INACTIVE;
+        $topic->setAttributes(['top' => $action]);
+        $topic->save();
+    }
 }

@@ -11,7 +11,7 @@
         <h3 class="panel-title text-center">节点导航</h3>
     </div>
 
-    <div class="panel-body p0">
+    <div class="panel-body p0 pl10 pr10">
         <dl class="dl-horizontal node-box mb0">
             <?php foreach ($nodes as $key => $value): ?>
                 <dt><?= $key ?></dt>

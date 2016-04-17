@@ -24,7 +24,7 @@ $this->title = '发布新动弹';
             'pager' => [
                 'class' => \kop\y2sp\ScrollPager::className(),
                 'eventOnRendered' => 'function() {emojify.run();}',
-                'triggerOffset' => 5
+                'triggerOffset' => 3
             ]
         ]); ?>
     </div>

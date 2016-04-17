@@ -4,6 +4,8 @@ body {
     background-color: #f0f0f0;
     font-family: PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
 }
+a{color: #666666;}
+a:hover,a:visited{color: #666666;}
 
 .wrap {
     min-height: 100%;
@@ -242,12 +244,22 @@ a.desc:after {
 
 .badge-reply-count {
     margin-top: 15px;
-    background-color: #FFCC66;
+    background-color: #cccccc;
 }
 
 .badge-reply-count-new {
     margin-top: 15px;
+    background-color: #FFCC33;
+}
+
+.badge-excellent {
     background-color: #66CC66;
+}
+.badge-top {
+    background-color: #FFCC00;
+}
+.badge-recommend {
+    background-color: #6699CC;
 }
 
 a:visited .badge-reply-count {
@@ -255,8 +267,9 @@ a:visited .badge-reply-count {
 }
 
 .excellent {
-    color: #EB5424;
+    color: #FF6633;
 }
+.recommend a{color: #0066FF;}
 
 .node-box dt {
     color: #999;
@@ -273,7 +286,16 @@ a:visited .badge-reply-count {
     padding: 3px 15px;
     border-top: 1px solid #eae5e4;
     color: #aAa5a4;
-    margin: 0 -15px -15px;
+    margin: 10px -15px -15px;
+}
+
+.ribbon-top {
+    font-size: 13px;
+    background: #FCF8F7;
+    padding: 3px 15px;
+    border-top: 1px solid #eae5e4;
+    color: #aAa5a4;
+    margin: 10px -15px -15px;
 }
 
 .side-bar .list {

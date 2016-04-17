@@ -56,7 +56,7 @@ class TopicSidebar extends \yii\bootstrap\Widget
                 }
             );
             if (count($sameTopics) > 10) {
-                $sameTopics = Arr::arrayRandomAssoc($sameTopics, 10);
+                $sameTopics = Arr::arrayRandomAssoc($sameTopics, 8);
             }
 
             if ($this->type == 'view' && (in_array($this->node->alias, params('donateNode')) || array_intersect(explode(',', $this->tags), params('donateTag')))) {

@@ -8,7 +8,12 @@ body {
 
 .navbar, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background: #FFF;
-    border-bottom: 1px solid #E5E5E5;
+    border-bottom: 2px solid #E5E5E5;
 }
 
 .panel-title{color: #666; font-size: 15px;}
+
+a.btn{ color: #FFFFFF;}
+a:hover.btn{ color: #FFFFFF;}
+
+.panel-body .list{ line-height: 25px;}

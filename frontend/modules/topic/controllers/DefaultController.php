@@ -51,7 +51,7 @@ class DefaultController extends Controller
                     // 登录用户才能提交评论或其他内容
                     ['allow' => true, 'actions' => ['api', 'view', 'delete'], 'verbs' => ['POST'], 'roles' => ['@']],
                     // 登录用户才能使用API操作(赞,踩,收藏)
-                    ['allow' => true, 'actions' => ['create', 'update', 'revoke', 'excellent'], 'roles' => ['@']],
+                    ['allow' => true, 'actions' => ['create', 'update', 'revoke', 'excellent','top','recommend'], 'roles' => ['@']],
                 ]
             ],
         ]);
@@ -277,6 +277,44 @@ class DefaultController extends Controller
         $model = Topic::findTopic($id);
         if ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) {
             TopicService::excellent($model);
+            $this->flash("操作成功", 'success');
+            return $this->redirect(['/topic/default/view', 'id' => $model->id]);
+        } else {
+            throw new NotFoundHttpException();
+        }
+    }
+
+    /**
+     * 加推荐
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionRecommend($id)
+    {
+        $user = Yii::$app->user->identity;
+        $model = Topic::findTopic($id);
+        if ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) {
+            TopicService::recommend($model);
+            $this->flash("操作成功", 'success');
+            return $this->redirect(['/topic/default/view', 'id' => $model->id]);
+        } else {
+            throw new NotFoundHttpException();
+        }
+    }
+
+    /**
+     * 加置顶
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionTop($id)
+    {
+        $user = Yii::$app->user->identity;
+        $model = Topic::findTopic($id);
+        if ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) {
+            TopicService::top($model);
             $this->flash("操作成功", 'success');
             return $this->redirect(['/topic/default/view', 'id' => $model->id]);
         } else {

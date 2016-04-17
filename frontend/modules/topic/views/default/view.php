@@ -43,7 +43,17 @@ $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
             <?= HtmlPurifier::process(Markdown::process($model->content, 'gfm')) ?>
             <?php if ($model->status == 2): ?>
                 <div class="ribbon-excellent">
-                    <i class="fa fa-trophy excellent"></i> 本帖已被设为精华帖！
+                    <i class="fa fa-trophy excellent"></i> 本帖已被设为优质帖！
+                </div>
+            <?php endif ?>
+            <?php if ($model->recommend == 1): ?>
+                <div class="ribbon-excellent">
+                    <i class="fa fa-plane excellent"></i> 本帖已被设为推荐帖！
+                </div>
+            <?php endif ?>
+            <?php if ($model->top == 1): ?>
+                <div class="ribbon-top">
+                    <i class="fa fa-arrow-up excellent"></i> 本帖已被设为置顶帖！
                 </div>
             <?php endif ?>
         </div>
@@ -90,7 +100,7 @@ $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
                     ]
                 );
                 $favorite = Html::a(
-                    Html::tag('i', '', ['class' => 'fa fa-bookmark']) . ' 收藏',
+                    Html::tag('i', '', ['class' => 'fa fa-star']) . ' 收藏',
                     '#',
                     [
                         'data-do' => 'favorite',
@@ -115,10 +125,25 @@ $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
                 if ($admin) {
                     $class = $model->status == 2 ? ['class' => 'active'] : null;
                     echo Html::a(
-                        Html::tag('i', '', ['class' => 'fa fa-trophy']) . ' 加精',
+                        Html::tag('i', '', ['class' => 'fa fa-trophy']) . ' 优质',
                         ['/topic/default/excellent', 'id' => $model->id],
                         $class
                     );
+
+                    $class = $model->recommend == 1 ? ['class' => 'active'] : null;
+                    echo Html::a(
+                        Html::tag('i', '', ['class' => 'fa fa-plane']) . '推荐',
+                        ['/topic/default/recommend', 'id' => $model->id],
+                        $class
+                    );
+
+                    $class = $model->top == 1 ? ['class' => 'active'] : null;
+                    echo Html::a(
+                        Html::tag('i', '', ['class' => 'fa fa-arrow-up']) . ' 置顶',
+                        ['/topic/default/top', 'id' => $model->id],
+                        $class
+                    );
+
                 }
             ?>
             <?php if ($model->isCurrent() || \common\models\User::getThrones()): ?>

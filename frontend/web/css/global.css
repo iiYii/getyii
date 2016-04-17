@@ -28,6 +28,14 @@ body > iframe {
     padding: 0
 }
 
+.pl10 {
+    padding-left: 10px;
+}
+
+.pr10 {
+    padding-right: 10px;
+}
+
 .mp0 p, .m0 {
     margin: 0;
 }

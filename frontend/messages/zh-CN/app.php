@@ -167,6 +167,7 @@ return [
     'Join Us' => '加我我们',
     'Now Register' => '现在注册',
     'Now Login' => '登录社区',
+    'Hot Node' => '热门节点',
 
     'Tweet Content' => '今天你有什么想分享的或者想吐槽的？（你可以 @ruyi AT用户，支持 :joy: emoji 表情，支持 #干货分享# 话题功能）',
     'cc {username}' => '

@@ -18,7 +18,7 @@ class PostSearch extends Post
     public function rules()
     {
         return [
-            [['id', 'post_meta_id', 'user_id', 'view_count', 'comment_count', 'favorite_count', 'like_count', 'thanks_count', 'hate_count', 'status', 'order', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'post_meta_id', 'user_id', 'view_count', 'comment_count', 'favorite_count', 'like_count', 'thanks_count', 'hate_count', 'status','top','recommend', 'order', 'created_at', 'updated_at'], 'integer'],
             [['type', 'title', 'author', 'excerpt', 'image', 'content', 'tags'], 'safe'],
         ];
     }
@@ -51,7 +51,7 @@ class PostSearch extends Post
                 'pageSize' => 20,
             ],
             'sort' => ['defaultOrder' => [
-                'order' => SORT_ASC,
+                'top' => SORT_DESC,
                 'last_comment_time' => SORT_DESC,
                 'created_at' => SORT_DESC,
             ]]

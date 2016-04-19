@@ -14,23 +14,18 @@ use Yii;
 use yii\filters\AccessControl;
 use common\components\Controller;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 
 class ActionController extends Controller
 {
-    public function behaviors()
+    public function beforeAction($action)
     {
-        return ArrayHelper::merge(parent::behaviors(), [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ]
-                ]
-            ]
-        ]);
+        if (Yii::$app->user->isGuest && Yii::$app->getRequest()->url !== Url::to(Yii::$app->getUser()->loginUrl)) {
+            Yii::$app->getResponse()->redirect(\Yii::$app->getUser()->loginUrl)->send();
+            return;
+        }
+        parent::beforeAction($action);
     }
 
     /**

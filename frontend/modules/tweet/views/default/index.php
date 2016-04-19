@@ -3,7 +3,7 @@ $this->title = '发布新动弹';
 /** @var \frontend\modules\tweet\models\Tweet $model*/
 /** @var \yii\data\ActiveDataProvider $dataProvider*/
 ?>
-    <div class="col-md-10 tweet" contenteditable="false" style="">
+    <div class="col-md-9 tweet" contenteditable="false" style="">
 
         <div class="panel panel-default">
             <div class="panel-heading clearfix">

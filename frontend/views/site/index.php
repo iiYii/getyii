@@ -11,6 +11,7 @@ $this->title = \Yii::$app->setting->get('siteName');
 /** @var array $topics */
 /** @var array $statistics */
 /** @var array $users */
+/** @var \yii\web\View $this */
 ?>
     <div class="panel panel-default">
         <div class="panel-body text-center mp0">
@@ -50,20 +51,7 @@ $this->title = \Yii::$app->setting->get('siteName');
         </div>
 
         <div class="panel-body row">
-            <?php foreach ($users as $key => $value): ?>
-                <div class="col-md-1 col-xs-2">
-                    <div class="text-center">
-                        <p>
-                            <?= Html::a(Html::img($value->userAvatar, ['class' => 'img-responsive img-thumbnail']),
-                                ['/user/default/show', 'username' => $value['username']]
-                            ); ?>
-                        </p>
-                        <h5>
-                            <?= Html::a($value['username'], ['/user/default/show', 'username' => $value['username']]) ?>
-                        </h5>
-                    </div>
-                </div>
-            <?php endforeach ?>
+            <?= $this->render('/partials/users', ['model' => $users]); ?>
         </div>
     </div>
 

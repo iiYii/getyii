@@ -27,6 +27,9 @@ use frontend\modules\user\models\UserAccount;
  * @property integer $updated_at
  * @property string $tagline
  * @property string $password write-only password
+ *
+ * @property string $userAvatar
+ * @property Merit $merit
  */
 class User extends ActiveRecord implements IdentityInterface
 {

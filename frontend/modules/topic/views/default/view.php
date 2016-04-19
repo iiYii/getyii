@@ -11,7 +11,7 @@ $this->title = $model->title;
 \frontend\assets\AtJsAsset::register($this);
 ?>
 
-<div class="col-md-10 topic-view" contenteditable="false" style="">
+<div class="col-md-9 topic-view" contenteditable="false" style="">
     <div class="panel panel-default">
         <div class="panel-heading media clearfix">
             <div class="media-body">

@@ -393,3 +393,7 @@ pre {
 .tweet h1, .tweet h2, .tweet h3, .tweet h4 {
     font-size: 14px;
 }
+
+.user-card {
+    margin-bottom: 15px;
+}

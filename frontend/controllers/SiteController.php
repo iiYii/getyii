@@ -154,11 +154,13 @@ class SiteController extends Controller
 
     public function actionUsers()
     {
-        $model = UserService::findActiveUser(100);
+        $model = UserService::findActiveUser(102);
         $count = User::find()->where(['status' => 10])->count();
+        $lastUser = User::find()->orderBy('id DESC')->limit(1)->one();
         return $this->render('users', [
             'model' => $model,
             'count' => $count,
+            'lastUser' => $lastUser,
         ]);
     }
 

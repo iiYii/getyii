@@ -95,7 +95,7 @@ a.desc:after {
 }
 
 .navbar a, .navbar-default .navbar-nav > li > a {
-    color: #333;
+    color: #666;
 }
 
 .navbar .nav li.active a:focus, .navbar .nav li.active a:hover, .nav > li > a:hover, .nav > li > a:focus {
@@ -105,12 +105,12 @@ a.desc:after {
 
 .navbar .nav li.active a {
     background-color: #FFF;
-    border-bottom: 3px solid #5CB85C;
-    color: #5CB85C;
+    border-bottom: 3px solid #000;
+    color: #000;
 }
 
 .navbar-toggle .icon-bar {
-    background-color: #5CB85C;
+    background-color: #000;
 }
 
 .list-group {
@@ -253,13 +253,22 @@ a.desc:after {
 }
 
 .badge-excellent {
-    background-color: #66CC66;
+    background-color: #3399CC;
+}
+.icon-excellent {
+    color: #3399CC;
 }
 .badge-top {
-    background-color: #FFCC00;
+     background-color: #FF9933;
+ }
+.icon-top {
+    color: #FF9933;
 }
 .badge-recommend {
-    background-color: #6699CC;
+    background-color: #EB5424;
+}
+.icon-recommend {
+    color: #EB5424;
 }
 
 a:visited .badge-reply-count {
@@ -269,7 +278,7 @@ a:visited .badge-reply-count {
 .excellent {
     color: #FF6633;
 }
-.recommend a{color: #0066FF;}
+.recommend a{color: #EB5424; font-weight: bold;}
 
 .node-box dt {
     color: #999;

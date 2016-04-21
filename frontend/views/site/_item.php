@@ -3,8 +3,8 @@
 use yii\helpers\Html;
 ?>
 <li class="list-group-item media col-sm-6 mt0">
-
-    <?= Html::a(Html::tag('span', $model['comment_count'], ['class' => 'badge badge-reply-count']),
+    <?php if($model['comment_count']==0){ $class="badge badge-reply-count" ;}else{$class="badge badge-reply-count-new"; } ?>
+    <?= Html::a(Html::tag('span', $model['comment_count'], ['class' => $class]),
         ['/topic/default/view', 'id' => $model->id, '#' => 'comment' . $model['comment_count']], ['class' => 'pull-right']
     ); ?>
 
@@ -16,11 +16,13 @@ use yii\helpers\Html;
 
     <div class="infos">
 
-        <div class="media-heading">
+        <div class="media-heading <?= ($model->recommend == 1) ?  "recommend" : null ?> ">
             <?= Html::a($model->title,
                 ['/topic/default/view', 'id' => $model->id], ['title' => $model->title]
             ); ?>
-            <?= ($model->status == 2) ? Html::tag('i', '', ['class' => 'fa fa-trophy excellent']) : null ?>
+            <?= ($model->top == 1) ? Html::tag('i', '', ['class' => 'fa fa-arrow-up icon-top']) : null ?>
+            <?= ($model->recommend == 1) ? Html::tag('i', '', ['class' => 'fa fa-plane icon-recommend']) : null ?>
+            <?= ($model->status == 2) ? Html::tag('i', '', ['class' => 'fa fa-trophy icon-excellent']) : null ?>
         </div>
         <div class="media-body meta title-info">
             <?php

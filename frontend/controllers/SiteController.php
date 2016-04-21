@@ -70,7 +70,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $topics = Post::find()->limit(20)->where(['status' => 2])->orderBy(['created_at' => SORT_DESC])->all();
+        $topics = Post::find()->limit(24)->where(['status' => 2])->orWhere(['recommend'=>1])->orderBy(['created_at' => SORT_DESC])->all();
         $users = UserService::findActiveUser(12);
         $headline = Arr::getColumn(RightLink::find()->where(['type' => RightLink::RIGHT_LINK_TYPE_HEADLINE])->all(), 'content');
 

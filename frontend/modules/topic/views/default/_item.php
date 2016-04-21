@@ -22,15 +22,14 @@ use common\helpers\Formatter;
         <div class="media-heading <?= ($model->recommend == Topic::RECOMMEND_ACTIVE) ?  "recommend" : null ?> ">
             <?= ($model->top == Topic::TOP_ACTIVE) ? Html::tag('span', '置顶', ['class' => 'badge badge-top']) : null ?>
             <?= ($model->recommend == Topic::RECOMMEND_ACTIVE) ? Html::tag('span', '推荐', ['class' => 'badge badge-recommend']) : null ?>
-            <?= ($model->status == Topic::STATUS_EXCELLENT) ? Html::tag('span', '优质', ['class' => 'badge badge-excellent']) : null ?>
+            <?= ($model->status == Topic::STATUS_EXCELLENT) ? Html::tag('span', '精华', ['class' => 'badge badge-excellent']) : null ?>
             <?= Html::a(Html::encode($model->title),
                 ['/topic/default/view', 'id' => $model->id], ['title' => $model->title]
             ); ?>
 
-            <?= ($model->top == Topic::TOP_ACTIVE) ? Html::tag('i', '', ['class' => 'fa fa-arrow-up excellent']) : null ?>
-            <!--
-            <?= ($model->status == Topic::STATUS_EXCELLENT) ? Html::tag('i', '', ['class' => 'fa fa-trophy excellent']) : null ?>
-            -->
+            <?= ($model->top == Topic::TOP_ACTIVE) ? Html::tag('i', '', ['class' => 'fa fa-arrow-up icon-top']) : null ?>
+            <?= ($model->recommend == Topic::RECOMMEND_ACTIVE) ? Html::tag('i', '', ['class' => 'fa fa-plane icon-recommend']) : null ?>
+            <?= ($model->status == Topic::STATUS_EXCELLENT) ? Html::tag('i', '', ['class' => 'fa fa-trophy icon-excellent']) : null ?>
         </div>
 
         <div class="title-info">

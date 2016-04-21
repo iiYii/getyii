@@ -54,7 +54,7 @@ $node = $config['node'];
                     <?= Html::a(
                         \Yii::t('app', 'New Topic'),
                         ['/topic/default/create', 'id' => 'id'],
-                        ['class' => 'btn btn-success']
+                        ['class' => 'btn btn-info']
                     ) ?>
                 </div>
             </div>

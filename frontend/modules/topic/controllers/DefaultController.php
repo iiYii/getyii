@@ -72,9 +72,18 @@ class DefaultController extends Controller
             $postMeta = PostMeta::findOne(['alias' => $params['node']]);
             ($postMeta) ? $params['PostSearch']['post_meta_id'] = $postMeta->id : '';
         }
+        //  获取热门节点
+        if (isset($params['node'])) {
+            $nodeParent = PostMeta::findOne(['alias' => $params['node']])->parent;
+            $nodes = PostMeta::find()->where(['not',['parent' =>null]])->andWhere(['parent'=>$nodeParent])->orderBy([ 'count' => SORT_DESC,'order' => SORT_ASC,])->limit(10)->all();
+        }
+        else{
+            $nodes = PostMeta::find()->where(['not',['parent' =>null]])->orderBy([ 'count' => SORT_DESC,'order' => SORT_ASC,])->limit(10)->all();
+        }
 
         $dataProvider = $searchModel->search($params);
         $dataProvider->query->andWhere([Post::tableName() . '.type' => 'topic', 'status' => [Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]]);
+        $dataProvider->pagination->pageSize=25;
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [
@@ -101,6 +110,7 @@ class DefaultController extends Controller
 
         return $this->render('index', [
             'searchModel' => $searchModel,
+            'nodes' => $nodes,
             'sorts' => $this->sorts,
             'dataProvider' => $dataProvider,
         ]);

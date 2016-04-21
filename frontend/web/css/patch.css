@@ -17,3 +17,58 @@ a.btn{ color: #FFFFFF;}
 a:hover.btn{ color: #FFFFFF;}
 
 .panel-body .list{ line-height: 25px;}
+
+.node-box  dt {
+    width: 80px;
+}
+.node-box  dd {
+    margin-left: 100px;
+}
+
+.hot-node  dt {
+    width: 80px;
+    color: #999;
+}
+.hot-node  dd {
+    margin-left: 10px;
+    font-size: 13px;
+    padding: 8px 0 1px;
+}
+.hot-node .dl-horizontal dd a{
+    color: #666666;
+    font-size: 13px;
+    text-decoration: none;
+}
+.hot-node .list-inline li{  padding: 0px;}
+.hot-node a.tab:link, a.tab:visited, a.tab:active {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 13px;
+    padding: 5px 6px 5px 6px;
+    margin-right: 5px;
+    border-radius: 3px;
+    color: #555;
+}
+
+.hot-node a.tab:hover {
+    background-color: #CCCCCC;
+    color: #000;
+    text-decoration: none;
+}
+
+.hot-node a.tab_current:link, a.tab_current:visited, a.tab_current:active {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 13px;
+    padding: 3px 5px 3px 5px;
+    margin-right: 5px;
+    border-radius: 3px;
+    background-color: #666666;
+    color: #fff;
+}
+
+.hot-node a.tab_current:hover {
+    background-color: #666666;
+    color: #fff;
+    text-decoration: none;
+}

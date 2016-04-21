@@ -18,7 +18,6 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
 $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
 ?>
 <div class="col-md-9 topic">
-
     <div class="panel panel-default">
         <?php if (isset($nodes)): ?>
         <div class="panel-heading p0 m0 clearfix">
@@ -60,7 +59,11 @@ $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
 
         </div>
 
-        <?php Pjax::begin(['scrollTo' => 0]); ?>
+        <?php Pjax::begin([
+            'scrollTo' => 0,
+            'formSelector' => false,
+            'linkSelector' => '.pagination a'
+        ]); ?>
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
             'itemOptions' => ['class' => 'list-group-item'],

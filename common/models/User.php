@@ -348,4 +348,37 @@ class User extends ActiveRecord implements IdentityInterface
         ];
         return $data[$role];
     }
+
+    public static function getRoleList()
+    {
+        return [
+            self::ROLE_ADMIN => '高级会员',
+            self::ROLE_USER => '会员',
+            self::ROLE_SUPER_ADMIN => '管理员',
+        ];
+    }
+
+    public static function getStatus($status)
+    {
+        $data = [
+            self::STATUS_DELETED => [
+                'name' => '已删除',
+                'color' => 'danger',
+            ],
+            self::STATUS_ACTIVE => [
+                'name' => '正常',
+                'color' => 'default',
+            ],
+        ];
+
+        return $data[$status];
+    }
+
+    public static function getStatusList()
+    {
+        return [
+            self::STATUS_DELETED => '已删除',
+            self::STATUS_ACTIVE => '正常',
+        ];
+    }
 }

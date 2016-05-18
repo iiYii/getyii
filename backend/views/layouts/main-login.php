@@ -2,12 +2,14 @@
 use backend\assets\AppAsset;
 use yii\helpers\Html;
 
-AppAsset::register($this);
+/* @var $this \yii\web\View */
+/* @var $content string */
+
+dmstr\web\AdminLteAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,15 +17,13 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
+<body class="login-page">
 
-<body>
-    <?php $this->beginBody() ?>
-    <div class="container">
+<?php $this->beginBody() ?>
 
-        <?= $content ?>
+    <?= $content ?>
 
-    </div> <!-- /container -->
-    <?php $this->endBody() ?>
+<?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>

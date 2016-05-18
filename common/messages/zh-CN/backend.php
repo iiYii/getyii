@@ -9,7 +9,7 @@ return [
     'Username' => '用户名',
     'Password' => '密码',
     'Remember Me' => '记住我',
-    'Username' => '用户名',
+    'Sign in' => '登录',
     'Username' => '用户名',
     'Username' => '用户名',
 

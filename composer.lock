@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b6e121b3bda9cebe3a8b66b73b147edb",
-    "content-hash": "af94fa13b2ce4fa59cb1fdbf9db14752",
+    "hash": "1e073542c8726cb9e8eb74ed2c2d40ad",
+    "content-hash": "3e19c4d23a839c3fe86bd26f215f9156",
     "packages": [
         {
             "name": "2amigos/yii2-qrcode-helper",
@@ -128,6 +128,46 @@
                 "yii2"
             ],
             "time": "2015-03-20 18:56:41"
+        },
+        {
+            "name": "almasaeed2010/adminlte",
+            "version": "v2.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/almasaeed2010/AdminLTE.git",
+                "reference": "8db979795044412a2e2b4e9659788c23cb59fcd3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/8db979795044412a2e2b4e9659788c23cb59fcd3",
+                "reference": "8db979795044412a2e2b4e9659788c23cb59fcd3",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Abdullah Almsaeed",
+                    "email": "support@almsaeedstudio.com"
+                }
+            ],
+            "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 3",
+            "homepage": "http://almsaeedstudio.com/",
+            "keywords": [
+                "JS",
+                "admin",
+                "back-end",
+                "css",
+                "less",
+                "responsive",
+                "template",
+                "theme",
+                "web"
+            ],
+            "time": "2016-03-24 14:31:41"
         },
         {
             "name": "bower-asset/At.js",
@@ -318,6 +358,43 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/fddd2c240452e6c8990c4ef75e0265b455aa7968",
                 "reference": "fddd2c240452e6c8990c4ef75e0265b455aa7968",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "less/font-awesome.less",
+                    "scss/font-awesome.scss"
+                ],
+                "bower-asset-ignore": [
+                    "*/.*",
+                    "*.json",
+                    "src",
+                    "*.yml",
+                    "Gemfile",
+                    "Gemfile.lock",
+                    "*.md"
+                ]
+            },
+            "license": [
+                "OFL-1.1",
+                "MIT",
+                "CC-BY-3.0"
+            ],
+            "description": "Font Awesome"
+        },
+        {
+            "name": "bower-asset/fontawesome",
+            "version": "v4.6.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "8e241f209faa1dd2182c9fdc9c352d8806504a4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/8e241f209faa1dd2182c9fdc9c352d8806504a4e",
+                "reference": "8e241f209faa1dd2182c9fdc9c352d8806504a4e",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -713,44 +790,6 @@
             }
         },
         {
-            "name": "bower-asset/sb-admin-2-assets",
-            "version": "0.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/forecho/sb-admin-2-assets.git",
-                "reference": "84b162298c6cb31c06851868bf1b8e1724cd59b7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/forecho/sb-admin-2-assets/zipball/84b162298c6cb31c06851868bf1b8e1724cd59b7",
-                "reference": "84b162298c6cb31c06851868bf1b8e1724cd59b7",
-                "shasum": ""
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": [
-                    "dist/css/sb-admin-2.css",
-                    "dist/js/sb-admin-2.js"
-                ],
-                "bower-asset-ignore": [
-                    "**/.*",
-                    "node_modules",
-                    "bower_components",
-                    "test",
-                    "tests"
-                ],
-                "bower-asset-private": true
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A free, open source, Bootstrap admin theme created by Start Bootstra",
-            "keywords": [
-                "bootstrap",
-                "theme"
-            ]
-        },
-        {
             "name": "bower-asset/selectize",
             "version": "v0.12.1",
             "source": {
@@ -949,6 +988,49 @@
             "time": "2015-03-06 05:28:07"
         },
         {
+            "name": "cebe/yii2-gravatar",
+            "version": "1.1",
+            "target-dir": "cebe/gravatar",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cebe/yii2-gravatar.git",
+                "reference": "c9c01bd14c9bdee9e5ae1ef1aad23f80c182c057"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cebe/yii2-gravatar/zipball/c9c01bd14c9bdee9e5ae1ef1aad23f80c182c057",
+                "reference": "c9c01bd14c9bdee9e5ae1ef1aad23f80c182c057",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-0": {
+                    "cebe\\gravatar\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carsten Brandt",
+                    "email": "mail@cebe.cc",
+                    "homepage": "http://cebe.cc/",
+                    "role": "Core framework development"
+                }
+            ],
+            "description": "Gravatar Widget for Yii 2",
+            "keywords": [
+                "gravatar",
+                "yii"
+            ],
+            "time": "2013-12-10 17:49:58"
+        },
+        {
             "name": "components/flag-icon-css",
             "version": "1.4.0",
             "source": {
@@ -1041,6 +1123,60 @@
                 "yii2"
             ],
             "time": "2016-01-15 09:29:24"
+        },
+        {
+            "name": "dmstr/yii2-adminlte-asset",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dmstr/yii2-adminlte-asset.git",
+                "reference": "73eca05cf04d70f169a88b430d2c03c3b54d623a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/73eca05cf04d70f169a88b430d2c03c3b54d623a",
+                "reference": "73eca05cf04d70f169a88b430d2c03c3b54d623a",
+                "shasum": ""
+            },
+            "require": {
+                "almasaeed2010/adminlte": "~2.0",
+                "cebe/yii2-gravatar": "1.*",
+                "rmrevin/yii2-fontawesome": "~2.9",
+                "yiisoft/yii2": "2.*",
+                "yiisoft/yii2-bootstrap": "2.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "dmstr\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Tobias Munk",
+                    "email": "tobias@diemeisterei.de"
+                },
+                {
+                    "name": "Evgeniy Tkachenko",
+                    "email": "et.coder@gmail.com"
+                }
+            ],
+            "description": "Backend theme for Yii2 Framework",
+            "keywords": [
+                "AdminLTE",
+                "extension",
+                "yii2"
+            ],
+            "time": "2016-03-23 04:18:15"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -1445,7 +1581,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kop/yii2-scroll-pager/zipball/3dedbd3203e5a05123e1a024dff2dbbce4cfca19",
+                "url": "https://api.github.com/repos/kop/yii2-scroll-pager/zipball/3f8972f8a8e9998bfaee660507159a8a58e1bacc",
                 "reference": "08b19abb2139ff18c91d5178f17891ab2fa14316",
                 "shasum": ""
             },
@@ -1485,6 +1621,58 @@
                 "yii2"
             ],
             "time": "2015-10-19 12:44:33"
+        },
+        {
+            "name": "rmrevin/yii2-fontawesome",
+            "version": "2.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rmrevin/yii2-fontawesome.git",
+                "reference": "baac28412963974940cbfb6b83940b3aa179b0ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/baac28412963974940cbfb6b83940b3aa179b0ee",
+                "reference": "baac28412963974940cbfb6b83940b3aa179b0ee",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/fontawesome": "4.6.*",
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "2.0.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "rmrevin\\yii\\fontawesome\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Revin Roman",
+                    "email": "roman@rmrevin.com",
+                    "homepage": "https://rmrevin.com/"
+                }
+            ],
+            "description": "Asset Bundle for Yii2 with Font Awesome",
+            "keywords": [
+                "asset",
+                "awesome",
+                "bundle",
+                "font",
+                "yii"
+            ],
+            "time": "2016-04-21 11:55:25"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1549,7 +1737,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/trntv/yii2-aceeditor/zipball/e7feee2e04049248183f6dde89b40067b891bddb",
+                "url": "https://api.github.com/repos/trntv/yii2-aceeditor/zipball/a6ef8cb6287c69f881b123ce3e1fff9b2fe3dac3",
                 "reference": "e7feee2e04049248183f6dde89b40067b891bddb",
                 "shasum": ""
             },
@@ -1788,7 +1976,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/d44ea5685555d6f768632e0f08301f55616617a3",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5ed762ebf18945ef3282d0910d1a8b03603c7a7b",
                 "reference": "1a6d5e89ba4b30e7c658fbd3c268ef0ce750ae95",
                 "shasum": ""
             },

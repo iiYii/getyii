@@ -1,5 +1,6 @@
 <?php
 
+use common\models\User;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -31,7 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'password_reset_token',
             // 'email:email',
             // 'tagline',
-             'role',
+             [
+                 'attribute' => 'role',
+                 'value' => function($model) {
+                     return User::getRole($model->role)['name'];
+                 },
+             ],
             // 'status',
              'created_at:datetime',
              'updated_at:datetime',

@@ -23,7 +23,12 @@ $this->title = '发布新动弹';
 //            'options' => ['class' => ''],
             'pager' => [
                 'class' => \kop\y2sp\ScrollPager::className(),
-                'eventOnRendered' => 'function() {emojify.run();}',
+                'eventOnRendered' => "function() {
+                    emojify.run();
+                    $('pre code').each(function (i, block) {
+                        hljs.highlightBlock(block);
+                    });
+                }",
                 'triggerOffset' => 5
             ]
         ]); ?>

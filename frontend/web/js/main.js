@@ -150,14 +150,17 @@ jQuery(function ($) {
         if (oldContent) {
             marked(oldContent, function (err, content) {
                 $('#md-preview').html(content);
-                //$('pre code').each(function (i, block) {
-                //    hljs.highlightBlock(block);
-                //});
+                highlightBlock();
                 //emojify.run(document.getElementById('preview-box'));
             });
         }
     }
 
+    function highlightBlock () {
+        $('pre code').each(function (i, block) {
+           hljs.highlightBlock(block);
+        });
+    }
 
     $(document).on('click', '.btn-reply', function (e) {
         e.preventDefault();

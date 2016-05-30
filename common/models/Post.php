@@ -85,7 +85,7 @@ class Post extends ActiveRecord
             [['content'], 'string', 'min' => 2],
             [['type'], 'string', 'max' => 32],
             [['last_comment_username'], 'string', 'max' => 20],
-            [['title'], 'string', 'max' => 255, 'min' => 2],
+            [['title'], 'string', 'max' => 50, 'min' => 2],
             [['excerpt', 'image', 'tags'], 'string', 'max' => 255],
             [['author'], 'string', 'max' => 100],
             [['cc'], 'safe']

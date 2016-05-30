@@ -150,7 +150,7 @@ jQuery(function ($) {
         if (oldContent) {
             marked(oldContent, function (err, content) {
                 $('#md-preview').html(content);
-                highlightBlock();
+                //highlightBlock();
                 //emojify.run(document.getElementById('preview-box'));
             });
         }

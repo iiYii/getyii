@@ -187,7 +187,7 @@ a.desc:after {
 }
 
 /*代码高亮*/
-.article pre, .markdown-reply pre {
+.article pre, .user-default-index pre, .markdown pre, .markdown-reply pre, .tweet pre {
     padding: 0;
 }
 
@@ -359,9 +359,6 @@ img.emoji {
     display: inline-block;
 }
 
-pre {
-    padding: 0;
-}
 
 .donate p {
     margin-top: 10px;

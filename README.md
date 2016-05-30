@@ -9,7 +9,7 @@
 
 ### 原始安装方法（推荐）
 
-1. 首先你要安装 [Composer](http://www.yiiframework.com/doc-2.0/guide-start-installation.html#installing-via-composer)，然后你需要手动去新建一个数据库，比方说新建 `getyii` 数据库，如果想使用 emoji 表情的话，意见使用 `utf8mb4` 编码格式，不想用的话，
+1、首先你要安装 [Composer](http://www.yiiframework.com/doc-2.0/guide-start-installation.html#installing-via-composer)，然后你需要手动去新建一个数据库，比方说新建 `getyii` 数据库，如果想使用 emoji 表情的话，意见使用 `utf8mb4` 编码格式，不想用的话，
 建议使用 `utf8` 编码格式。
 
 ```
@@ -20,7 +20,7 @@ composer install
 php init
 ```
 
-2. 然后使用运行我写的安装程序（帮你生成数据库表和假数据）
+2、然后使用运行我写的安装程序（帮你生成数据库表和假数据）
 
 ```
 php yii install 
@@ -34,7 +34,7 @@ php yii migrate
 
 ### composer 安装方法（可能不是最新的）
 
-1. 首先你要安装 [Composer](http://www.yiiframework.com/doc-2.0/guide-start-installation.html#installing-via-composer)，然后你需要手动去新建一个数据库，比方说新建 `getyii` 数据库，如果想使用 emoji 表情的话，意见使用 `utf8mb4` 编码格式，不想用的话，
+1、首先你要安装 [Composer](http://www.yiiframework.com/doc-2.0/guide-start-installation.html#installing-via-composer)，然后你需要手动去新建一个数据库，比方说新建 `getyii` 数据库，如果想使用 emoji 表情的话，意见使用 `utf8mb4` 编码格式，不想用的话，
 建议使用 `utf8` 编码格式。
 
 ```
@@ -44,7 +44,7 @@ cd getyii
 php init
 ```
 
-2. 然后使用运行我写的安装程序（帮你生成数据库表和假数据）
+2、然后使用运行我写的安装程序（帮你生成数据库表和假数据）
 
 ```
 php yii install 
@@ -110,6 +110,7 @@ $ docker-compose up -d
 张**  | 1.00  | 2015年7月7日 | http://iamtutu.com/
 *作军  | 100.00 | 2015年08月07日 | http://www.dba-china.com/
 树*  | 333.00 | 2015年09月11日 | http://www.21cnjy.com/
+*作军  | 300.00 | 2016年04月28日 | http://www.dba-china.com/
 
 
 ## 感谢

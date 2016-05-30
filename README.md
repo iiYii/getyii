@@ -7,13 +7,27 @@
 
 ## 项目搭建
 
-### 原始安装方法
+### 原始安装方法（推荐）
 
-首先你需要手动去新建一个数据库，比方说新建 `getyii` 数据库，如果想使用 emoji 表情的话，意见使用 `utf8mb4` 编码格式，不想用的话，
+首先你要安装 [Composer](http://www.yiiframework.com/doc-2.0/guide-start-installation.html#installing-via-composer)，然后你需要手动去新建一个数据库，比方说新建 `getyii` 数据库，如果想使用 emoji 表情的话，意见使用 `utf8mb4` 编码格式，不想用的话，
 建议使用 `utf8` 编码格式。
 
 ```
-composer global require fxp/composer-asset-plugin 1.0
+composer global require "fxp/composer-asset-plugin:~1.1.1"
+git clone https://github.com/iiYii/getyii.git
+cd getyii
+composer install
+php init
+php yii install
+```
+
+### composer 安装方法（可能不是最新的）
+
+首先你要安装 [Composer](http://www.yiiframework.com/doc-2.0/guide-start-installation.html#installing-via-composer)，然后你需要手动去新建一个数据库，比方说新建 `getyii` 数据库，如果想使用 emoji 表情的话，意见使用 `utf8mb4` 编码格式，不想用的话，
+建议使用 `utf8` 编码格式。
+
+```
+composer global require "fxp/composer-asset-plugin:~1.1.1"
 composer create-project --prefer-dist --stability=dev iiyii/getyii getyii
 cd getyii
 php init

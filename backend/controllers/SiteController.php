@@ -41,6 +41,22 @@ class SiteController extends Controller
     }
 
     /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        if (parent::beforeAction($action)) {
+            if ($action->id == 'error' && Yii::$app->user->isGuest)
+                $this->layout = 'main-login';
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * @inheritdoc
      */
     public function actions()

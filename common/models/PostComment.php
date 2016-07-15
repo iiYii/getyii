@@ -138,7 +138,7 @@ class PostComment extends ActiveRecord
      */
     public static function findCommentList($postId)
     {
-        return static::find()->where(['post_id' => $postId]);
+        return static::find()->with('user')->where(['post_id' => $postId]);
     }
 
     /**

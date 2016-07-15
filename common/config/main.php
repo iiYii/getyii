@@ -4,9 +4,6 @@ return [
     'timeZone' => 'Asia/Shanghai', //time zone affect the formatter datetime format
     'language' => 'zh-CN',
     'modules' => [
-        'merit' => [
-            'class' => 'yiier\merit\Module',
-        ],
     ],
     'bootstrap' => ['assetsAutoCompress'],
     'components' => [

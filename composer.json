@@ -48,7 +48,8 @@
     "yiier/yii2-merit": "*",
     "yiisoft/yii2-httpclient": "dev-master",
     "understeam/yii2-slack": "~0.1",
-    "dmstr/yii2-adminlte-asset": "2.*"
+    "dmstr/yii2-adminlte-asset": "2.*",
+    "skeeks/yii2-assets-auto-compress": "*"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",

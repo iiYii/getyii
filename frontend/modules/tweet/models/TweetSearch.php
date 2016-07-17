@@ -38,7 +38,7 @@ class TweetSearch extends Tweet
      */
     public function search($params)
     {
-        $query = Tweet::find();
+        $query = Tweet::find()->with('user');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

@@ -4,10 +4,8 @@ return [
     'timeZone' => 'Asia/Shanghai', //time zone affect the formatter datetime format
     'language' => 'zh-CN',
     'modules' => [
-        'merit' => [
-            'class' => 'yiier\merit\Module',
-        ],
     ],
+    'bootstrap' => ['assetsAutoCompress'],
     'components' => [
         'formatter' => [ //for the showing of date datetime
             'dateFormat' => 'yyyy-MM-dd',
@@ -33,6 +31,13 @@ return [
             'httpclient' => ['class' => 'yii\httpclient\Client'],
             'class' => 'understeam\slack\Client',
             'url' => '',
+        ],
+        'assetsAutoCompress' => [
+            'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
+            'enabled' => true,
+            'jsCompress' => true,
+            'cssFileCompile' => true,
+            'jsFileCompile' => true,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -118,8 +123,6 @@ return [
         ],
         'session' => [
             'class' => 'yii\web\DbSession',
-            // 'db' => 'mydb',  // 数据库连接的应用组件ID，默认为'db'.
-            'sessionTable' => 'session', // session 数据表名，默认为'session'.
         ],
         'db' => require(__DIR__ . '/db.php'),
         'i18n' => [

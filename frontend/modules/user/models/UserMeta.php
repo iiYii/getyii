@@ -31,7 +31,7 @@ class UserMeta extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'user_meta';
+        return '{{%user_meta}}';
     }
 
     public function behaviors()

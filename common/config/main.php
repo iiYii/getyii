@@ -5,7 +5,6 @@ return [
     'language' => 'zh-CN',
     'modules' => [
     ],
-    'bootstrap' => ['assetsAutoCompress'],
     'components' => [
         'formatter' => [ //for the showing of date datetime
             'dateFormat' => 'yyyy-MM-dd',
@@ -31,13 +30,6 @@ return [
             'httpclient' => ['class' => 'yii\httpclient\Client'],
             'class' => 'understeam\slack\Client',
             'url' => '',
-        ],
-        'assetsAutoCompress' => [
-            'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
-            'enabled' => true,
-            'jsCompress' => true,
-            'cssFileCompile' => true,
-            'jsFileCompile' => true,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

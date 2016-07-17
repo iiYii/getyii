@@ -3,7 +3,7 @@
 use yii\helpers\Console;
 use yii\db\Migration;
 
-class m150908_053628_init_admin extends Migration
+class m190908_053628_init_admin extends Migration
 {
     public function up()
     {
@@ -12,7 +12,7 @@ class m150908_053628_init_admin extends Migration
 
     public function down()
     {
-        echo "m150908_053628_init_admin cannot be reverted.\n";
+        echo "m190908_053628_init_admin cannot be reverted.\n";
 
         return false;
     }

@@ -9,7 +9,7 @@ use common\models\User;
 use common\models\UserInfo;
 use yii\db\Exception;
 
-class m150908_055507_init_data extends Migration
+class m190908_055507_init_data extends Migration
 {
     public function up()
     {
@@ -20,7 +20,7 @@ class m150908_055507_init_data extends Migration
 
     public function down()
     {
-        echo "m150908_055507_init_data cannot be reverted.\n";
+        echo "m190908_055507_init_data cannot be reverted.\n";
 
         return false;
     }
@@ -46,6 +46,13 @@ class m150908_055507_init_data extends Migration
             $_node->setAttributes($nodeData[$j] + ['type' => 'topic_category']);
             $_node->save();
         }
+
+        $this->execute("INSERT INTO {{%merit_template}} (`id`, `type`, `title`, `unique_id`, `method`, `event`, `action_type`, `rule_key`, `rule_value`, `increment`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, '登录', 'site/login', 2, 0, 2, 1, 1, 2, 1, 1458657160, 1458823425),
+(2, 1, '发帖', 'topic/default/create', 2, 0, 2, 0, NULL, 6, 1, 1458657218, 1458657218),
+(3, 1, '回复', 'topic/comment/create', 2, 0, 2, 0, NULL, 4, 1, 1458657251, 1458657251),
+(4, 1, '发动弹', 'tweet/default/create', 2, 0, 2, 0, NULL, 4, 1, 1458657296, 1468647701);
+");
 
         $user = User::find()->where(['role' => User::ROLE_SUPER_ADMIN])->one();
         for ($i = 1; $i <= $num; $i++) {

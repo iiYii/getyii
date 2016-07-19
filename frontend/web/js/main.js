@@ -224,12 +224,14 @@ jQuery(function ($) {
     $('form').on('submit', function () {
         var $form = $(this),
             data = $form.data('yiiActiveForm');
-        // 如果是第一次 submit 并且 客户端验证有效，那么进行正常 submit 流程
-        if (!$form.data('getyii.submitting') && data.validated) {
-            $form.data('getyii.submitting', true);
-            return true;
-        } else { //  否则阻止提交
-            return false;
+        if (data) {
+            // 如果是第一次 submit 并且 客户端验证有效，那么进行正常 submit 流程
+            if (!$form.data('getyii.submitting') && data.validated) {
+                $form.data('getyii.submitting', true);
+                return true;
+            } else { //  否则阻止提交
+                return false;
+            }
         }
     });
 });

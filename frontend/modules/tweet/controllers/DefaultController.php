@@ -68,6 +68,7 @@ class DefaultController extends Controller
      */
     public function actionCreate()
     {
+        sleep(8);
         $model = new Tweet();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $topService = new TweetService();

@@ -3,12 +3,14 @@
 namespace common\models;
 
 use common\services\NotificationService;
+use common\services\PostService;
 use frontend\modules\user\models\UserMeta;
 use Yii;
 use common\components\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
+use frontend\modules\topic\models\Topic;
 
 /**
  * This is the model class for table "post_comment".
@@ -58,13 +60,6 @@ class PostComment extends ActiveRecord
         ];
     }
 
-    public function afterSave($insert, $changedAttributes)
-    {
-        parent::afterSave($insert, $changedAttributes);
-
-        Yii::$app->cache->set('comment' . $this->id, $this, 0);
-    }
-
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
@@ -77,7 +72,7 @@ class PostComment extends ActiveRecord
 
     public function getTopic()
     {
-        return $this->hasOne(Post::className(), ['id' => 'post_id'])->where(['type' => 'topic']);
+        return $this->hasOne(Topic::className(), ['id' => 'post_id'])->where(['type' => 'topic']);
     }
 
     public function getLike()
@@ -151,46 +146,6 @@ class PostComment extends ActiveRecord
     }
 
     /**
-     * 分别转换@用户和#楼层
-     * @param $comment
-     * @return mixed
-     */
-    public function replace($comment)
-    {
-        preg_match_all("/\#(\d*)/i", $comment, $floor);
-        if (isset($floor[1])) {
-            foreach ($floor[1] as $key => $value) {
-                $search = "#{$value}楼";
-                $place = "[{$search}](#comment{$value}) ";
-                $comment = str_replace($search . ' ', $place, $comment);
-            }
-        }
-
-        $users = $this->parse($comment);
-        foreach ($users as $key => $value) {
-            $search = '@' . $value;
-            $url = Url::to(['/user/default/show', 'username' => $value]);
-            $place = "[{$search}]({$url}) ";
-            $comment = str_replace($search . ' ', $place, $comment);
-        }
-
-        return $comment;
-    }
-
-    public function parse($comment)
-    {
-        preg_match_all("/(\S*)\@([^\r\n\s]*)/i", $comment, $atlistTmp);
-        $users = [];
-        foreach ($atlistTmp[2] as $key => $value) {
-            if ($atlistTmp[1][$key] || strlen($value) > 25) {
-                continue;
-            }
-            $users[] = $value;
-        }
-        return ArrayHelper::map(User::find()->where(['username' => $users])->all(), 'id', 'username');
-    }
-
-    /**
      * @inheritdoc
      */
     public
@@ -208,5 +163,35 @@ class PostComment extends ActiveRecord
             'created_at' => '创建时间',
             'updated_at' => '修改时间',
         ];
+    }
+
+    public $atUsers;
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
+        $this->comment = PostService::contentComment($this->comment, $this);
+        return true;
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+
+        $post = $this->topic;
+
+        (new UserMeta())->saveNewMeta('topic', $this->post_id, 'follow');
+        (new NotificationService())->newReplyNotify(\Yii::$app->user->identity, $post, $this, $this->atUsers);
+        // 更新回复时间
+        $post->lastCommentToUpdate(\Yii::$app->user->identity->username);
+        // 评论计数器
+        Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
+        // 更新个人总统计
+        UserInfo::updateAllCounters(['comment_count' => 1], ['user_id' => $this->user_id]);
+
+        \Yii::$app->cache->set('comment' . $this->id, $this, 0);
+
     }
 }

@@ -174,10 +174,6 @@ class DefaultController extends Controller
             }
 
             if ($model->save()) {
-                (new UserMeta)->saveNewMeta('topic', $model->id, 'follow');
-                (new NotificationService())->newPostNotify(Yii::$app->user->identity, $model, $model->content);
-                // 更新个人总统计
-                UserInfo::updateAllCounters(['post_count' => 1], ['user_id' => $model->user_id]);
                 $this->flash('发表文章成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->id]);
             }

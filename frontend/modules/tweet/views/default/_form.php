@@ -21,6 +21,7 @@ use yii\widgets\ActiveForm;
         ])->textarea([
             'placeholder' => t('app', 'Tweet Content'),
             'id' => 'md-input',
+            'data-at-topic' => true,
             'rows' => 5
         ]) ?>
 

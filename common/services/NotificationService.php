@@ -126,24 +126,7 @@ class NotificationService
             }
         }
     }
-
-    /**
-     * 去掉重复 避免通知重复
-     * @param $users
-     * @return array
-     */
-    public function removeDuplication($users)
-    {
-        $notYetNotifyUsers = [];
-        foreach ($users as $key => $value) {
-            if (!in_array($key, $this->notifiedUsers)) {
-                $notYetNotifyUsers[$key] = $value;
-                $this->notifiedUsers[] = $key;
-            }
-        }
-        return $notYetNotifyUsers;
-    }
-
+    
     /**
      * 查找用户的动作通知
      * @param UserMeta $meta

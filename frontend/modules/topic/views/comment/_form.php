@@ -10,6 +10,7 @@ use yii\helpers\HtmlPurifier;
 use yii\helpers\Markdown;
 use yii\widgets\ActiveForm;
 
+\frontend\assets\AtJsAsset::register($this);
 ?>
 <div class="list-group-item">
 
@@ -36,6 +37,7 @@ use yii\widgets\ActiveForm;
         'placeholder' => '内容',
         'id' => 'md-input',
         'disabled' => Yii::$app->user->getIsGuest(),
+        'data-at-floor' => true,
         'rows' => 6
     ]) ?>
 

@@ -4,6 +4,7 @@ namespace frontend\modules\topic\controllers;
 
 use common\models\UserInfo;
 use common\services\NotificationService;
+use common\services\PostService;
 use common\services\TopicService;
 use frontend\models\Notification;
 use frontend\modules\topic\models\Topic;
@@ -49,7 +50,6 @@ class CommentController extends Controller
      */
     public function actionCreate($id)
     {
-        $post = Topic::findTopic($id);
         $model = new PostComment();
         if ($model->load(Yii::$app->request->post())) {
             $topService = new TopicService();
@@ -60,23 +60,12 @@ class CommentController extends Controller
             $model->user_id = Yii::$app->user->id;
             $model->post_id = $id;
             $model->ip = Yii::$app->getRequest()->getUserIP();
-            $rawComment = $model->comment;
-            $model->comment = $model->replace($rawComment);
             if ($model->save()) {
-                (new UserMeta())->saveNewMeta('topic', $id, 'follow');
-                (new NotificationService())->newReplyNotify(Yii::$app->user->identity, $post, $model, $rawComment);
-                // 更新回复时间
-                $post->lastCommentToUpdate(Yii::$app->user->identity->username);
-                // 评论计数器
-                Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
-                // 更新个人总统计
-                UserInfo::updateAllCounters(['comment_count' => 1], ['user_id' => $model->user_id]);
-
                 $this->flash("评论成功", 'success');
             } else {
                 $this->flash(array_values($model->getFirstErrors())[0], 'warning');
             }
-            return $this->redirect(['/topic/default/view', 'id' => $post->id]);
+            return $this->redirect(['/topic/default/view', 'id' => $id]);
         }
         return $model;
     }

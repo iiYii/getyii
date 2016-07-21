@@ -84,7 +84,7 @@ class PostService
      */
     public static function contentReplaceAtUser($content, $model)
     {
-        $model->atUsers = $usernames = static::parseUsernames($content);
+        $model->atUsers = $usernames = static::parseUsername($content);
         foreach ($usernames as $username) {
             $content = str_replace("@$username", sprintf('[@%s](%s)', $username, Url::to(['/user/default/show', 'username' => $username])), $content);
         }
@@ -92,13 +92,13 @@ class PostService
         return $content;
     }
 
-    public static function parseUsernames($content)
+    public static function parseUsername($content)
     {
         preg_match_all('/@(\S{4,255}) /', $content, $matches);
-        if (empty($users = $matches[1])) {
+        if (empty($matches[1])) {
             return [];
         }
-        $existUserRows = User::find()->where(['username' => $users])->select('id,username')->asArray()->all();
+        $existUserRows = User::find()->where(['username' => $matches[1]])->select('id,username')->asArray()->all();
         return ArrayHelper::map($existUserRows, 'id', 'username') ?: [];
     }
 

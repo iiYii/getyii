@@ -38,6 +38,7 @@ class m190908_053628_init_admin extends Migration
      */
     private function saveFounderData($_model)
     {
+        /** @var \frontend\models\SignupForm $model */
         $model = clone $_model;
         $model->username = Console::prompt('请输入创始人用户名', ['default' => 'admin']);
         $model->email = Console::prompt('请输入创始人邮箱', ['default' => 'admin@admin.com']);

@@ -1,3 +1,13 @@
+GetYii
+==================
+
+[![Latest Stable Version](https://poser.pugx.org/iiyii/getyii/v/stable)](https://packagist.org/packages/iiyii/getyii) 
+[![Total Downloads](https://poser.pugx.org/iiyii/getyii/downloads)](https://packagist.org/packages/iiyii/getyii) 
+[![Latest Unstable Version](https://poser.pugx.org/iiyii/getyii/v/unstable)](https://packagist.org/packages/iiyii/getyii) 
+[![License](https://poser.pugx.org/iiyii/getyii/license)](https://packagist.org/packages/iiyii/getyii)
+
+community for Yii2
+
 ## 说明
 
 你现在看到的是全新版本的 GetYii 之前的版本我放在 V1 分支上面了，那个版本以后可能就不会更新了。

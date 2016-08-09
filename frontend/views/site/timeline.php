@@ -27,13 +27,11 @@ $content = '
 
 ';
 ?>
-<div class="container p0">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <?= $this->title ?>
-        </div>
-        <div class="panel-body">
-            <?= Markdown::process($content, 'gfm') ?>
-        </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <?= $this->title ?>
+    </div>
+    <div class="panel-body">
+        <?= Markdown::process($content, 'gfm') ?>
     </div>
 </div>

@@ -1,9 +1,11 @@
 <?php
 namespace frontend\controllers;
 
+use common\helpers\Arr;
 use common\models\Post;
 use common\models\PostComment;
 use common\models\PostTag;
+use common\models\RightLink;
 use common\models\Session;
 use common\services\UserService;
 use dosamigos\qrcode\QrCode;
@@ -14,6 +16,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
+use yii\helpers\Json;
 use yii\web\BadRequestHttpException;
 use common\components\Controller;
 use yii\filters\VerbFilter;
@@ -33,7 +36,7 @@ class SiteController extends Controller
      */
     public function behaviors()
     {
-        return [
+        return Arr::merge(parent::behaviors(), [
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'signup', 'connect'],
@@ -46,7 +49,7 @@ class SiteController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => ['logout' => ['post']],
             ],
-        ];
+        ]);
     }
 
     /**
@@ -67,10 +70,11 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $topics = Post::find()->limit(20)->where(['status' => 2])->orderBy(['created_at' => SORT_DESC])->all();
+        $topics = Post::find()->with('user', 'category')->limit(20)->where(['status' => 2])->orderBy(['created_at' => SORT_DESC])->all();
         $users = UserService::findActiveUser(12);
+        $headline = Arr::getColumn(RightLink::find()->where(['type' => RightLink::RIGHT_LINK_TYPE_HEADLINE])->all(), 'content');
 
-        $statistics = array();
+        $statistics = [];
         $statistics['post_count'] = Post::find()->count();
         $statistics['comment_count'] = PostComment::find()->count();
         $statistics['online_count'] = Session::find()->where(['>', 'expire', time()])->count();
@@ -79,6 +83,7 @@ class SiteController extends Controller
             'topics' => $topics,
             'users' => $users,
             'statistics' => $statistics,
+            'headline' => Arr::arrayRandomAssoc($headline),
         ]);
     }
 
@@ -90,7 +95,6 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            $model->updateUserInfo();
             return $this->goBack();
         } else {
             return $this->render('login', [
@@ -158,6 +162,12 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionAtUsers()
+    {
+        $model = UserService::findActiveUser(400);
+        return Json::encode(Arr::getColumn($model, 'username'));
+    }
+
     public function actionBook()
     {
         return $this->redirect('http://book.getyii.com');
@@ -209,7 +219,7 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionQrcode($url='')
+    public function actionQrcode($url = '')
     {
         return QrCode::png($url);
     }

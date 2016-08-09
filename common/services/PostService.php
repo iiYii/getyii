@@ -8,7 +8,8 @@
 namespace common\services;
 
 
-use app\models\User;
+use common\models\PostTag;
+use common\models\User;
 use common\models\Post;
 use frontend\models\Notification;
 use yii\helpers\ArrayHelper;
@@ -46,44 +47,69 @@ class PostService
         return true;
     }
 
+    public static function contentTopic($content, $model)
+    {
+        $content = static::contentReplaceAtUser($content, $model);
+        return $content;
+    }
+
+    public static function contentComment($content, $model)
+    {
+        $content = static::contentReplaceAtUser($content, $model);
+        $content = static::contentReplaceFloor($content);
+        return $content;
+    }
+
+    public static function contentTweet($content, $model)
+    {
+        $content = static::contentReplaceAtUser($content, $model);
+        $content = static::contentReplaceTag($content);
+        return $content;
+    }
 
     /**
-     * 分别转换@用户和#楼层
-     * @param $content
-     * @return mixed
+     * 评论内容包含 '#n楼' 的将其替换为楼层锚链接
+     * @param $content string
+     * @return string
      */
-    public static function replace($content)
+    public static function contentReplaceFloor($content)
     {
-        preg_match_all("/\#(\d*)/i", $content, $floor);
-        if (isset($floor[1])) {
-            foreach ($floor[1] as $key => $value) {
-                $search = "#{$value}楼";
-                $place = "[{$search}](#comment{$value}) ";
-                $content = str_replace($search . ' ', $place, $content);
-            }
-        }
+        return preg_replace('/#(\d+)楼/', '[\0](#comment\1)', $content);
+    }
 
-        $users = static::parse($content);
-        foreach ($users as $key => $value) {
-            $search = '@' . $value;
-            $url = Url::to(['/user/default/show', 'username' => $value]);
-            $place = "[{$search}]({$url}) ";
-            $content = str_replace($search . ' ', $place, $content);
+    /**
+     * 内容包含 '@summer ' 的将其替换为用户主页链接
+     * @param $content string
+     * @return string
+     */
+    public static function contentReplaceAtUser($content, $model)
+    {
+        $model->atUsers = $usernames = static::parseUsername($content);
+        foreach ($usernames as $username) {
+            $content = str_replace("@$username", sprintf('[@%s](%s)', $username, Url::to(['/user/default/show', 'username' => $username])), $content);
         }
 
         return $content;
     }
 
-    public static function parse($content)
+    public static function parseUsername($content)
     {
-        preg_match_all("/(\S*)\@([^\r\n\s]*)/i", $content, $atlistTmp);
-        $users = [];
-        foreach ($atlistTmp[2] as $key => $value) {
-            if ($atlistTmp[1][$key] || strlen($value) > 25) {
-                continue;
-            }
-            $users[] = $value;
+        preg_match_all('/@(\S{4,255}) /', $content, $matches);
+        if (empty($matches[1])) {
+            return [];
         }
-        return ArrayHelper::map(\common\models\User::find()->where(['username' => $users])->all(), 'id', 'username');
+        $existUserRows = User::find()->where(['username' => $matches[1]])->select('id,username')->asArray()->all();
+        return ArrayHelper::map($existUserRows, 'id', 'username') ?: [];
     }
+
+    public static function contentReplaceTag($content)
+    {
+        $content = preg_replace_callback('/#(\S+?)#/', function($matches){
+            $tagName = $matches[1];
+            return sprintf('[%s](%s)', "#$tagName#", Url::to(['/tweet/default/index', 'Tag' => $tagName]));
+        }, $content);
+
+        return $content;
+    }
+
 }

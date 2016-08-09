@@ -28,12 +28,20 @@ body > iframe {
     padding: 0
 }
 
+.mp0 p, .m0 {
+    margin: 0;
+}
+
 .mt10 {
     margin-top: 10px;
 }
 
 .mt0 {
     margin-top: 0;
+}
+
+.mt5 {
+    margin-top: 5px;
 }
 
 .mb0 {
@@ -48,6 +56,14 @@ body > iframe {
     margin-bottom: 20px;
 }
 
+.ml5 {
+    margin-left: 5px;
+}
+
+.mr5 {
+    margin-right: 5px;
+}
+
 .mr15 {
     margin-right: 15px;
 }
@@ -57,7 +73,7 @@ h1 {
 }
 
 abbr[title] {
-    border-bottom: 0px;
+    border-bottom: 0;
 }
 
 .divider {
@@ -65,7 +81,7 @@ abbr[title] {
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: PingFang SC,Lantinghei SC,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans;
+    font-family: PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
     font-weight: bold;
 }
 
@@ -80,9 +96,11 @@ h3 {
 h4 {
     font-size: 18px;
 }
+
 .fs12 {
     font-size: 12px;
 }
+
 .br0 {
     border-radius: 0;
 }

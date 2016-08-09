@@ -11,13 +11,21 @@ namespace frontend\modules\topic\models;
 use common\models\Post;
 use common\models\PostTag;
 use common\models\Search;
+use common\services\TopicService;
 use frontend\modules\user\models\UserMeta;
 use yii\web\NotFoundHttpException;
 use Yii;
+use common\models\UserInfo;
+use common\services\NotificationService;
 
 class Topic extends Post
 {
     const TYPE = 'topic';
+
+    /**
+     * @var boolean CC 协议
+     */
+    public $cc;
 
     public function getLike()
     {
@@ -66,7 +74,7 @@ class Topic extends Post
      * @return array|null|\yii\db\ActiveRecord|static
      * @throws NotFoundHttpException
      */
-    public function findModel($id, $condition = '')
+    public static function findModel($id, $condition = '')
     {
 //        if (!($model = Yii::$app->cache->get('topic' . $id))) {
         $model = static::find()
@@ -97,7 +105,7 @@ class Topic extends Post
     /**
      * 获取已经删除过的话题
      * @param $id
-     * @return array|null|\yii\db\ActiveRecord
+     * @return array|Topic|null|\yii\db\ActiveRecord
      * @throws NotFoundHttpException
      */
     public static function findDeletedTopic($id)
@@ -105,10 +113,21 @@ class Topic extends Post
         return static::findModel($id, ['>=', 'status', self::STATUS_DELETED]);
     }
 
+    public $atUsers;
+
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
+
+            if ($this->tags) {
+                $this->addTags(explode(',', $this->tags));
+            }
+            $this->content = TopicService::contentTopic($this->content, $this)
+                . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->username]) : '');
+
             if ($insert) {
+                $this->user_id = (($this->user_id) ?: Yii::$app->user->id);
+                $this->type = self::TYPE;
                 $this->last_comment_time = $this->created_at;
             }
             return true;
@@ -137,6 +156,14 @@ class Topic extends Post
             $search->content = $this->content;
             $search->updated_at = $this->updated_at;
             $search->save();
+        }
+
+        (new NotificationService())->newPostNotify(\Yii::$app->user->identity, $this, $this->atUsers);
+        if ($insert) {
+            // 保存 meta data
+            (new UserMeta)->saveNewMeta('topic', $this->id, 'follow');
+            // 更新个人总统计
+            UserInfo::updateAllCounters(['post_count' => 1], ['user_id' => $this->user_id]);
         }
     }
 

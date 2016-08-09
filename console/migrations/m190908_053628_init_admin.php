@@ -3,7 +3,7 @@
 use yii\helpers\Console;
 use yii\db\Migration;
 
-class m150908_053628_init_admin extends Migration
+class m190908_053628_init_admin extends Migration
 {
     public function up()
     {
@@ -12,7 +12,7 @@ class m150908_053628_init_admin extends Migration
 
     public function down()
     {
-        echo "m150908_053628_init_admin cannot be reverted.\n";
+        echo "m190908_053628_init_admin cannot be reverted.\n";
 
         return false;
     }
@@ -38,6 +38,7 @@ class m150908_053628_init_admin extends Migration
      */
     private function saveFounderData($_model)
     {
+        /** @var \frontend\models\SignupForm $model */
         $model = clone $_model;
         $model->username = Console::prompt('请输入创始人用户名', ['default' => 'admin']);
         $model->email = Console::prompt('请输入创始人邮箱', ['default' => 'admin@admin.com']);

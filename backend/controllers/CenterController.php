@@ -1,15 +1,13 @@
 <?php
 namespace backend\controllers;
 
-use common\extensions\MyController;
 use Yii;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
 use yii\filters\VerbFilter;
 /**
  * Site controller
  */
-class CenterController extends MyController
+class CenterController extends Controller
 {
     /**
      * @inheritdoc

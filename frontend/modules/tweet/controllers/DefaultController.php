@@ -5,6 +5,7 @@ namespace frontend\modules\tweet\controllers;
 use common\components\Controller;
 use common\models\Post;
 use common\services\NotificationService;
+use common\services\PostService;
 use common\services\TweetService;
 use frontend\modules\tweet\models\Tweet;
 use frontend\modules\tweet\models\TweetSearch;
@@ -12,6 +13,7 @@ use frontend\modules\user\models\UserMeta;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yiier\AutoloadExample;
 use yiier\request\ThrottleBehavior;
@@ -20,7 +22,7 @@ class DefaultController extends Controller
 {
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -38,13 +40,15 @@ class DefaultController extends Controller
                     ['allow' => true, 'actions' => ['create'], 'roles' => ['@']],
                 ]
             ],
-        ];
+        ]);
     }
 
     public function actionIndex()
     {
         $searchModel = new TweetSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $params = Yii::$app->request->queryParams;
+        $params['TweetSearch']['content'] = empty($params['topic']) ? '' : $params['topic'];
+        $dataProvider = $searchModel->search($params);
         $dataProvider->query->andWhere([
             Post::tableName() . '.type' => Tweet::TYPE,
             'status' => [Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]
@@ -74,12 +78,7 @@ class DefaultController extends Controller
             }
             $model->user_id = Yii::$app->user->id;
             $model->type = $model::TYPE;
-            $rawContent = $model->content;
-            $model->content = TweetService::replace($rawContent);
             if ($model->save()) {
-                (new UserMeta())->saveNewMeta($model->type, $model->id, 'follow');
-                (new NotificationService())->newPostNotify(Yii::$app->user->identity, $model, $rawContent);
-
                 $this->flash('发表成功!', 'success');
             }
         }
@@ -94,6 +93,7 @@ class DefaultController extends Controller
      */
     public function actionDelete($id)
     {
+        /** @var Tweet $model */
         $model = Tweet::findTweet($id);
         if (!$model->isCurrent()) {
             throw new NotFoundHttpException();
@@ -101,7 +101,6 @@ class DefaultController extends Controller
         if ($model->comment_count) {
             $this->flash("已有评论，属于共有财产，不能删除", 'warning');
         } else {
-
             TweetService::delete($model);
             $this->flash("删除成功。 ", 'success');
         }

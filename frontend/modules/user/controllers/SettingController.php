@@ -3,6 +3,7 @@
 namespace frontend\modules\user\controllers;
 
 use frontend\modules\user\models\AvatarForm;
+use frontend\modules\user\models\Donate;
 use Yii;
 use frontend\modules\user\models\AccountForm;
 use common\models\UserInfo;
@@ -10,6 +11,7 @@ use yii\authclient\ClientInterface;
 use yii\filters\AccessControl;
 use frontend\modules\user\models\UserAccount;
 use common\components\Controller;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -28,9 +30,9 @@ class SettingController extends Controller
     /** @inheritdoc */
     public function behaviors()
     {
-        return [
-            'verbs'  => [
-                'class'   => VerbFilter::className(),
+        return ArrayHelper::merge(parent::behaviors(), [
+            'verbs' => [
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'disconnect' => ['post']
                 ],
@@ -39,29 +41,29 @@ class SettingController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'allow'   => true,
-                        'actions' => ['profile', 'account', 'avatar', 'confirm', 'networks', 'connect', 'disconnect'],
-                        'roles'   => ['@']
+                        'allow' => true,
+                        'actions' => ['profile', 'account', 'avatar', 'confirm', 'networks', 'connect', 'disconnect', 'donate'],
+                        'roles' => ['@']
                     ],
                 ]
             ],
-        ];
+        ]);
     }
 
     public function init()
     {
         parent::init();
         Yii::$app->set('authClientCollection', [
-            'class'   => 'yii\authclient\Collection',
+            'class' => 'yii\authclient\Collection',
             'clients' => [
                 'google' => [
-                    'class'        => 'yii\authclient\clients\GoogleOAuth',
-                    'clientId'     => Yii::$app->setting->get('googleClientId'),
+                    'class' => 'yii\authclient\clients\GoogleOAuth',
+                    'clientId' => Yii::$app->setting->get('googleClientId'),
                     'clientSecret' => Yii::$app->setting->get('googleClientSecret'),
                 ],
                 'github' => [
-                    'class'        => 'yii\authclient\clients\GitHub',
-                    'clientId'     => Yii::$app->setting->get('githubClientId'),
+                    'class' => 'yii\authclient\clients\GitHub',
+                    'clientId' => Yii::$app->setting->get('githubClientId'),
                     'clientSecret' => Yii::$app->setting->get('githubClientSecret'),
                 ],
             ],
@@ -73,7 +75,7 @@ class SettingController extends Controller
     {
         return [
             'connect' => [
-                'class'           => 'yii\authclient\AuthAction',
+                'class' => 'yii\authclient\AuthAction',
                 'successCallback' => [$this, 'connect'],
             ]
         ];
@@ -85,6 +87,7 @@ class SettingController extends Controller
      */
     public function actionProfile()
     {
+        /** @var UserInfo $model */
         $model = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
@@ -104,7 +107,7 @@ class SettingController extends Controller
      */
     public function actionAccount()
     {
-        /** @var SettingsForm $model */
+        /** @var AccountForm $model */
         $model = Yii::createObject(AccountForm::className());
 
         $this->performAjaxValidation($model);
@@ -125,7 +128,7 @@ class SettingController extends Controller
      */
     public function actionAvatar()
     {
-        /** @var SettingsForm $model */
+        /** @var AvatarForm $model */
         $model = Yii::createObject(AvatarForm::className());
 
         if ($model->load(Yii::$app->request->post())) {
@@ -134,17 +137,71 @@ class SettingController extends Controller
                 $model->deleteImage();
             }
             $image = $model->uploadImage();
-            if ($model->save()) {
-                if ($image !== false) {
-                    $path = $model->getImageFile();
-                    $image->saveAs($path);
+            $hasError = true;
+
+            if ($image !== false) {
+                $path = $model->getNewUploadedImageFile();
+                if ($image->saveAs($path)) {
+                    $hasError = false;
                 }
-                Yii::$app->session->setFlash('success', '您的用户信息修改成功');
-                return $this->refresh();
             }
+
+            if ($hasError) {
+                $model->useDefaultImage();
+            }
+
+            if ($model->save() === false) {
+                $hasError = true;
+            }
+
+            if ($hasError) {
+                Yii::$app->session->setFlash('error', '您的头像更新失败');
+            } else {
+                Yii::$app->session->setFlash('success', '您的用户信息修改成功');
+            }
+            return $this->refresh();
         }
 
         return $this->render('avatar', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     *   打赏设置
+     * @return mixed
+     */
+    public function actionDonate()
+    {
+        /** @var Donate $model */
+        $model = Donate::findOne(['user_id' => Yii::$app->user->id]) ?: new Donate(['scenario' => 'create']);
+        $oldQrCode = $model->qr_code;
+        $model->description ?: $model->description = '如果这篇文章对您有帮助，不妨微信小额赞助我一下，让我有动力继续写出高质量的教程。';
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            if ($image = $model->uploadImage()) {
+                \yii\helpers\FileHelper::createDirectory(\Yii::$app->basePath . \Yii::$app->params['qrCodePath']);
+                $model->deleteImage();
+                $image->saveAs(\Yii::$app->basePath . \Yii::$app->params['qrCodePath'] . $model->qr_code);
+            }
+
+            if ($image === false && !empty($oldQrCode)) {
+                $model->qr_code = $oldQrCode;
+            }
+
+            $model->user_id = Yii::$app->user->id;
+
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', '您的打赏信息修改成功');
+            } else {
+                Yii::$app->session->setFlash('error', '您的打赏信息更新失败');
+            }
+
+            return $this->refresh();
+        }
+
+        return $this->render('donate', [
             'model' => $model,
         ]);
     }
@@ -170,6 +227,7 @@ class SettingController extends Controller
      */
     public function actionDisconnect($id)
     {
+        /** @var UserAccount $account */
         $account = UserAccount::findOne(['id' => $id]);
         if ($account === null) {
             throw new NotFoundHttpException;
@@ -195,17 +253,17 @@ class SettingController extends Controller
         $clientId = $attributes['id'];
 
         $account = UserAccount::find()->where([
-            'provider'  => $provider,
+            'provider' => $provider,
             'client_id' => $clientId
         ])->one();
 
         if ($account === null) {
             $account = Yii::createObject([
-                'class'      => UserAccount::className(),
-                'provider'   => $provider,
-                'client_id'  => $clientId,
-                'data'       => json_encode($attributes),
-                'user_id'    => Yii::$app->user->id,
+                'class' => UserAccount::className(),
+                'provider' => $provider,
+                'client_id' => $clientId,
+                'data' => json_encode($attributes),
+                'user_id' => Yii::$app->user->id,
                 'created_at' => time(),
             ]);
             $account->save(false);
@@ -219,7 +277,7 @@ class SettingController extends Controller
 
     /**
      * Performs ajax validation.
-     * @param Model $model
+     * @param AccountForm $model
      * @throws \yii\base\ExitException
      */
     protected function performAjaxValidation($model)

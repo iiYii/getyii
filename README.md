@@ -1,23 +1,72 @@
+GetYii
+==================
+
+[![Latest Stable Version](https://poser.pugx.org/iiyii/getyii/v/stable)](https://packagist.org/packages/iiyii/getyii) 
+[![Total Downloads](https://poser.pugx.org/iiyii/getyii/downloads)](https://packagist.org/packages/iiyii/getyii) 
+[![Latest Unstable Version](https://poser.pugx.org/iiyii/getyii/v/unstable)](https://packagist.org/packages/iiyii/getyii) 
+[![License](https://poser.pugx.org/iiyii/getyii/license)](https://packagist.org/packages/iiyii/getyii)
+
+community for Yii2
+
 ## 说明
 
 你现在看到的是全新版本的 GetYii 之前的版本我放在 V1 分支上面了，那个版本以后可能就不会更新了。
 「doc/images」文件夹里面有截图，你们可以看一下。
 
-全新的 GetYii 只专注于社区，现在基本功能已经 OK 了，以后我们会不断完善的。
+全新的 GetYii 只专注于社区，现在基本功能已经 OK 了，以后我们会不断完善的。分享我们的 [trello 项目管理地址](https://trello.com/b/rsZAtG1Y/getyii)。
 
 ## 项目搭建
 
-### 原始安装方法
+### 原始安装方法（推荐）
+
+1、首先你要安装 [Composer](http://www.yiiframework.com/doc-2.0/guide-start-installation.html#installing-via-composer)，然后你需要手动去新建一个数据库，比方说新建 `getyii` 数据库，如果想使用 emoji 表情的话，意见使用 `utf8mb4` 编码格式，不想用的话，
+建议使用 `utf8` 编码格式。
 
 ```
-composer global require fxp/composer-asset-plugin 1.0
+composer global require "fxp/composer-asset-plugin:~1.1.1"
+git clone https://github.com/iiYii/getyii.git
+cd getyii
+composer install
+php init
+```
+
+2、然后使用运行我写的安装程序（帮你生成数据库表和假数据）
+
+```
+php yii install 
+```
+
+或者你直接执行数据库迁移工具生成数据库表
+
+```
+php yii migrate 
+```
+
+### composer 安装方法（可能不是最新的）
+
+1、首先你要安装 [Composer](http://www.yiiframework.com/doc-2.0/guide-start-installation.html#installing-via-composer)，然后你需要手动去新建一个数据库，比方说新建 `getyii` 数据库，如果想使用 emoji 表情的话，意见使用 `utf8mb4` 编码格式，不想用的话，
+建议使用 `utf8` 编码格式。
+
+```
+composer global require "fxp/composer-asset-plugin:~1.1.1"
 composer create-project --prefer-dist --stability=dev iiyii/getyii getyii
 cd getyii
 php init
-php yii install
 ```
 
-### docker搭建
+2、然后使用运行我写的安装程序（帮你生成数据库表和假数据）
+
+```
+php yii install 
+```
+
+或者你直接执行数据库迁移工具生成数据库表
+
+```
+php yii migrate 
+```
+
+### docker 搭建方法
 
 1. 安装好 docker 保证可以运行 docker 和 docker-compose 命令
 2. 克隆代码到你本地，并 cd 到相应目录
@@ -58,9 +107,6 @@ $ docker-compose up -d
 ## 捐赠
 
 ![微信支付](https://raw.githubusercontent.com/iiYii/getyii/master/wechat-pay.png)
-
-或者
-
 ![支付宝支付](https://raw.githubusercontent.com/iiYii/getyii/master/ali-pay.png)
 
 手机微信或者支付宝扫描上方二维码可向本项目捐款
@@ -74,6 +120,7 @@ $ docker-compose up -d
 张**  | 1.00  | 2015年7月7日 | http://iamtutu.com/
 *作军  | 100.00 | 2015年08月07日 | http://www.dba-china.com/
 树*  | 333.00 | 2015年09月11日 | http://www.21cnjy.com/
+*作军  | 300.00 | 2016年04月28日 | http://www.dba-china.com/
 
 
 ## 感谢
@@ -85,5 +132,8 @@ $ docker-compose up -d
 
 PS:
 
-如果你暂时无法使用 `composer` 的话，访问 <http://pan.baidu.com/s/1hoSUU> 下载 zip 文件解压放在项目根目录就可以用了。
-但是本人不推荐这种做法。
+如果你暂时无法使用 `composer` 的话，访问链接: <http://pan.baidu.com/s/1eQnsn7s> 密码: ux6c 下载 zip 文件解压就可以用了。然后你要做的是：
+
+- 新建数据库导入 getyii-2015-11-3.sql 数据库
+- 修改 `common\config\db-local.php` 文件的数据库配置
+- 默认用户名是`admin`，密码是`123456`

@@ -11,25 +11,17 @@ use common\services\CommentService;
 use common\services\TopicService;
 use common\services\TweetService;
 use Yii;
-use yii\filters\AccessControl;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
 
 class ActionController extends Controller
 {
-    public function behaviors()
+    public function beforeAction($action)
     {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ]
-                ]
-            ]
-        ];
+        if (Yii::$app->user->isGuest) {
+            Yii::$app->getResponse()->redirect(\Yii::$app->getUser()->loginUrl)->send();
+        }
+        return parent::beforeAction($action);
     }
 
     /**

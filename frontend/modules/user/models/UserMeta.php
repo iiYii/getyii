@@ -31,7 +31,7 @@ class UserMeta extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'user_meta';
+        return '{{%user_meta}}';
     }
 
     public function behaviors()
@@ -86,12 +86,12 @@ class UserMeta extends ActiveRecord
 
     /**
      * 判断指定分类下操作是否存在
-     * @param string $type 话题还是评论
+     * @param integer $type 话题还是评论
      * @param string $do 动作
-     * @param $targetId 话题ID或者评论ID
+     * @param integer $targetId 话题ID或者评论ID
      * @return int|string
      */
-    public function isUserAction($type = '', $do = '', $targetId)
+    public function isUserAction($type = 0, $do = '', $targetId)
     {
         return $this->find()->where([
             'target_id' => $targetId,
@@ -116,6 +116,7 @@ class UserMeta extends ActiveRecord
             'target_type' => $type,
             'type' => $do,
         ];
+        $this->deleteAll($data);
         $model = $this->find()->where($data)->one();
         $this->setAttributes($data);
         if (!$model) {

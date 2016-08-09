@@ -5,6 +5,7 @@ namespace frontend\modules\topic\controllers;
 use common\models\Post;
 use common\models\Search;
 use common\models\SearchLog;
+use common\models\User;
 use common\services\NotificationService;
 use common\services\TopicService;
 use frontend\modules\topic\models\Topic;
@@ -16,6 +17,8 @@ use common\models\PostComment;
 use common\models\PostMeta;
 use common\models\UserInfo;
 use common\components\Controller;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
@@ -33,7 +36,7 @@ class DefaultController extends Controller
 
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -51,7 +54,7 @@ class DefaultController extends Controller
                     ['allow' => true, 'actions' => ['create', 'update', 'revoke', 'excellent'], 'roles' => ['@']],
                 ]
             ],
-        ];
+        ]);
     }
 
     /**
@@ -71,7 +74,7 @@ class DefaultController extends Controller
         }
 
         $dataProvider = $searchModel->search($params);
-        $dataProvider->query->andWhere([Post::tableName() . '.type' => 'topic', 'status'=>[Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]]);
+        $dataProvider->query->andWhere([Post::tableName() . '.type' => 'topic', 'status' => [Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]]);
         // 排序
         $sort = $dataProvider->getSort();
         $sort->attributes = array_merge($sort->attributes, [
@@ -139,6 +142,7 @@ class DefaultController extends Controller
             'pagination' => [
                 'pageSize' => self::PAGE_SIZE,
             ],
+            'sort' => ['defaultOrder' => ['created_at' => SORT_ASC]]
         ]);
 
         // 文章浏览次数
@@ -168,18 +172,8 @@ class DefaultController extends Controller
                 $this->flash('请勿发表无意义的内容', 'warning');
                 return $this->redirect('create');
             }
-            $model->user_id = Yii::$app->user->id;
-            $model->type = 'topic';
-            if ($model->tags) {
-                $model->addTags(explode(',', $model->tags));
-            }
-            $rawContent = $model->content;
-            $model->content = TopicService::replace($rawContent);
+
             if ($model->save()) {
-                (new UserMeta)->saveNewMeta('topic', $model->id, 'follow');
-                (new NotificationService())->newPostNotify(Yii::$app->user->identity, $model, $rawContent);
-                // 更新个人总统计
-                UserInfo::updateAllCounters(['post_count' => 1], ['user_id' => $model->user_id]);
                 $this->flash('发表文章成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -201,14 +195,11 @@ class DefaultController extends Controller
     {
         $model = Topic::findTopic($id);
 
-        if ($model === null || !$model->isCurrent()) {
+        if (!($model && (User::getThrones() || $model->isCurrent()))) {
             throw new NotFoundHttpException;
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->tags) {
-                $model->addTags(explode(',', $model->tags));
-            }
             if ($model->save()) {
                 $this->flash('发表更新成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -229,9 +220,10 @@ class DefaultController extends Controller
     public function actionDelete($id)
     {
         $model = Topic::findTopic($id);
-        if (!$model->isCurrent()) {
-            throw new NotFoundHttpException();
+        if (!($model && (User::getThrones() || $model->isCurrent()))) {
+            throw new NotFoundHttpException;
         }
+
         if ($model->comment_count) {
             $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'warning');
         } else {
@@ -253,8 +245,8 @@ class DefaultController extends Controller
     public function actionRevoke($id)
     {
         $model = Topic::findDeletedTopic($id);
-        if (!$model->isCurrent()) {
-            throw new NotFoundHttpException();
+        if (!($model && (User::getThrones() || $model->isCurrent()))) {
+            throw new NotFoundHttpException;
         }
         TopicService::revoke($model);
         $this->flash("「{$model->title}」文章撤销删除成功。", 'success');

@@ -7,7 +7,7 @@ $this->title = '发布新话题';
 // $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="col-md-10 topic-create" contenteditable="false" style="">
+<div class="col-md-9 topic-create" contenteditable="false" style="">
 
     <div class="panel panel-default">
         <div class="panel-heading clearfix">

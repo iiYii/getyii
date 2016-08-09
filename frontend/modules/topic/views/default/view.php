@@ -8,9 +8,10 @@ use yii\helpers\Markdown;
 /* @var $model common\Models\Post */
 
 $this->title = $model->title;
+
 ?>
 
-<div class="col-md-10 topic-view" contenteditable="false" style="">
+<div class="col-md-9 topic-view" contenteditable="false" style="">
     <div class="panel panel-default">
         <div class="panel-heading media clearfix">
             <div class="media-body">
@@ -117,7 +118,7 @@ $this->title = $model->title;
                     );
                 }
             ?>
-            <?php if ($model->isCurrent()): ?>
+            <?php if ($model->isCurrent() || \common\models\User::getThrones()): ?>
                 <span class="pull-right">
                     <?= Html::a(
                         Html::tag('i', '', ['class' => 'fa fa-pencil']) . ' 修改',
@@ -153,5 +154,7 @@ $this->title = $model->title;
 
 </div>
 <?= \frontend\widgets\TopicSidebar::widget([
-    'node' => $model->category
+    'type' => 'view',
+    'node' => $model->category,
+    'tags' => $model->tags
 ]); ?>

@@ -8,9 +8,12 @@
 namespace frontend\modules\tweet\models;
 
 use common\models\Post;
+use common\models\PostTag;
+use common\services\PostService;
 use frontend\modules\user\models\UserMeta;
 use yii\web\NotFoundHttpException;
 use Yii;
+use common\services\NotificationService;
 
 class Tweet extends Post
 {
@@ -43,7 +46,7 @@ class Tweet extends Post
      * @return array|null|\yii\db\ActiveRecord|static
      * @throws NotFoundHttpException
      */
-    public function findModel($id, $condition = '')
+    public static function findModel($id, $condition = '')
     {
         if (!$model = Yii::$app->cache->get('topic' . $id)) {
             $model = static::find()
@@ -80,6 +83,25 @@ class Tweet extends Post
     public static function findDeletedTweet($id)
     {
         return static::findModel($id, ['>=', 'status', self::STATUS_DELETED]);
+    }
+
+    public $atUsers;
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
+        $this->content = PostService::contentTweet($this->content, $this);
+        return true;
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+
+        (new UserMeta())->saveNewMeta($this->type, $this->id, 'follow');
+        (new NotificationService())->newPostNotify(\Yii::$app->user->identity, $this, $this->atUsers);
     }
 
 }

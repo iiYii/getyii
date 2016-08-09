@@ -8,39 +8,6 @@ jQuery(function ($) {
         }, 500);
     });
 
-    // @ 用户
-    function autocompleteAtUser() {
-        var atUsers = [],
-            user;
-        $users = $('.media-heading').find('a.author');
-        for (var i = 0; i < $users.length; i++) {
-            user = $users.eq(i).text().trim();
-            if ($.inArray(user, atUsers) == -1) {
-                atUsers.push(user);
-            }
-            ;
-        }
-        ;
-
-        $('#md-input').textcomplete([{
-            mentions: atUsers,
-            match: /\B@(\w*)$/,
-            search: function (term, callback) {
-                callback($.map(this.mentions, function (mention) {
-                    return mention.indexOf(term) === 0 ? mention : null;
-                }));
-            },
-            index: 1,
-            replace: function (mention) {
-                return '@' + mention + ' ';
-            }
-        }], {
-            appendTo: 'body'
-        });
-
-    };
-    autocompleteAtUser();
-
     function notificationsCount() {
         var notification = $('.notification-count');
         var originalTitle = document.title;
@@ -59,12 +26,11 @@ jQuery(function ($) {
                     }
                     setTimeout(scheduleGetNotification, 15000);
                 });
-            };
+            }
             setTimeout(scheduleGetNotification, 15000);
         }
-    };
+    }
     notificationsCount();
-
 
     // 新窗口打开外链
     $('a[href^="http://"], a[href^="https://"]').each(function () {
@@ -82,6 +48,7 @@ jQuery(function ($) {
     hljs.initHighlightingOnLoad();
 
     emojify.setConfig({
+        emojify_tag_type : 'p',
         img_dir : Config.emojiBaseUrl + '/dist/images/basic',
         ignored_tags : {
             'SCRIPT'  : 1,
@@ -160,30 +127,40 @@ jQuery(function ($) {
 
     localStorage();
 
+
+
     /**
      * 监听键盘
      */
+    $('#markdown').keyup(function () {
+        var editor = ace.edit("markdown");
+        var oldContent = editor.getValue();
+        runPreview(oldContent);
+    });
+
     $('#md-input').keyup(function () {
-        runPreview();
+        var oldContent = $("#md-input").val();
+        runPreview(oldContent);
     });
 
     /**
      * markdown预览
      */
-    function runPreview() {
-        var replyContent = $("#md-input");
-        var oldContent = replyContent.val();
+    function runPreview(oldContent) {
         if (oldContent) {
             marked(oldContent, function (err, content) {
                 $('#md-preview').html(content);
-                //$('pre code').each(function (i, block) {
-                //    hljs.highlightBlock(block);
-                //});
+                //highlightBlock();
                 //emojify.run(document.getElementById('preview-box'));
             });
         }
     }
 
+    function highlightBlock () {
+        $('pre code').each(function (i, block) {
+           hljs.highlightBlock(block);
+        });
+    }
 
     $(document).on('click', '.btn-reply', function (e) {
         e.preventDefault();
@@ -244,16 +221,17 @@ jQuery(function ($) {
     });
 
     // 防止重复提交
-    $('form').on('beforeValidate', function (e) {
-        $(':submit').attr('disabled', true).addClass('disabled');
-    });
-    $('form').on('afterValidate', function (e) {
-        if (cheched = $(this).data('yiiActiveForm').validated == false) {
-            $(':submit').removeAttr('disabled').removeClass('disabled');
+    $('form').on('submit', function () {
+        var $form = $(this),
+            data = $form.data('yiiActiveForm');
+        if (data) {
+            // 如果是第一次 submit 并且 客户端验证有效，那么进行正常 submit 流程
+            if (!$form.data('getyii.submitting') && data.validated) {
+                $form.data('getyii.submitting', true);
+                return true;
+            } else { //  否则阻止提交
+                return false;
+            }
         }
     });
-    $('form').on('beforeSubmit', function (e) {
-        $(':submit').attr('disabled', true).addClass('disabled');
-    });
-
 });

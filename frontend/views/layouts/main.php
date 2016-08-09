@@ -13,11 +13,13 @@ use yii\widgets\Breadcrumbs;
 
 AppAsset::register($this);
 BowerAsset::register($this);
+
+\frontend\assets\EditorAsset::register($this);
 $emojify = EmojifyAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>" xmlns="http://www.w3.org/1999/html">
+<html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,11 +35,13 @@ $emojify = EmojifyAsset::register($this);
     <?= \frontend\widgets\Nav::widget(); ?>
 
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+        <div class="row">
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]) ?>
+            <?= Alert::widget() ?>
+            <?= $content ?>
+        </div>
     </div>
 </div>
 
@@ -84,7 +88,7 @@ $emojify = EmojifyAsset::register($this);
             class="glyphicon glyphicon-repeat"></span></button>
     <button type="button" class="btn btn-default" id="pageQrcode" title="本页二维码"><span
             class="glyphicon glyphicon-qrcode"></span>
-        <img class="qrcode" width="130" height="130" src="<?= Url::to(['/site/qrcode', 'url' => Yii::$app->request->absoluteUrl])?>"/>
+        <img class="qrcode" width="130" height="130" src="<?= Url::to(['/site/qrcode', 'url' => Yii::$app->request->absoluteUrl])?>" />
     </button>
     <button type="button" class="btn btn-default" id="goBottom" title="去底部"><span
             class="glyphicon glyphicon-arrow-down"></span></button>

@@ -36,16 +36,43 @@ use kartik\select2\Select2;
 
     <?= $this->render('@frontend/views/partials/markdwon_help') ?>
 
-    <?= $form->field($model, 'content', [
-        'selectors' => [
-            'input' => '#md-input'
-        ],
+    <div class="opts pull-right">
+    <span class="dropdown dropdown-small" id="editor-toolbar-insert-code">
+        <a href="#editor-toolbar-insert-code" data-toggle="dropdown" title="插入代码" aria-expanded="false">
+            <i class="fa fa-code"></i>
+        </a>
+        <ul class="dropdown-menu insert-codes" role="menu">
+            <li><a data-lang="php" href="#">PHP</a></li>
+            <li><a data-lang="html" href="#">HTML</a></li>
+            <li><a data-lang="scss" href="#">CSS / SCSS</a></li>
+            <li><a data-lang="js" href="#">JavaScript</a></li>
+            <li><a data-lang="yml" href="#">YAML <i>(.yml)</i></a></li>
+            <li><a data-lang="coffee" href="#">CoffeeScript</a></li>
+            <li><a data-lang="conf" href="#">Nginx / Redis <i>(.conf)</i></a></li>
+            <li><a data-lang="python" href="#">Python</a></li>
+            <li><a data-lang="java" href="#">Java</a></li>
+            <li><a data-lang="erlang" href="#">Erlang</a></li>
+            <li><a data-lang="shell" href="#">Shell / Bash</a></li>
+        </ul>
+    </span>
+<!--        <a id="topic-upload-image" rel="twipsy" title="" href="#" data-original-title="上传图片">-->
+<!--            <i class="fa fa-fa fa-image"></i>-->
+<!--        </a>-->
+    </div>
 
-    ])->textarea([
-        'placeholder' => '内容',
-        'id' => 'md-input',
-        'rows' => 10
-    ]) ?>
+    <div class="form-group" id="editor">
+        <?= $form->field($model, 'content')->widget(
+            'trntv\aceeditor\AceEditor',
+            [
+                'id' => 'markdown',
+                'mode' => 'markdown',
+                'containerOptions' => [
+                    'style' => 'width: 100%; min-height: 350px'
+                ],
+                'theme' => 'github'
+            ]
+        ) ?>
+    </div>
 
     <?= SelectizeTextInput::widget([
         'name' => 'Topic[tags]',
@@ -66,6 +93,10 @@ use kartik\select2\Select2;
     ]) ?>
 
     <div class="form-group">
+        <?= $form->field($model, 'cc')->checkbox()  ?>
+    </div>
+
+    <div class="form-group">
         <?= Html::submitButton(
             $model->isNewRecord ? '创建话题' : '修改话题',
             [
@@ -78,8 +109,13 @@ use kartik\select2\Select2;
         </div>
     </div>
 
-    <div id="md-preview"><?= HtmlPurifier::process(\yii\helpers\Markdown::process($model->content, 'gfm')) ?></div>
+    <div id="md-preview" class="pt10">
+        <?= HtmlPurifier::process(\yii\helpers\Markdown::process($model->content, 'gfm')) ?>
+    </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
+<?php
+\frontend\assets\AtJsAsset::register($this);
+?>

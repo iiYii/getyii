@@ -11,7 +11,7 @@ use common\models\Post;
 use common\models\PostComment;
 use common\models\User;
 use common\models\UserInfo;
-use devgroup\TagDependencyHelper\ActiveRecordHelper;
+use DevGroup\TagDependencyHelper\NamingHelper;
 use frontend\modules\topic\models\Topic;
 use frontend\modules\user\models\UserMeta;
 use yii\caching\TagDependency;
@@ -173,7 +173,7 @@ class UserService
             //一天缓存
             \Yii::$app->cache->set($cacheKey, $items, 86400,
                 new TagDependency([
-                    'tags' => [ActiveRecordHelper::getCommonTag(User::className())]
+                    'tags' => [NamingHelper::getCommonTag(User::className())]
                 ])
             );
         }

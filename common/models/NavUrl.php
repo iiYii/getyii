@@ -24,7 +24,7 @@ class NavUrl extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'nav_url';
+        return '{{%nav_url}}';
     }
 
     /**

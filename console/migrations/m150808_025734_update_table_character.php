@@ -18,8 +18,8 @@ class m150808_025734_update_table_character extends Migration
 
     protected function changeCharacter($toA, $toB)
     {
-        $this->execute("ALTER TABLE `post_comment` MODIFY COLUMN `comment` text CHARACTER SET {$toA} COLLATE {$toB};");
-        $this->execute("ALTER TABLE `post` MODIFY COLUMN `content` text CHARACTER SET {$toA} COLLATE {$toB};");
-        $this->execute("ALTER TABLE `notification` MODIFY COLUMN `data` text CHARACTER SET {$toA} COLLATE {$toB};");
+        $this->execute("ALTER TABLE {{%post_comment}} MODIFY COLUMN `comment` text CHARACTER SET {$toA} COLLATE {$toB};");
+        $this->execute("ALTER TABLE {{%post}} MODIFY COLUMN `content` text CHARACTER SET {$toA} COLLATE {$toB};");
+        $this->execute("ALTER TABLE {{%notification}} MODIFY COLUMN `data` text CHARACTER SET {$toA} COLLATE {$toB};");
     }
 }

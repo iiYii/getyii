@@ -69,6 +69,25 @@ class AvatarForm extends Model
         return isset($this->user->avatar) ? \Yii::$app->basePath . \Yii::$app->params['avatarPath'] . $this->user->avatar : null;
     }
 
+
+    /**
+     * fetch new generated image file name with complete path
+     * @return string
+     */
+    public function getNewUploadedImageFile()
+    {
+        return isset($this->avatar) ? \Yii::$app->basePath . \Yii::$app->params['avatarPath'] . $this->avatar : null;
+    }
+
+    /**
+     * use a default icon in case of errors while processing uploaded files
+     */
+    public function useDefaultImage()
+    {
+        $identicon = new \Identicon\Identicon();
+        $this->avatar = $identicon->getImageDataUri($this->user->email);
+    }
+
     /**
      * Process upload of image
      *

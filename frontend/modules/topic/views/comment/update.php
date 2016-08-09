@@ -12,7 +12,7 @@ $this->title = Yii::t('app', 'Update {modelClass}: ', [
     ]) . ' ' . $model->post->title;
 ?>
 
-<div class="col-md-10 topic-create" contenteditable="false" style="">
+<div class="col-md-9 topic-create" contenteditable="false" style="">
 
     <div class="panel panel-default">
         <div class="panel-heading clearfix">

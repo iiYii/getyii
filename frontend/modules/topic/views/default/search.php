@@ -16,7 +16,7 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
 }
 
 ?>
-<div class="col-md-10 topic">
+<div class="col-md-9 topic">
     <div class="panel panel-default">
         <?php if ($node): ?>
             <div class="panel-heading clearfix">

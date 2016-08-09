@@ -29,6 +29,7 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
                 ['label' => '个人资料',  'url' => ['/user/setting/profile']],
                 ['label' => '账号设置',  'url' => ['/user/setting/account']],
                 ['label' => '更换头像',  'url' => ['/user/setting/avatar']],
+                ['label' => '打赏设置',  'url' => ['/user/setting/donate']],
                 ['label' => '账号绑定', 'url' => ['/user/setting/networks'], 'visible' => $networksVisible],
             ]
         ]) ?>

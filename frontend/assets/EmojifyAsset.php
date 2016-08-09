@@ -13,6 +13,7 @@ class EmojifyAsset extends AssetBundle
 
     public $css = [
     ];
+
     public $js = [
         'dist/js/emojify.min.js',
     ];

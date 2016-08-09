@@ -7,9 +7,11 @@
 
 namespace frontend\widgets;
 
+use common\helpers\Arr;
 use common\models\PostMeta;
 use common\models\RightLink;
 use frontend\modules\topic\models\Topic;
+use frontend\modules\user\models\Donate;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
@@ -17,11 +19,11 @@ class TopicSidebar extends \yii\bootstrap\Widget
 {
     public $type = 'node';
     public $node;
+    public $tags;
 
     public function init()
     {
         parent::init();
-        $this->node;
     }
 
     public function run()
@@ -39,7 +41,7 @@ class TopicSidebar extends \yii\bootstrap\Widget
             'url'
         );
 
-        $links = RightLink::find()->where(['type' => RightLink::RIGHT_LINK_TYPE_Links])->all();
+        $links = RightLink::find()->where(['type' => RightLink::RIGHT_LINK_TYPE_LINKS])->all();
 
         $sameTopics = [];
         if ($this->node) {
@@ -54,40 +56,22 @@ class TopicSidebar extends \yii\bootstrap\Widget
                 }
             );
             if (count($sameTopics) > 10) {
-                $sameTopics = $this->arrayRandomAssoc($sameTopics, 10);
+                $sameTopics = Arr::arrayRandomAssoc($sameTopics, 10);
+            }
+
+            if ($this->type == 'view' && (in_array($this->node->alias, params('donateNode')) || array_intersect(explode(',', $this->tags), params('donateTag')))) {
+                $donate = Donate::findOne(['user_id' => Topic::findOne(['id' => request()->get('id')])->user_id, 'status' => Donate::STATUS_ACTIVE]);
             }
         }
 
-        $config = [
-            'type' => $this->type,
-            'node' => $this->node,
-        ];
-
         return $this->render('topicSidebar', [
-            'category'           => PostMeta::blogCategory(),
-            'config'             => $config,
-            'sameTopics'         => $sameTopics,
-            'tips'               => $tips,
+            'category' => PostMeta::blogCategory(),
+            'config' => ['type' => $this->type, 'node' => $this->node],
+            'sameTopics' => $sameTopics,
+            'tips' => $tips,
+            'donate' => isset($donate) ? $donate : [],
             'recommendResources' => $recommendResources,
-            'links'              => $links,
+            'links' => $links,
         ]);
-    }
-
-    /**
-     * 随机筛选$num个数组
-     * @param $arr
-     * @param int $num
-     * @return array
-     */
-    public function arrayRandomAssoc($arr, $num = 1)
-    {
-        $keys = array_keys($arr);
-        shuffle($keys);
-
-        $r = [];
-        for ($i = 0; $i < $num; $i++) {
-            $r[$keys[$i]] = $arr[$keys[$i]];
-        }
-        return $r;
     }
 }

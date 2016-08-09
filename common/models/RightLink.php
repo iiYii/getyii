@@ -31,14 +31,18 @@ class RightLink extends ActiveRecord
     /**
      * 友情链接
      */
-    const RIGHT_LINK_TYPE_Links = 3;
+    const RIGHT_LINK_TYPE_LINKS = 3;
+    /**
+     * 首页提示语
+     */
+    const RIGHT_LINK_TYPE_HEADLINE = 4;
 
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'right_link';
+        return '{{%right_link}}';
     }
 
     /**
@@ -83,6 +87,7 @@ class RightLink extends ActiveRecord
             '1' => '推荐资源',
             '2' => '小贴士',
             '3' => '友情链接',
+            '4' => '首页提示语',
         ];
     }
 }

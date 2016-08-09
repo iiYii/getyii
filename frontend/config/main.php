@@ -16,11 +16,10 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '<alias:login|logout|about|tags|getstart|signup|contact|users|markdown>' => 'site/<alias>',
+                '<alias:login|logout|about|tags|getstart|signup|contact|users|markdown|at-users>' => 'site/<alias>',
                 '<alias:search>' => 'topic/default/<alias>',
                 'member/<username:\w+>' => 'user/default/show',
-                'member/<username:\w+>/post' => 'user/default/post',
-                'member/<username:\w+>/favorite' => 'user/default/favorite',
+                'member/<username:\w+>/<alias:point|post|favorite>' => 'user/default/<alias>',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 'member/<action>/<type:\w+>/<id:\d+>' => 'user/action/<action>',
                 'tag/<tag:\w+>' => 'topic/default/index/',
@@ -32,6 +31,7 @@ return [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
+            'as afterLogin' => 'frontend\behaviors\AfterLoginBehavior',
         ],
         'xunsearch' => [
             'class' => 'hightman\xunsearch\Connection', // 此行必须
@@ -52,24 +52,6 @@ return [
                         'popupWidth' => 820,
                         'popupHeight' => 600,
                     ]
-                ],
-            ],
-        ],
-        'log' => [
-            // 'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning', 'info', 'trace'],
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['info'],
-                    'categories' => ['log'],
-                    'logVars' => [], //除了except对应的分类之外，其他的都写入到
-                    'logFile' => '@frontend/runtime/logs/log/app.log',
-                    'maxFileSize' => 1024 * 1,
-                    'maxLogFiles' => 100,
                 ],
             ],
         ],

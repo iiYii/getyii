@@ -21,7 +21,6 @@ class BowerAsset extends AssetBundle
         'marked/lib/marked.js',
         'highlightjs/highlight.pack.js',
         'localforage/dist/localforage.min.js',
-        'jquery-textcomplete/dist/jquery.textcomplete.min.js',
         'pace/pace.min.js',
     ];
 }

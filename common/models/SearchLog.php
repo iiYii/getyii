@@ -19,7 +19,7 @@ class SearchLog extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'search_log';
+        return '{{%search_log}}';
     }
 
     /**

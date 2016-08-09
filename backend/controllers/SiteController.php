@@ -3,7 +3,6 @@ namespace backend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
 
@@ -42,6 +41,22 @@ class SiteController extends Controller
     }
 
     /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        if (parent::beforeAction($action)) {
+            if ($action->id == 'error' && Yii::$app->user->isGuest)
+                $this->layout = 'main-login';
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * @inheritdoc
      */
     public function actions()
@@ -60,7 +75,6 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
-        $this->layout = 'login';
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }

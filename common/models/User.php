@@ -2,14 +2,13 @@
 namespace common\models;
 
 use common\helpers\Avatar;
-use devgroup\TagDependencyHelper\ActiveRecordHelper;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\helpers\FileHelper;
 use yii\web\IdentityInterface;
-use common\components\db\Mailer;
+use yiier\merit\models\Merit;
 use frontend\modules\user\models\UserAccount;
 
 /**
@@ -28,6 +27,9 @@ use frontend\modules\user\models\UserAccount;
  * @property integer $updated_at
  * @property string $tagline
  * @property string $password write-only password
+ *
+ * @property string $userAvatar
+ * @property Merit $merit
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -36,6 +38,8 @@ class User extends ActiveRecord implements IdentityInterface
     const ROLE_USER = 10;
     const ROLE_ADMIN = 20;
     const ROLE_SUPER_ADMIN = 30;
+
+    use \DevGroup\TagDependencyHelper\TagDependencyTrait;
 
     /**
      * @inheritdoc
@@ -52,10 +56,11 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             TimestampBehavior::className(),
-            'class' => ActiveRecordHelper::className(),
+            'CacheableActiveRecord' => [
+                'class' => \DevGroup\TagDependencyHelper\CacheableActiveRecord::className(),
+            ],
         ];
     }
-
 
 
     /**
@@ -109,6 +114,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
     }
+
     /**
      * Finds user by password reset token
      *
@@ -227,12 +233,15 @@ class User extends ActiveRecord implements IdentityInterface
             $avatarCachePath = Yii::$app->basePath . Yii::$app->params['avatarCachePath'];
             FileHelper::createDirectory($avatarCachePath); // 创建文件夹
             if (file_exists($avatarCachePath . $size . '_' . $this->avatar)) {
-                // 头像是否存在
+                // 缓存头像是否存在
                 return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
             }
-            \yii\imagine\Image::thumbnail($avatarPath . $this->avatar, $size, $size)
-                ->save($avatarCachePath . $size . '_' . $this->avatar, ['quality' => 100]);
-            return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
+            if (file_exists($avatarPath . $this->avatar)) {
+                // 原始头像是否存在
+                \yii\imagine\Image::thumbnail($avatarPath . $this->avatar, $size, $size)
+                    ->save($avatarCachePath . $size . '_' . $this->avatar, ['quality' => 100]);
+                return Yii::$app->params['avatarCacheUrl'] . $size . '_' . $this->avatar;
+            }
         }
         return (new Avatar($this->email, $size))->getAvater();
     }
@@ -248,7 +257,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @return Account[] Connected accounts ($provider => $account)
+     * @return array
      */
     public function getAccounts()
     {
@@ -301,5 +310,75 @@ class User extends ActiveRecord implements IdentityInterface
         } else {
             return false;
         }
+    }
+
+    /**
+     * 获取权限
+     * @param $username
+     * @return bool
+     */
+    public static function getThrones($username = '')
+    {
+        if (!$username && Yii::$app->user->id) {
+            $username = Yii::$app->user->identity->username;
+        } else {
+            return false;
+        }
+        if ($isAdmin = self::isAdmin($username)) {
+            return $isAdmin;
+        }
+        return self::isSuperAdmin($username);
+    }
+
+    public static function getRole($role)
+    {
+        $data = [
+            self::ROLE_ADMIN => [
+                'name' => '高级会员',
+                'color' => 'primary',
+            ],
+            self::ROLE_USER => [
+                'name' => '会员',
+                'color' => 'info',
+            ],
+            self::ROLE_SUPER_ADMIN => [
+                'name' => '管理员',
+                'color' => 'success',
+            ]
+        ];
+        return $data[$role];
+    }
+
+    public static function getRoleList()
+    {
+        return [
+            self::ROLE_ADMIN => '高级会员',
+            self::ROLE_USER => '会员',
+            self::ROLE_SUPER_ADMIN => '管理员',
+        ];
+    }
+
+    public static function getStatus($status)
+    {
+        $data = [
+            self::STATUS_DELETED => [
+                'name' => '已删除',
+                'color' => 'danger',
+            ],
+            self::STATUS_ACTIVE => [
+                'name' => '正常',
+                'color' => 'default',
+            ],
+        ];
+
+        return $data[$status];
+    }
+
+    public static function getStatusList()
+    {
+        return [
+            self::STATUS_DELETED => '已删除',
+            self::STATUS_ACTIVE => '正常',
+        ];
     }
 }

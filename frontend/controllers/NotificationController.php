@@ -8,6 +8,7 @@ use Yii;
 use frontend\models\Notification;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -19,7 +20,7 @@ class NotificationController extends Controller
 {
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -34,7 +35,7 @@ class NotificationController extends Controller
                     ['allow' => true, 'actions' => ['delete', 'clear'], 'verbs' => ['POST'], 'roles' => ['@']],
                 ]
             ]
-        ];
+        ]);
     }
 
     /**

@@ -20,42 +20,22 @@ return [
         'backup' => [
             'class' => 'yiier\backup\Module',
         ],
+        'merit' => [
+            'class' => 'yiier\merit\Module',
+        ],
     ],
     'components' => [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                // '<controller:\w+>/<id:\d+>'=>'<controller>',
-                '<controller:\w+>' => 'post/index/<PostSearch[tags=\w+>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>'
-                // '<controller:\w+Search[\w+]>'=>'<controller>/<action>',
-                // '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-                // '<controller:\w+>/<action:\w+>/<PostSearch[tags]:\w+>'=>'<controller>/',
-                // '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
             ],
         ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-        ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning', 'info', 'trace'],
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['info'],
-                    'categories' => ['backups'],
-                    'logFile' => '@backend/runtime/logs/backup/app.log',
-                    'maxFileSize' => 1024 * 2,
-                    'maxLogFiles' => 20,
-                ],
-            ],
-
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

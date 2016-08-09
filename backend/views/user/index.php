@@ -1,6 +1,6 @@
 <?php
 
-use yii\helpers\Html;
+use common\models\User;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
@@ -12,12 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -31,7 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'password_reset_token',
             // 'email:email',
             // 'tagline',
-             'role',
+             [
+                 'attribute' => 'role',
+                 'value' => function($model) {
+                     return User::getRole($model->role)['name'];
+                 },
+             ],
             // 'status',
              'created_at:datetime',
              'updated_at:datetime',

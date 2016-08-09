@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+\frontend\assets\AtJsAsset::register($this);
 ?>
 <div class="list-group-item">
 
@@ -18,8 +19,9 @@ use yii\widgets\ActiveForm;
             'input' => '#md-input'
         ],
         ])->textarea([
-            'placeholder' => '内容',
+            'placeholder' => t('app', 'Tweet Content'),
             'id' => 'md-input',
+            'data-at-topic' => true,
             'rows' => 5
         ]) ?>
 

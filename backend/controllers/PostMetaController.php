@@ -5,27 +5,13 @@ namespace backend\controllers;
 use Yii;
 use common\models\PostMeta;
 use common\models\PostMetaSearch;
-use common\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * PostMetaController implements the CRUD actions for PostMeta model.
  */
 class PostMetaController extends Controller
 {
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all PostMeta models.
      * @return mixed

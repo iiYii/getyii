@@ -16,7 +16,7 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
     $node = \common\models\PostMeta::find()->where(['alias' => $node])->one();
 }
 ?>
-<div class="col-md-10 topic">
+<div class="col-md-9 topic">
     <div class="panel panel-default">
         <?php if($node): ?>
         <div class="panel-heading clearfix">
@@ -43,7 +43,11 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
 
         </div>
 
-        <?php Pjax::begin(['scrollTo' => 0]); ?>
+        <?php Pjax::begin([
+            'scrollTo' => 0,
+            'formSelector' => false,
+            'linkSelector' => '.pagination a'
+        ]); ?>
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
             'itemOptions' => ['class' => 'list-group-item'],

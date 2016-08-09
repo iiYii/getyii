@@ -60,9 +60,21 @@
     "process-timeout": 1800
   },
   "autoload": {
+    "psr-4": { "common\\": "common" },
     "files": [
       "common/components/GlobalFunctions.php"
     ]
+  },
+ "scripts": {
+      "post-create-project-cmd": [
+          "yii\\composer\\Installer::postCreateProject"
+      ],
+      "post-install-cmd": [
+          "common\\components\\ComposerInstaller::initProject"
+      ],
+      "post-update-cmd": [
+          "common\\components\\ComposerInstaller::initProject"
+      ]
   },
   "extra": {
     "asset-installer-paths": {

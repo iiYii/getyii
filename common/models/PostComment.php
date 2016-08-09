@@ -25,6 +25,8 @@ use frontend\modules\topic\models\Topic;
  * @property string $ip
  * @property string $created_at
  * @property string $updated_at
+ *
+ * @property Topic $topic
  */
 class PostComment extends ActiveRecord
 {
@@ -166,6 +168,7 @@ class PostComment extends ActiveRecord
     }
 
     public $atUsers;
+
     public function beforeSave($insert)
     {
         if (!parent::beforeSave($insert)) {
@@ -186,10 +189,12 @@ class PostComment extends ActiveRecord
         (new NotificationService())->newReplyNotify(\Yii::$app->user->identity, $post, $this, $this->atUsers);
         // 更新回复时间
         $post->lastCommentToUpdate(\Yii::$app->user->identity->username);
-        // 评论计数器
-        Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
-        // 更新个人总统计
-        UserInfo::updateAllCounters(['comment_count' => 1], ['user_id' => $this->user_id]);
+        if ($insert) {
+            // 评论计数器
+            Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
+            // 更新个人总统计
+            UserInfo::updateAllCounters(['comment_count' => 1], ['user_id' => $this->user_id]);
+        }
 
         \Yii::$app->cache->set('comment' . $this->id, $this, 0);
 

@@ -114,6 +114,7 @@ class Topic extends Post
     }
 
     public $atUsers;
+
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
@@ -157,11 +158,13 @@ class Topic extends Post
             $search->save();
         }
 
-        // 保存 meta data
-        (new UserMeta)->saveNewMeta('topic', $this->id, 'follow');
         (new NotificationService())->newPostNotify(\Yii::$app->user->identity, $this, $this->atUsers);
-        // 更新个人总统计
-        UserInfo::updateAllCounters(['post_count' => 1], ['user_id' => $this->user_id]);
+        if ($insert) {
+            // 保存 meta data
+            (new UserMeta)->saveNewMeta('topic', $this->id, 'follow');
+            // 更新个人总统计
+            UserInfo::updateAllCounters(['post_count' => 1], ['user_id' => $this->user_id]);
+        }
     }
 
     /**

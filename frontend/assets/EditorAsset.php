@@ -13,7 +13,13 @@ class EditorAsset extends AssetBundle
     ];
 
     public $js = [
-//        'js/jquery.caret.js',
         'js/editor.js',
+    ];
+
+    public $depends = [
+        'yii\web\YiiAsset',
+        'common\assets\AtJs',
+        'common\assets\CaretJs',
+        'common\assets\DropzoneJs',
     ];
 }

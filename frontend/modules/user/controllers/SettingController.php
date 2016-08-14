@@ -65,7 +65,6 @@ class SettingController extends Controller
                     'class' => 'yii\authclient\clients\GitHub',
                     'clientId' => Yii::$app->setting->get('githubClientId'),
                     'clientSecret' => Yii::$app->setting->get('githubClientSecret'),
-                    'curlOptions' => ['User-Agent' => 'forecho']
                 ],
             ],
         ]);

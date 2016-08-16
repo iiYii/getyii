@@ -5,6 +5,7 @@ namespace frontend\modules\tweet\controllers;
 use common\components\Controller;
 use common\models\Post;
 use common\services\NotificationService;
+use common\services\PostService;
 use common\services\TweetService;
 use frontend\modules\tweet\models\Tweet;
 use frontend\modules\tweet\models\TweetSearch;
@@ -77,12 +78,7 @@ class DefaultController extends Controller
             }
             $model->user_id = Yii::$app->user->id;
             $model->type = $model::TYPE;
-            $rawContent = $model->content;
-            $model->content = TweetService::replaceTopic(TweetService::replace($rawContent));
             if ($model->save()) {
-                (new UserMeta())->saveNewMeta($model->type, $model->id, 'follow');
-                (new NotificationService())->newPostNotify(Yii::$app->user->identity, $model, $rawContent);
-
                 $this->flash('发表成功!', 'success');
             }
         }

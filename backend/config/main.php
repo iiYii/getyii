@@ -20,6 +20,9 @@ return [
         'backup' => [
             'class' => 'yiier\backup\Module',
         ],
+        'merit' => [
+            'class' => 'yiier\merit\Module',
+        ],
     ],
     'components' => [
         'urlManager' => [

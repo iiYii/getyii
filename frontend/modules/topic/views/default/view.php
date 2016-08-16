@@ -8,10 +8,12 @@ use yii\helpers\Markdown;
 /* @var $model common\Models\Post */
 
 $this->title = $model->title;
+
 \frontend\assets\AtJsAsset::register($this);
 
 $node = \common\models\PostMeta::find()->where(['alias' => $model->category->alias])->one();
 $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
+
 ?>
 
 <div class="col-md-9 topic-view" contenteditable="false" style="">

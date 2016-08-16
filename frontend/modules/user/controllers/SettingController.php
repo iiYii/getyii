@@ -57,7 +57,7 @@ class SettingController extends Controller
             'class' => 'yii\authclient\Collection',
             'clients' => [
                 'google' => [
-                    'class' => 'yii\authclient\clients\GoogleOAuth',
+                    'class' => 'yii\authclient\clients\Google',
                     'clientId' => Yii::$app->setting->get('googleClientId'),
                     'clientSecret' => Yii::$app->setting->get('googleClientSecret'),
                 ],

@@ -4,9 +4,6 @@ return [
     'timeZone' => 'Asia/Shanghai', //time zone affect the formatter datetime format
     'language' => 'zh-CN',
     'modules' => [
-        'merit' => [
-            'class' => 'yiier\merit\Module',
-        ],
     ],
     'components' => [
         'formatter' => [ //for the showing of date datetime
@@ -124,8 +121,6 @@ return [
 
         'session' => [
             'class' => 'yii\web\DbSession',
-            // 'db' => 'mydb',  // 数据库连接的应用组件ID，默认为'db'.
-            'sessionTable' => 'session', // session 数据表名，默认为'session'.
         ],
         'db' => require(__DIR__ . '/db.php'),
         'i18n' => [

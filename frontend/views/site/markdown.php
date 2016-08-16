@@ -120,7 +120,7 @@ public function getDataCellValue($model, $key, $index)
 请注意后面 Markdown 源代码的换行留空情况。
 ';
 ?>
-<div class="panel panel-default">
+<div class="panel panel-default user-default-index">
     <div class="panel-heading">
         <?= $this->title; ?>
     </div>

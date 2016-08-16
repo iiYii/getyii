@@ -64,6 +64,7 @@ $node = $config['node'];
         </div>
     <?php endif ?>
 
+
     <?php if (!$config['node'] &&!empty($links)): ?>
         <div class="panel panel-default corner-radius">
             <div class="panel-heading text-center">
@@ -86,6 +87,16 @@ $node = $config['node'];
             </div>
         </div>
     <?php endif ?>
+
+    <div class="panel panel-default corner-radius">
+        <div class="panel-heading text-center">
+            <h3 class="panel-title"><?= \Yii::t('app', 'Tips and Tricks'); ?></h3>
+        </div>
+        <div class="panel-body">
+            <?= \yii\helpers\Markdown::process($tips, 'gfm'); ?>
+        </div>
+    </div>
+
 
     <?php if (!$config['node'] && !empty($links)): ?>
         <div class="panel panel-default corner-radius">
@@ -129,15 +140,6 @@ $node = $config['node'];
             'items' => $sameTopics,
         ]);
     } ?>
-
-    <div class="panel panel-default corner-radius">
-        <div class="panel-heading text-center">
-            <h3 class="panel-title"><?= \Yii::t('app', 'Tips and Tricks'); ?></h3>
-        </div>
-        <div class="panel-body">
-            <?= \yii\helpers\Markdown::process($tips, 'gfm'); ?>
-        </div>
-    </div>
 
     <?php \frontend\widgets\Panel::widget([
         'title' => \Yii::t('app', 'Site Status'),

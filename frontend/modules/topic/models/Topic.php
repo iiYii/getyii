@@ -15,6 +15,8 @@ use common\services\TopicService;
 use frontend\modules\user\models\UserMeta;
 use yii\web\NotFoundHttpException;
 use Yii;
+use common\models\UserInfo;
+use common\services\NotificationService;
 
 class Topic extends Post
 {
@@ -111,6 +113,8 @@ class Topic extends Post
         return static::findModel($id, ['>=', 'status', self::STATUS_DELETED]);
     }
 
+    public $atUsers;
+
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
@@ -118,7 +122,7 @@ class Topic extends Post
             if ($this->tags) {
                 $this->addTags(explode(',', $this->tags));
             }
-            $this->content = TopicService::replace($this->content)
+            $this->content = TopicService::contentTopic($this->content, $this)
                 . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->username]) : '');
 
             if ($insert) {
@@ -152,6 +156,14 @@ class Topic extends Post
             $search->content = $this->content;
             $search->updated_at = $this->updated_at;
             $search->save();
+        }
+
+        (new NotificationService())->newPostNotify(\Yii::$app->user->identity, $this, $this->atUsers);
+        if ($insert) {
+            // 保存 meta data
+            (new UserMeta)->saveNewMeta('topic', $this->id, 'follow');
+            // 更新个人总统计
+            UserInfo::updateAllCounters(['post_count' => 1], ['user_id' => $this->user_id]);
         }
     }
 

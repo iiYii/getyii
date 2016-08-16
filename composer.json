@@ -24,7 +24,6 @@
     "yiisoft/yii2-bootstrap": "*",
     "yiisoft/yii2-swiftmailer": "*",
     "2amigos/yii2-selectize-widget": "*",
-    "bower-asset/sb-admin-2-assets": "*",
     "bower-asset/font-awesome": "*",
     "bower-asset/marked": "*",
     "bower-asset/highlightjs": "*",
@@ -48,7 +47,9 @@
     "yiier/yii2-return-url": "*",
     "yiier/yii2-merit": "*",
     "yiisoft/yii2-httpclient": "dev-master",
-    "understeam/yii2-slack": "~0.1"
+    "understeam/yii2-slack": "~0.1",
+    "dmstr/yii2-adminlte-asset": "2.*",
+    "enyo/dropzone": "^4.3"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",
@@ -60,9 +61,21 @@
     "process-timeout": 1800
   },
   "autoload": {
+    "psr-4": { "common\\": "common" },
     "files": [
       "common/components/GlobalFunctions.php"
     ]
+  },
+ "scripts": {
+      "post-create-project-cmd": [
+          "yii\\composer\\Installer::postCreateProject"
+      ],
+      "post-install-cmd": [
+          "common\\components\\ComposerInstaller::initProject"
+      ],
+      "post-update-cmd": [
+          "common\\components\\ComposerInstaller::initProject"
+      ]
   },
   "extra": {
     "asset-installer-paths": {

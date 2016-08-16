@@ -38,7 +38,7 @@ class PostSearch extends Post
      */
     public function search($params)
     {
-        $query = Post::find();
+        $query = Post::find()->with('user', 'category');
 
         // 如果有无人区节点 帖子列表过滤无人区节点的帖子
         if (PostMeta::noManLandId() && (empty($params['PostSearch']['post_meta_id']) || $params['PostSearch']['post_meta_id'] != PostMeta::noManLandId())) {

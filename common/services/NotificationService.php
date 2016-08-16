@@ -28,7 +28,7 @@ class NotificationService
      * @param string $rawComment
      * @throws Exception
      */
-    public function newReplyNotify(User $fromUser, Topic $topic, PostComment $comment, $rawComment = '')
+    public function newReplyNotify(User $fromUser, Topic $topic, PostComment $comment, $atUsers)
     {
         foreach ($topic->follower as $key => $value) {
             $users[$value->user_id] = $value->user_id;
@@ -38,28 +38,28 @@ class NotificationService
         $this->batchNotify(
             'at',
             $fromUser,
-            $this->removeDuplication($comment->parse($rawComment)),
+            $atUsers,
             $topic,
             $comment);
 
         // 通知关注的用户
         //print_r($users);die;
-        $this->batchNotify('new_comment', $fromUser, $this->removeDuplication($users), $topic, $comment);
+        $this->batchNotify('new_comment', $fromUser, $users, $topic, $comment);
     }
 
     /**
      * 内容@用户会有通知
      * @param User $fromUser
      * @param Post $post
-     * @param string $rawContent
+     * @param [] $users
      * @throws Exception
      */
-    public function newPostNotify(User $fromUser, Post $post, $rawContent = '')
+    public function newPostNotify(User $fromUser, Post $post, $users)
     {
         $this->batchNotify(
             'at_' . $post->type,
             $fromUser,
-            $this->removeDuplication(PostService::parse($rawContent)),
+            $users,
             $post
         );
     }
@@ -126,24 +126,7 @@ class NotificationService
             }
         }
     }
-
-    /**
-     * 去掉重复 避免通知重复
-     * @param $users
-     * @return array
-     */
-    public function removeDuplication($users)
-    {
-        $notYetNotifyUsers = [];
-        foreach ($users as $key => $value) {
-            if (!in_array($key, $this->notifiedUsers)) {
-                $notYetNotifyUsers[$key] = $value;
-                $this->notifiedUsers[] = $key;
-            }
-        }
-        return $notYetNotifyUsers;
-    }
-
+    
     /**
      * 查找用户的动作通知
      * @param UserMeta $meta

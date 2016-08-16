@@ -14,7 +14,7 @@ class Controller extends \yii\web\Controller
         return ArrayHelper::merge(parent::behaviors(), [
             'returnUrl' => [
                 'class' => 'yiier\returnUrl\ReturnUrl',
-                'uniqueIds' => ['site/qrcode', 'site/login', 'user/security/auth']
+                'uniqueIds' => ['site/qrcode', 'site/login', 'user/security/auth', 'site/reset-password']
             ],
             MeritBehavior::className(),
         ]);
@@ -39,7 +39,7 @@ class Controller extends \yii\web\Controller
 
     /**
      * 显示flash信息
-     * @param $message 信息显示内容
+     * @param $message string 信息显示内容
      * @param string $type 信息显示类型, ['info', 'success', 'error', 'warning']
      * @param null $url 跳转地址
      * @return Response
@@ -53,7 +53,7 @@ class Controller extends \yii\web\Controller
     }
 
     /**
-     * @param $message 信息显示内容
+     * @param $message string 信息显示内容
      * @param string $type 信息显示类型, ['info', 'success', 'error', 'warning']
      * @param null $redirect 跳转地址
      * @param null $resultType 信息显示格式

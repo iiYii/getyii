@@ -45,7 +45,10 @@ $emojify = EmojifyAsset::register($this);
     </div>
 </div>
 
+<?= \frontend\widgets\Ad::widget(['key'=>'bd_pic_960_90']); ?>
+
 <footer class="footer">
+
     <div class="container">
         <div class="row">
             <dl class="col-sm-2">
@@ -72,10 +75,10 @@ $emojify = EmojifyAsset::register($this);
                 </dd>
             </dl>
             <div class="col-sm-3">
-                <a href="http://www.qiniu.com/">
-                    <img src="http://assets.qiniu.com/qiniu-transparent.png" alt="qiniu" width="240">
+                <a href="http://ytuninfo.com/" target="_blank">
+                    <img src="http://cache.dba-china.com/images/qrcode_tunyun.jpg" alt="qiniu" width="180">
                 </a>
-                <p>赞助本站，你的LOGO将出现在这里</p>
+                <p>Oracle干货天天看(合作伙伴公众号)</p>
             </div>
         </div>
     </div>

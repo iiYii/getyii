@@ -6,7 +6,10 @@
  */
 use yii\helpers\Html;
 
+$module = Yii::$app->controller->module->id;
+$action = Yii::$app->controller->action->id;
 $node = $config['node'];
+
 /** @var array|\frontend\modules\user\models\Donate $donate */
 ?>
 <div class="col-md-3 side-bar p0">
@@ -57,6 +60,29 @@ $node = $config['node'];
                         ['class' => 'btn btn-info']
                     ) ?>
                 </div>
+            </div>
+        </div>
+    <?php endif ?>
+
+    <?php if (!$config['node'] &&!empty($links)): ?>
+        <div class="panel panel-default corner-radius">
+            <div class="panel-heading text-center">
+                <h3 class="panel-title">合作伙伴</h3>
+            </div>
+            <div class="panel-body">
+                <?= Html::img('http://cache.dba-china.com/images/qrcode_tunyun.jpg', ['width' => 250]); ?>
+                <p>专注企业数据库创新服务和Oracle数据库干货分享：<a href="http://ytuninfo.com">http://ytuninfo.com</a> </p>
+            </div>
+        </div>
+    <?php endif ?>
+
+    <?php if ($node && !$donate): ?>
+        <div class="panel panel-default corner-radius">
+            <div class="panel-heading text-center">
+                <h3 class="panel-title">广而告知</h3>
+            </div>
+            <div class="panel-body">
+                <?= \frontend\widgets\Ad::widget(['key'=>'bd_pic_250_250']); ?>
             </div>
         </div>
     <?php endif ?>

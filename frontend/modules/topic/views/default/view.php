@@ -42,9 +42,11 @@ $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
         <div class="panel-body article">
 
             <?= HtmlPurifier::process(Markdown::process($model->content, 'gfm')) ?>
-            <div class="bdsharebuttonbox" style="float: right"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a></div>
-            <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+            <div class="bdsharebuttonbox" style="float: right"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+                <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div>
             <div style="clear: both"></div>
+            <hr/>
+            <?= \frontend\widgets\Ad::widget(['key'=>'bd_pic_640_60']); ?>
             <?php if ($model->status == 2): ?>
                 <div class="ribbon-excellent">
                     <i class="fa fa-trophy excellent"></i> 本帖已被设为精华帖！
@@ -177,10 +179,12 @@ $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
         </div>
     </div>
 
+
     <?= $this->render(
         '@frontend/modules/topic/views/comment/index',
         ['model' => $model, 'dataProvider' => $dataProvider]
     ) ?>
+
 
     <?= $this->render(
         '@frontend/modules/topic/views/comment/create',

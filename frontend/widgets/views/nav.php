@@ -24,6 +24,7 @@ $tweetActive = ($module == 'tweet') ? true : false;
 $topicTagsActive = $action == 'tags' || ($module == 'topic' && $tag) ? true : false;
 $navActive = ($module == 'nav') ? true : false;
 $jobsActive = ($node == 'jobs') ? true : false;
+$lepusActive = ($node == 'lepus') ? true : false;
 //add by ruyi
 $dbabarActive = ($node == 'dba-bar') ? true : false;
 
@@ -41,6 +42,7 @@ echo Nav::widget([
         //['label' =>  Icon::show('th-large')  . '首页', 'url' => ['/site/index'] ],
         ['label' => Icon::show('comment') . '话题', 'url' => ['/topic'], 'active' => $topicActive],
         ['label' => Icon::show('envelope') . '招聘', 'url' => ['/topic/default/index', 'node' => 'jobs'], 'active' => $jobsActive],
+        ['label' => Icon::show('github-alt') . 'Lepus', 'url' => ['/topic/default/index', 'node' => 'lepus'], 'active' => $lepusActive],
         ['label' => Icon::show('commenting') . '动弹', 'url' => ['/tweet'], 'active' => $tweetActive],
         ['label' => Icon::show('th') . '标签', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
         //['label' => Icon::show('signal') . '新手入门', 'url' => ['/site/getstart']],

@@ -9,12 +9,22 @@ use kartik\icons\Icon;
 
 Icon::map($this);
 
-$this->title = '社区';
-$sort = Yii::$app->request->getQueryParam('sort');
+$node = Yii::$app->request->getQueryParam('node');
 $tag = Yii::$app->request->getQueryParam('tag');
-if ($node = Yii::$app->request->getQueryParam('node')) {
+$sort = Yii::$app->request->getQueryParam('sort');
+if ($node) {
     $node = \common\models\PostMeta::find()->where(['alias' => $node])->one();
+    $seo_title = $node->name.' 社区网站';
 }
+else if($tag){
+    $seo_title = $tag.' 话题标签';
+}
+else{
+    $seo_title = "社区话题";
+}
+$this->title = $seo_title;
+
+
 $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
 ?>
 <div class="col-md-9 topic">

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1e073542c8726cb9e8eb74ed2c2d40ad",
-    "content-hash": "3e19c4d23a839c3fe86bd26f215f9156",
+    "hash": "95196d26cfe3a2538f0b69a77b678f8c",
+    "content-hash": "4807e5d95a48e9ef68e474c686610c70",
     "packages": [
         {
             "name": "2amigos/yii2-qrcode-helper",
@@ -131,16 +131,16 @@
         },
         {
             "name": "almasaeed2010/adminlte",
-            "version": "v2.3.5",
+            "version": "v2.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/almasaeed2010/AdminLTE.git",
-                "reference": "0ab2eb7f382e79810ebf3032ce766a02af2b0f3b"
+                "reference": "be11566d9539370b196ac85f22a6baf9f42c87cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/0ab2eb7f382e79810ebf3032ce766a02af2b0f3b",
-                "reference": "0ab2eb7f382e79810ebf3032ce766a02af2b0f3b",
+                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/be11566d9539370b196ac85f22a6baf9f42c87cb",
+                "reference": "be11566d9539370b196ac85f22a6baf9f42c87cb",
                 "shasum": ""
             },
             "type": "library",
@@ -151,7 +151,7 @@
             "authors": [
                 {
                     "name": "Abdullah Almsaeed",
-                    "email": "support@almsaeedstudio.com"
+                    "email": "abdullah@almsaeedstudio.com"
                 }
             ],
             "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 3",
@@ -167,7 +167,7 @@
                 "theme",
                 "web"
             ],
-            "time": "2016-07-03 15:21:22"
+            "time": "2016-08-04 23:22:06"
         },
         {
             "name": "bower-asset/At.js",
@@ -233,20 +233,20 @@
         },
         {
             "name": "bower-asset/bootstrap",
-            "version": "v3.3.5",
+            "version": "v3.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "16b48259a62f576e52c903c476bd42b90ab22482"
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/16b48259a62f576e52c903c476bd42b90ab22482",
-                "reference": "16b48259a62f576e52c903c476bd42b90ab22482",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/0b9c4a4007c44201dce9a6cc1a38407005c26c86",
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/jquery": ">=1.9.1"
+                "bower-asset/jquery": ">=1.9.1,<4.0"
             },
             "type": "bower-asset-library",
             "extra": {
@@ -557,16 +557,16 @@
         },
         {
             "name": "bower-asset/marked",
-            "version": "v0.3.5",
+            "version": "v0.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/chjj/marked.git",
-                "reference": "88ce4df47c4d994dc1b1df1477a21fb893e11ddc"
+                "reference": "eddec20467c2d10c7769061ee9074e268500966f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chjj/marked/zipball/88ce4df47c4d994dc1b1df1477a21fb893e11ddc",
-                "reference": "88ce4df47c4d994dc1b1df1477a21fb893e11ddc",
+                "url": "https://api.github.com/repos/chjj/marked/zipball/eddec20467c2d10c7769061ee9074e268500966f",
+                "reference": "eddec20467c2d10c7769061ee9074e268500966f",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -593,16 +593,16 @@
         },
         {
             "name": "bower-asset/metisMenu",
-            "version": "v2.5.2",
+            "version": "v2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/onokumus/metisMenu.git",
-                "reference": "ba21a8ea77bcecf8d23ec156ae8b2c0ae82167ba"
+                "reference": "b6751cd3c5eef2526f55ff047eb649280d4d5430"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/onokumus/metisMenu/zipball/ba21a8ea77bcecf8d23ec156ae8b2c0ae82167ba",
-                "reference": "ba21a8ea77bcecf8d23ec156ae8b2c0ae82167ba",
+                "url": "https://api.github.com/repos/onokumus/metisMenu/zipball/b6751cd3c5eef2526f55ff047eb649280d4d5430",
+                "reference": "b6751cd3c5eef2526f55ff047eb649280d4d5430",
                 "shasum": ""
             },
             "require": {
@@ -680,16 +680,16 @@
         },
         {
             "name": "bower-asset/pace",
-            "version": "v1.0.2",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/HubSpot/pace.git",
-                "reference": "c6846cbf6b928e9903b569269fa9fbf32f2554f4"
+                "reference": "0c6d06d6b4c1632a482760cdbf02de0879d15bc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/HubSpot/pace/zipball/c6846cbf6b928e9903b569269fa9fbf32f2554f4",
-                "reference": "c6846cbf6b928e9903b569269fa9fbf32f2554f4",
+                "url": "https://api.github.com/repos/HubSpot/pace/zipball/0c6d06d6b4c1632a482760cdbf02de0879d15bc2",
+                "reference": "0c6d06d6b4c1632a482760cdbf02de0879d15bc2",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -772,7 +772,7 @@
                 "bower-asset/sifter": "dev-0.4.x|0.4.x"
             },
             "require-dev": {
-                "bower-asset/bootstrap-2": "2",
+                "bower-asset/bootstrap-2": "~2",
                 "bower-asset/bootstrap-3.2": "3.2"
             },
             "type": "bower-asset-library",
@@ -1089,16 +1089,16 @@
         },
         {
             "name": "dmstr/yii2-adminlte-asset",
-            "version": "2.3.1",
+            "version": "2.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-adminlte-asset.git",
-                "reference": "e9e5a843e47f47af61146524af99c0e98d8f5f90"
+                "reference": "a1330f2f678d66d8ce2f8acb6fb9ce60a4614c60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/e9e5a843e47f47af61146524af99c0e98d8f5f90",
-                "reference": "e9e5a843e47f47af61146524af99c0e98d8f5f90",
+                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/a1330f2f678d66d8ce2f8acb6fb9ce60a4614c60",
+                "reference": "a1330f2f678d66d8ce2f8acb6fb9ce60a4614c60",
                 "shasum": ""
             },
             "require": {
@@ -1133,26 +1133,68 @@
                     "email": "et.coder@gmail.com"
                 }
             ],
-            "description": "Backend theme for Yii2 Framework",
+            "description": "AdminLTE backend theme asset bundle for Yii 2.0 Framework",
             "keywords": [
                 "AdminLTE",
+                "admin",
+                "asset",
+                "backend",
+                "css",
                 "extension",
+                "less",
+                "theme",
                 "yii2"
             ],
-            "time": "2016-05-31 15:42:01"
+            "time": "2016-07-28 03:57:05"
         },
         {
-            "name": "ezyang/htmlpurifier",
-            "version": "v4.7.0",
+            "name": "enyo/dropzone",
+            "version": "v4.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "ae1828d955112356f7677c465f94f7deb7d27a40"
+                "url": "https://github.com/enyo/dropzone.git",
+                "reference": "d8ef7a82e6ab5447c1f2d9512c8e1bfd4de5ac9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/ae1828d955112356f7677c465f94f7deb7d27a40",
-                "reference": "ae1828d955112356f7677c465f94f7deb7d27a40",
+                "url": "https://api.github.com/repos/enyo/dropzone/zipball/d8ef7a82e6ab5447c1f2d9512c8e1bfd4de5ac9e",
+                "reference": "d8ef7a82e6ab5447c1f2d9512c8e1bfd4de5ac9e",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matias Meno",
+                    "email": "m@tias.me",
+                    "homepage": "http://www.matiasmeno.com"
+                }
+            ],
+            "description": "Handles drag and drop of files for you.",
+            "homepage": "http://www.dropzonejs.com",
+            "keywords": [
+                "drag and drop",
+                "dragndrop",
+                "file upload",
+                "upload"
+            ],
+            "time": "2016-02-14 04:19:41"
+        },
+        {
+            "name": "ezyang/htmlpurifier",
+            "version": "v4.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezyang/htmlpurifier.git",
+                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
+                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
                 "shasum": ""
             },
             "require": {
@@ -1183,7 +1225,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2015-08-05 01:03:42"
+            "time": "2016-07-16 12:58:58"
         },
         {
             "name": "fortawesome/font-awesome",
@@ -1735,16 +1777,16 @@
         },
         {
             "name": "understeam/yii2-slack",
-            "version": "v0.1.1",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Understeam/yii2-slack.git",
-                "reference": "8d931ab8b02f3acec8c1b134633cb153a59536b5"
+                "reference": "64ca66769c596b58053a1fcec2b015185f83ca3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Understeam/yii2-slack/zipball/8d931ab8b02f3acec8c1b134633cb153a59536b5",
-                "reference": "8d931ab8b02f3acec8c1b134633cb153a59536b5",
+                "url": "https://api.github.com/repos/Understeam/yii2-slack/zipball/64ca66769c596b58053a1fcec2b015185f83ca3e",
+                "reference": "64ca66769c596b58053a1fcec2b015185f83ca3e",
                 "shasum": ""
             },
             "require": {
@@ -1763,7 +1805,7 @@
                 "GPL-v3"
             ],
             "description": "Yii2 slack client based on GuzzleHttp library",
-            "time": "2016-02-15 07:07:37"
+            "time": "2016-07-22 11:12:56"
         },
         {
             "name": "webcreate/jquery-ias",
@@ -1936,12 +1978,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "e9d4e432a12c163ef6ad877cdb7b5fc441c3329e"
+                "reference": "e165d4bf1f7cf5eb44b8993a95eae08b406e19bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e9d4e432a12c163ef6ad877cdb7b5fc441c3329e",
-                "reference": "e9d4e432a12c163ef6ad877cdb7b5fc441c3329e",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e165d4bf1f7cf5eb44b8993a95eae08b406e19bd",
+                "reference": "e165d4bf1f7cf5eb44b8993a95eae08b406e19bd",
                 "shasum": ""
             },
             "require": {
@@ -2022,25 +2064,24 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2016-07-15 18:46:14"
+            "time": "2016-08-10 11:46:23"
         },
         {
             "name": "yiisoft/yii2-authclient",
-            "version": "2.0.6",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-authclient.git",
-                "reference": "96dd47c762749991a57d8c343b1a1ecfadf9c4c8"
+                "reference": "1e65f3af2c7095dbb55047f617231fc0ae601876"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/96dd47c762749991a57d8c343b1a1ecfadf9c4c8",
-                "reference": "96dd47c762749991a57d8c343b1a1ecfadf9c4c8",
+                "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/1e65f3af2c7095dbb55047f617231fc0ae601876",
+                "reference": "1e65f3af2c7095dbb55047f617231fc0ae601876",
                 "shasum": ""
             },
             "require": {
-                "ext-curl": "*",
-                "yiisoft/yii2": ">=2.0.4"
+                "yiisoft/yii2-httpclient": "~2.0.1"
             },
             "type": "yii2-extension",
             "extra": {
@@ -2066,11 +2107,12 @@
             "description": "External authentication via OAuth and OpenID for the Yii framework",
             "keywords": [
                 "OpenId",
+                "api",
                 "auth",
                 "oauth",
                 "yii2"
             ],
-            "time": "2016-07-08 13:58:12"
+            "time": "2016-08-04 13:41:57"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -2175,12 +2217,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-httpclient.git",
-                "reference": "eb6b380af608c083e0361d82812909fba4360139"
+                "reference": "929c20a226e43ddbbc1a7468762c8890762e0785"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-httpclient/zipball/eb6b380af608c083e0361d82812909fba4360139",
-                "reference": "eb6b380af608c083e0361d82812909fba4360139",
+                "url": "https://api.github.com/repos/yiisoft/yii2-httpclient/zipball/929c20a226e43ddbbc1a7468762c8890762e0785",
+                "reference": "929c20a226e43ddbbc1a7468762c8890762e0785",
                 "shasum": ""
             },
             "require": {
@@ -2214,7 +2256,7 @@
                 "httpclient",
                 "yii2"
             ],
-            "time": "2016-07-15 12:33:20"
+            "time": "2016-08-11 15:06:18"
         },
         {
             "name": "yiisoft/yii2-imagine",
@@ -2266,16 +2308,16 @@
         },
         {
             "name": "yiisoft/yii2-jui",
-            "version": "2.0.5",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-jui.git",
-                "reference": "37991d06ad952eead7bd5bb839c9a352d9b5e34a"
+                "reference": "843a2160cfe30f5c8b0cb2e9dbd8ee6bcf97e71d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-jui/zipball/37991d06ad952eead7bd5bb839c9a352d9b5e34a",
-                "reference": "37991d06ad952eead7bd5bb839c9a352d9b5e34a",
+                "url": "https://api.github.com/repos/yiisoft/yii2-jui/zipball/843a2160cfe30f5c8b0cb2e9dbd8ee6bcf97e71d",
+                "reference": "843a2160cfe30f5c8b0cb2e9dbd8ee6bcf97e71d",
                 "shasum": ""
             },
             "require": {
@@ -2312,7 +2354,7 @@
                 "jQuery UI",
                 "yii2"
             ],
-            "time": "2016-03-17 03:53:41"
+            "time": "2016-07-22 22:26:59"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",

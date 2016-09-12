@@ -72,9 +72,6 @@ $emojify = EmojifyAsset::register($this);
                 </dd>
             </dl>
             <div class="col-sm-3">
-                <a href="http://www.qiniu.com/">
-                    <img src="http://assets.qiniu.com/qiniu-transparent.png" alt="qiniu" width="240">
-                </a>
                 <p>赞助本站，你的LOGO将出现在这里</p>
             </div>
         </div>

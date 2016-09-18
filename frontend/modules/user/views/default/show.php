@@ -152,6 +152,7 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
                 ['label' => '最新评论',  'url' => ['/user/default/show', 'username'=> $username]],
                 ['label' => '最新主题',  'url' => ['/user/default/post', 'username'=> $username]],
                 ['label' => '最新收藏',  'url' => ['/user/default/favorite', 'username'=> $username]],
+                ['label' => '最新赞过主题',  'url' => ['/user/default/like', 'username'=> $username]],
                 ['label' => '积分动态',  'url' => ['/user/default/point', 'username'=> $username]],
             ]
         ]) ?>

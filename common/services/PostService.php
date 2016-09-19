@@ -104,9 +104,9 @@ class PostService
 
     public static function contentReplaceTag($content)
     {
-        $content = preg_replace_callback('/#(\S+?)#/', function($matches){
+        $content = preg_replace_callback('/#(\S+?)#/', function ($matches) {
             $tagName = $matches[1];
-            return sprintf('[%s](%s)', "#$tagName#", Url::to(['/tweet/default/index', 'Tag' => $tagName]));
+            return sprintf('[%s](%s)', "#$tagName#", Url::to(['/tweet/default/index', 'topic' => $tagName]));
         }, $content);
 
         return $content;

@@ -33,7 +33,7 @@ NavBar::begin([
     'brandLabel' => 'DBA√China',
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
-        'class' => 'navbar-white br0 navbar-fixed-top',
+        'class' => 'navbar-white br0 navbar-fixed-top navbar',
     ],
 ]);
 echo Nav::widget([

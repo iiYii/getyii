@@ -23,6 +23,7 @@ use yii\helpers\Markdown;
         echo Html::tag('p', HtmlPurifier::process(Markdown::process($model->comment, 'gfm')));
         break;
     case 'favorite':
+    case 'like':
         // 收藏
         echo Html::tag('i', '', ['class' => 'fa fa-bookmark red mr5']);
 

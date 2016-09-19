@@ -45,7 +45,6 @@ $emojify = EmojifyAsset::register($this);
     </div>
 </div>
 
-<?= \frontend\widgets\Ad::widget(['key'=>'bd_pic_960_90']); ?>
 
 <footer class="footer">
 

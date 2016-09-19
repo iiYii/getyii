@@ -92,6 +92,7 @@ a.desc:after {
 /* 自定义 */
 .navbar, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background: #FFF;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11);
 }
 
 .navbar a, .navbar-default .navbar-nav > li > a {
@@ -395,7 +396,6 @@ img.emoji {
     display: inline-block;
 }
 
-
 .donate p {
     margin-top: 10px;
     font-size: 12px;
@@ -429,4 +429,11 @@ img.emoji {
 
 .user-card {
     margin-bottom: 15px;
+}
+
+.p-fixed {
+    position: fixed;
+    display: block;
+    width: 292px;
+    z-index: 99;
 }

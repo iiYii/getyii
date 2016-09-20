@@ -65,17 +65,7 @@ $node = $config['node'];
             </div>
         <?php endif ?>
 
-        <?php if ($node && $donate): ?>
-            <div class="panel panel-default corner-radius">
-                <div class="panel-heading text-center">
-                    <h3 class="panel-title"><?= \Yii::t('app', 'Donate'); ?></h3>
-                </div>
-                <div class="panel-body donate">
-                    <?= Html::img(params('qrCodeUrl') . '/' . $donate->qr_code, ['class' => 'img']) ?>
-                    <p><?= $donate->description ?></p>
-                </div>
-            </div>
-        <?php else: ?>
+        <?php if ($action=='index' || $action=='create' || $node): ?>
             <div class="panel panel-default corner-radius">
                 <div class="panel-heading text-center">
                     <h3 class="panel-title"><?= \Yii::t('app', 'Tips and Tricks'); ?></h3>
@@ -87,7 +77,15 @@ $node = $config['node'];
 
         <?php endif ?>
 
-        <?php if (!$config['node'] && !empty($links)): ?>
+        <?php if ($action=='index' || $action=='create') {
+            echo \frontend\widgets\Panel::widget([
+                'title' => \Yii::t('app', 'Recomended Resources'),
+                'items' => $recommendResources,
+            ]);
+        } ?>
+
+        <?php //echo $action; exit; ?>
+        <?php if (!$config['node'] && !empty($links) && $module=='topic' && $action=='index'): ?>
             <div class="panel panel-default corner-radius">
                 <div class="panel-heading text-center">
                     <h3 class="panel-title">合作伙伴</h3>
@@ -97,25 +95,6 @@ $node = $config['node'];
                     <p>专注企业数据库创新服务和Oracle数据库干货分享：<a href="http://ytuninfo.com">http://ytuninfo.com</a></p>
                 </div>
             </div>
-        <?php endif ?>
-
-
-        <?php if (!$node) {
-            echo \frontend\widgets\Panel::widget([
-                'title' => \Yii::t('app', 'Recomended Resources'),
-                'items' => $recommendResources,
-            ]);
-        } ?>
-
-        <?php if ($node) {
-            echo \frontend\widgets\Panel::widget([
-                'title' => \Yii::t('app', 'Same Node Topics'),
-                'items' => $sameTopics,
-            ]);
-        } ?>
-
-
-        <?php if (!$config['node'] && !empty($links)): ?>
             <div class="panel panel-default corner-radius">
                 <div class="panel-heading text-center">
                     <h3 class="panel-title"><?= \Yii::t('app', 'Links') ?></h3>
@@ -131,6 +110,15 @@ $node = $config['node'];
                 </div>
             </div>
         <?php endif ?>
+
+
+        <?php if ($node) {
+            echo \frontend\widgets\Panel::widget([
+                'title' => \Yii::t('app', 'Same Node Topics'),
+                'items' => $sameTopics,
+            ]);
+        } ?>
+
 
         <?php \frontend\widgets\Panel::widget([
             'title' => \Yii::t('app', 'Site Status'),

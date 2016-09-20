@@ -47,8 +47,29 @@ $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
             <div class="bdsharebuttonbox" style="float: right"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
                 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div>
             <div style="clear: both"></div>
+
             <hr/>
-            <?= \frontend\widgets\Ad::widget(['key'=>'bd_pic_640_60']); ?>
+            <?php //echo \frontend\widgets\Ad::widget(['key'=>'bd_pic_640_60']); ?>
+
+            <?php if($donate): ?>
+            <div style="text-align: center; color: #666;">
+                <p>如果这篇文章对您有帮助，不妨微信小额赞助我一下，让我有动力继续写出高质量的帖子。</p>
+                <?= Html::Button('打赏作者', ['class' =>'btn btn-danger','id'=>'donate-btn']) ?>
+                <div class="row" id="donate-qrode">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                <div class="panel panel-default corner-radius mt15">
+                    <div class="panel-body donate">
+                        <?= Html::img(params('qrCodeUrl') . '/' . $donate->qr_code, ['class' => 'img']) ?>
+                        <p><?= $donate->description ?></p>
+                    </div>
+                </div>
+                    <div class="col-md-3"></div>
+                </div>
+                </div>
+            </div>
+            <?php endif ?>
+
             <?php if ($model->status == 2): ?>
                 <div class="ribbon-excellent">
                     <i class="fa fa-trophy excellent"></i> 本帖已被设为精华帖！

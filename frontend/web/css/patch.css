@@ -72,3 +72,7 @@ a:hover.btn{ color: #FFFFFF;}
     color: #fff;
     text-decoration: none;
 }
+
+.hide{ display: none;}
+.show{ display: inline;}
+#donate-qrode{display: none;}

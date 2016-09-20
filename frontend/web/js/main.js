@@ -234,4 +234,10 @@ jQuery(function ($) {
             }
         }
     });
+
+    //打赏显示和隐藏切换
+    $("#donate-btn").click(function(){
+        $('#donate-qrode').toggle();
+    });
+
 });

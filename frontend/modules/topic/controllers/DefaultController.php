@@ -23,6 +23,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
+use frontend\modules\user\models\Donate;
 
 class DefaultController extends Controller
 {
@@ -169,11 +170,17 @@ class DefaultController extends Controller
         $user = Yii::$app->user->identity;
         $admin = ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) ? true : false;
 
+        //内容页面打赏
+        if (in_array($node->alias, params('donateNode'))) {
+            $donate = Donate::findOne(['user_id' => Topic::findOne(['id' => request()->get('id')])->user_id, 'status' => Donate::STATUS_ACTIVE]);
+        }
+
         return $this->render('view', [
             'model' => $model,
             'dataProvider' => $dataProvider,
             'comment' => new PostComment(),
             'admin' => $admin,
+            'donate' => isset($donate) ? $donate : [],
         ]);
     }
 

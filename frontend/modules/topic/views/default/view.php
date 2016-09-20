@@ -69,22 +69,17 @@ $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
                 </div>
             </div>
             <?php endif ?>
+            <?php $status=$recommend=$top=''; ?>
+            <?php if ($model->status == 2): $status=' 精华帖'; endif ?>
+            <?php if ($model->recommend == 1): $recommend=' 推荐贴'; endif ?>
+            <?php if ($model->top == 1): $top=' 置顶帖'; endif ?>
 
-            <?php if ($model->status == 2): ?>
-                <div class="ribbon-excellent">
-                    <i class="fa fa-trophy excellent"></i> 本帖已被设为精华帖！
-                </div>
-            <?php endif ?>
-            <?php if ($model->recommend == 1): ?>
-                <div class="ribbon-excellent">
-                    <i class="fa fa-plane excellent"></i> 本帖已被设为推荐帖！
-                </div>
-            <?php endif ?>
-            <?php if ($model->top == 1): ?>
+            <?php if ($model->top == 1 || $model->recommend == 1 || $model->status == 2): ?>
                 <div class="ribbon-top">
-                    <i class="fa fa-arrow-up excellent"></i> 本帖已被设为置顶帖！
+                    <i class="fa fa-arrow-up excellent"></i> <?php echo "本帖已经被管理员设置为:$status $recommend $top"; ?>！
                 </div>
             <?php endif ?>
+
 
         </div>
         <div class="panel-footer clearfix opts">

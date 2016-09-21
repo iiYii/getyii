@@ -58,10 +58,6 @@ class TopicSidebar extends \yii\bootstrap\Widget
             if (count($sameTopics) > 10) {
                 $sameTopics = Arr::arrayRandomAssoc($sameTopics, 10);
             }
-
-            if ($this->type == 'view' && (in_array($this->node->alias, params('donateNode')) || array_intersect(explode(',', $this->tags), params('donateTag')))) {
-                $donate = Donate::findOne(['user_id' => Topic::findOne(['id' => request()->get('id')])->user_id, 'status' => Donate::STATUS_ACTIVE]);
-            }
         }
 
         return $this->render('topicSidebar', [
@@ -69,7 +65,6 @@ class TopicSidebar extends \yii\bootstrap\Widget
             'config' => ['type' => $this->type, 'node' => $this->node],
             'sameTopics' => $sameTopics,
             'tips' => $tips,
-            'donate' => isset($donate) ? $donate : [],
             'recommendResources' => $recommendResources,
             'links' => $links,
         ]);

@@ -32,6 +32,8 @@ use yii\helpers\ArrayHelper;
  * @property integer $order
  * @property integer $created_at
  * @property integer $updated_at
+ *
+ * @property PostMeta $category
  */
 class Post extends ActiveRecord
 {

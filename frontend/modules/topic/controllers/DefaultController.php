@@ -9,6 +9,7 @@ use common\models\User;
 use common\services\NotificationService;
 use common\services\TopicService;
 use frontend\modules\topic\models\Topic;
+use frontend\modules\user\models\Donate;
 use frontend\modules\user\models\UserMeta;
 use Yii;
 use yii\filters\AccessControl;
@@ -137,6 +138,13 @@ class DefaultController extends Controller
     public function actionView($id)
     {
         $model = Topic::findTopic($id);
+
+        //登录才能访问的节点内容
+        if (\Yii::$app->user->isGuest && in_array($model->category->alias, params('LoginNode'))) {
+            $this->flash('查看本主题需要登录!', 'warning');
+            return $this->redirect('/login');
+        }
+
         $dataProvider = new ActiveDataProvider([
             'query' => PostComment::findCommentList($id),
             'pagination' => [
@@ -148,6 +156,12 @@ class DefaultController extends Controller
         // 文章浏览次数
         Topic::updateAllCounters(['view_count' => 1], ['id' => $id]);
 
+        //内容页面打赏
+        if (in_array($model->category->alias, params('donateNode')) || array_intersect(explode(',', $model->tags), params('donateTag'))) {
+            $donate = Donate::findOne(['user_id' => $model->user_id, 'status' => Donate::STATUS_ACTIVE]);
+        }
+
+        /** @var User $user */
         $user = Yii::$app->user->identity;
         $admin = ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) ? true : false;
 
@@ -156,6 +170,7 @@ class DefaultController extends Controller
             'dataProvider' => $dataProvider,
             'comment' => new PostComment(),
             'admin' => $admin,
+            'donate' => isset($donate) ? $donate : [],
         ]);
     }
 

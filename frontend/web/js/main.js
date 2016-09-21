@@ -27,9 +27,11 @@ jQuery(function ($) {
                     setTimeout(scheduleGetNotification, 15000);
                 });
             }
+
             setTimeout(scheduleGetNotification, 15000);
         }
     }
+
     notificationsCount();
 
     // 新窗口打开外链
@@ -48,14 +50,14 @@ jQuery(function ($) {
     hljs.initHighlightingOnLoad();
 
     emojify.setConfig({
-        emojify_tag_type : 'p',
-        img_dir : Config.emojiBaseUrl + '/dist/images/basic',
-        ignored_tags : {
-            'SCRIPT'  : 1,
+        emojify_tag_type: 'p',
+        img_dir: Config.emojiBaseUrl + '/dist/images/basic',
+        ignored_tags: {
+            'SCRIPT': 1,
             'TEXTAREA': 1,
-            'A'       : 1,
-            'PRE'     : 1,
-            'CODE'    : 1
+            'A': 1,
+            'PRE': 1,
+            'CODE': 1
         }
     });
     emojify.run();
@@ -128,7 +130,6 @@ jQuery(function ($) {
     localStorage();
 
 
-
     /**
      * 监听键盘
      */
@@ -156,9 +157,9 @@ jQuery(function ($) {
         }
     }
 
-    function highlightBlock () {
+    function highlightBlock() {
         $('pre code').each(function (i, block) {
-           hljs.highlightBlock(block);
+            hljs.highlightBlock(block);
         });
     }
 
@@ -218,6 +219,11 @@ jQuery(function ($) {
         $('html,body').animate({scrollTop: $('.footer').offset().top}, 800);
     }).on("click", "#refresh", function () {
         location.reload();
+    });
+
+    //打赏显示和隐藏切换
+    $("#donate-btn").click(function () {
+        $('#donate-qr-code').toggle();
     });
 
     // 防止重复提交

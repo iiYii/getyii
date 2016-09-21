@@ -2,7 +2,7 @@ html,
 body {
     height: 100%;
     background-color: #f0f0f0;
-    padding-top : 35px;
+    padding-top: 35px;
     font-family: PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
 }
 
@@ -270,7 +270,7 @@ a:visited .badge-reply-count {
     padding: 3px 15px;
     border-top: 1px solid #eae5e4;
     color: #aAa5a4;
-    margin: 0 -15px -15px;
+    margin: 10px -15px -15px;
 }
 
 .side-bar .list {
@@ -401,4 +401,16 @@ img.emoji {
     display: block;
     width: 292px;
     z-index: 99;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: inline;
+}
+
+#donate-qr-code {
+    display: none;
 }

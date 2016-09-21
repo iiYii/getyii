@@ -6,8 +6,12 @@
  */
 use yii\helpers\Html;
 
+/** @var array $sameTopics */
+/** @var array $config */
+/** @var array $recommendResources */
+/** @var string $tips */
+
 $node = $config['node'];
-/** @var array|\frontend\modules\user\models\Donate $donate */
 ?>
 <div class="col-md-3 side-bar p0">
 
@@ -66,18 +70,6 @@ $node = $config['node'];
                 'items' => $recommendResources,
             ]);
         } ?>
-
-        <?php if ($node && $donate): ?>
-            <div class="panel panel-default corner-radius">
-                <div class="panel-heading text-center">
-                    <h3 class="panel-title"><?= \Yii::t('app', 'Donate'); ?></h3>
-                </div>
-                <div class="panel-body donate">
-                    <?= Html::img(params('qrCodeUrl') . '/' . $donate->qr_code, ['class' => 'img']) ?>
-                    <p><?= $donate->description ?></p>
-                </div>
-            </div>
-        <?php endif ?>
 
         <?php if ($node) {
             echo \frontend\widgets\Panel::widget([

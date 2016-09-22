@@ -2,6 +2,7 @@
 namespace common\models;
 
 use common\helpers\Avatar;
+use common\models\Sign;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -380,5 +381,26 @@ class User extends ActiveRecord implements IdentityInterface
             self::STATUS_DELETED => '已删除',
             self::STATUS_ACTIVE => '正常',
         ];
+    }
+
+    /**
+     * 今天是否已签到
+     * @return bool
+     */
+    public function getIsSign()
+    {
+        if (!empty($this->sign)) {
+            return date('Ymd', $this->sign->last_sign_at) == date('Ymd');
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSign()
+    {
+        return $this->hasOne(Sign::className(), ['user_id' => 'id']);
     }
 }

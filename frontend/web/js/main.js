@@ -240,4 +240,28 @@ jQuery(function ($) {
         $('#donate-qrode').toggle();
     });
 
+    // 签到
+    $(".btn-registration").click(function(){
+        var button = $(this);
+        var url = button.attr('href');
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            method:'post',
+            success: function(html){
+                button.html("<i class=\"fa fa-calendar-check-o\"></i> 今日已签到<br />已连续" + html.days + "天").removeClass('btn-registration').addClass('disabled');
+            },
+            error: function (XMLHttpRequest, textStatus) {
+                if(XMLHttpRequest.status == 302){
+                    $('#modal').modal({ remote: XMLHttpRequest.getResponseHeader('X-Redirect')});
+                }
+                if(XMLHttpRequest.status == 403){
+                    //$.modalLogin();
+                    window.location.href='/login';
+                }
+            }
+        });
+        return false;
+    });
+
 });

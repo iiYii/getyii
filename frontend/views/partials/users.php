@@ -10,7 +10,7 @@ use yii\helpers\Html;
 ?>
 
 <?php foreach ($model as $key => $value): ?>
-    <div class="col-xs-2" style="min-width: 100px;">
+    <div class="col-lg-2 col-md-2">
         <div class="media user-card">
             <div class="media-left">
                 <?= Html::a(Html::img($value->userAvatar, ['class' => 'media-object']),

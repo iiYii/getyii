@@ -4,6 +4,10 @@ return [
     'timeZone' => 'Asia/Shanghai', //time zone affect the formatter datetime format
     'language' => 'zh-CN',
     'modules' => [
+        /* other modules */
+        'markdown' => [
+            'class' => 'kartik\markdown\Module',
+        ]
     ],
     'components' => [
         'formatter' => [ //for the showing of date datetime

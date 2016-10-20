@@ -8,37 +8,30 @@
 
 namespace frontend\controllers;
 
-
+use common\helpers\Arr;
 use common\models\Sign;
 use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use Yii;
 use yii\web\MethodNotAllowedHttpException;
+use yiier\request\ThrottleBehavior;
 
 class SignController extends Controller
 {
     public function behaviors()
     {
-        return [
-            [
+        return Arr::merge(parent::behaviors(), [
+            'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['index'],
                 'rules' => [
-                    [
-                        'actions' => ['index'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'verbs' => ['post']
-                    ],
-                    [
-                        'actions' => ['index'],
-                        'allow' => true,
-                        'verbs' => ['get']
-                    ],
-                ]
-            ]
-        ];
+                    // 默认只能Get方式访问
+                    ['allow' => true, 'actions' => ['index'], 'roles' => ['@']],
+                ],
+            ],
+        ]);
     }
 
     public function actionIndex()

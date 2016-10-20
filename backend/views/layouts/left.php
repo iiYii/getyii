@@ -61,6 +61,13 @@
                         ]
                     ],
                     [
+                        'label' => '手册管理', 'url' => '#', 'icon' => 'fa fa-list',
+                        'items' => [
+                            ['label' => '手册管理', 'icon' => 'fa fa-reorder', 'url' => ['/manual/index']],
+                            ['label' => '内容管理', 'icon' => 'fa fa-comments', 'url' => ['/manual-content/index']],
+                        ]
+                    ],
+                    [
                         'label' => '积分模块', 'url' => '#', 'icon' => 'fa fa-share',
                         'items' => [
                             ['label' => '积分模板', 'icon' => 'fa fa-money', 'url' => ['/merit/merit-template']],

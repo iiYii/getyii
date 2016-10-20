@@ -49,7 +49,8 @@
     "yiisoft/yii2-httpclient": "dev-master",
     "understeam/yii2-slack": "~0.1",
     "dmstr/yii2-adminlte-asset": "2.*",
-    "enyo/dropzone": "^4.3"
+    "enyo/dropzone": "^4.3",
+    "kartik-v/yii2-markdown": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",

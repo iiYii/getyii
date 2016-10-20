@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "95196d26cfe3a2538f0b69a77b678f8c",
-    "content-hash": "4807e5d95a48e9ef68e474c686610c70",
+    "hash": "35687347a1b593f5ad43e8f0ee4c55c7",
+    "content-hash": "35d98794bb9ef66fa54eb430733eac58",
     "packages": [
         {
             "name": "2amigos/yii2-qrcode-helper",
@@ -1529,6 +1529,58 @@
             "time": "2016-05-07 19:45:52"
         },
         {
+            "name": "kartik-v/yii2-markdown",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-markdown.git",
+                "reference": "447eeac3b9c7618ea58580597d37a865ce30b429"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-markdown/zipball/447eeac3b9c7618ea58580597d37a865ce30b429",
+                "reference": "447eeac3b9c7618ea58580597d37a865ce30b429",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "*",
+                "michelf/php-markdown": "*",
+                "michelf/php-smartypants": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\markdown\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Advanced Markdown editing and conversion utilities for Yii Framework 2.0",
+            "homepage": "https://github.com/kartik-v/yii2-markdown",
+            "keywords": [
+                "bootstrap",
+                "converter",
+                "editor",
+                "extension",
+                "form",
+                "input",
+                "jquery",
+                "markdown",
+                "yii",
+                "yii2"
+            ],
+            "time": "2016-09-28 02:52:40"
+        },
+        {
             "name": "kartik-v/yii2-widget-select2",
             "version": "v2.0.8",
             "source": {
@@ -1628,6 +1680,112 @@
                 "yii2"
             ],
             "time": "2016-07-06 19:56:33"
+        },
+        {
+            "name": "michelf/php-markdown",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michelf/php-markdown.git",
+                "reference": "156e56ee036505ec637d761ee62dc425d807183c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michelf/php-markdown/zipball/156e56ee036505ec637d761ee62dc425d807183c",
+                "reference": "156e56ee036505ec637d761ee62dc425d807183c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-lib": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Michelf": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Michel Fortin",
+                    "email": "michel.fortin@michelf.ca",
+                    "homepage": "https://michelf.ca/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "https://daringfireball.net/"
+                }
+            ],
+            "description": "PHP Markdown",
+            "homepage": "https://michelf.ca/projects/php-markdown/",
+            "keywords": [
+                "markdown"
+            ],
+            "time": "2015-12-24 01:37:31"
+        },
+        {
+            "name": "michelf/php-smartypants",
+            "version": "1.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michelf/php-smartypants.git",
+                "reference": "07021d340f6c08e2c49c442eed3986c4b8d44c52"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michelf/php-smartypants/zipball/07021d340f6c08e2c49c442eed3986c4b8d44c52",
+                "reference": "07021d340f6c08e2c49c442eed3986c4b8d44c52",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-lib": "1.6.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Michelf": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Michel Fortin",
+                    "email": "michel.fortin@michelf.ca",
+                    "homepage": "https://michelf.ca/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "https://daringfireball.net/"
+                }
+            ],
+            "description": "PHP SmartyPants",
+            "homepage": "https://michelf.ca/projects/php-smartypants/",
+            "keywords": [
+                "dashes",
+                "quotes",
+                "spaces",
+                "typographer",
+                "typography"
+            ],
+            "time": "2016-10-16 21:08:01"
         },
         {
             "name": "rmrevin/yii2-fontawesome",
@@ -2771,7 +2929,8 @@
         "hightman/xunsearch": 10,
         "kop/yii2-scroll-pager": 20,
         "trntv/yii2-aceeditor": 20,
-        "yiisoft/yii2-httpclient": 20
+        "yiisoft/yii2-httpclient": 20,
+        "kartik-v/yii2-markdown": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

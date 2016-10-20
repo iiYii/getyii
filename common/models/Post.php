@@ -175,7 +175,7 @@ class Post extends ActiveRecord
             self::STATUS_DELETED => Yii::t('common', 'DELETED'),
             self::STATUS_ACTIVE => Yii::t('common', 'ACTIVE'),
             self::STATUS_EXCELLENT => Yii::t('common', 'EXCELLENT'),
-            self::STATUS_TOP => Yii::t('common', 'TOP'),
+            //self::STATUS_TOP => Yii::t('common', 'TOP'),
         ];
 
         return $status !== false ? ArrayHelper::getValue($statuses, $status) : $statuses;

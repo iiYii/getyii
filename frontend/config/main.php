@@ -83,6 +83,9 @@ return [
         'tweet' => [
             'class' => 'frontend\modules\tweet\Module',
         ],
+        'manual' => [
+            'class' => 'frontend\modules\manual\Module',
+        ],
     ],
     'params' => $params,
 ];

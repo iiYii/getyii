@@ -39,7 +39,7 @@ class Controller extends \yii\web\Controller
     {
         if (parent::beforeAction($action)) {
             $uniqueid = $action->controller->action->uniqueid;
-            if (!in_array($uniqueid, ['site/login', 'site/logout']) && !User::currUserIsAdmin()) {
+            if (!in_array($uniqueid, ['site/login', 'site/logout', 'site/error']) && !User::currUserIsSuperAdmin()) {
                 throw new ForbiddenHttpException;
             }
             return true;

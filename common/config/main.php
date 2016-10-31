@@ -36,6 +36,7 @@ return [
             'targets' => [
                 [
                     'class' => 'understeam\slack\LogTarget',
+                    'enabled' => false, // 是否开启错误信息发送 Slack 服务，默认否
                     'levels' => ['error'],
                     'categories' => [
                         'yii\db\*',

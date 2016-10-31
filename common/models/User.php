@@ -313,6 +313,14 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @return int
+     */
+    public static function currUserIsAdmin()
+    {
+        return user()->identity && Yii::$app->user->identity->role = self::ROLE_ADMIN;
+    }
+
+    /**
      * 获取权限
      * @param $username
      * @return bool

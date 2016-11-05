@@ -142,7 +142,7 @@ class DefaultController extends Controller
         //登录才能访问的节点内容
         if (\Yii::$app->user->isGuest && in_array($model->category->alias, params('loginNode'))) {
             $this->flash('查看本主题需要登录!', 'warning');
-            return $this->redirect('/login');
+            return $this->redirect(['/site/login']);
         }
 
         $dataProvider = new ActiveDataProvider([

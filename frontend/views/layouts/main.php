@@ -3,6 +3,7 @@ use frontend\assets\AppAsset;
 use frontend\assets\BowerAsset;
 use frontend\widgets\Alert;
 use frontend\assets\EmojifyAsset;
+use frontend\assets\LayuiAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
@@ -13,6 +14,7 @@ use yii\widgets\Breadcrumbs;
 
 AppAsset::register($this);
 BowerAsset::register($this);
+LayuiAsset::register($this);
 
 \frontend\assets\EditorAsset::register($this);
 $emojify = EmojifyAsset::register($this);
@@ -34,7 +36,7 @@ $emojify = EmojifyAsset::register($this);
 
     <?= \frontend\widgets\Nav::widget(); ?>
 
-    <div class="container" style="padding-top: 70px;">
+    <div class="container" style="padding-top: 110px;">
         <div class="row">
             <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

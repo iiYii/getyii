@@ -44,11 +44,11 @@ echo Nav::widget([
         ['label' => Icon::show('envelope') . '招聘', 'url' => ['/topic/default/index', 'node' => 'jobs'], 'active' => $jobsActive],
         //['label' => Icon::show('github-alt') . 'Lepus', 'url' => ['/topic/default/index', 'node' => 'lepus'], 'active' => $lepusActive],
         ['label' => Icon::show('commenting') . '动弹', 'url' => ['/tweet'], 'active' => $tweetActive],
-        ['label' => Icon::show('th') . '标签', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
+        //['label' => Icon::show('th') . '标签', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
         //['label' => Icon::show('signal') . '新手入门', 'url' => ['/site/getstart']],
-        ['label' => Icon::show('user') . '会员', 'url' => ['/site/users']],
+        //['label' => Icon::show('user') . '会员', 'url' => ['/site/users']],
         ['label' => Icon::show('plane') . '站点', 'url' => ['/nav'], 'active' => $navActive],
-        ['label' => Icon::show('folder-open')  .'手册', 'url' => ['/topic/default/view','id' =>'56' ]], //add by ruyi
+        //['label' => Icon::show('folder-open')  .'手册', 'url' => ['/topic/default/view','id' =>'56' ]], //add by ruyi
 
     ],
     'encodeLabels' => false
@@ -92,3 +92,18 @@ echo Nav::widget([
     'activateParents' => true,
 ]);
 NavBar::end();
+?>
+
+<div class="header_node">
+    <div class="content">
+    <div class="nav_home">
+        <a href="/"><i class="layui-icon">&#xe609;</i>&nbsp;主页</a>
+        <a href="">|</a>
+    </div>
+    <div class="nav_node">
+        <?php foreach($my_nodes as $item): ?>
+            <?= Html::a($item['name'], ['/topic/default/index', 'node' => $item['alias']],['class'=>'']) ?>
+        <?php endforeach; ?>
+    </div>
+    </div>
+</div>

@@ -24,33 +24,15 @@ else{
 }
 $this->title = $seo_title;
 
-
-$bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
 ?>
 <div class="col-md-9 topic">
     <div class="panel panel-default">
-        <?php if (isset($nodes)): ?>
-        <div class="panel-heading p0 m0 clearfix">
-            <dl class="dl-horizontal hot-node mb0 ml5">
-                <dd>
-                    <ul class="list-inline">
-                        <?php if(!isset($node)){$tab_class = "tab_current";}else{$tab_class = "tab";} ?>
-                        <li><?= \yii\helpers\Html::a('全部', ['/topic/default/index'],['class'=>$tab_class]) ?></li>
-                        <?php foreach ($nodes as $item): ?>
-                            <?php if(isset($node) && $item['alias']==$node->alias){$tab_class = "tab_current";}else{$tab_class = "tab";} ?>
-                            <li><?= \yii\helpers\Html::a($item['name'], ['/topic/default/index', 'node' => $item['alias']],['class'=>$tab_class]) ?></li>
-                        <?php endforeach ?>
-                    </ul>
-                </dd>
-            </dl>
-        </div>
-        <?php endif ?>
 
         <?php if($node and !empty($node->description)): ?>
-        <div class="panel-body clearfix">
-            <?= Icon::show('cloud-upload') ?> <?= $node->name; ?>
+        <div class="panel-heading media clearfix">
+            <h1><?= Icon::show('cloud-upload') ?> <?= $node->name; ?></h1>
                 <br/>
-                <span style="color: #666666; font-size: 12px;"><?= $node->description; ?></span>
+                <span style="color: #666; line-height: 20px;"><?= $node->description; ?></span>
         </div>
         <?php endif; ?>
 
@@ -90,6 +72,3 @@ $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
     'node' => $node
 ]); ?>
 
-<script type="text/javascript">
-    document.getElementById('wrap').style.backgroundColor="<?= $bg_color ?>";
-</script>

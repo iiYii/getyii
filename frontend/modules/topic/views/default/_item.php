@@ -27,9 +27,6 @@ use common\helpers\Formatter;
                 ['/topic/default/view', 'id' => $model->id], ['title' => $model->title]
             ); ?>
 
-            <?= ($model->top == Topic::TOP_ACTIVE) ? Html::tag('i', '', ['class' => 'fa fa-arrow-up icon-top']) : null ?>
-            <?= ($model->recommend == Topic::RECOMMEND_ACTIVE) ? Html::tag('i', '', ['class' => 'fa fa-plane icon-recommend']) : null ?>
-            <?= ($model->status == Topic::STATUS_EXCELLENT) ? Html::tag('i', '', ['class' => 'fa fa-trophy icon-excellent']) : null ?>
         </div>
 
         <div class="title-info">

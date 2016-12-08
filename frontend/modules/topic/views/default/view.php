@@ -12,7 +12,6 @@ $this->title = $model->title;
 \frontend\assets\AtJsAsset::register($this);
 
 $node = \common\models\PostMeta::find()->where(['alias' => $model->category->alias])->one();
-$bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
 
 ?>
 
@@ -216,6 +215,3 @@ $bg_color = !empty($node['bg_color']) ? $node['bg_color'] : '#f0f0f0';
     'tags' => $model->tags
 ]); ?>
 
-<script type="text/javascript">
-    document.getElementById('wrap').style.backgroundColor="<?= $bg_color ?>";
-</script>

@@ -27,12 +27,12 @@ $node = $config['node'];
                         <?= Html::a(
                             \Yii::t('app', 'Now Register'),
                             ['/signup'],
-                            ['class' => 'btn btn-info']
+                            ['class' => 'btn btn-primary ']
                         ) ?>
                         <?= Html::a(
                             \Yii::t('app', 'Now Login'),
                             ['/login'],
-                            ['class' => 'btn btn-warning', 'style' => ' margin-left:3px;']
+                            ['class' => 'btn btn-danger', 'style' => ' margin-left:3px;']
                         ) ?>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ $node = $config['node'];
                         <?= Html::a(
                             \Yii::t('app', 'New Topic'),
                             ['/topic/default/create', 'id' => 'id'],
-                            ['class' => 'btn btn-info']
+                            ['class' => 'btn btn-primary btn-block']
                         ) ?>
                     </div>
                 </div>

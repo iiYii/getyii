@@ -11,6 +11,8 @@ namespace frontend\widgets;
 use yii\authclient\ClientInterface;
 use yii\authclient\widgets\AuthChoice;
 use yii\authclient\widgets\AuthChoiceAsset;
+//use hass\authclient\widgets\AuthChoiceAsset;
+//use hass\authclient\widgets\AuthChoiceStyleAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
 

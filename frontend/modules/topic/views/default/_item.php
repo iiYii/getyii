@@ -3,14 +3,17 @@
 use yii\helpers\Html;
 use frontend\modules\topic\models\Topic;
 use common\helpers\Formatter;
-
+use kartik\icons\Icon;
+Icon::map($this);
 /* @var $this yii\web\View */
 ?>
 <div class="media">
-    <?php if($model['comment_count']==0){ $class="badge badge-reply-count" ;}else{$class="badge badge-reply-count-new"; } ?>
-    <?= Html::a(Html::tag('span', $model['comment_count'],['class' => $class ]),
+
+    <!--
+    <?= Html::a(Html::tag('span', $model['comment_count'],['class' => '' ]),
         ['/topic/default/view', 'id' => $model->id, '#' => 'comment' . $model['comment_count']], ['class' => 'pull-right']
     ); ?>
+    -->
 
     <div class="media-left">
         <?= Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object']),
@@ -62,6 +65,9 @@ use common\helpers\Formatter;
                     ])
                 );
             }
+
+            echo Html::tag('span', Icon::show('eye').$model['view_count'].'&nbsp;&nbsp;&nbsp;'.Icon::show('commenting').$model['comment_count'],['class'=>' pull-right']);
+
             ?>
         </div>
     </div>

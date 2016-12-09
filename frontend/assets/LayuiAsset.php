@@ -17,6 +17,6 @@ class LayuiAsset extends AssetBundle
         'css/site-ruyi.css',  //site.css or site-ruyi.css
     ];
     public $js = [
-        'lib/layui/layui.js',
+        //'lib/layui/layui.js',
     ];
 }

@@ -6,7 +6,9 @@ body {
 }
 a{color: #333;font-size: 14px;}
 a:hover{color: #009688;}
-h1,h2,h3{ font-size: 18px;}
+h1,h2{ font-size: 18px;}
+h3{ font-size: 16px; margin: 8px 0 8px 2px;}
+pre,blockquote {padding: 10px 15px; margin: 10px 0; font-size:13px; border:0px solid #f2f2f2; border-left-width: 4px;  background-color: #fbfbfb; font-family: Courier New; overflow: auto;}
 
 .wrap {
     min-height: 100%;
@@ -91,6 +93,7 @@ a.desc:after {
 }
 
 /* boootstrap 自定义 */
+
 .navbar {
     background: #FFF;
     height: 60px;
@@ -152,6 +155,8 @@ a.desc:after {
 .panel-heading{ margin-top: 5px;}
 .panel-default{ border: none}
 
+.list-group-item{border: none;border-bottom: 1px solid #ddd;margin-bottom: 0;padding: 12px 0 12px 0;}
+
 /* topic list*/
 .topic-list .list-group {
     margin-bottom: 0;
@@ -206,7 +211,7 @@ a.desc:after {
     font-size: 24px;
 }
 
-
+.avatar img{border-radius: 2px;}
 
 
 .content-body{margin: 20px 0 10px; min-height: 200px; line-height:24px; font-size:15px; color: #333}
@@ -221,7 +226,9 @@ a.desc:after {
 .content-body table th,
 .content-body table td{padding:5px 20px; border:1px solid #DFDFDF; font-size:14px; font-weight: 400;}
 
-
+.hide{ display: none;}
+.show{ display: inline;}
+#donate-qrode{display: none;}
 
 .tweet .active .fa, .topic-view .active .fa, .filter .active, .red {
     color: #EB5424;
@@ -258,15 +265,7 @@ a.desc:after {
     border: 1px dashed #ccc;
 }
 
-/*代码高亮*/
-.article pre, .user-default-index pre, .markdown pre, .markdown-reply pre, .tweet pre {
-    padding: 0;
-}
 
-.article blockquote, .markdown-reply blockquote, #md-preview blockquote, blockquote {
-    background-color: #f7f7f7;
-    font-size: inherit;
-}
 
 .deleted {
     text-decoration: line-through;

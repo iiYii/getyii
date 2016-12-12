@@ -91,7 +91,7 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
-
+.panel-body{ line-height: 20px;}
 /* boootstrap 自定义 */
 
 .navbar {
@@ -152,8 +152,9 @@ a.desc:after {
     border-color: #33ab9f;
 }
 
-.panel-heading{ margin-top: 5px;}
+
 .panel-default{ border: none}
+.panel-default .panel-heading{ margin-top: 5px; background-color: #fbfbfb}
 
 .list-group-item{border: none;border-bottom: 1px solid #ddd;margin-bottom: 0;padding: 12px 0 12px 0;}
 
@@ -178,6 +179,7 @@ a.desc:after {
 
 .topic-list .media a{ font-size: 15px;}
 .topic-list .media img{  border-radius: 2px;}
+
 
 
 
@@ -286,7 +288,7 @@ a.desc:after {
 }
 
 .title-info {
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .fade-info, .title-info {
@@ -302,6 +304,7 @@ a.desc:after {
 
 .title-info a {
     color: #666;
+    font-size: 12px;
 }
 
 .notification-index .notification {
@@ -506,3 +509,62 @@ img.emoji {
     width: 292px;
     z-index: 99;
 }
+
+/*Post类型tab*/
+.post_type_tab { margin-top: 12px; margin-bottom: 12px; border-bottom: 1px solid #ddd;}
+.post_type_tab li{ width: 15%;}
+.post_type_tab a{font-size: 18px;text-align: center; width: 75%; font-weight: bold; color: #000; border-bottom: 3px solid #fff; }
+.post_type_tab a:hover{border-bottom: 3px solid #009688;border-radius:0; }
+.post_type_tab li.active a,.post_type_tab li.active a:hover{background-color: #fff; color: #000;border-bottom: 3px solid #009688;;border-radius:0; }
+
+/*文章列表*/
+
+.article-list .list-group-item {
+    border: none;
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
+    padding: 12px 0 12px 0;
+}
+
+.article-list .media a{ font-size: 16px;}
+.article-list .media img{  border-radius: 2px;}
+.article-list .media-left{
+    text-align: center;
+    color:#999 ;
+    font-size: 13px;
+}
+.article-list .media-body{
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-left: 1px solid #eeeeee;
+ }
+.article-list .media-left .tuijiian{
+    width: 45px;
+    height: 40px;
+    background-color: #f2f2f2;
+    margin-bottom: 6px;
+    color: #666;
+}
+.article-list .media-left span{
+    text-align: center;
+}
+.article-list .media-body .description{
+    font-size: 14px;
+    color: #696969;
+}
+.article-list .media-body .title-info{
+    font-size: 13px;
+}
+.article-list .media-body .title-info a{
+    font-size: 14px;
+    color: #009688;
+    float: left;
+    margin-right: 10px;
+}
+.article-list .media-body .title-info .media-object{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+}
+

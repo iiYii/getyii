@@ -40,14 +40,15 @@ echo Nav::widget([
     'options' => ['class' => 'nav navbar-nav'],
     'items' => [
         //['label' =>  Icon::show('th-large')  . '首页', 'url' => ['/site/index'] ],
-        ['label' => Icon::show('comment') . '话题', 'url' => ['/topic'], 'active' => $topicActive],
-        ['label' => Icon::show('envelope') . '招聘', 'url' => ['/topic/default/index', 'node' => 'jobs'], 'active' => $jobsActive],
+        ['label' => Icon::show('comment-o') . '话题', 'url' => ['/topic'], 'active' => $topicActive],
+        ['label' => Icon::show('file-word-o') . '文章', 'url' => ['/article'], 'active' => $topicActive],
+        ['label' => Icon::show('envelope-o') . '招聘', 'url' => ['/topic/default/index', 'node' => 'jobs'], 'active' => $jobsActive],
         //['label' => Icon::show('github-alt') . 'Lepus', 'url' => ['/topic/default/index', 'node' => 'lepus'], 'active' => $lepusActive],
-        ['label' => Icon::show('commenting') . '动弹', 'url' => ['/tweet'], 'active' => $tweetActive],
+        ['label' => Icon::show('commenting-o') . '动弹', 'url' => ['/tweet'], 'active' => $tweetActive],
         //['label' => Icon::show('th') . '标签', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
         //['label' => Icon::show('signal') . '新手入门', 'url' => ['/site/getstart']],
         //['label' => Icon::show('user') . '会员', 'url' => ['/site/users']],
-        ['label' => Icon::show('plane') . '站点', 'url' => ['/nav'], 'active' => $navActive],
+        ['label' => Icon::show('link') . '站点', 'url' => ['/nav'], 'active' => $navActive],
         //['label' => Icon::show('folder-open')  .'手册', 'url' => ['/topic/default/view','id' =>'56' ]], //add by ruyi
 
     ],

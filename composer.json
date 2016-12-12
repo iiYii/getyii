@@ -17,7 +17,7 @@
     "wiki": "https://github.com/iiYii/getyii/wiki/",
     "source": "https://github.com/iiYii/getyii"
   },
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "require": {
     "php": ">=5.4.0",
     "yiisoft/yii2": "2.0.*@dev",
@@ -51,7 +51,8 @@
     "dmstr/yii2-adminlte-asset": "2.*",
     "enyo/dropzone": "^4.3",
     "kartik-v/yii2-markdown": "dev-master",
-    "hassium/hass-authclient": "*"
+    "kucha/ueditor": "*"
+    
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",

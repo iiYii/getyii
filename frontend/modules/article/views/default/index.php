@@ -4,37 +4,38 @@ use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
 use frontend\widgets\PostTypeTab;
-use frontend\widgets\TopicSidebar;
+use frontend\widgets\ArticleSidebar;
 
 use kartik\icons\Icon;
 
 Icon::map($this);
+
 
 $node = Yii::$app->request->getQueryParam('node');
 $tag = Yii::$app->request->getQueryParam('tag');
 $sort = Yii::$app->request->getQueryParam('sort');
 if ($node) {
     $node = \common\models\PostMeta::find()->where(['alias' => $node])->one();
-    $seo_title = $node->name.' 社区网站';
+    $seo_title = $node->name.' 文章教程';
 }
 else if($tag){
-    $seo_title = $tag.' 话题标签';
+    $seo_title = $tag.' 文章标签';
 }
 else{
-    $seo_title = "社区话题";
+    $seo_title = "文章教程";
 }
 $this->title = $seo_title;
 
 ?>
-<div class="col-md-9 topic-list">
+<div class="col-md-9 article-list">
     <div class="panel panel-default">
 
         <?php if($node and !empty($node->description)): ?>
-        <div class="panel-heading media clearfix">
-            <h1><?= Icon::show('cloud-upload') ?> <?= $node->name; ?></h1>
+            <div class="panel-heading media clearfix">
+                <h1><?= Icon::show('cloud-upload') ?> <?= $node->name; ?></h1>
                 <br/>
                 <span style="color: #666; line-height: 20px;"><?= $node->description; ?></span>
-        </div>
+            </div>
         <?php endif; ?>
 
         <?php if($node): ?>
@@ -73,7 +74,7 @@ $this->title = $seo_title;
     </div>
     <?= \frontend\widgets\Node::widget(); ?>
 </div>
-<?= TopicSidebar::widget([
+<?= ArticleSidebar::widget([
     'node' => $node
 ]); ?>
 

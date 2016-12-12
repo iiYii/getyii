@@ -95,6 +95,19 @@ class PostMeta extends ActiveRecord
         return $nodes;
     }
 
+    public static function articleCategory()
+    {
+        $parents = ArrayHelper::map(
+            static::find()->where(['parent' => null])->orWhere(['parent' => 0])->orderBy(['order' => SORT_ASC])->all(),
+            'id', 'name'
+        );
+        $nodes = [];
+        foreach ($parents as $key => $value) {
+            $nodes[$value] = ArrayHelper::map(static::find()->where(['parent' => $key])->asArray()->all(), 'id', 'name');
+        }
+        return $nodes;
+    }
+
     /**
      * 返回无人区节点id
      * @return mixed|static

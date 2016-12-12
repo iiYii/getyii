@@ -26,10 +26,10 @@ use kartik\select2\Select2;
 
         <?= $form->field($model, 'post_meta_id')->widget(Select2::classname(), [
             'data' => \common\models\PostMeta::topicCategory(),
-            'options' => ['placeholder' => '选择一个分类'],
+            'options' => ['placeholder' => '请选择所在节点'],
             'pluginOptions' => [
                 'allowClear' => true,
-                'height' => '343%'
+                'height' => '343%',
             ],
         ]);
         ?>

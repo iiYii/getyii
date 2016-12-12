@@ -25,7 +25,10 @@ return [
                 'member/<action>/<type:\w+>/<id:\d+>' => 'user/action/<action>',
                 'tag/<tag:\w+>' => 'topic/default/index/',
                 'node/<node:[0-9a-zA-Z\-]+>' => 'topic/default/index',
+                'node/<node:[0-9a-zA-Z\-]+>/topic' => 'topic/default/index',
                 'topic/<id:[0-9a-zA-Z\-]+>' => 'topic/default/view',
+                'node/<node:[0-9a-zA-Z\-]+>/article' => 'article/default/index',
+                'article/<id:[0-9a-zA-Z\-]+>' => 'article/default/view',
                 '<module>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
             ],
         ],
@@ -77,6 +80,9 @@ return [
         ],
         'topic' => [
             'class' => 'frontend\modules\topic\Module',
+        ],
+        'article' => [
+            'class' => 'frontend\modules\article\Module',
         ],
         'nav' => [
             'class' => 'frontend\modules\nav\Module',

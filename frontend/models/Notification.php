@@ -94,6 +94,18 @@ class Notification extends ActiveRecord
             case 'topic_like':
                 $lable = Yii::t('app', 'Up Vote your topic');
                 break;
+            case 'article_favorite':
+                $lable = Yii::t('app', 'Favorited your article:');
+                break;
+            case 'article_thanks':
+                $lable = Yii::t('app', 'Thanks your article:');
+                break;
+            case 'article_follow':
+                $lable = Yii::t('app', 'Attented your article:');
+                break;
+            case 'article_like':
+                $lable = Yii::t('app', 'Up Vote your article');
+                break;
             case 'tweet_like':
                 $lable = Yii::t('app', 'Up Vote your tweet');
                 break;

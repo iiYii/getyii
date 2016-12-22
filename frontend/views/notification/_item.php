@@ -19,7 +19,7 @@ use yii\helpers\HtmlPurifier;
     <div class="media-heading">
         <?= Html::tag('span', Html::a($model->fromUser['username'], ['/user/default/show', 'username' => $model->fromUser['username']])); ?>
         <span class="info"><?= $model->getlable($model->type) ?>
-            <?= Html::a(Html::encode($model->post->title), ['/topic/default/view', 'id' => $model->post_id], ['title' => $model->post->title]); ?>
+            <?= Html::a(Html::encode($model->post->title), ["/{$model->post->type}/default/view", 'id' => $model->post_id], ['title' => $model->post->title,'target'=>'_blank']); ?>
         <span class="date pull-right">
             <i class="fa fa-clock-o"></i>
             <?= Html::tag('abbr', Yii::$app->formatter->asRelativeTime($model->created_at), ['title' => Yii::$app->formatter->asDatetime($model->created_at)]) ?>
@@ -29,7 +29,11 @@ use yii\helpers\HtmlPurifier;
         } ?>
     </div>
     <div class="summary markdown">
+        <?php
+        $action = array('new_comment','topic_new_comment','article_new_comment');
+        if (in_array ($model->type,$action)): ?>
         <?= HtmlPurifier::process(\yii\helpers\Markdown::process($model->data, 'gfm')) ?>
+        <?php endif ?>
     </div>
 </div>
 

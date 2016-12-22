@@ -4,6 +4,7 @@ namespace common\models;
 
 use common\services\NotificationService;
 use common\services\PostService;
+#use DevGroup\TagDependencyHelper\tests\models\Post;
 use frontend\modules\user\models\UserMeta;
 use Yii;
 use common\components\db\ActiveRecord;
@@ -11,7 +12,8 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use frontend\modules\topic\models\Topic;
-
+use frontend\modules\article\models\Article;
+use frontend\modules\question\models\Question;
 /**
  * This is the model class for table "post_comment".
  *
@@ -26,7 +28,7 @@ use frontend\modules\topic\models\Topic;
  * @property string $created_at
  * @property string $updated_at
  *
- * @property Topic $topic
+ * @property Post $post
  */
 class PostComment extends ActiveRecord
 {
@@ -75,6 +77,16 @@ class PostComment extends ActiveRecord
     public function getTopic()
     {
         return $this->hasOne(Topic::className(), ['id' => 'post_id'])->where(['type' => 'topic']);
+    }
+
+    public function getArticle()
+    {
+        return $this->hasOne(Article::className(), ['id' => 'post_id'])->where(['type' => 'article']);
+    }
+
+    public function getQuestion()
+    {
+        return $this->hasOne(Question::className(), ['id' => 'post_id'])->where(['type' => 'question']);
     }
 
     public function getLike()
@@ -167,6 +179,21 @@ class PostComment extends ActiveRecord
         ];
     }
 
+    public function getCurrentModule(){
+        $module = Yii::$app->controller->module->id;
+
+        $post=[];
+        if($module=='topic'){
+            return $this->topic;
+        }
+        if($module=='article'){
+            return $this->article;
+        }
+        if($module=='question'){
+            return $this->question;
+        }
+    }
+
     public $atUsers;
 
     public function beforeSave($insert)
@@ -183,15 +210,17 @@ class PostComment extends ActiveRecord
     {
         parent::afterSave($insert, $changedAttributes);
 
-        $post = $this->topic;
 
-        (new UserMeta())->saveNewMeta('topic', $this->post_id, 'follow');
+
+        $post = $this->getCurrentModule();
+
+        (new UserMeta())->saveNewMeta($post['type'], $this->post_id, 'follow');
         (new NotificationService())->newReplyNotify(\Yii::$app->user->identity, $post, $this, $this->atUsers);
         // 更新回复时间
         $post->lastCommentToUpdate(\Yii::$app->user->identity->username);
         if ($insert) {
             // 评论计数器
-            Topic::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
+            Post::updateAllCounters(['comment_count' => 1], ['id' => $post->id]);
             // 更新个人总统计
             UserInfo::updateAllCounters(['comment_count' => 1], ['user_id' => $this->user_id]);
         }

@@ -34,7 +34,9 @@ return [
     'All Nodes' => '节点导航',
     'My Notifications' => '我的提醒',
     'Your topic have new reply:' => '回复了你的主题:',
-    'Your follow topic have new reply:' => '回复了你关注的主题:',
+    'Your article have new comment:' => '评论了你的文章:',
+    'Your follow topic have new reply:' => '回复了你关注的话题:',
+    'Your follow article have new comment:' => '评论了你关注的文章:',
     'Attented topic has new reply:' => '回复了你关注的主题:',
     'Mention you At:' => '在主题中提及你:',
     'Mention you topic At:' => '在主题中提及你:',
@@ -178,4 +180,10 @@ return [
     'Articles'=>'文章',
     'New Article'=>'发表文章',
     'Same Node Articles'=>'节点下的其他文章',
+    'Received {0} comment' => '共收到 {0} 条评论',
+
+    'Question'=>'问题',
+    'Questions'=>'问题',
+    'New Question'=>'发表提问',
+    'Same Node Questions'=>'节点下的其他提问',
 ];

@@ -10,6 +10,8 @@ namespace frontend\modules\user\controllers;
 use common\services\CommentService;
 use common\services\TopicService;
 use common\services\TweetService;
+use common\services\QuestionService;
+use common\services\ArticleService;
 use Yii;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
@@ -37,6 +39,10 @@ class ActionController extends Controller
             case 'topic':
                 $topicService = new TopicService();
                 list($result, $data) = $topicService->userDoAction($id, 'like');
+                break;
+            case 'article':
+                $articleService = new ArticleService();
+                list($result, $data) = $articleService->userDoAction($id, 'like');
                 break;
             case 'tweet':
                 $tweetService = new TweetService();
@@ -78,10 +84,20 @@ class ActionController extends Controller
                 return $this->message($data ? $data->getErrors() : '提交失败!');
             }
         }
+        if ($type == 'article') {
+            $articleService = new ArticleService();
+            list($result, $data) = $articleService->userDoAction($id, 'hate');
+
+            if ($result) {
+                return $this->message('提交成功!', 'success');
+            } else {
+                return $this->message($data ? $data->getErrors() : '提交失败!');
+            }
+        }
     }
 
     /**
-     * 关注话题
+     * 关注Action
      * @param $type
      * @param $id
      * @return array|string
@@ -91,6 +107,26 @@ class ActionController extends Controller
         if ($type == 'topic') {
             $topicService = new TopicService();
             list($result, $data) = $topicService->userDoAction($id, 'follow');
+
+            if ($result) {
+                return $this->message('提交成功!', 'success');
+            } else {
+                return $this->message($data ? $data->getErrors() : '提交失败!');
+            }
+        }
+        if ($type == 'article') {
+            $articleService = new ArticleService();
+            list($result, $data) = $articleService->userDoAction($id, 'follow');
+
+            if ($result) {
+                return $this->message('提交成功!', 'success');
+            } else {
+                return $this->message($data ? $data->getErrors() : '提交失败!');
+            }
+        }
+        if ($type == 'question') {
+            $questionService = new QuestionService();
+            list($result, $data) = $questionService->userDoAction($id, 'follow');
 
             if ($result) {
                 return $this->message('提交成功!', 'success');
@@ -118,10 +154,20 @@ class ActionController extends Controller
                 return $this->message($data ? $data->getErrors() : '提交失败!');
             }
         }
+        if ($type == 'article') {
+            $articleService = new ArticleService();
+            list($result, $data) = $articleService->userDoAction($id, 'thanks');
+
+            if ($result) {
+                return $this->message('提交成功!', 'success');
+            } else {
+                return $this->message($data ? $data->getErrors() : '提交失败!');
+            }
+        }
     }
 
     /**
-     * 收藏话题
+     * 收藏Action
      * @param $type
      * @param $id
      * @return array|string
@@ -131,6 +177,26 @@ class ActionController extends Controller
         if ($type == 'topic') {
             $topicService = new TopicService();
             list($result, $data) = $topicService->userDoAction($id, 'favorite');
+
+            if ($result) {
+                return $this->message('提交成功!', 'success');
+            } else {
+                return $this->message($data ? $data->getErrors() : '提交失败!');
+            }
+        }
+        if ($type == 'article') {
+            $articleService = new ArticleService();
+            list($result, $data) = $articleService->userDoAction($id, 'favorite');
+
+            if ($result) {
+                return $this->message('提交成功!', 'success');
+            } else {
+                return $this->message($data ? $data->getErrors() : '提交失败!');
+            }
+        }
+        if ($type == 'question') {
+            $questionService = new QuestionService();
+            list($result, $data) = $questionService->userDoAction($id, 'favorite');
 
             if ($result) {
                 return $this->message('提交成功!', 'success');

@@ -37,6 +37,12 @@ use kartik\select2\Select2;
         ]);
         ?>
 
+        <?= $form->field($model, 'excerpt')->textarea([
+            'maxlength' => 255,
+            'rows'=>3,
+            'placeholder' => '文章摘要'
+        ]) ?>
+
 
         <div class="form-group" id="editor">
             <?php echo $form->field($model,'content')->widget('kucha\ueditor\UEditor',[

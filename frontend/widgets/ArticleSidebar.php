@@ -41,7 +41,7 @@ class ArticleSidebar extends \yii\bootstrap\Widget
                     ->limit(200)->all(),
                 'title',
                 function ($e) {
-                    return Url::to(['/topic/default/view', 'id' => $e->id]);
+                    return Url::to(['/article/default/view', 'id' => $e->id]);
                 }
             );
             if (count($sameArticles) > 10) {

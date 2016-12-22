@@ -18,6 +18,7 @@ jQuery(function ($) {
                     numValue = parseInt(num.html()),
                     active = _this.hasClass('active');
                 _this.toggleClass('active');
+
                 if (num.length) {
                     num.html(numValue + (active ? -1 : 1));
                 }

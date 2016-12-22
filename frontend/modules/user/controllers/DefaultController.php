@@ -3,6 +3,7 @@
 namespace frontend\modules\user\controllers;
 
 use frontend\modules\topic\models\Topic;
+use frontend\modules\article\models\Article;
 use frontend\modules\user\models\UserMeta;
 use common\components\Controller;
 use common\models\User;
@@ -63,6 +64,29 @@ class DefaultController extends Controller
             'query' => Topic::find()
                 ->where(['user_id' => $user->id, 'type' => Topic::TYPE])
                 ->andWhere('status > :status ', [':status' => Topic::STATUS_DELETED])
+                ->orderBy(['created_at' => SORT_DESC]),
+        ]);
+
+        return $this->render('show', [
+            'user' => $user,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * 最近文章
+     * @param string $username
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionArticle($username = '')
+    {
+        $user = $this->user($username);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Article::find()
+                ->where(['user_id' => $user->id, 'type' => Article::TYPE])
+                ->andWhere('status > :status ', [':status' => Article::STATUS_DELETED])
                 ->orderBy(['created_at' => SORT_DESC]),
         ]);
 

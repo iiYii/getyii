@@ -23,7 +23,7 @@ $node = \common\models\PostMeta::find()->where(['alias' => $model->category->ali
                 <div class="info">
                     <?= Html::a(
                         $model->category->name,
-                        ['/topic/default/index', 'node' => $model->category->alias],
+                        ['/article/default/index', 'node' => $model->category->alias],
                         ['class' => 'node']
                     ) ?>
                     ·
@@ -68,16 +68,7 @@ $node = \common\models\PostMeta::find()->where(['alias' => $model->category->ali
                     </div>
                 </div>
             <?php endif ?>
-            <?php $status=$recommend=$top=''; ?>
-            <?php if ($model->status == 2): $status=' 精华帖'; endif ?>
-            <?php if ($model->recommend == 1): $recommend=' 推荐贴'; endif ?>
-            <?php if ($model->top == 1): $top=' 置顶帖'; endif ?>
 
-            <?php if ($model->top == 1 || $model->recommend == 1 || $model->status == 2): ?>
-                <div class="ribbon-top">
-                    <i class="fa fa-arrow-up excellent"></i> <?php echo "本帖已经被管理员设置为:$status $recommend $top"; ?>！
-                </div>
-            <?php endif ?>
 
 
         </div>
@@ -146,40 +137,17 @@ $node = \common\models\PostMeta::find()->where(['alias' => $model->category->ali
             echo $follow;
             echo $favorite;
 
-            if ($admin) {
-                $class = $model->status == 2 ? ['class' => 'active'] : null;
-                echo Html::a(
-                    Html::tag('i', '', ['class' => 'fa fa-trophy']) . ' 精华',
-                    ['/topic/default/excellent', 'id' => $model->id],
-                    $class
-                );
-
-                $class = $model->recommend == 1 ? ['class' => 'active'] : null;
-                echo Html::a(
-                    Html::tag('i', '', ['class' => 'fa fa-plane']) . '推荐',
-                    ['/topic/default/recommend', 'id' => $model->id],
-                    $class
-                );
-
-                $class = $model->top == 1 ? ['class' => 'active'] : null;
-                echo Html::a(
-                    Html::tag('i', '', ['class' => 'fa fa-arrow-up']) . ' 置顶',
-                    ['/topic/default/top', 'id' => $model->id],
-                    $class
-                );
-
-            }
             ?>
             <?php if ($model->isCurrent() || \common\models\User::getThrones()): ?>
                 <span class="pull-right">
                     <?= Html::a(
                         Html::tag('i', '', ['class' => 'fa fa-pencil']) . ' 修改',
-                        ['/topic/default/update', 'id' => $model->id]
+                        ['/article/default/update', 'id' => $model->id]
                     ) ?>
                     <?php if($model->comment_count == 0): ?>
                         <?= Html::a(
                             Html::tag('i', '', ['class' => 'fa fa-trash']) . ' 删除',
-                            ['/topic/default/delete', 'id' => $model->id],
+                            ['/article/default/delete', 'id' => $model->id],
                             [
                                 'data' => [
                                     'confirm' => "您确认要删除主题「{$model->title}」吗？",
@@ -198,18 +166,18 @@ $node = \common\models\PostMeta::find()->where(['alias' => $model->category->ali
 
 
     <?= $this->render(
-        '@frontend/modules/topic/views/comment/index',
+        '@frontend/modules/article/views/comment/index',
         ['model' => $model, 'dataProvider' => $dataProvider]
     ) ?>
 
 
     <?= $this->render(
-        '@frontend/modules/topic/views/comment/create',
+        '@frontend/modules/article/views/comment/create',
         ['model' => $comment, 'post' => $model]
     ) ?>
 
 </div>
-<?= \frontend\widgets\TopicSidebar::widget([
+<?= \frontend\widgets\ArticleSidebar::widget([
     'type' => 'view',
     'node' => $model->category,
     'tags' => $model->tags

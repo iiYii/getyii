@@ -6,6 +6,7 @@ use Yii;
 use common\components\db\ActiveRecord;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
+use frontend\modules\user\models\UserMeta;
 
 /**
  * This is the model class for table "post".
@@ -48,6 +49,11 @@ class Post extends ActiveRecord
     const TYPE_TOPIC = 'topic';
 
     /**
+     * 社区文章
+     */
+    const TYPE_ARTICLE = 'article';
+
+    /**
      * 置顶
      */
     const TOP_ACTIVE = 1;
@@ -79,6 +85,8 @@ class Post extends ActiveRecord
      * 删除
      */
     const STATUS_DELETED = 0;
+
+
 
 
     /**
@@ -206,6 +214,8 @@ class Post extends ActiveRecord
         ];
         return $status !== false ? ArrayHelper::getValue($statuses, $status) : $statuses;
     }
+
+
 
 
 }

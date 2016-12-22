@@ -16,7 +16,7 @@ $tag = Yii::$app->request->getQueryParam('tag');
 $sort = Yii::$app->request->getQueryParam('sort');
 if ($node) {
     $node = \common\models\PostMeta::find()->where(['alias' => $node])->one();
-    $seo_title = $node->name.' 文章教程';
+    $seo_title = $node->name.' 学习文章教程';
 }
 else if($tag){
     $seo_title = $tag.' 文章标签';

@@ -24,7 +24,13 @@ Icon::map($this);
         <div class="media-heading ">
             <?= Html::a(Html::encode($model->title),
                 ['/article/default/view', 'id' => $model->id], ['title' => $model->title]
-            ); ?>
+            );
+            echo Html::a(
+                $model->category->name,
+                ['/article/default/index', 'node' => $model->category->alias],
+                ['class' => 'node']
+            );
+            ?>
 
         </div>
         <div class="description"><?=$model['excerpt'] ?>
@@ -35,7 +41,7 @@ Icon::map($this);
                 ['/user/default/show', 'username' => $model->user['username']]
             ); ?>
             <?= Html::a($model->user['username'], ['/user/default/show', 'username' => $model->user['username']]).' • '.Html::tag('span', Yii::t('frontend', 'created_at {datetime}', [
-            'datetime' => Formatter::relative($model->created_at) ])); ?>
+            'datetime' => Formatter::relative($model->created_at) ])) ; ?>
         </div>
     </div>
 </div>

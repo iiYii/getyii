@@ -174,7 +174,7 @@ class UserMeta extends ActiveRecord
                             $this->target_type . '_' . $this->type,
                             Yii::$app->user->id,
                             $this->comment->user_id,
-                            $this->comment->topic,
+                            $this->comment->post,
                             $this->comment
                         );
                         break;

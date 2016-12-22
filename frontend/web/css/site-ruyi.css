@@ -5,10 +5,14 @@ body {
     font-family:Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
 }
 a{color: #333;font-size: 14px;}
-a:hover{color: #009688;}
+a:hover{color: #009966;}
 h1,h2{ font-size: 18px;}
 h3{ font-size: 16px; margin: 8px 0 8px 2px;}
-pre,blockquote {padding: 10px 15px; margin: 10px 0; font-size:13px; border:0px solid #f2f2f2; border-left-width: 4px;  background-color: #fbfbfb; font-family: Courier New; overflow: auto;}
+p{ line-height: 22px;}
+pre,blockquote {padding: 10px 15px; margin: 15px 0; font-size:13px; border:0px solid #009966; border-left-width: 4px;  background-color: #fbfbfb; font-family:"微软雅黑"; overflow: auto; line-height: 23px;}
+blockquote{ font-size: 14px;}
+
+.mt15{ margin-top: 15px;}
 
 .wrap {
     min-height: 100%;
@@ -91,7 +95,7 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
-.panel-body{ line-height: 20px;}
+.panel-body{ line-height: 22px;}
 /* boootstrap 自定义 */
 
 .navbar {
@@ -120,7 +124,7 @@ a.desc:after {
 }
 
 .navbar .navbar-brand{
-    color: #009688;
+    color: #009966;
     font-size: 24px;
 }
 
@@ -131,20 +135,20 @@ a.desc:after {
 .pagination {
     margin-left: 15px;
 }
-.pagination li a, .pagination li span{ color: #009688;}
+.pagination li a, .pagination li span{ color: #009966;}
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
     z-index: 3;
     color: #fff;
     cursor: default;
-    background-color: #009688;
-    border-color: #009688;
+    background-color: #009966;
+    border-color: #009966;
 }
 
 .btn{border-radius: 2px;}
 .btn-primary {
     color: #fff;
-    background-color: #009688;
-    border-color: #009688;
+    background-color: #009966;
+    border-color: #009966;
 }
 .btn-primary:hover {
     color: #fff;
@@ -158,33 +162,13 @@ a.desc:after {
 
 .list-group-item{border: none;border-bottom: 1px solid #ddd;margin-bottom: 0;padding: 12px 0 12px 0;}
 
-/* topic list*/
-.topic-list .list-group {
-    margin-bottom: 0;
-    background-color: #f5f5f5;
-    border: none;
-}
-.topic-list .list-group-item {
-    border: none;
-    margin-bottom: 0;
-    border-bottom: 1px solid #ddd;
-    padding: 12px 0 12px 0;
-}
-
-.topic-list .list-group-item .pull-right{
-   font-size: 12px;
-    color: #999;
-    padding-right: 12px;
-}
-
-.topic-list .media a{ font-size: 15px;}
-.topic-list .media img{  border-radius: 2px;}
 
 
 
 
 
-.header_node{position:fixed; z-index: 1000; left:0; top:60px; width:100%; height:36px; background-color:#009688; box-shadow:1px 1px 2px  #999;}
+
+.header_node{position:fixed; z-index: 1000; left:0; top:60px; width:100%; height:36px; background-color:#009966; box-shadow:1px 1px 2px  #999;}
 .header_node .content{position:relative;width:1085px; margin:0 auto; min-height: 0;}
 .header_node .nav_home,.nav_node{position:relative; float: left; line-height: 33px; color:#eeeeee }
 .header_node .nav_home a{color:#eeeeee ;margin-right: 15px; }
@@ -200,23 +184,12 @@ a.desc:after {
     border-bottom: 0;
 }
 
-.topic-view .info {
-    color: #c0c0c0;
-    font-size: 12px;
-}
 
-.topic-view .panel-heading {
-    padding: 15px;
-}
-
-.topic-view .panel-heading h1 {
-    font-size: 24px;
-}
 
 .avatar img{border-radius: 2px;}
 
 
-.content-body{margin: 20px 0 10px; min-height: 200px; line-height:24px; font-size:15px; color: #333}
+.content-body{margin: 20px 0 10px; min-height: 200px; line-height:26px; font-size:15px; color: #333}
 .content-body p{margin-bottom:15px;}
 .content-body a{color:#4f99cf;}
 .content-body img{max-width: 100%; cursor: crosshair;}
@@ -232,7 +205,7 @@ a.desc:after {
 .show{ display: inline;}
 #donate-qrode{display: none;}
 
-.tweet .active .fa, .topic-view .active .fa, .filter .active, .red {
+.tweet .active .fa, .topic-view .active .fa,.question-view .active .fa, .article-view .active .fa, .filter .active, .red {
     color: #EB5424;
 }
 
@@ -512,10 +485,51 @@ img.emoji {
 
 /*Post类型tab*/
 .post_type_tab { margin-top: 12px; margin-bottom: 12px; border-bottom: 1px solid #ddd;}
-.post_type_tab li{ width: 15%;}
+.post_type_tab li{ width: 18%;}
 .post_type_tab a{font-size: 18px;text-align: center; width: 75%; font-weight: bold; color: #000; border-bottom: 3px solid #fff; }
-.post_type_tab a:hover{border-bottom: 3px solid #009688;border-radius:0; }
-.post_type_tab li.active a,.post_type_tab li.active a:hover{background-color: #fff; color: #000;border-bottom: 3px solid #009688;;border-radius:0; }
+.post_type_tab a:hover{border-bottom: 3px solid #009966;border-radius:0; }
+.post_type_tab li.active a,.post_type_tab li.active a:hover{background-color: #fff; color: #000;border-bottom: 3px solid #009966;;border-radius:0; }
+
+
+/*话题列表*/
+/* topic list*/
+.topic-list .list-group {
+    margin-bottom: 0;
+    background-color: #f5f5f5;
+    border: none;
+}
+.topic-list .list-group-item {
+    border: none;
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
+    padding: 12px 0 12px 0;
+}
+.topic-list .list-group-item .pull-right{
+    font-size: 12px;
+    color: #999;
+    padding-right: 12px;
+}
+.topic-list .media a{ font-size: 15px;}
+.topic-list .media img{  border-radius: 100%;}
+.topic-list .media-body .title-info{
+    font-size: 13px;
+}
+.topic-list .media-body .title-info a {
+    font-size: 13px;
+    color: #009966;
+    float: left;
+    margin-right: 12px;
+}
+.topic-view .info {
+    color: #c0c0c0;
+    font-size: 12px;
+}
+.topic-view .panel-heading {
+    padding: 15px;
+}
+.topic-view .panel-heading h1 {
+    font-size: 24px;
+}
 
 /*文章列表*/
 
@@ -525,8 +539,7 @@ img.emoji {
     border-bottom: 1px solid #ddd;
     padding: 12px 0 12px 0;
 }
-
-.article-list .media a{ font-size: 16px;}
+.article-list .media a{ font-size: 15px;}
 .article-list .media img{  border-radius: 2px;}
 .article-list .media-left{
     text-align: center;
@@ -551,14 +564,14 @@ img.emoji {
 }
 .article-list .media-body .description{
     font-size: 14px;
-    color: #696969;
+    color: #999;
 }
 .article-list .media-body .title-info{
     font-size: 13px;
 }
 .article-list .media-body .title-info a{
     font-size: 14px;
-    color: #009688;
+    color: #009966;
     float: left;
     margin-right: 10px;
 }
@@ -567,4 +580,65 @@ img.emoji {
     height: 20px;
     border-radius: 100%;
 }
+.article-list .node{
+    margin-left: 12px;
+    padding: 1px 6px;
+    text-decoration: none;
+    background-color: #efefef;
+    color: #009966;
+}
 
+
+/*问答列表*/
+.question-list .media a{ font-size: 15px;}
+.question-list .media-left{
+    clear: both;
+    width: 105px;
+    text-align: center;
+    color:#999 ;
+    font-size: 13px;
+    float: left;
+}
+.question-list .media-left .answer{
+    width: 45px;
+    height: 40px;
+    background-color: #009966;
+    margin-top: 5px;
+    padding-top: 2px;
+    color: #fff;
+    float: left;
+}
+.question-list .media-left .views{
+    width: 45px;
+    height: 40px;
+    background-color: #fff;
+    margin-top: 5px;
+    margin-left: 5px;
+    padding-top: 2px;
+    float: left;
+}
+.question-list .media-left span{
+    text-align: center;
+}
+
+.question-list .media-body .title-info{
+    font-size: 13px;
+}
+.question-list .media-body .title-info a{
+    font-size: 14px;
+    color: #009966;
+    float: left;
+    margin-right: 10px;
+}
+.question-list .media-body .title-info .media-object{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+}
+
+.question-view .content-body{margin:0px; min-height: 0px;}
+
+/**/
+.list-nav .navbar{ height: 50px;}
+.list-nav .list-group-item { font-size: 14px; line-height: 22px;}
+.list-nav .list-group-item a{ font-size: 14px;}

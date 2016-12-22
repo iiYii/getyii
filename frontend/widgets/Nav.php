@@ -22,10 +22,10 @@ class Nav extends \yii\bootstrap\Widget
         $params = Yii::$app->request->queryParams;
         if (isset($params['node'])) {
             $nodeParent = PostMeta::findOne(['alias' => $params['node']])->parent;
-            $my_nodes = PostMeta::find()->where(['not',['parent' =>null]])->andWhere(['parent'=>$nodeParent])->orderBy([ 'count' => SORT_DESC,'order' => SORT_ASC,])->limit(10)->all();
+            $my_nodes = PostMeta::find()->where(['not',['parent' =>null]])->andWhere(['parent'=>$nodeParent])->orderBy([ 'count' => SORT_DESC,'order' => SORT_ASC,])->limit(14)->all();
         }
         else{
-            $my_nodes = PostMeta::find()->where(['not',['parent' =>null]])->orderBy([ 'count' => SORT_DESC,'order' => SORT_ASC,])->limit(10)->all();
+            $my_nodes = PostMeta::find()->where(['not',['parent' =>null]])->andWhere(['status'=>1])->orderBy([ 'count' => SORT_DESC,'order' => SORT_ASC,])->limit(14)->all();
         }
         //print_r($nodes);exit;
         return $this->render('nav', [

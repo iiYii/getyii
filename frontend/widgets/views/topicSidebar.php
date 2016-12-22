@@ -21,7 +21,7 @@ $node = $config['node'];
                     <h3 class="panel-title"><?= Yii::t('app', 'Join Us') ?></h3>
                 </div>
                 <div class="panel-body text-center">
-                    <span>这里是一个分享、交流、探索数据库、职业生涯、生活趣事的地方。</span>
+                    <span>欢迎来到DBACHINA，学习数据库专业知识，分享交流数据库相关话题、探索DBA职业生涯。从注册一个账号开始。</span>
                     <hr/>
                     <div class="btn-group">
                         <?= Html::a(
@@ -91,8 +91,8 @@ $node = $config['node'];
                     <h3 class="panel-title">合作伙伴</h3>
                 </div>
                 <div class="panel-body">
-                    <?= Html::img('http://cache.dba-china.com/images/qrcode_tunyun.jpg', ['width' => 250]); ?>
-                    <p>专注企业数据库创新服务和Oracle数据库干货分享：<a href="http://ytuninfo.com">http://ytuninfo.com</a></p>
+                    <?= Html::img(Yii::getAlias('@web/ads/qrcode_tunyun.jpg'), ['width' => 250]); ?>
+                    <p>专注企业数据库创新服务和Oracle数据库干货分享</p>
                 </div>
             </div>
             <div class="panel panel-default corner-radius">

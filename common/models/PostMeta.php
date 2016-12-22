@@ -18,6 +18,8 @@ use common\components\db\ActiveRecord;
  * @property string $description
  * @property string $count
  * @property string $order
+ * @property string $status
+ * @property string $is_article
  * @property string $created_at
  * @property string $updated_at
  */
@@ -49,10 +51,11 @@ class PostMeta extends ActiveRecord
     public function rules()
     {
         return [
-            [['count', 'order', 'created_at', 'updated_at', 'parent'], 'integer'],
+            [['count', 'order', 'created_at', 'updated_at', 'parent','status','is_article'], 'integer'],
             [['name'], 'string', 'max' => 100],
             [['alias', 'type'], 'string', 'max' => 32],
             [['description'], 'string', 'max' => 255],
+            [['status','is_article'], 'string', 'max' => 1],
             [['alias'], 'unique']
         ];
     }
@@ -71,6 +74,8 @@ class PostMeta extends ActiveRecord
             'description' => '选项描述',
             'count' => '项目所属内容个数',
             'order' => '项目排序',
+            'status' => '推荐状态',
+            'is_article' => '发布文章',
             'created_at' => '创建时间',
             'updated_at' => '修改时间',
         ];

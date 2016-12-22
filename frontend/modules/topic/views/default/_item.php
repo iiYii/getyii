@@ -43,8 +43,8 @@ Icon::map($this);
                 $model->category->name,
                 ['/topic/default/index', 'node' => $model->category->alias],
                 ['class' => 'node']
-            ), ' • ',
-            Html::a(
+            ), ' • ';
+            echo Html::a(
                 $model->user['username'],
                 ['/user/default/show', 'username' => $model->user['username']]
             ), ' • ';

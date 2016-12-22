@@ -8,11 +8,14 @@
 namespace common\services;
 
 use common\models\PostComment;
+use common\models\PostMeta;
 use common\models\User;
 use frontend\models\Notification;
 use frontend\modules\topic\models\Topic;
+use frontend\modules\article\models\Article;
 use common\models\Post;
 use frontend\modules\user\models\UserMeta;
+use frontend\widgets\TopicSidebar;
 use yii\base\Exception;
 use yii\helpers\VarDumper;
 
@@ -28,9 +31,11 @@ class NotificationService
      * @param string $rawComment
      * @throws Exception
      */
-    public function newReplyNotify(User $fromUser, Topic $topic, PostComment $comment, $atUsers)
+    public function newReplyNotify(User $fromUser, Post $post, PostComment $comment, $atUsers)
     {
-        foreach ($topic->follower as $key => $value) {
+        $users = [];
+
+        foreach ($post->follower as $key => $value) {
             $users[$value->user_id] = $value->user_id;
         }
 
@@ -39,12 +44,12 @@ class NotificationService
             'at',
             $fromUser,
             $atUsers,
-            $topic,
+            $post,
             $comment);
 
         // 通知关注的用户
         //print_r($users);die;
-        $this->batchNotify('new_comment', $fromUser, $users, $topic, $comment);
+        $this->batchNotify("$post->type"."_new_comment", $fromUser, $users, $post, $comment);
     }
 
     /**

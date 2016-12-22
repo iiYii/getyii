@@ -14,14 +14,14 @@ $node = $config['node'];
 ?>
 <div class="col-md-3 side-bar p0">
 
-    <div class="<?= (request('id')) ? 'p-fixed' : null; ?>">
+    <div class="">
         <?php if (Yii::$app->user->isGuest): ?>
             <div class="panel panel-default corner-radius">
                 <div class="panel-heading text-center">
                     <h3 class="panel-title"><?= Yii::t('app', 'Join Us') ?></h3>
                 </div>
                 <div class="panel-body text-center">
-                    <span>这里是一个分享、交流、探索数据库、职业生涯、生活趣事的地方。</span>
+                    <span>欢迎来到DBACHINA，学习数据库专业知识，分享交流数据库相关话题、探索DBA职业生涯。从注册一个账号开始。</span>
                     <hr/>
                     <div class="btn-group">
                         <?= Html::a(

@@ -28,6 +28,21 @@ class Article extends Post
      */
     public $cc;
 
+    public function rules()
+    {
+        return [
+            [['post_meta_id', 'title','excerpt'], 'required'],
+            [['post_meta_id', 'user_id', 'view_count', 'comment_count', 'last_comment_time', 'favorite_count', 'like_count', 'thanks_count', 'hate_count', 'status','top','recommend', 'order', 'created_at', 'updated_at'], 'integer'],
+            [['content'], 'string', 'min' => 10],
+            [['type'], 'string', 'max' => 32],
+            [['last_comment_username'], 'string', 'max' => 20],
+            [['title'], 'string', 'max' => 50, 'min' => 10],
+            [['excerpt', 'image', 'tags'], 'string', 'max' => 255],
+            [['author'], 'string', 'max' => 100],
+            [['cc'], 'safe']
+        ];
+    }
+
     public function getLike()
     {
         $model = new UserMeta();
@@ -98,10 +113,10 @@ class Article extends Post
     /**
      * 通过ID获取指定话题
      * @param $id
-     * @return array|Topic|null|\yii\db\ActiveRecord
+     * @return array|Article|null|\yii\db\ActiveRecord
      * @throws NotFoundHttpException
      */
-    public static function findTopic($id)
+    public static function findArticle($id)
     {
         return static::findModel($id, ['>=', 'status', self::STATUS_ACTIVE]);
     }

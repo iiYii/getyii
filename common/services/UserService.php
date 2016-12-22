@@ -85,6 +85,53 @@ class UserService
     }
 
     /**
+     * 赞话题(如果已经赞,则取消赞)
+     * @param User $user
+     * @param Topic $topic
+     * @param $action 动作
+     * @return array
+     */
+    public static function ActionA(User $user, Post $post, $action)
+    {
+        return self::toggleType($user, $post, $action);
+    }
+
+    /**
+     * 用户对话题其他动作
+     * @param User $user
+     * @param Post $model
+     * @param $action  fa
+     * @return array
+     */
+    public static function ActionB(User $user, Post $model, $action)
+    {
+        $data = [
+            'target_id' => $model->id,
+            'target_type' => $model->type,
+            'user_id' => $user->id,
+            'value' => '1',
+        ];
+        if (!UserMeta::deleteOne($data + ['type' => $action])) { // 删除数据有行数则代表有数据,无行数则添加数据
+            $userMeta = new UserMeta();
+            $userMeta->setAttributes($data + ['type' => $action]);
+            $result = $userMeta->save();
+            if ($result) {
+                $model->updateCounters([$action . '_count' => 1]);
+                if ($action == 'thanks') {
+                    UserInfo::updateAllCounters([$action . '_count' => 1], ['user_id' => $model->user_id]);
+                }
+            }
+            return [$result, $userMeta];
+        }
+        $model->updateCounters([$action . '_count' => -1]);
+        if ($action == 'thanks') {
+            UserInfo::updateAllCounters([$action . '_count' => -1], ['user_id' => $model->user_id]);
+        }
+
+        return [true, null];
+    }
+
+    /**
      * 对评论点赞
      * @param User $user
      * @param PostComment $comment

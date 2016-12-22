@@ -64,6 +64,12 @@ class Notification extends ActiveRecord
             case 'new_comment':
                 $lable = Yii::t('app', 'Your follow topic have new reply:');
                 break;
+            case 'topic_new_comment':
+                $lable = Yii::t('app', 'Your follow topic have new reply:');
+                break;
+            case 'article_new_comment':
+                $lable = Yii::t('app', 'Your follow article have new comment:');
+                break;
             case 'attention':
                 $lable = Yii::t('app', 'Attented topic has new reply:');
                 break;

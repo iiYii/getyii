@@ -24,11 +24,16 @@ return [
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 'member/<action>/<type:\w+>/<id:\d+>' => 'user/action/<action>',
                 'tag/<tag:\w+>' => 'topic/default/index/',
+
                 'node/<node:[0-9a-zA-Z\-]+>' => 'topic/default/index',
+
                 'node/<node:[0-9a-zA-Z\-]+>/topic' => 'topic/default/index',
-                'topic/<id:[0-9a-zA-Z\-]+>' => 'topic/default/view',
                 'node/<node:[0-9a-zA-Z\-]+>/article' => 'article/default/index',
+                'node/<node:[0-9a-zA-Z\-]+>/question' => 'question/default/index',
+
+                'topic/<id:[0-9a-zA-Z\-]+>' => 'topic/default/view',
                 'article/<id:[0-9a-zA-Z\-]+>' => 'article/default/view',
+                'question/<id:[0-9a-zA-Z\-]+>' => 'question/default/view',
                 '<module>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
             ],
         ],
@@ -83,6 +88,9 @@ return [
         ],
         'article' => [
             'class' => 'frontend\modules\article\Module',
+        ],
+        'question' => [
+            'class' => 'frontend\modules\question\Module',
         ],
         'nav' => [
             'class' => 'frontend\modules\nav\Module',

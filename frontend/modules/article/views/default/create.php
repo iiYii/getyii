@@ -24,6 +24,6 @@ $this->title = '发布新文章';
 
 </div>
 
-<?= \frontend\widgets\TopicSidebar::widget([
+<?= \frontend\widgets\ArticleSidebar::widget([
     'type' => 'create'
 ])?>

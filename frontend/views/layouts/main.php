@@ -68,7 +68,7 @@ $emojify = EmojifyAsset::register($this);
             <dl class="col-sm-3">
                 <dt> 技术采用</dt>
                 <dd class="fs12">
-                    网站由 <a href="http:www.dba-china.com">DBA-CHINA</a> 创建 项目源码地址: <a href="https://github.com/iiyii/getyii">GetYii</a>
+                    网站由 <a href="/">DBA-CHINA</a> 创建 项目源码地址: <a href="https://github.com/iiyii/getyii">GetYii</a>
                     <br/>
                     <?= Yii::powered() ?> <?= Yii::getVersion() ?>
                     <br/>
@@ -76,9 +76,7 @@ $emojify = EmojifyAsset::register($this);
                 </dd>
             </dl>
             <div class="col-sm-3">
-                <a href="http://ytuninfo.com/" target="_blank">
-                    <img src="http://cache.dba-china.com/images/qrcode_tunyun.jpg" alt="qiniu" width="180">
-                </a>
+                <?= Html::img(Yii::getAlias('@web/ads/qrcode_tunyun.jpg'), ['width' => 180]); ?>
                 <p>Oracle干货天天看(合作伙伴公众号)</p>
             </div>
         </div>

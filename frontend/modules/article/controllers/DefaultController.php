@@ -101,7 +101,7 @@ class DefaultController extends Controller
      */
     public function actionView($id)
     {
-        $model = Article::findTopic($id);
+        $model = Article::findArticle($id);
 
         //登录才能访问的节点内容
         $MetaId = $model->post_meta_id;

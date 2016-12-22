@@ -18,7 +18,7 @@ class PostMetaSearch extends PostMeta
     public function rules()
     {
         return [
-            [['id', 'count', 'order', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'count', 'order', 'created_at', 'updated_at','status','is_article'], 'integer'],
             [['name', 'alias', 'type', 'description'], 'safe'],
         ];
     }

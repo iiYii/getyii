@@ -1,13 +1,10 @@
 <?php
 
+use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
 use frontend\widgets\TopicSidebar;
-
-use kartik\icons\Icon;
-
-Icon::map($this);
 
 $this->title = '社区';
 $sort = Yii::$app->request->getQueryParam('sort');
@@ -18,14 +15,14 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
 ?>
 <div class="col-md-9 topic">
     <div class="panel panel-default">
-        <?php if($node): ?>
-        <div class="panel-heading clearfix">
-            <?= Icon::show('cloud-upload') ?> <?= $node->name; ?>
-            <?php if(!empty($node->description)): ?>
-                <br/>
-                <span style="color: #666666; font-size: 12px;"><?= $node->description; ?></span>
-            <?php endif; ?>
-        </div>
+        <?php if ($node): ?>
+            <div class="panel-heading clearfix">
+                <?= FA::i('cloud-upload') ?> <?= $node->name; ?>
+                <?php if (!empty($node->description)): ?>
+                    <br/>
+                    <span style="color: #666666; font-size: 12px;"><?= $node->description; ?></span>
+                <?php endif; ?>
+            </div>
         <?php endif; ?>
 
         <div class="panel-heading clearfix">

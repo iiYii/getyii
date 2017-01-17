@@ -23,12 +23,10 @@
     "yiisoft/yii2": "2.0.*@dev",
     "yiisoft/yii2-bootstrap": "*",
     "yiisoft/yii2-swiftmailer": "*",
-    "2amigos/yii2-selectize-widget": "*",
-    "bower-asset/font-awesome": "*",
+    "conquer/select2": "*",
     "bower-asset/marked": "*",
     "bower-asset/highlightjs": "*",
     "bower-asset/metisMenu": "*",
-    "bower-asset/emojify.js": "*",
     "bower-asset/PACE": "*",
     "bower-asset/localforage": "*",
     "bower-asset/At.js": "*",
@@ -36,20 +34,17 @@
     "yzalis/identicon": "*",
     "funson86/yii2-setting": "*",
     "yiisoft/yii2-imagine": "^2.0",
-    "kartik-v/yii2-icons": "*",
     "hightman/xunsearch": "*@beta",
-    "kartik-v/yii2-widget-select2": "*",
     "yiier/yii2-backup": "*",
     "2amigos/yii2-qrcode-helper": "~1.0",
     "kop/yii2-scroll-pager": "dev-master",
     "devgroup/yii2-tag-dependency-helper": "*",
-    "trntv/yii2-aceeditor": "dev-master",
     "yiier/yii2-return-url": "*",
     "yiier/yii2-merit": "*",
     "yiisoft/yii2-httpclient": "dev-master",
     "understeam/yii2-slack": "~0.1",
     "dmstr/yii2-adminlte-asset": "2.*",
-    "enyo/dropzone": "^4.3"
+    "yiier/yii2-editor.md": "*"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",
@@ -61,21 +56,23 @@
     "process-timeout": 1800
   },
   "autoload": {
-    "psr-4": { "common\\": "common" },
+    "psr-4": {
+      "common\\": "common"
+    },
     "files": [
       "common/components/GlobalFunctions.php"
     ]
   },
- "scripts": {
-      "post-create-project-cmd": [
-          "yii\\composer\\Installer::postCreateProject"
-      ],
-      "post-install-cmd": [
-          "common\\components\\ComposerInstaller::initProject"
-      ],
-      "post-update-cmd": [
-          "common\\components\\ComposerInstaller::initProject"
-      ]
+  "scripts": {
+    "post-create-project-cmd": [
+      "yii\\composer\\Installer::postCreateProject"
+    ],
+    "post-install-cmd": [
+      "common\\components\\ComposerInstaller::initProject"
+    ],
+    "post-update-cmd": [
+      "common\\components\\ComposerInstaller::initProject"
+    ]
   },
   "extra": {
     "asset-installer-paths": {

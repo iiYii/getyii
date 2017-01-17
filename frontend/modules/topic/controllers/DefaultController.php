@@ -192,6 +192,7 @@ class DefaultController extends Controller
                 $this->flash('发表文章成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->id]);
             }
+            pr($model->errors);
 
         } else {
             return $this->render('create', [

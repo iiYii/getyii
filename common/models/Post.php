@@ -19,7 +19,7 @@ use yii\helpers\ArrayHelper;
  * @property string $excerpt
  * @property string $image
  * @property string $content
- * @property string $tags
+ * @property string|array $tags
  * @property string $last_comment_time
  * @property string $last_comment_username
  * @property integer $view_count
@@ -34,6 +34,7 @@ use yii\helpers\ArrayHelper;
  * @property integer $updated_at
  *
  * @property PostMeta $category
+ * @property User $user
  */
 class Post extends ActiveRecord
 {
@@ -88,9 +89,9 @@ class Post extends ActiveRecord
             [['type'], 'string', 'max' => 32],
             [['last_comment_username'], 'string', 'max' => 20],
             [['title'], 'string', 'max' => 50, 'min' => 2],
-            [['excerpt', 'image', 'tags'], 'string', 'max' => 255],
+            [['excerpt', 'image'], 'string', 'max' => 255],
             [['author'], 'string', 'max' => 100],
-            [['cc'], 'safe']
+            [['cc', 'tags'], 'safe']
         ];
     }
 

@@ -119,8 +119,9 @@ class Topic extends Post
     {
         if (parent::beforeSave($insert)) {
 
-            if ($this->tags) {
-                $this->addTags(explode(',', $this->tags));
+            if ($this->tags && is_array($this->tags)) {
+                $this->addTags($this->tags);
+                $this->tags = implode(',', $this->tags);
             }
             $this->content = TopicService::contentTopic($this->content, $this)
                 . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->username]) : '');

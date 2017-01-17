@@ -8,7 +8,6 @@
 namespace common\services;
 
 
-use common\models\PostTag;
 use common\models\User;
 use common\models\Post;
 use frontend\models\Notification;

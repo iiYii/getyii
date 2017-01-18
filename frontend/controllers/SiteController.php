@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\helpers\Arr;
+use common\helpers\UploadHelper;
 use common\models\Post;
 use common\models\PostComment;
 use common\models\PostTag;
@@ -16,6 +17,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
+use yii\base\Model;
 use yii\helpers\Json;
 use yii\web\BadRequestHttpException;
 use common\components\Controller;
@@ -39,10 +41,10 @@ class SiteController extends Controller
         return Arr::merge(parent::behaviors(), [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup', 'connect'],
+                'only' => ['logout', 'signup', 'connect', 'upload'],
                 'rules' => [
                     ['actions' => ['signup', 'connect'], 'allow' => true, 'roles' => ['?']],
-                    ['actions' => ['logout'], 'allow' => true, 'roles' => ['@']],
+                    ['actions' => ['logout', 'upload'], 'allow' => true, 'roles' => ['@']],
                 ],
             ],
             'verbs' => [
@@ -66,6 +68,17 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+        if ($action->id == 'upload') {
+            $this->enableCsrfValidation = false;
+        }
+        return parent::beforeAction($action);
     }
 
     public function actionIndex()
@@ -191,12 +204,13 @@ class SiteController extends Controller
      */
     public function actionConnect($account_id)
     {
+        /** @var UserAccount $account */
         $account = UserAccount::find()->where(['id' => $account_id])->one();
 
         if ($account === null || $account->getIsConnected()) {
             throw new NotFoundHttpException;
         }
-        $accountData = \yii\helpers\Json::decode($account->data);
+        $accountData = Json::decode($account->data);
 
         $model = new SignupForm();
         $model->username = $accountData['login'];
@@ -219,9 +233,12 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * @param string $url
+     */
     public function actionQrcode($url = '')
     {
-        return QrCode::png($url);
+        QrCode::png($url);
     }
 
     public function actionSignup()
@@ -278,6 +295,39 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     *  上传图片
+     * @param $field
+     * @return array
+     */
+    public function actionUpload($field)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $file = UploadHelper::getCurlValue($_FILES[$field]['tmp_name'], $_FILES[$field]['type'], basename($_FILES[$field]['name']));
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://sm.ms/api/upload');
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, ['smfile' => $file]);
+        $response = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            Yii::error($response, '上传图片失败');
+            $return = ['success' => 0, 'message' => '上传失败'];
+        } else {
+            $array = Json::decode($response);
+            if (!empty($array['data']['url'])) {
+                $return = ['success' => 1, 'message' => '上传成功', 'url' => $array['data']['url']];
+            } else {
+                Yii::error($response, '上传图片失败');
+                $return = ['success' => 0, 'message' => '上传失败'];
+            }
+        }
+        curl_close($ch);
+        return $return;
     }
 
     /**

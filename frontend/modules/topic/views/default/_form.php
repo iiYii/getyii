@@ -4,6 +4,7 @@ use common\models\PostTag;
 use conquer\select2\Select2Widget;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yiier\editor\EditorMdWidget;
 
@@ -33,6 +34,8 @@ $model->tags = $model->tags ? explode(',', $model->tags) : '';
 
     <?= $form->field($model, 'content')->widget(EditorMdWidget::className(), [
         'clientOptions' => [
+            'imageUpload' => true,
+            'imageUploadURL' => Url::to(['/site/upload', 'field' => 'editormd-image-file']),
         ]
     ]) ?>
 

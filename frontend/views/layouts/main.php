@@ -51,7 +51,7 @@ rmrevin\yii\fontawesome\AssetBundle::register($this);
         <div class="row">
             <dl class="col-sm-2">
                 <dt>网站信息</dt>
-                <dd><a href="<?= Url::to(['/site/about']) ?>">关于我们</a></dd>
+                <dd><a href="<?= Url::to(['/site/users']) ?>">活跃会员</a></dd>
                 <dd><a href="<?= Url::to(['/site/contributors']) ?>">贡献者</a></dd>
             </dl>
             <dl class="col-sm-2">
@@ -60,6 +60,7 @@ rmrevin\yii\fontawesome\AssetBundle::register($this);
             </dl>
             <dl class="col-sm-2">
                 <dt>关注我们</dt>
+                <dd><a href="<?= Url::to(['/site/about']) ?>">关于我们</a></dd>
                 <dd><a href="<?= Url::to(['/site/timeline']) ?>">时间线</a></dd>
             </dl>
             <dl class="col-sm-3">

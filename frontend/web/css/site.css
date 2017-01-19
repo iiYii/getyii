@@ -3,7 +3,6 @@ body {
     height: 100%;
     background-color: #f0f0f0;
     padding-top: 35px;
-    font-family: PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
 }
 
 .wrap {
@@ -188,8 +187,33 @@ a.desc:after {
     border: 1px dashed #ccc;
 }
 
+.article {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: auto;
+    line-height: 2;
+    color: #424b50;
+    word-wrap: break-word;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    counter-reset: entry825h2 entry825h3 entry825h4 entry825h5 entry825h6;
+}
+
+.topic-view .panel-body {
+    padding: 0 20px;
+}
+
+.article p {
+    padding: 0;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
 /*代码高亮*/
 .article pre, .user-default-index pre, .markdown pre, .markdown-reply pre, .tweet pre {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
     padding: 0;
 }
 

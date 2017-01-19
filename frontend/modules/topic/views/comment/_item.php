@@ -77,7 +77,7 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
 
         </div>
 
-        <div class="media-body markdown-reply content-body">
+        <div class="media-body markdown-reply article">
             <?= HtmlPurifier::process(Markdown::process($model->comment, 'gfm')) ?>
         </div>
     </div>

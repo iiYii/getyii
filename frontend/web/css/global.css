@@ -4,6 +4,10 @@ body > iframe {
     display: none;
 }
 
+body {
+    font-family: "Helvetica Neue", PingFang SC, Lantinghei SC, Microsoft Yahei, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "Wenquanyi Micro Hei", sans-serif;
+}
+
 .text-center {
     text-align: center;
 }
@@ -81,7 +85,6 @@ abbr[title] {
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
     font-weight: bold;
 }
 

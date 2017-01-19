@@ -129,40 +129,6 @@ jQuery(function ($) {
 
     localStorage();
 
-
-    /**
-     * 监听键盘
-     */
-    $('#markdown').keyup(function () {
-        var editor = ace.edit("markdown");
-        var oldContent = editor.getValue();
-        runPreview(oldContent);
-    });
-
-    $('#md-input').keyup(function () {
-        var oldContent = $("#md-input").val();
-        runPreview(oldContent);
-    });
-
-    /**
-     * markdown预览
-     */
-    function runPreview(oldContent) {
-        if (oldContent) {
-            marked(oldContent, function (err, content) {
-                $('#md-preview').html(content);
-                //highlightBlock();
-                //emojify.run(document.getElementById('preview-box'));
-            });
-        }
-    }
-
-    function highlightBlock() {
-        $('pre code').each(function (i, block) {
-            hljs.highlightBlock(block);
-        });
-    }
-
     $(document).on('click', '.btn-reply', function (e) {
         e.preventDefault();
         var username = $(this).data('username');

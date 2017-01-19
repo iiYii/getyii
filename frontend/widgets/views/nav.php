@@ -23,7 +23,7 @@ $navActive = ($module == 'nav') ? true : false;
 $jobsActive = ($node == 'jobs') ? true : false;
 
 NavBar::begin([
-    // 'brandLabel' => Html::img('/images/logo.png'),
+//     'brandLabel' => Html::img('/images/logo.png'),
     'brandLabel' => 'Get√Yii',
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
@@ -33,14 +33,12 @@ NavBar::begin([
 echo Nav::widget([
     'options' => ['class' => 'nav navbar-nav '],
     'items' => [
-//        ['label' =>   FA::icon('th-large')  . '首页', 'url' => ['/site/index'] ],
-        ['label' => FA::icon('comment') . '社区', 'url' => ['/topic'], 'active' => $topicActive],
-        ['label' => FA::icon('envelope') . '招聘', 'url' => ['/topic/default/index', 'node' => 'jobs'], 'active' => $jobsActive],
-        ['label' => FA::icon('commenting') . '动弹', 'url' => ['/tweet'], 'active' => $tweetActive],
-        ['label' => FA::icon('th') . '标签', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
-        ['label' => FA::icon('signal') . '新手入门', 'url' => ['/site/getstart']],
-        ['label' => FA::icon('user') . '会员', 'url' => ['/site/users']],
-        ['label' => FA::icon('plane') . '酷站', 'url' => ['/nav'], 'active' => $navActive],
+        ['label' => '社区', 'url' => ['/topic'], 'active' => $topicActive],
+        ['label' => '招聘', 'url' => ['/topic/default/index', 'node' => 'jobs'], 'active' => $jobsActive],
+        ['label' => '动弹', 'url' => ['/tweet'], 'active' => $tweetActive],
+        ['label' => '标签', 'url' => ['/site/tags'], 'active' => $topicTagsActive],
+//        ['label' => '新手入门', 'url' => ['/site/getstart']],
+        ['label' => '酷站', 'url' => ['/nav'], 'active' => $navActive],
 
     ],
     'encodeLabels' => false

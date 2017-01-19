@@ -13,7 +13,7 @@ class BowerAsset extends AssetBundle
 
     public $css = [
         'font-awesome/css/font-awesome.min.css',
-        'highlightjs/styles/monokai_sublime.css',
+        'highlightjs/styles/darkula.css',
         'pace/themes/green/pace-theme-minimal.css',
     ];
 

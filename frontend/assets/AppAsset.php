@@ -21,6 +21,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/global.css',
         'css/site.css',  //site.css or site-ruyi.css
+//        'css/entry.css',
     ];
 
     public $js = [

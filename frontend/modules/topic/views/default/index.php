@@ -12,6 +12,7 @@ $tag = Yii::$app->request->getQueryParam('tag');
 if ($node = Yii::$app->request->getQueryParam('node')) {
     $node = \common\models\PostMeta::find()->where(['alias' => $node])->one();
 }
+/** @var  array $sorts */
 ?>
 <div class="col-md-9 topic">
     <div class="panel panel-default">
@@ -32,7 +33,7 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
             <?php endif; ?>
 
             <div class="filter pull-right">
-                <span class="l">查看:</span>
+                <span class="l">排序:</span>
                 <?php foreach ($sorts as $key => $name): ?>
                     <?= Html::a($name, \yii\helpers\Url::current(['sort' => $key]), ['class' => ($sort == $key || ((empty($sort) && $key == 'newest'))) ? 'active' : '']) ?> \
                 <?php endforeach ?>

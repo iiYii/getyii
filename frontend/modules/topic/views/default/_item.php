@@ -8,23 +8,17 @@ use common\helpers\Formatter;
 /* @var  Topic $model */
 ?>
 <div class="media">
+    <?= Html::a(Html::tag('span', $model['comment_count'], ['class' => 'badge badge-reply-count']),
+        ['/topic/default/view', 'id' => $model->id, '#' => 'comment' . $model['comment_count']], ['class' => 'pull-right']
+    ); ?>
 
     <div class="media-left">
-        <?php //echo Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object img-circle']),
-        //            ['/user/default/show', 'username' => $model->user['username']]
-        //        ); ?>
-        <div class="numbers">
-            <div class="like-num">
-                <p><?= $model->like_count ?></p>
-                <p class="china-intro">点赞</p>
-            </div>
-            <div class="read-num">
-                <p><?= $model->view_count ?></p>
-                <p class="china-intro">阅读</p>
-            </div>
-        </div>
+        <?= Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object img-circle']),
+            ['/user/default/show', 'username' => $model->user['username']]
+        ); ?>
     </div>
     <div class="media-body">
+
         <div class="media-heading">
             <?= Html::a(Html::encode($model->title),
                 ['/topic/default/view', 'id' => $model->id], ['title' => $model->title]
@@ -34,24 +28,31 @@ use common\helpers\Formatter;
 
         <div class="title-info">
             <?php
+            if ($model->like_count) {
+                echo Html::a(Html::tag('span', ' ' . $model->like_count . ' ', ['class' => 'fa fa-thumbs-o-up']),
+                    ['/topic/default/view', 'id' => $model->id], ['class' => 'remove-padding-left']
+                ), ' • ';
+            }
             echo Html::a(
                 $model->category->name,
                 ['/topic/default/index', 'node' => $model->category->alias],
                 ['class' => 'node']
             ), ' • ';
+
             if ($model->last_comment_username) {
                 echo Html::tag('span',
                     Yii::t('frontend', 'last_by') .
                     Html::a(
-                        ' ' . $model->last_comment_username . ' ',
+                        Html::tag('strong', ' ' . $model->last_comment_username . ' '),
                         ['/user/default/show', 'username' => $model->last_comment_username]) .
                     Yii::t('frontend', 'reply_at {datetime}', [
                         'datetime' => Formatter::relative($model->last_comment_time)
                     ])
                 );
             } else {
-                echo Html::a(
-                    $model->user['username'],
+                echo '由',
+                Html::a(
+                    Html::tag('strong', ' ' . $model->user['username'] . ' '),
                     ['/user/default/show', 'username' => $model->user['username']]
                 ),
                 Html::tag('span',
@@ -60,13 +61,8 @@ use common\helpers\Formatter;
                     ])
                 );
             }
+            echo ' • ' . $model->view_count . ' 次阅读'
             ?>
         </div>
     </div>
-    <div class="media-right">
-        <?= Html::a(Html::tag('span', $model['comment_count'], ['class' => 'badge badge-reply-count']),
-            ['/topic/default/view', 'id' => $model->id, '#' => 'comment' . $model['comment_count']]
-        ); ?>
-    </div>
-
 </div>

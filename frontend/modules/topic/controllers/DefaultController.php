@@ -87,7 +87,7 @@ class DefaultController extends Controller
         $model->save();
 
         $xunSearch = Search::search($keyword);
-        $search = PostService::search(['id' => ArrayHelper::getValue($xunSearch, 'id')]);
+        $search = PostService::search(['PostSearch' => ['id' => ArrayHelper::getColumn($xunSearch, 'id')]]);
 
         return $this->render('index', [
             'searchModel' => $search['searchModel'],

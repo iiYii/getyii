@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-use yii\data\ActiveDataProvider;
 
 /**
  * This is the model class for table "topic".
@@ -15,18 +14,8 @@ use yii\data\ActiveDataProvider;
  */
 class Search extends \hightman\xunsearch\ActiveRecord
 {
-    public function search($keyword)
+    public static function search($keyword)
     {
-        $query = self::find()->where($keyword)->andWhere(['status' => [1, 2]]);
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'sort' => [
-                'defaultOrder' => [
-                    'updated_at' => SORT_DESC,
-                ]
-            ]
-        ]);
-
-        return $dataProvider;
+        return self::find()->where($keyword)->andWhere(['status' => [1, 2]])->all();
     }
 }

@@ -6,6 +6,7 @@ use common\models\Post;
 use common\models\Search;
 use common\models\SearchLog;
 use common\models\User;
+use common\services\PostService;
 use common\services\TopicService;
 use frontend\modules\topic\models\Topic;
 use frontend\modules\user\models\Donate;
@@ -60,52 +61,19 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new PostSearch();
-
         // 话题或者分类筛选
         $params = Yii::$app->request->queryParams;
-        empty($params['tag']) ?: $params['PostSearch']['tags'] = $params['tag'];
-        if (isset($params['node'])) {
-            $postMeta = PostMeta::findOne(['alias' => $params['node']]);
-            ($postMeta) ? $params['PostSearch']['post_meta_id'] = $postMeta->id : '';
-        }
-
-        $dataProvider = $searchModel->search($params);
-        $dataProvider->query->andWhere([Post::tableName() . '.type' => 'topic', 'status' => [Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]]);
-        // 排序
-        $sort = $dataProvider->getSort();
-        $sort->attributes = array_merge($sort->attributes, [
-            'hotest' => [
-                'asc' => [
-                    'comment_count' => SORT_DESC,
-                    'created_at' => SORT_DESC
-                ],
-            ],
-            'excellent' => [
-                'asc' => [
-                    'status' => SORT_DESC,
-                    'comment_count' => SORT_DESC,
-                    'created_at' => SORT_DESC
-                ],
-            ],
-            'uncommented' => [
-                'asc' => [
-                    'comment_count' => SORT_ASC,
-                    'created_at' => SORT_DESC
-                ],
-            ]
-        ]);
+        $search = PostService::search($params);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'searchModel' => $search['searchModel'],
             'sorts' => $this->sorts,
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $search['dataProvider'],
         ]);
     }
 
     public function actionSearch()
     {
-        $searchModel = new Search();
         $keyword = Yii::$app->request->get('keyword');
         if (empty($keyword)) $this->goHome();
 
@@ -118,11 +86,13 @@ class DefaultController extends Controller
         ]);
         $model->save();
 
-        $dataProvider = $searchModel->search($keyword);
+        $xunSearch = Search::search($keyword);
+        $search = PostService::search(['id' => ArrayHelper::getValue($xunSearch, 'id')]);
 
-        return $this->render('search', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+        return $this->render('index', [
+            'searchModel' => $search['searchModel'],
+            'sorts' => $this->sorts,
+            'dataProvider' => $search['dataProvider'],
         ]);
     }
 

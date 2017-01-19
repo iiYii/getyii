@@ -8,9 +8,12 @@
 namespace common\services;
 
 
+use common\models\PostMeta;
+use common\models\PostSearch;
 use common\models\User;
 use common\models\Post;
 use frontend\models\Notification;
+use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
@@ -109,6 +112,50 @@ class PostService
         }, $content);
 
         return $content;
+    }
+
+    /**
+     * @param $params
+     * @return array
+     */
+    public static function search($params)
+    {
+        $searchModel = new PostSearch();
+
+        // 话题或者分类筛选
+        empty($params['tag']) ?: $params['PostSearch']['tags'] = $params['tag'];
+        if (isset($params['node'])) {
+            $postMeta = PostMeta::findOne(['alias' => $params['node']]);
+            ($postMeta) ? $params['PostSearch']['post_meta_id'] = $postMeta->id : null;
+        }
+
+        $dataProvider = $searchModel->search($params);
+        $dataProvider->query->andWhere([Post::tableName() . '.type' => 'topic', 'status' => [Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]]);
+        // 排序
+        $sort = $dataProvider->getSort();
+        $sort->attributes = array_merge($sort->attributes, [
+            'hotest' => [
+                'asc' => [
+                    'comment_count' => SORT_DESC,
+                    'created_at' => SORT_DESC
+                ],
+            ],
+            'excellent' => [
+                'asc' => [
+                    'status' => SORT_DESC,
+                    'comment_count' => SORT_DESC,
+                    'created_at' => SORT_DESC
+                ],
+            ],
+            'uncommented' => [
+                'asc' => [
+                    'comment_count' => SORT_ASC,
+                    'created_at' => SORT_DESC
+                ],
+            ]
+        ]);
+
+        return ['searchModel' => $searchModel, 'dataProvider' => $dataProvider];
     }
 
 }

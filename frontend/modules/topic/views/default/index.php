@@ -8,7 +8,6 @@ use frontend\widgets\TopicSidebar;
 
 $this->title = '社区';
 $sort = Yii::$app->request->getQueryParam('sort');
-$tag = Yii::$app->request->getQueryParam('tag');
 if ($node = Yii::$app->request->getQueryParam('node')) {
     $node = \common\models\PostMeta::find()->where(['alias' => $node])->one();
 }
@@ -27,9 +26,11 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
         <?php endif; ?>
 
         <div class="panel-heading clearfix">
-            <?php if ($tag): ?>
-                <div class="pull-left">搜索标签：<?= $tag; ?>
-                </div>
+            <?php if (request('tag')): ?>
+                <div class="pull-left">搜索标签：<?= request('tag'); ?></div>
+            <?php endif; ?>
+            <?php if (request('keyword')): ?>
+                <div class="pull-left">搜索：<?= request('keyword'); ?></div>
             <?php endif; ?>
 
             <div class="filter pull-right">

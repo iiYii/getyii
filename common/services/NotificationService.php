@@ -143,7 +143,7 @@ class NotificationService
      */
     public static function getNotifyData($type, $data)
     {
-        if (in_array($type, ['topic_like', 'topic_favorite', 'topic_thanks'])) {
+        if (in_array($type, ['topic_like', 'topic_favorite', 'topic_thanks', 'at_topic'])) {
             return '';
         }
         return $data;

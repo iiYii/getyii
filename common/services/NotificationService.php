@@ -25,11 +25,11 @@ class NotificationService
      * @param User $fromUser
      * @param Topic $topic
      * @param PostComment $comment
-     * @param string $rawComment
-     * @throws Exception
+     * @param $atUsers
      */
     public function newReplyNotify(User $fromUser, Topic $topic, PostComment $comment, $atUsers)
     {
+        $users = [];
         foreach ($topic->follower as $key => $value) {
             $users[$value->user_id] = $value->user_id;
         }
@@ -105,7 +105,7 @@ class NotificationService
                 'user_id' => $key,
                 'post_id' => $post->id,
                 'comment_id' => $comment ? $comment->id : 0,
-                'data' => $comment ? $comment->comment : $post->content,
+                'data' => self::getNotifyData($type, $comment ? $comment->comment : $post->content),
                 'type' => $type,
             ]);
             $this->notifiedUsers[] = $key;
@@ -121,7 +121,7 @@ class NotificationService
     /**
      * 查找用户的动作通知
      * @param UserMeta $meta
-     * @return null|static
+     * @return null|Notification
      */
     public function findUserActionNotify(UserMeta $meta)
     {
@@ -134,5 +134,18 @@ class NotificationService
                 'from_user_id' => $meta->user_id,
                 'type' => $meta->target_type . '_' . $meta->type,
             ] + $condition);
+    }
+
+    /**
+     * @param $type
+     * @param $data
+     * @return string
+     */
+    public static function getNotifyData($type, $data)
+    {
+        if (in_array($type, ['topic_like', 'topic_favorite', 'topic_thanks'])) {
+            return '';
+        }
+        return $data;
     }
 }

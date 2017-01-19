@@ -294,7 +294,7 @@ a:visited .badge-reply-count {
     padding: 3px 15px;
     border-top: 1px solid #eae5e4;
     color: #aAa5a4;
-    margin: 10px -15px -15px;
+    margin: 0 -20px;
 }
 
 .side-bar .list {

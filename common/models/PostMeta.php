@@ -143,7 +143,7 @@ class PostMeta extends ActiveRecord
     {
         $cacheKey = md5(__METHOD__);
         if (false === $nodes = \Yii::$app->cache->get($cacheKey)) {
-            $parents = PostMeta::find()->where(['<=', PostMeta::tableName() . '.parent', 0])->joinWith('children')->orderBy(['order' => SORT_ASC])->all();
+            $parents = PostMeta::find()->where([PostMeta::tableName() . '.parent' => [0, null]])->joinWith('children')->orderBy(['order' => SORT_ASC])->all();
             /*** @var  PostMeta $parent */
             foreach ($parents as $parent) {
                 $nodes[$parent->alias] = $parent;

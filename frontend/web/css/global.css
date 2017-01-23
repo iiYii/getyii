@@ -107,3 +107,11 @@ h4 {
 .br0 {
     border-radius: 0;
 }
+
+a {
+    color: #555;
+}
+
+a:hover, a:focus {
+    color: #4d5256;
+}

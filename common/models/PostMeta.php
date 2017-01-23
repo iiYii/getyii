@@ -3,8 +3,10 @@
 namespace common\models;
 
 use DevGroup\TagDependencyHelper\CacheableActiveRecord;
+use DevGroup\TagDependencyHelper\NamingHelper;
 use DevGroup\TagDependencyHelper\TagDependencyTrait;
 use Yii;
+use yii\caching\TagDependency;
 use yii\helpers\ArrayHelper;
 use common\components\db\ActiveRecord;
 
@@ -20,11 +22,13 @@ use common\components\db\ActiveRecord;
  * @property string $order
  * @property string $created_at
  * @property string $updated_at
+ * @property PostMeta[] $children
  */
 class PostMeta extends ActiveRecord
 {
 
     use TagDependencyTrait;
+
     /**
      * @inheritdoc
      */
@@ -97,10 +101,11 @@ class PostMeta extends ActiveRecord
 
     /**
      * 返回无人区节点id
-     * @return mixed|static
+     * @return PostMeta|int
      */
     public static function noManLandId()
     {
+        /** @var PostMeta $postMeta */
         $postMeta = self::find()->where(['alias' => 'no-man-land'])->one();
         if ($postMeta) {
             return $postMeta->id;
@@ -108,9 +113,9 @@ class PostMeta extends ActiveRecord
         return $postMeta;
     }
 
-    public function getParents()
+    public function getChildren()
     {
-        return ArrayHelper::map(static::find()->where(['parent' => null])->orWhere(['parent' => 0])->all(), 'id', 'name');
+        return $this->hasMany(self::className(), ['parent' => 'id'])->from(self::tableName() . ' p2');
     }
 
     public function getTypes()
@@ -121,8 +126,35 @@ class PostMeta extends ActiveRecord
         ];
     }
 
-    public static function topic()
+    /**
+     * @param array $conditions
+     * @return array
+     */
+    public static function getNodesMap($conditions = [])
     {
-        return ArrayHelper::map(static::find()->where(['type' => 'topic_category'])->all(), 'alias', 'name');
+        return ArrayHelper::map(static::find()->where(['type' => 'topic_category'])->andFilterWhere($conditions)->all(), 'alias', 'name');
+    }
+
+    /**
+     * 获取父子节点
+     * @return array
+     */
+    public static function getNodes()
+    {
+        $cacheKey = md5(__METHOD__);
+        if (false === $nodes = \Yii::$app->cache->get($cacheKey)) {
+            $parents = PostMeta::find()->where(['<=', PostMeta::tableName() . '.parent', 0])->joinWith('children')->orderBy(['order' => SORT_ASC])->all();
+            /*** @var  PostMeta $parent */
+            foreach ($parents as $parent) {
+                $nodes[$parent->alias] = $parent;
+            }
+            //一天缓存
+            \Yii::$app->cache->set($cacheKey, $nodes, 86400,
+                new TagDependency([
+                    'tags' => [NamingHelper::getCommonTag(PostMeta::className())]
+                ])
+            );
+        }
+        return $nodes;
     }
 }

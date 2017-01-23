@@ -12,8 +12,10 @@ use common\models\PostMeta;
 use common\models\PostSearch;
 use common\models\User;
 use common\models\Post;
+use DevGroup\TagDependencyHelper\NamingHelper;
 use frontend\models\Notification;
 use Yii;
+use yii\caching\TagDependency;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
@@ -122,11 +124,17 @@ class PostService
     {
         $searchModel = new PostSearch();
 
+
         // 话题或者分类筛选
         empty($params['tag']) ?: $params['PostSearch']['tags'] = $params['tag'];
         if (isset($params['node'])) {
             $postMeta = PostMeta::findOne(['alias' => $params['node']]);
             ($postMeta) ? $params['PostSearch']['post_meta_id'] = $postMeta->id : null;
+        }
+
+        if (isset($params['tab'])) {
+            $postMeta = PostMeta::findOne(['alias' => $params['tab']]);
+            ($postMeta) ? $params['PostSearch']['post_meta_id'] = ArrayHelper::getColumn($postMeta->children, 'id') : null;
         }
 
         $dataProvider = $searchModel->search($params);
@@ -157,5 +165,4 @@ class PostService
 
         return ['searchModel' => $searchModel, 'dataProvider' => $dataProvider];
     }
-
 }

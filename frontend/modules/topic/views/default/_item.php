@@ -33,11 +33,13 @@ use common\helpers\Formatter;
                     ['/topic/default/view', 'id' => $model->id], ['class' => 'remove-padding-left']
                 ), ' • ';
             }
-            echo Html::a(
-                $model->category->name,
-                ['/topic/default/index', 'node' => $model->category->alias],
-                ['class' => 'node']
-            ), ' • ';
+            if (!request('node')) {
+                echo Html::a(
+                    $model->category->name,
+                    ['/topic/default/index', 'node' => $model->category->alias],
+                    ['class' => 'node']
+                ), ' • ';
+            }
 
             if ($model->last_comment_username) {
                 echo Html::tag('span',

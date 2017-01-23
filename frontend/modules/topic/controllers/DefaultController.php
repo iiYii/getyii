@@ -2,7 +2,7 @@
 
 namespace frontend\modules\topic\controllers;
 
-use common\models\Post;
+use common\models\PostMeta;
 use common\models\Search;
 use common\models\SearchLog;
 use common\models\User;
@@ -12,9 +12,7 @@ use frontend\modules\topic\models\Topic;
 use frontend\modules\user\models\Donate;
 use Yii;
 use yii\filters\AccessControl;
-use common\models\PostSearch;
 use common\models\PostComment;
-use common\models\PostMeta;
 use common\components\Controller;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
@@ -69,6 +67,7 @@ class DefaultController extends Controller
             'searchModel' => $search['searchModel'],
             'sorts' => $this->sorts,
             'dataProvider' => $search['dataProvider'],
+            'nodes' => PostMeta::getNodes(),
         ]);
     }
 
@@ -243,6 +242,7 @@ class DefaultController extends Controller
      */
     public function actionExcellent($id)
     {
+        /** @var User $user */
         $user = Yii::$app->user->identity;
         $model = Topic::findTopic($id);
         if ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) {

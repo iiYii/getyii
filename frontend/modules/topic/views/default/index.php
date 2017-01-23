@@ -31,7 +31,7 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
                 </div>
             <?php else: ?>
                 <span><?= Html::a('全部', ['/topic/default/index'], ['class' => request('tab') ? null : 'active']) ?></span>
-                <?php foreach ($nodes as $key => $value): ?>
+                <?php foreach ((array)$nodes as $key => $value): ?>
                     <span><?= Html::a($value->name, ['/topic/default/index', 'tab' => $value->alias], ['class' => request('tab') == $value->alias ? 'active' : null]) ?></span>
                 <?php endforeach ?>
             <?php endif ?>

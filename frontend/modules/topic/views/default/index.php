@@ -60,8 +60,11 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
                         echo Html::a($item->name, ['/topic/default/index', 'node' => $item->alias], ['class' => "children-node " . $active]);
                     }
                 }
+            } else {
+                foreach ($nodes as $item) {
+                    echo Html::a($item->name, ['/topic/default/index', 'tab' => $item->alias], ['class' => "children-node "]);
+                }
             } ?>
-
 
         </div>
 

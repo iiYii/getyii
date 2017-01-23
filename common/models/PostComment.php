@@ -7,6 +7,7 @@ use common\services\PostService;
 use frontend\modules\user\models\UserMeta;
 use Yii;
 use common\components\db\ActiveRecord;
+use yii\db\Query;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
@@ -27,6 +28,7 @@ use frontend\modules\topic\models\Topic;
  * @property string $updated_at
  *
  * @property Topic $topic
+ * @property Post $post
  */
 class PostComment extends ActiveRecord
 {
@@ -131,7 +133,7 @@ class PostComment extends ActiveRecord
     /**
      * 评论列表
      * @param $postId
-     * @return static
+     * @return Query
      */
     public static function findCommentList($postId)
     {
@@ -150,8 +152,7 @@ class PostComment extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public
-    function attributeLabels()
+    public function attributeLabels()
     {
         return [
             'id' => 'ID',

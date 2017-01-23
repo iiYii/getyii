@@ -1,13 +1,5 @@
 jQuery(function ($) {
 
-    //goto top
-    $('.gototop').click(function (event) {
-        event.preventDefault();
-        $('html, body').animate({
-            scrollTop: $("body").offset().top
-        }, 500);
-    });
-
     function notificationsCount() {
         var notification = $('.notification-count');
         var originalTitle = document.title;
@@ -49,34 +41,19 @@ jQuery(function ($) {
     // 加载代码高亮
     hljs.initHighlightingOnLoad();
 
-    // emojify.setConfig({
-    //     emojify_tag_type: 'p',
-    //     img_dir: Config.emojiBaseUrl + '/dist/images/basic',
-    //     ignored_tags: {
-    //         'SCRIPT': 1,
-    //         'TEXTAREA': 1,
-    //         'A': 1,
-    //         'PRE': 1,
-    //         'CODE': 1
-    //     }
-    // });
-    // emojify.run();
-
-
-    //function editorPreview() {
-    //    // Markdown 语法提示
-    //    $("#md-input").focus(function (event) {
-    //        $("#reply-notice").fadeIn(1500);
-    //        // $("#preview-box").fadeIn(1500);
-    //        // $("#preview-lable").fadeIn(1500);
-    //
-    //        // if (!$("#md-input").val()) {
-    //        //     $("html, body").animate({ scrollTop: $(document).height()}, 10);
-    //        // }
-    //    });
-    //};
-    //editorPreview();
-
+    emojify.setConfig({
+        emojify_tag_type: 'img',
+        // emojify_tag_type: 'p',
+        cdn_host: 'https://ruby-china-files.b0.upaiyun.com/assets/emojis/',
+        emoji_image_extension: 'png',
+        emoticons_enabled: true,
+        people_enabled: true,
+        nature_enabled: true,
+        objects_enabled: true,
+        places_enabled: true,
+        symbols_enabled: true
+    });
+    emojify.run();
 
     function localStorage() {
         $("#md-input").focus(function (event) {
@@ -114,7 +91,6 @@ jQuery(function ($) {
                 runPreview();
             });
 
-
         });
 
         // Clear Local Storage on submit
@@ -128,55 +104,6 @@ jQuery(function ($) {
     }
 
     localStorage();
-
-    $(document).on('click', '.btn-reply', function (e) {
-        e.preventDefault();
-        var username = $(this).data('username');
-        var floor = $(this).data('floor');
-        var replyContent = $("#md-input");
-        var oldContent = replyContent.val();
-        var prefix = "@" + username + " #" + floor + "楼 ";
-        var newContent = '';
-        if (oldContent.length > 0) {
-            if (oldContent != prefix) {
-                newContent = oldContent + "\n" + prefix;
-            }
-        } else {
-            newContent = prefix
-        }
-        replyContent.focus();
-        replyContent.val(newContent);
-        moveEnd($("#md-input"));
-    });
-
-
-    var moveEnd = function (obj) {
-        obj.focus();
-
-        var len = obj.value === undefined ? 0 : obj.value.length;
-
-        if (document.selection) {
-            var sel = obj.createTextRange();
-            sel.moveStart('character', len);
-            sel.collapse();
-            sel.select();
-        } else if (typeof obj.selectionStart == 'number' && typeof obj.selectionEnd == 'number') {
-            obj.selectionStart = obj.selectionEnd = len;
-        }
-    }
-
-    //$('form').submit(function () {
-    //    $(this).find("button[type='submit']").prop('disabled', true);
-    //});
-
-    $('.tweet #md-input').keyup(function () {
-        var el = $(this);
-        if (el.val().length > 500) {
-            el.val(el.val().substr(0, 500));
-        } else {
-            $("#remaining").text(500 - el.val().length);
-        }
-    });
 
     //add by ruzuojun
     $(document).on("click", "#goTop", function () {

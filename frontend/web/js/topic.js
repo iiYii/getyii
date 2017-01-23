@@ -27,7 +27,7 @@ jQuery(function ($) {
                             __do = __this.data('do'),
                             __id = __this.data('id'),
                             __active = __this.hasClass('active');
-                        if (__id != _id) return; // 同一个话题或评论触发
+                        if (__id != _id) return; // 同一个话题或回复触发
 
                         __this.toggleClass('active', __do == _do);
 

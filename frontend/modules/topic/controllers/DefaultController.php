@@ -44,7 +44,7 @@ class DefaultController extends Controller
                 'rules' => [
                     // 默认只能Get方式访问
                     ['allow' => true, 'actions' => ['view', 'index', 'search'], 'verbs' => ['GET']],
-                    // 登录用户才能提交评论或其他内容
+                    // 登录用户才能提交回复或其他内容
                     ['allow' => true, 'actions' => ['api', 'view', 'delete'], 'verbs' => ['POST'], 'roles' => ['@']],
                     // 登录用户才能使用API操作(赞,踩,收藏)
                     ['allow' => true, 'actions' => ['create', 'update', 'revoke', 'excellent'], 'roles' => ['@']],
@@ -149,7 +149,7 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $topService = new TopicService();
             if (!$topService->filterContent($model->title) || !$topService->filterContent($model->content)) {
-                $this->flash('请勿发表无意义的内容', 'warning');
+                $model->addError('content', '请勿发表无意义的内容');
                 return $this->redirect('create');
             }
 
@@ -157,8 +157,6 @@ class DefaultController extends Controller
                 $this->flash('发表文章成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->id]);
             }
-            pr($model->errors);
-
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -206,7 +204,7 @@ class DefaultController extends Controller
         }
 
         if ($model->comment_count) {
-            $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'warning');
+            $this->flash("「{$model->title}」此文章已有回复，属于共有财产，不能删除", 'warning');
         } else {
 
             TopicService::delete($model);

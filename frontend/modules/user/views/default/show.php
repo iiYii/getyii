@@ -121,7 +121,7 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
                     <?= $user->userInfo->post_count ?>
                 </li>
                 <li class="list-group-item text-right">
-                    <span class="pull-left"><strong class="">发布评论次数</strong></span>
+                    <span class="pull-left"><strong class="">发布回复次数</strong></span>
                     <?= $user->userInfo->comment_count ?>
                 </li>
                 <li class="list-group-item text-right">
@@ -149,7 +149,7 @@ $username = Yii::$app->getRequest()->getQueryParam('username');
                 'class' => 'nav navbar-nav',
             ],
             'items' => [
-                ['label' => '最新评论',  'url' => ['/user/default/show', 'username'=> $username]],
+                ['label' => '最新回复',  'url' => ['/user/default/show', 'username'=> $username]],
                 ['label' => '最新主题',  'url' => ['/user/default/post', 'username'=> $username]],
                 ['label' => '最新收藏',  'url' => ['/user/default/favorite', 'username'=> $username]],
                 ['label' => '最新赞过主题',  'url' => ['/user/default/like', 'username'=> $username]],

@@ -86,9 +86,9 @@ class UserMeta extends ActiveRecord
 
     /**
      * 判断指定分类下操作是否存在
-     * @param integer $type 话题还是评论
+     * @param integer $type 话题还是回复
      * @param string $do 动作
-     * @param integer $targetId 话题ID或者评论ID
+     * @param integer $targetId 话题ID或者回复ID
      * @return int|string
      */
     public function isUserAction($type = 0, $do = '', $targetId)

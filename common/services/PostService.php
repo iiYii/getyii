@@ -35,6 +35,8 @@ class PostService
 
     /**
      * 过滤内容
+     * @param $content
+     * @return bool
      */
     public function filterContent($content)
     {
@@ -44,10 +46,10 @@ class PostService
         if (in_array($content, $data)) {
             return false;
         }
-        $action = ['+1', '赞', '很赞', '喜欢', '收藏', 'mark', '写的不错', '不错', '给力'];
-        if (in_array($content, $action)) {
-            return false;
-        }
+//        $action = ['+1', '赞', '很赞', '喜欢', '收藏', 'mark', '写的不错', '不错', '给力'];
+//        if (in_array($content, $action)) {
+//            return false;
+//        }
         return true;
     }
 

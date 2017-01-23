@@ -5,10 +5,11 @@
  * description:
  */
 
+use common\widgets\JsBlock;
 use yii\helpers\Html;
-use yii\helpers\HtmlPurifier;
-use yii\helpers\Markdown;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use yiier\editor\EditorMdWidget;
 
 \frontend\assets\AtJsAsset::register($this);
 ?>
@@ -27,23 +28,18 @@ use yii\widgets\ActiveForm;
         'class' => 'alert alert-danger'
     ]) ?>
 
-    <?= $this->render('@frontend/views/partials/markdwon_help') ?>
-
-    <?= $form->field($model, 'comment', [
-        'selectors' => [
-            'input' => '#md-input'
-        ],
-    ])->textarea([
-        'placeholder' => '内容',
-        'id' => 'md-input',
-        'disabled' => Yii::$app->user->getIsGuest(),
-        'data-at-floor' => true,
-        'rows' => 6
+    <?= $form->field($model, 'comment')->widget(EditorMdWidget::className(), [
+        'clientOptions' => [
+            'height' => 200,
+            'imageUpload' => true,
+            'placeholder' => '请尽量让自己的回复能够对别人有帮助',
+            'imageUploadURL' => Url::to(['/site/upload', 'field' => 'editormd-image-file']),
+        ]
     ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(
-            $model->isNewRecord ? '创建评论' : '修改评论',
+            $model->isNewRecord ? '创建回复' : '修改回复',
             [
                 'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary',
             ]
@@ -54,8 +50,18 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 
-    <div id="md-preview"><?= HtmlPurifier::process(Markdown::process($model->comment, 'gfm')) ?></div>
-
     <?php ActiveForm::end(); ?>
 
 </div>
+<?php JsBlock::begin(['pos' => \yii\web\View::POS_READY]) ?>
+<script>
+    $(document).on('click', '.btn-reply', function (e) {
+        e.preventDefault();
+        var username = $(this).data('username');
+        var floor = $(this).data('floor');
+        var prefix = "@" + username + " #" + floor + "楼 ";
+        editor.insertValue(prefix);
+        editor.focus();
+    });
+</script>
+<?php JsBlock::end() ?>

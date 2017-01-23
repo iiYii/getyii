@@ -24,10 +24,10 @@ class DefaultController extends Controller
 {
     const PAGE_SIZE = 50;
     public $sorts = [
-        'newest' => '最新的',
-        'excellent' => '优质主题',
-        'hotest' => '热门的',
-        'uncommented' => '未回答的'
+        'newest' => '最新',
+        'excellent' => '优质',
+        'hotest' => '热门',
+//        'uncommented' => '未回答的'
     ];
 
     public function behaviors()

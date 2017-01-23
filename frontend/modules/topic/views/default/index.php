@@ -37,16 +37,12 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
             <?php endif ?>
         </div>
         <div class="panel-heading clearfix children">
-            <?php if (request('node')): ?>
-                <div class="filter pull-right">
-                    <span class="l">排序:</span>
-                    <?php foreach ($sorts as $key => $name): ?>
-                        <?= Html::a($name, Url::current(['sort' => $key]), ['class' => ($sort == $key || ((empty($sort) && $key == 'newest'))) ? 'active' : '']) ?> \
-                    <?php endforeach ?>
-                </div>
-            <?php endif ?>
-
-            <?php if (request('node')) ?>
+            <div class="filter pull-right">
+                <span class="l">排序:</span>
+                <?php foreach ($sorts as $key => $name): ?>
+                    <?= Html::a($name, Url::current(['sort' => $key]), ['class' => ($sort == $key || ((empty($sort) && $key == 'newest'))) ? 'active' : '']) ?> \
+                <?php endforeach ?>
+            </div>
 
             <?php if (request('tag')) {
                 echo Html::tag('div', '搜索标签：' . request('tag'), ['class' => 'pull-left']);
@@ -59,10 +55,6 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
                         $active = request('node') == $item->alias ? 'active' : null;
                         echo Html::a($item->name, ['/topic/default/index', 'node' => $item->alias], ['class' => "children-node " . $active]);
                     }
-                }
-            } else {
-                foreach ($nodes as $item) {
-                    echo Html::a($item->name, ['/topic/default/index', 'tab' => $item->alias], ['class' => "children-node "]);
                 }
             } ?>
 

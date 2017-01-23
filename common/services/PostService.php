@@ -144,14 +144,14 @@ class PostService
         $sort->attributes = array_merge($sort->attributes, [
             'hotest' => [
                 'asc' => [
-                    'comment_count' => SORT_DESC,
+                    'view_count' => SORT_DESC,
                     'created_at' => SORT_DESC
                 ],
             ],
             'excellent' => [
                 'asc' => [
                     'status' => SORT_DESC,
-                    'comment_count' => SORT_DESC,
+                    'view_count' => SORT_DESC,
                     'created_at' => SORT_DESC
                 ],
             ],

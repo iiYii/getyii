@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e2cf279199eeb59aefe3496bd15b194d",
+    "content-hash": "24aa375f7ec0819f6a7b1554ad9906e1",
     "packages": [
         {
             "name": "2amigos/yii2-qrcode-helper",
@@ -420,94 +420,6 @@
                     "site*"
                 ]
             }
-        },
-        {
-            "name": "bower-asset/marked",
-            "version": "v0.3.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/chjj/marked.git",
-                "reference": "eddec20467c2d10c7769061ee9074e268500966f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/chjj/marked/zipball/eddec20467c2d10c7769061ee9074e268500966f",
-                "reference": "eddec20467c2d10c7769061ee9074e268500966f",
-                "shasum": ""
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "lib/marked.js",
-                "bower-asset-ignore": [
-                    "**/.*",
-                    "node_modules",
-                    "bower_components",
-                    "app/bower_components",
-                    "test",
-                    "tests"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A markdown parser built for speed",
-            "keywords": [
-                "html",
-                "markdown",
-                "markup"
-            ]
-        },
-        {
-            "name": "bower-asset/metismenu",
-            "version": "v2.6.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/onokumus/metisMenu.git",
-                "reference": "662528114386eb025f3992e41a90c75699bb5926"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/onokumus/metisMenu/zipball/662528114386eb025f3992e41a90c75699bb5926",
-                "reference": "662528114386eb025f3992e41a90c75699bb5926",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/jquery": "~2.2.3"
-            },
-            "require-dev": {
-                "bower-asset/normalize.css": ">=5.0.0,<6.0.0"
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": [
-                    "dist/metisMenu.js",
-                    "dist/metisMenu.css"
-                ],
-                "bower-asset-ignore": [
-                    "**/.*",
-                    "node_modules",
-                    "bower_components",
-                    "test",
-                    "tests",
-                    "src",
-                    "composer.json"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A jQuery menu plugin",
-            "keywords": [
-                "accordion",
-                "bootstrap",
-                "jquery",
-                "menu",
-                "metis",
-                "metisMenu",
-                "toggle",
-                "twbs",
-                "twitter"
-            ]
         },
         {
             "name": "bower-asset/pace",
@@ -963,20 +875,23 @@
         },
         {
             "name": "ezyang/htmlpurifier",
-            "version": "v4.8.0",
+            "version": "v4.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2"
+                "reference": "a1c09b09e398687deeb8e309a6305def4b43439b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
-                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/a1c09b09e398687deeb8e309a6305def4b43439b",
+                "reference": "a1c09b09e398687deeb8e309a6305def4b43439b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2"
+            },
+            "require-dev": {
+                "simpletest/simpletest": "^1.1"
             },
             "type": "library",
             "autoload": {
@@ -1003,7 +918,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2016-07-16T12:58:58+00:00"
+            "time": "2017-01-13T12:31:37+00:00"
         },
         {
             "name": "fortawesome/font-awesome",
@@ -1612,12 +1527,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "03e0607990edbf6137dd3265fbbc58f380138726"
+                "reference": "3dd586e52c8e0a9e112387036fa3cbe494fc8674"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/03e0607990edbf6137dd3265fbbc58f380138726",
-                "reference": "03e0607990edbf6137dd3265fbbc58f380138726",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/3dd586e52c8e0a9e112387036fa3cbe494fc8674",
+                "reference": "3dd586e52c8e0a9e112387036fa3cbe494fc8674",
                 "shasum": ""
             },
             "require": {
@@ -1704,7 +1619,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2017-01-16 14:48:44"
+            "time": "2017-01-23 07:31:52"
         },
         {
             "name": "yiisoft/yii2-authclient",

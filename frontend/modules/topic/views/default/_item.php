@@ -19,7 +19,7 @@ use common\helpers\Formatter;
     </div>
     <div class="media-body">
 
-        <div class="media-heading">
+        <div class="media-heading title">
             <?= Html::a(Html::encode($model->title),
                 ['/topic/default/view', 'id' => $model->id], ['title' => $model->title]
             ); ?>

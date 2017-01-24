@@ -145,6 +145,10 @@ a.desc:after {
     padding: 0 10px;
 }
 
+.topic .title {
+    font-size: 16px;
+}
+
 .node-header .title {
     font-size: 24px;
     color: #333;

@@ -15,6 +15,13 @@ use yiier\editor\EditorMdWidget;
 ?>
 <div class="list-group-item">
 
+    <?php if (Yii::$app->user->isGuest): ?>
+        <div style="padding:20px;" data-turbolinks-action="replace">
+            需要 <a class="btn btn-primary" href="<?= Url::to(['/site/login']) ?>">登录</a> 后方可回复,
+            如果你还没有账号请点击这里 <a class="btn btn-danger" href="<?= Url::to(['/site/signup']) ?>">注册</a>。
+        </div>
+    <?php else: ?>
+
     <?php $form = ActiveForm::begin([
         'action' => [
             $model->isNewRecord ? '/topic/comment/create' : '/topic/comment/update',
@@ -37,31 +44,31 @@ use yiier\editor\EditorMdWidget;
         ]
     ]) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton(
-            $model->isNewRecord ? '创建回复' : '修改回复',
-            [
-                'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary',
-            ]
-        ) ?>
+        <div class="form-group">
+            <?= Html::submitButton(
+                $model->isNewRecord ? '创建回复' : '修改回复',
+                [
+                    'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary',
+                ]
+            ) ?>
 
-        <div class="pull-right">
-            <?= Html::a('排版说明', ['/site/markdown'], ['target' => '_blank']) ?>
+            <div class="pull-right">
+                <?= Html::a('排版说明', ['/site/markdown'], ['target' => '_blank']) ?>
+            </div>
         </div>
-    </div>
 
     <?php ActiveForm::end(); ?>
-
+    <?php JsBlock::begin(['pos' => \yii\web\View::POS_READY]) ?>
+        <script>
+            $(document).on('click', '.btn-reply', function (e) {
+                e.preventDefault();
+                var username = $(this).data('username');
+                var floor = $(this).data('floor');
+                var prefix = "@" + username + " #" + floor + "楼 ";
+                editor.insertValue(prefix);
+                editor.focus();
+            });
+        </script>
+        <?php JsBlock::end() ?>
+    <?php endif ?>
 </div>
-<?php JsBlock::begin(['pos' => \yii\web\View::POS_READY]) ?>
-<script>
-    $(document).on('click', '.btn-reply', function (e) {
-        e.preventDefault();
-        var username = $(this).data('username');
-        var floor = $(this).data('floor');
-        var prefix = "@" + username + " #" + floor + "楼 ";
-        editor.insertValue(prefix);
-        editor.focus();
-    });
-</script>
-<?php JsBlock::end() ?>

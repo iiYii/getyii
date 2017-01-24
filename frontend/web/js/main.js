@@ -41,18 +41,7 @@ jQuery(function ($) {
     // 加载代码高亮
     hljs.initHighlightingOnLoad();
 
-    emojify.setConfig({
-        emojify_tag_type: 'img',
-        // emojify_tag_type: 'p',
-        cdn_host: 'https://ruby-china-files.b0.upaiyun.com/assets/emojis/',
-        emoji_image_extension: 'png',
-        emoticons_enabled: true,
-        people_enabled: true,
-        nature_enabled: true,
-        objects_enabled: true,
-        places_enabled: true,
-        symbols_enabled: true
-    });
+    emojify.setConfig({img_dir: 'https://ruby-china-files.b0.upaiyun.com/assets/emojis/'});
     emojify.run();
 
     function localStorage() {

@@ -24,7 +24,7 @@ class AppAsset extends AssetBundle
     ];
 
     public $js = [
-        'js/emojify-cdn.js',
+        'js/emojify.min.js',
         'js/main.js',
         'js/topic.js',
         'js/jquery.pin.js',

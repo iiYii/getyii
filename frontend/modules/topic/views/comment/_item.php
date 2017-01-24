@@ -5,11 +5,11 @@
  * description:
  */
 
-use common\widgets\JsBlock;
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use yii\helpers\Markdown;
 
+/** @var \common\models\PostComment $model */
 $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->pagination->pageSize;
 ?>
 <?php if (!$model->status): ?>

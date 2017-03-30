@@ -8,13 +8,15 @@
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use yii\helpers\Markdown;
+
+/** @var \common\models\PostComment $model */
 $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->pagination->pageSize;
 ?>
 <?php if (!$model->status): ?>
     <div class="deleted text-center"><?= $index ?>楼 已删除.</div>
 <?php else: ?>
     <div class="avatar pull-left">
-        <?= Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object avatar-48']),
+        <?= Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object avatar-48 img-circle']),
             ['/user/default/show', 'username' => $model->user['username']]
         ); ?>
     </div>
@@ -31,7 +33,7 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
             <span class="opts pull-right">
                 <?php
 
-                if($model->isCurrent()){
+                if ($model->isCurrent()) {
                     echo Html::a(
                         Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count) . ' 个赞',
                         'javascript:;'
@@ -44,15 +46,15 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
                     echo Html::a('',
                         ['/topic/comment/delete', 'id' => $model->id],
                         [
-                            'title' => '删除评论',
+                            'title' => '删除回复',
                             'class' => 'fa fa-trash',
                             'data' => [
-                                'confirm' => "您确认要删除评论吗？",
+                                'confirm' => "您确认要删除回复吗？",
                                 'method' => 'post',
                             ],
                         ]
                     );
-                } else{
+                } else {
                     echo Html::a(
                         Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count) . ' 个赞',
                         '#',
@@ -60,7 +62,7 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
                             'data-do' => 'like',
                             'data-id' => $model->id,
                             'data-type' => 'comment',
-                            'class' => ($model->like) ? 'active': ''
+                            'class' => ($model->like) ? 'active' : ''
                         ]
                     );
                     echo Html::a('', '#',
@@ -77,7 +79,7 @@ $index += +1 + $widget->dataProvider->pagination->page * $widget->dataProvider->
 
         </div>
 
-        <div class="media-body markdown-reply content-body">
+        <div class="media-body markdown-reply article">
             <?= HtmlPurifier::process(Markdown::process($model->comment, 'gfm')) ?>
         </div>
     </div>

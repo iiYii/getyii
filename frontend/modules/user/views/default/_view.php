@@ -13,7 +13,7 @@ use yii\helpers\Markdown;
 ?>
 <?php switch ($this->context->action->id) {
     case 'show':
-        // 评论
+        // 回复
         echo Html::a(
             Html::encode($model->post->title),
             ["/{$model->post->type}/default/view", 'id' => $model->post->id],

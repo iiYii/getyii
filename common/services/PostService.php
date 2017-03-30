@@ -8,10 +8,14 @@
 namespace common\services;
 
 
-use common\models\PostTag;
+use common\models\PostMeta;
+use common\models\PostSearch;
 use common\models\User;
 use common\models\Post;
+use DevGroup\TagDependencyHelper\NamingHelper;
 use frontend\models\Notification;
+use Yii;
+use yii\caching\TagDependency;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
@@ -31,6 +35,8 @@ class PostService
 
     /**
      * 过滤内容
+     * @param $content
+     * @return bool
      */
     public function filterContent($content)
     {
@@ -40,10 +46,10 @@ class PostService
         if (in_array($content, $data)) {
             return false;
         }
-        $action = ['+1', '赞', '很赞', '喜欢', '收藏', 'mark', '写的不错', '不错', '给力'];
-        if (in_array($content, $action)) {
-            return false;
-        }
+//        $action = ['+1', '赞', '很赞', '喜欢', '收藏', 'mark', '写的不错', '不错', '给力'];
+//        if (in_array($content, $action)) {
+//            return false;
+//        }
         return true;
     }
 
@@ -112,4 +118,53 @@ class PostService
         return $content;
     }
 
+    /**
+     * @param $params
+     * @return array
+     */
+    public static function search($params)
+    {
+        $searchModel = new PostSearch();
+
+
+        // 话题或者分类筛选
+        empty($params['tag']) ?: $params['PostSearch']['tags'] = $params['tag'];
+        if (isset($params['node'])) {
+            $postMeta = PostMeta::findOne(['alias' => $params['node']]);
+            ($postMeta) ? $params['PostSearch']['post_meta_id'] = $postMeta->id : null;
+        }
+
+        if (isset($params['tab'])) {
+            $postMeta = PostMeta::findOne(['alias' => $params['tab']]);
+            ($postMeta) ? $params['PostSearch']['post_meta_id'] = ArrayHelper::getColumn($postMeta->children, 'id') : null;
+        }
+
+        $dataProvider = $searchModel->search($params);
+        $dataProvider->query->andWhere([Post::tableName() . '.type' => 'topic', 'status' => [Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]]);
+        // 排序
+        $sort = $dataProvider->getSort();
+        $sort->attributes = array_merge($sort->attributes, [
+            'hotest' => [
+                'asc' => [
+                    'view_count' => SORT_DESC,
+                    'created_at' => SORT_DESC
+                ],
+            ],
+            'excellent' => [
+                'asc' => [
+                    'status' => SORT_DESC,
+                    'view_count' => SORT_DESC,
+                    'created_at' => SORT_DESC
+                ],
+            ],
+            'uncommented' => [
+                'asc' => [
+                    'comment_count' => SORT_ASC,
+                    'created_at' => SORT_DESC
+                ],
+            ]
+        ]);
+
+        return ['searchModel' => $searchModel, 'dataProvider' => $dataProvider];
+    }
 }

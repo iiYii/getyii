@@ -59,7 +59,6 @@ class Topic extends Post
 
     /**
      * 获取关注者
-     * @return static
      */
     public function getFollower()
     {
@@ -71,7 +70,7 @@ class Topic extends Post
      * 通过ID获取指定话题
      * @param $id
      * @param string $condition
-     * @return array|null|\yii\db\ActiveRecord|static
+     * @return array|null|\yii\db\ActiveRecord
      * @throws NotFoundHttpException
      */
     public static function findModel($id, $condition = '')
@@ -119,8 +118,9 @@ class Topic extends Post
     {
         if (parent::beforeSave($insert)) {
 
-            if ($this->tags) {
-                $this->addTags(explode(',', $this->tags));
+            if ($this->tags && is_array($this->tags)) {
+                $this->addTags($this->tags);
+                $this->tags = implode(',', $this->tags);
             }
             $this->content = TopicService::contentTopic($this->content, $this)
                 . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->username]) : '');

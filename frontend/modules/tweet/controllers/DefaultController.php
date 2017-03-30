@@ -73,7 +73,7 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $topService = new TweetService();
             if (!$topService->filterContent($model->content)) {
-                $this->flash('请勿发表无意义的内容', 'warning');
+                $model->addError('content', '请勿发表无意义的内容');
                 return $this->redirect('index');
             }
             $model->user_id = Yii::$app->user->id;
@@ -99,7 +99,7 @@ class DefaultController extends Controller
             throw new NotFoundHttpException();
         }
         if ($model->comment_count) {
-            $this->flash("已有评论，属于共有财产，不能删除", 'warning');
+            $model->addError('content', '已有回复，属于共有财产，不能删除');
         } else {
             TweetService::delete($model);
             $this->flash("删除成功。 ", 'success');

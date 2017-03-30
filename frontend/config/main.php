@@ -16,6 +16,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/' => 'topic/default/index',
                 '<alias:login|logout|about|tags|getstart|signup|contact|users|markdown|at-users>' => 'site/<alias>',
                 '<alias:search>' => 'topic/default/<alias>',
                 'member/<username:\w+>' => 'user/default/show',

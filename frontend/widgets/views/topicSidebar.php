@@ -47,23 +47,6 @@ $node = $config['node'];
             </div>
         </div>
 
-        <?php if (!$config['node'] && !empty($links)): ?>
-            <div class="panel panel-default corner-radius">
-                <div class="panel-heading text-center">
-                    <h3 class="panel-title"><?= \Yii::t('app', 'Links') ?></h3>
-                </div>
-                <div class="panel-body text-center" style="padding-top: 5px;">
-                    <?php foreach ($links as $key => $value) {
-                        echo Html::a(
-                            Html::img($value->image),
-                            $value->url,
-                            ['class' => 'list-group-item', 'target' => '_blank', 'title' => $value->title]
-                        );
-                    } ?>
-                </div>
-            </div>
-        <?php endif ?>
-
         <?php if (!$node) {
             echo \frontend\widgets\Panel::widget([
                 'title' => \Yii::t('app', 'Recomended Resources'),
@@ -82,6 +65,23 @@ $node = $config['node'];
             'title' => \Yii::t('app', 'Site Status'),
             'items' => [],
         ]) ?>
+
+        <?php if (!$config['node'] && !empty($links)): ?>
+            <div class="panel panel-default corner-radius">
+                <div class="panel-heading text-center">
+                    <h3 class="panel-title"><?= \Yii::t('app', 'Links') ?></h3>
+                </div>
+                <div class="panel-body text-center" style="padding-top: 5px;">
+                    <?php foreach ($links as $key => $value) {
+                        echo Html::a(
+                            Html::img($value->image),
+                            $value->url,
+                            ['class' => 'list-group-item', 'target' => '_blank', 'title' => $value->title]
+                        );
+                    } ?>
+                </div>
+            </div>
+        <?php endif ?>
 
     </div>
 </div>

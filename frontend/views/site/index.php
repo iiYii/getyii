@@ -1,10 +1,8 @@
 <?php
+use rmrevin\yii\fontawesome\FA;
 use yii\helpers\Html;
-use kartik\icons\Icon;
 use yii\helpers\HtmlPurifier;
 use yii\helpers\Markdown;
-
-Icon::map($this);
 
 $this->title = \Yii::$app->setting->get('siteName');
 /** @var array $headline */
@@ -38,9 +36,9 @@ $this->title = \Yii::$app->setting->get('siteName');
 
         <div class="panel-footer text-right">
             <span class="index_count">
-                <?= Icon::show('user'); ?><?= \Yii::t('app', 'Online Count') ?>：<?= $statistics['online_count']; ?>
-                <?= Icon::show('list'); ?><?= \Yii::t('app', 'Post Count') ?>：<?= $statistics['post_count']; ?>
-                <?= Icon::show('share'); ?><?= \Yii::t('app', 'Comment Count') ?>：<?= $statistics['comment_count']; ?>
+                <?= FA::icon('user'); ?><?= \Yii::t('app', 'Online Count') ?>：<?= $statistics['online_count']; ?>
+                <?= FA::icon('list'); ?><?= \Yii::t('app', 'Post Count') ?>：<?= $statistics['post_count']; ?>
+                <?= FA::icon('share'); ?><?= \Yii::t('app', 'Comment Count') ?>：<?= $statistics['comment_count']; ?>
             </span>
             <?= Html::a(\Yii::t('app', 'More Excellent Topics'), ['topic/default/index', 'sort' => 'excellent']) ?>
         </div>

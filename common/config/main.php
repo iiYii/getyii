@@ -31,6 +31,9 @@ return [
             'class' => 'understeam\slack\Client',
             'url' => '',
         ],
+        'assetManager' => [
+            'linkAssets' => true,
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

@@ -248,6 +248,7 @@ class SiteController extends Controller
         $this->performAjaxValidation($model);
 
         if ($model->load(Yii::$app->request->post())) {
+            $model->role = User::ROLE_USER;
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();

@@ -15,6 +15,7 @@ class AfterLoginBehavior extends Behavior
      * @var int
      */
     public $attribute = 'logged_at';
+
     /**
      * {@inheritdoc}
      */
@@ -31,24 +32,23 @@ class AfterLoginBehavior extends Behavior
      */
     public function afterLogin($event)
     {
-        $model = $event->identity->userInfo;
+        if ($model = $event->identity->userInfo) {
+            $model->login_count += 1;
+            $model->prev_login_time = $model->last_login_time;
+            $model->prev_login_ip = $model->last_login_ip;
+            $model->last_login_time = time();
+            $model->last_login_ip = Yii::$app->getRequest()->getUserIP();
 
-        $model->login_count += 1;
-        $model->prev_login_time = $model->last_login_time;
-        $model->prev_login_ip = $model->last_login_ip;
-        $model->last_login_time = time();
-        $model->last_login_ip = Yii::$app->getRequest()->getUserIP();
+            if (!Yii::$app->session->isActive) {
+                Yii::$app->session->open();
+            }
+            $model->session_id = Yii::$app->session->id;
+            Yii::$app->session->close();
 
-        if (!Yii::$app->session->isActive) {
-            Yii::$app->session->open();
+            if ($model->save()) {
+                return true;
+            }
         }
-        $model->session_id = Yii::$app->session->id;
-        Yii::$app->session->close();
-
-        if ($model->save()) {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 }

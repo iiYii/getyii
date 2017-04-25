@@ -14,7 +14,7 @@ $node = $config['node'];
 ?>
 <div class="col-md-3 side-bar p0">
 
-    <div class="<?= (request('id')) ? 'p-fixed' : null; ?>">
+    <div class="<?= (request('id')) ? '' : null; ?>">
         <?php if (Yii::$app->user->isGuest): ?>
             <div class="panel panel-default corner-radius">
                 <div class="panel-heading text-center">
@@ -77,53 +77,35 @@ $node = $config['node'];
 
         <?php endif ?>
 
-        <?php if ($action=='index' || $action=='create') {
-            echo \frontend\widgets\Panel::widget([
-                'title' => \Yii::t('app', 'Recomended Resources'),
-                'items' => $recommendResources,
-            ]);
-        } ?>
 
-        <?php //echo $action; exit; ?>
-        <?php if (!$config['node'] && !empty($links) && $module=='topic' && $action=='index'): ?>
-            <div class="panel panel-default corner-radius">
-                <div class="panel-heading text-center">
-                    <h3 class="panel-title">合作伙伴</h3>
-                </div>
-                <div class="panel-body">
-                    <?= Html::img(Yii::getAlias('@web/ads/qrcode_tunyun.jpg'), ['width' => 250]); ?>
-                    <p>专注企业数据库创新服务和Oracle数据库干货分享</p>
-                </div>
-            </div>
-            <div class="panel panel-default corner-radius">
-                <div class="panel-heading text-center">
-                    <h3 class="panel-title"><?= \Yii::t('app', 'Links') ?></h3>
-                </div>
-                <div class="panel-body text-center" style="padding-top: 5px;">
-                    <?php foreach ($links as $key => $value) {
-                        echo Html::a(
-                            Html::img($value->image),
-                            $value->url,
-                            ['class' => 'list-group-item', 'target' => '_blank', 'title' => $value->title]
-                        );
-                    } ?>
-                </div>
-            </div>
-        <?php endif ?>
 
 
         <?php if ($node) {
             echo \frontend\widgets\Panel::widget([
-                'title' => \Yii::t('app', 'Same Node Topics'),
+                'title' => \Yii::t('app', 'Hot Node Articles'),
+                'items' => $sameArticles,
+            ]);
+        }else{
+            echo \frontend\widgets\Panel::widget([
+                'title' => \Yii::t('app', 'Hot Articles'),
+                'items' => $sameArticles,
+            ]);
+        }
+
+        ?>
+
+        <?php if ($node) {
+            echo \frontend\widgets\Panel::widget([
+                'title' => \Yii::t('app', 'Hot Node Topics'),
                 'items' => $sameTopics,
             ]);
-        } ?>
-
-
-        <?php \frontend\widgets\Panel::widget([
-            'title' => \Yii::t('app', 'Site Status'),
-            'items' => [],
-        ]) ?>
+        }else{
+            echo \frontend\widgets\Panel::widget([
+                'title' => \Yii::t('app', 'Hot Topics'),
+                'items' => $sameTopics,
+            ]);
+        }
+        ?>
 
 
     </div>

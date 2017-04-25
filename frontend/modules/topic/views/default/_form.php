@@ -5,6 +5,7 @@ use yii\helpers\HtmlPurifier;
 use yii\widgets\ActiveForm;
 use dosamigos\selectize\SelectizeTextInput;
 use kartik\select2\Select2;
+use yiier\editor\EditorMdWidget;
 
 ?>
     <div class="list-group-item">
@@ -36,47 +37,42 @@ use kartik\select2\Select2;
 
         <?= $this->render('@frontend/views/partials/markdwon_help') ?>
 
-        <div class="opts pull-right">
-            <span class="dropdown dropdown-small" id="editor-toolbar-insert-code">
-                <a href="#editor-toolbar-insert-code" data-toggle="dropdown" title="插入代码" aria-expanded="false">
-                    <i class="fa fa-code"></i>
-                </a>
-                <ul class="dropdown-menu insert-codes" role="menu">
-                    <li><a data-lang="php" href="#">PHP</a></li>
-                    <li><a data-lang="html" href="#">HTML</a></li>
-                    <li><a data-lang="scss" href="#">CSS / SCSS</a></li>
-                    <li><a data-lang="js" href="#">JavaScript</a></li>
-                    <li><a data-lang="yml" href="#">YAML <i>(.yml)</i></a></li>
-                    <li><a data-lang="coffee" href="#">CoffeeScript</a></li>
-                    <li><a data-lang="conf" href="#">Nginx / Redis <i>(.conf)</i></a></li>
-                    <li><a data-lang="python" href="#">Python</a></li>
-                    <li><a data-lang="java" href="#">Java</a></li>
-                    <li><a data-lang="erlang" href="#">Erlang</a></li>
-                    <li><a data-lang="shell" href="#">Shell / Bash</a></li>
-                </ul>
-            </span>
-            <a id="topic-upload-image" rel="twipsy" title="" href="#" data-original-title="上传图片">
-                <i class="fa fa-image"></i>
-            </a>
-        </div>
-        <div id="dropzone-editor-wrap" class="hide">
-            <textarea id="md-input" cols="30" rows="10"></textarea>
-            <div id="dropzone-previewer"></div>
-        </div>
-
-        <div class="form-group" id="editor">
-            <?= $form->field($model, 'content')->widget(
-                'trntv\aceeditor\AceEditor',
-                [
-                    'id' => 'markdown',
-                    'mode' => 'markdown',
-                    'containerOptions' => [
-                        'style' => 'width: 100%; min-height: 350px'
-                    ],
-                    'theme' => 'github'
+        <?= $form->field($model, 'content')->widget(EditorMdWidget::className(), [
+                'options'=>[// html attributes
+                    'id'=>'content'
+                ],
+                'clientOptions' => [
+                    'height' => '640',
+                    // 'previewTheme' => 'dark',
+                    // 'editorTheme' => 'pastel-on-dark',
+                    'markdown' => '',
+                    'codeFold' => true,
+                    'syncScrolling' => false,
+                    'saveHTMLToTextarea' => true,    // 保存 HTML 到 Textarea
+                    'searchReplace' => true,
+                    // 'watch' => false, // 关闭实时预览
+                    'htmlDecode' => 'style,script,iframe|on*',            // 开启 HTML 标签解析，为了安全性，默认不开启
+                    'toolbar ' => false,             //关闭工具栏
+                    'previewCodeHighlight' => false, // 关闭预览 HTML 的代码块高亮，默认开启
+                    'emoji' => true,
+                    'taskList' => true,
+                    'tocm           ' => true,         // Using [TOCM]
+                    'tex' => true,    // 开启科学公式TeX语言支持，默认关闭
+                    'flowChart' => true,             // 开启流程图支持，默认关闭
+                    'sequenceDiagram' => true,       // 开启时序/序列图支持，默认关闭,
+                    // 'dialogLockScreen' => false,   // 设置弹出层对话框不锁屏，全局通用，默认为true
+                    // 'dialogShowMask' => false,     // 设置弹出层对话框显示透明遮罩层，全局通用，默认为true
+                    // 'dialogDraggable' => false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
+                    // 'dialogMaskOpacity' => 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
+                    // 'dialogMaskBgColor' => '#000', // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
+                    'imageUpload' => true,
+                    'imageFormats' => ['jpg', 'jpeg', 'gif', 'png', 'bmp'],
+                    'imageUploadURL' => "/site/upload",
                 ]
-            ) ?>
-        </div>
+            ]
+        ) ?>
+
+
 
         <?= SelectizeTextInput::widget([
             'name' => 'Topic[tags]',
@@ -96,6 +92,9 @@ use kartik\select2\Select2;
             ],
         ]) ?>
 
+        <div class="form-group">
+            <?= $form->field($model, 'cc')->checkbox() ?>
+        </div>
 
         <div class="form-group">
             <?= Html::submitButton(

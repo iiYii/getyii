@@ -31,6 +31,9 @@ use frontend\modules\user\models\UserAccount;
  */
 class SiteController extends Controller
 {
+
+    public $enableCsrfValidation = false;
+
     /**
      * @inheritdoc
      */
@@ -65,13 +68,16 @@ class SiteController extends Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+
         ];
     }
+
 
     public function actionIndex()
     {
 
-        $topics = Post::find()->limit(24)->where(['status' => 2])->orWhere(['recommend'=>1])->orderBy(['created_at' => SORT_DESC])->all();
+        $topics = Post::find()->limit(12)->where(['type'=>'topic'])->andWhere(['status'=>2])->orderBy(['created_at' => SORT_DESC])->all();
+        $articles = Post::find()->limit(10)->where(['type'=>'article'])->orderBy(['like_count' => SORT_DESC,'created_at' => SORT_DESC])->all();
 
         //$topics = Post::find()->with('user', 'category')->limit(20)->where(['status' => 2])->orderBy(['created_at' => SORT_DESC])->all();
 
@@ -85,6 +91,7 @@ class SiteController extends Controller
 
         return $this->render('index', [
             'topics' => $topics,
+            'articles' => $articles,
             'users' => $users,
             'statistics' => $statistics,
             'headline' => Arr::arrayRandomAssoc($headline),
@@ -312,5 +319,41 @@ class SiteController extends Controller
         else{
             return $this->goHome();
         }
+    }
+
+    public function actionUpload(){
+
+        $file_name = $_FILES["editormd-image-file"]["name"];
+        $file_name_tmp = $_FILES["editormd-image-file"]["tmp_name"];
+        $file_ext = explode('.',$file_name)[1];
+        $file_name_path = 'editor-images/'.date('Ymd').'_'.Yii::$app->uuid->uuid4().'.'.$file_ext;
+
+        $storage = Yii::$app->storage;
+        $disk = $storage->getDisk('aliyun');
+        $upload  = $disk->writeStream($file_name_path, fopen($file_name_tmp, 'r'),[]);
+
+        $result = [];
+        $result['success'] = 0;
+        $result['message'] = '';
+        $result['url'] = '';
+
+        if($upload==1){
+            $result['success'] = 1;
+            $result['message'] = 'upload success.';
+            $result['url'] = "https://dbachina.oss-cn-shanghai.aliyuncs.com/".$file_name_path;
+        }
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        echo json_encode($result);
+        Yii::$app->end();
+    }
+
+    public function actionTest(){
+        $storage = Yii::$app->storage;
+        $disk = $storage->getDisk('aliyun');
+        $testFile = 'E:\avatar.jpg';
+        //$result  = $disk->writeStream('avatar.jpg', fopen($testFile, 'r'),[]);
+        $result = $disk->getMetadata('avatar.jpg');
+        print_r($result['path']);exit;
     }
 }

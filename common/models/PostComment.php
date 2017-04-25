@@ -14,6 +14,7 @@ use yii\web\NotFoundHttpException;
 use frontend\modules\topic\models\Topic;
 use frontend\modules\article\models\Article;
 use frontend\modules\question\models\Question;
+use frontend\modules\video\models\Video;
 /**
  * This is the model class for table "post_comment".
  *
@@ -87,6 +88,11 @@ class PostComment extends ActiveRecord
     public function getQuestion()
     {
         return $this->hasOne(Question::className(), ['id' => 'post_id'])->where(['type' => 'question']);
+    }
+
+    public function getVideo()
+    {
+        return $this->hasOne(Video::className(), ['id' => 'post_id'])->where(['type' => 'video']);
     }
 
     public function getLike()
@@ -188,6 +194,9 @@ class PostComment extends ActiveRecord
         }
         if($module=='article'){
             return $this->article;
+        }
+        if($module=='video'){
+            return $this->video;
         }
         if($module=='question'){
             return $this->question;

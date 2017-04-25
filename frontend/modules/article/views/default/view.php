@@ -40,21 +40,52 @@ $node = \common\models\PostMeta::find()->where(['alias' => $model->category->ali
                 ); ?>
             </div>
         </div>
-        <div class="panel-body content-body">
+        <div class="panel-body ">
+
+            <div class="content-body">
 
             <?= HtmlPurifier::process(Markdown::process($model->content, 'gfm')) ?>
             <div class="bdsharebuttonbox" style="float: right"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
                 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div>
             <div style="clear: both"></div>
 
+            </div>
+
             <hr/>
             <?php //echo \frontend\widgets\Ad::widget(['key'=>'bd_pic_640_60']); ?>
 
+            <div style="text-align: center; color: #666;">
+            <?php
+                $like = Html::a(
+                Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count) . ' 人推荐',
+                '#',
+                [
+                    'data-do' => 'like',
+                    'data-id' => $model->id,
+                    'data-type' => $model->type,
+                    'class' => ($model->like) ? 'btn btn-success active': 'btn btn-success'
+                ]
+                );
+
+
+            if($model->isCurrent()){
+                echo Html::a(
+                    Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count) . ' 人推荐',
+                    'javascript:;',
+                    ['class'=>'btn btn-success disabled']
+                );
+            } else {
+                echo $like;
+
+            }
+
+            ?>
             <?php if($donate): ?>
-                <div style="text-align: center; color: #666;">
-                    <p>如果这篇文章对您有帮助，不妨微信小额赞助我一下，让我有动力继续写出高质量的帖子。</p>
-                    <?= Html::Button('打赏作者', ['class' =>'btn btn-danger','id'=>'donate-btn']) ?>
+
+                    <?= Html::Button('支持作者', ['class' =>'btn btn-danger','id'=>'donate-btn']) ?>
                     <div class="row" id="donate-qrode">
+                        <p></p>
+                        <p>如果这篇文章对您有帮助，不妨微信小额赞助我一下，让我有动力继续写出高质量的帖子。</p>
                         <div class="col-md-3"></div>
                         <div class="col-md-6">
                             <div class="panel panel-default corner-radius mt15">
@@ -66,34 +97,15 @@ $node = \common\models\PostMeta::find()->where(['alias' => $model->category->ali
                             <div class="col-md-3"></div>
                         </div>
                     </div>
-                </div>
             <?php endif ?>
+            </div>
 
 
 
         </div>
         <div class="panel-footer clearfix opts">
             <?php
-            $like = Html::a(
-                Html::tag('i', '', ['class' => 'fa fa-thumbs-o-up']) . ' ' . Html::tag('span', $model->like_count) . ' 个赞',
-                '#',
-                [
-                    'data-do' => 'like',
-                    'data-id' => $model->id,
-                    'data-type' => $model->type,
-                    'class' => ($model->like) ? 'active': ''
-                ]
-            );
-            $hate = Html::a(
-                Html::tag('i', '', ['class' => 'fa fa-thumbs-o-down']) . ' 踩',
-                '#',
-                [
-                    'data-do' => 'hate',
-                    'data-id' => $model->id,
-                    'data-type' => $model->type,
-                    'class' => ($model->hate) ? 'active': ''
-                ]
-            );
+
             $follow = Html::a(
                 Html::tag('i', '', ['class' => 'fa fa-eye']) . ' 关注',
                 '#',
@@ -131,7 +143,7 @@ $node = \common\models\PostMeta::find()->where(['alias' => $model->category->ali
                     'javascript:;'
                 );
             } else {
-                echo $like, $hate;
+
                 echo $thanks;
             }
             echo $follow;

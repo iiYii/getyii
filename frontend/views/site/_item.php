@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 ?>
 <li class="list-group-item media col-sm-6 mt0">
-    <?php if($model['comment_count']==0){ $class="badge badge-reply-count" ;}else{$class="badge badge-reply-count-new"; } ?>
+    <?php if($model['comment_count']==0){ $class="badge bodge-circle badge-reply-count" ;}else{$class="badge bodge-circle badge-reply-count-new"; } ?>
     <?= Html::a(Html::tag('span', $model['comment_count'], ['class' => $class]),
         ['/topic/default/view', 'id' => $model->id, '#' => 'comment' . $model['comment_count']], ['class' => 'pull-right']
     ); ?>

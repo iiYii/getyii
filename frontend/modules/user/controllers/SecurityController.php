@@ -46,17 +46,26 @@ class SecurityController extends Controller
         \Yii::$app->set('authClientCollection', [
             'class' => 'yii\authclient\Collection',
             'clients' => [
-                // 'google' => [
-                //     'class' => 'yii\authclient\clients\GoogleOAuth',
-                //     'clientId' => \Yii::$app->setting->get('googleClientId'),
-                //     'clientSecret' => \Yii::$app->setting->get('googleClientSecret'),
-                // ],
-                'github' => [
-                    'class' => 'yii\authclient\clients\GitHub',
-                    'clientId' => \Yii::$app->setting->get('githubClientId'),
-                    'clientSecret' => \Yii::$app->setting->get('githubClientSecret'),
+
+                'qq' => [
+                    'class' => 'xj\oauth\QqAuth',
+                    'clientId' => '111',
+                    'clientSecret' => '111',
+
                 ],
-            ],
+                'weixin' => [
+                    'class' => 'xj\oauth\WeixinAuth',
+                    'clientId' => '111',
+                    'clientSecret' => '111',
+                ],
+                'weibo' => [
+                    'class' => 'xj\oauth\WeiboAuth',
+                    'clientId' => '1350319650',
+                    'clientSecret' => '6bf6568705714d0dab0902ec50e2e75a',
+                ],
+
+
+            ]
         ]);
     }
 
@@ -78,9 +87,12 @@ class SecurityController extends Controller
      */
     public function authenticate(ClientInterface $client)
     {
-        $attributes = $client->getUserAttributes();
-        $provider = $client->getId();
-        $clientId = $attributes['id'];
+        $provider = $client->getId(); // qq | sina | weixin
+        $attributes = $client->getUserAttributes(); // basic info
+        $clientId = $client->getOpenid(); //user openid
+        $userInfo = $client->getUserInfo(); // user extend info
+        //var_dump($provider, $attributes, $openid, $userInfo);exit;
+
 
         $account = UserAccount::find()->where([
             'provider' => $provider,

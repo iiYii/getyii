@@ -180,14 +180,18 @@ return [
 > 本文由 [{username}](http://www.dba-china.com/member/{username}) 创作，采用 [知识共享署名 3.0 中国大陆许可协议](http://creativecommons.org/licenses/by/3.0/cn) 进行许可。
 可自由转载、引用，但需署名作者且注明文章出处。',
 
+    'Hot Topics'=>'热门话题',
+    'Hot Node Topics'=>'节点下的热门话题',
+
     'Article'=>'文章',
     'Articles'=>'文章',
     'New Article'=>'发表文章',
-    'Same Node Articles'=>'节点下的其他文章',
+    'Hot Articles'=>'热门文章',
+    'Hot Node Articles'=>'节点下的热门文章',
     'Received {0} comment' => '共收到 {0} 条评论',
 
     'Question'=>'问题',
     'Questions'=>'问题',
     'New Question'=>'发表提问',
-    'Same Node Questions'=>'节点下的其他提问',
+    'Hot Node Questions'=>'节点下的其他提问',
 ];

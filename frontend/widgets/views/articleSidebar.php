@@ -68,10 +68,30 @@ $node = $config['node'];
 
         <?php if ($node) {
             echo \frontend\widgets\Panel::widget([
-                'title' => \Yii::t('app', 'Same Node Articles'),
+                'title' => \Yii::t('app', 'Hot Node Articles'),
                 'items' => $sameArticles,
             ]);
-        } ?>
+        }else{
+            echo \frontend\widgets\Panel::widget([
+                'title' => \Yii::t('app', 'Hot Articles'),
+                'items' => $sameArticles,
+            ]);
+        }
+
+        ?>
+
+        <?php if ($node) {
+            echo \frontend\widgets\Panel::widget([
+                'title' => \Yii::t('app', 'Hot Node Topics'),
+                'items' => $sameTopics,
+            ]);
+        }else{
+            echo \frontend\widgets\Panel::widget([
+                'title' => \Yii::t('app', 'Hot Topics'),
+                'items' => $sameTopics,
+            ]);
+        }
+        ?>
 
 
         <?php \frontend\widgets\Panel::widget([

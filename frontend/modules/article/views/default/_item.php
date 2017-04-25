@@ -10,7 +10,7 @@ Icon::map($this);
 <div class="media">
 
     <div class="media-left">
-        <div class="tuijiian">
+        <div class="<?php if($model['like_count']>=1) {echo 'tuijiian-new';} else{ echo 'tuijiian';} ?>">
             <p><?=$model['like_count'] ?></p>
 
             <p>推荐</p>

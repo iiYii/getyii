@@ -13,6 +13,7 @@ a:hover,a:visited{color: #666666;}
     margin: 0 auto -60px;
     padding: 0 0 60px;
 }
+.mt10{ margin-top: 10px;}
 
 .footer {
     background-color: #fff;
@@ -246,11 +247,13 @@ a.desc:after {
 .badge-reply-count {
     margin-top: 15px;
     background-color: #cccccc;
+    border-radius: 100%;
 }
 
 .badge-reply-count-new {
     margin-top: 15px;
     background-color: #FFCC33;
+    border-radius: 100%;
 }
 
 .badge-excellent {

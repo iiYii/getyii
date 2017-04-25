@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8996ca4e961e9d5b1c44f1ec0bb133d9",
-    "content-hash": "c0252cd0c63759bb4683f0fcc6234650",
+    "hash": "c694075bb6b322ac7b2ce89679172fae",
+    "content-hash": "e0f0d0e1ff8e5a17e6341f9fc672e773",
     "packages": [
         {
             "name": "2amigos/yii2-qrcode-helper",
@@ -128,6 +128,47 @@
                 "yii2"
             ],
             "time": "2015-03-20 18:56:41"
+        },
+        {
+            "name": "aliyuncs/oss-sdk-php",
+            "version": "v2.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aliyun/aliyun-oss-php-sdk.git",
+                "reference": "28ec53756dba73cca89d3c2131bb44626ce25ab3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aliyun/aliyun-oss-php-sdk/zipball/28ec53756dba73cca89d3c2131bb44626ce25ab3",
+                "reference": "28ec53756dba73cca89d3c2131bb44626ce25ab3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "~1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "OSS\\": "src/OSS"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aliyuncs",
+                    "homepage": "http://www.aliyun.com"
+                }
+            ],
+            "description": "Aliyun OSS SDK for PHP",
+            "homepage": "http://www.aliyun.com/product/oss/",
+            "time": "2017-01-18 08:56:15"
         },
         {
             "name": "almasaeed2010/adminlte",
@@ -313,6 +354,72 @@
                     "index.html"
                 ]
             }
+        },
+        {
+            "name": "bower-asset/dropzone",
+            "version": "v3.11.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/enyo/dropzone.git",
+                "reference": "78c171455ebadeda541e134cdcd716da098750dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/enyo/dropzone/zipball/78c171455ebadeda541e134cdcd716da098750dd",
+                "reference": "78c171455ebadeda541e134cdcd716da098750dd",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "downloads/css/dropzone.css",
+                    "downloads/images/spritemap.png",
+                    "downloads/images/spritemap@2x.png",
+                    "downloads/dropzone.min.js"
+                ],
+                "bower-asset-ignore": [
+                    "*",
+                    "!downloads",
+                    "!downloads/**/*"
+                ]
+            },
+            "description": "Dropzone is an easy to use drag'n'drop library. It supports image previews and shows nice progress bars."
+        },
+        {
+            "name": "bower-asset/editor.md",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pandao/editor.md.git",
+                "reference": "af08536772e34f6ef95870bb4cfd85d09bf1c932"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pandao/editor.md/zipball/af08536772e34f6ef95870bb4cfd85d09bf1c932",
+                "reference": "af08536772e34f6ef95870bb4cfd85d09bf1c932",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "research",
+                    "docs",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Open source online markdown editor.",
+            "keywords": [
+                "editor",
+                "editor.md",
+                "markdown"
+            ]
         },
         {
             "name": "bower-asset/emojify.js",
@@ -857,6 +964,79 @@
             ]
         },
         {
+            "name": "bower-asset/underscore",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jashkenas/underscore.git",
+                "reference": "da996e665deb0b69b257e80e3e257c04fde4191c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jashkenas/underscore/zipball/da996e665deb0b69b257e80e3e257c04fde4191c",
+                "reference": "da996e665deb0b69b257e80e3e257c04fde4191c",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "underscore.js",
+                "bower-asset-ignore": [
+                    "docs",
+                    "test",
+                    "*.yml",
+                    "CNAME",
+                    "index.html",
+                    "favicon.ico",
+                    "CONTRIBUTING.md"
+                ]
+            },
+            "keywords": [
+                "browser",
+                "client",
+                "functional",
+                "server",
+                "util"
+            ]
+        },
+        {
+            "name": "bower-asset/video.js",
+            "version": "v5.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/videojs/video.js.git",
+                "reference": "19ee5100eaed903862203e169b1567f84c093548"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/videojs/video.js/zipball/19ee5100eaed903862203e169b1567f84c093548",
+                "reference": "19ee5100eaed903862203e169b1567f84c093548",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "src/js/video.js",
+                    "src/css/video-js.scss"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests",
+                    "build"
+                ]
+            },
+            "description": "An HTML5 and Flash video player with a common API and skin for both.",
+            "keywords": [
+                "flash",
+                "html5",
+                "player",
+                "video",
+                "videojs"
+            ]
+        },
+        {
             "name": "bower-asset/yii2-pjax",
             "version": "v2.0.6",
             "source": {
@@ -1030,6 +1210,62 @@
             ],
             "description": "CSS for vector based country flags",
             "time": "2016-08-14 16:10:21"
+        },
+        {
+            "name": "danielstjules/stringy",
+            "version": "2.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/danielstjules/Stringy.git",
+                "reference": "4e214a5195fae3fb558e81b1c6010678f7600643"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/4e214a5195fae3fb558e81b1c6010678f7600643",
+                "reference": "4e214a5195fae3fb558e81b1c6010678f7600643",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/polyfill-mbstring": "~1.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stringy\\": "src/"
+                },
+                "files": [
+                    "src/Create.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel St. Jules",
+                    "email": "danielst.jules@gmail.com",
+                    "homepage": "http://www.danielstjules.com"
+                }
+            ],
+            "description": "A string manipulation library with multibyte support",
+            "homepage": "https://github.com/danielstjules/Stringy",
+            "keywords": [
+                "UTF",
+                "helpers",
+                "manipulation",
+                "methods",
+                "multibyte",
+                "string",
+                "utf-8",
+                "utility",
+                "utils"
+            ],
+            "time": "2016-05-02 15:18:10"
         },
         {
             "name": "devgroup/yii2-tag-dependency-helper",
@@ -1318,6 +1554,57 @@
                 "yii2"
             ],
             "time": "2015-01-27 00:39:55"
+        },
+        {
+            "name": "hector68/yii2-grafikart-markdown-editor",
+            "version": "v0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Hector68/yii2-grafikart-markdown-editor.git",
+                "reference": "a7f08ce1dad28c09825b5f46ab11dc7fe255146e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Hector68/yii2-grafikart-markdown-editor/zipball/a7f08ce1dad28c09825b5f46ab11dc7fe255146e",
+                "reference": "a7f08ce1dad28c09825b5f46ab11dc7fe255146e",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/dropzone": "~3.11.1",
+                "bower-asset/marked": "~0.3.2",
+                "bower-asset/underscore": "~1.7.0",
+                "cebe/markdown": "~1.0.0 | ~1.1.0",
+                "php": ">=5.5.0",
+                "yiisoft/yii2": "^2.0.6"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "Hector68\\GrafikartMarkdownEditor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitriy Ronzhin",
+                    "email": "hector.tmb@gmail.com"
+                }
+            ],
+            "description": "Markdown editor with opportunity to uploading images",
+            "keywords": [
+                "editor",
+                "extension",
+                "form",
+                "input",
+                "jquery",
+                "markdown",
+                "yii",
+                "yii2"
+            ],
+            "time": "2016-02-18 10:18:15"
         },
         {
             "name": "hightman/xunsearch",
@@ -1715,6 +2002,89 @@
             "time": "2015-02-06 02:01:30"
         },
         {
+            "name": "league/flysystem",
+            "version": "1.0.32",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "1b5c4a0031697f46e779a9d1b309c2e1b24daeab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/1b5c4a0031697f46e779a9d1b309c2e1b24daeab",
+                "reference": "1b5c4a0031697f46e779a9d1b309c2e1b24daeab",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "conflict": {
+                "league/flysystem-sftp": "<1.0.6"
+            },
+            "require-dev": {
+                "ext-fileinfo": "*",
+                "mockery/mockery": "~0.9",
+                "phpspec/phpspec": "^2.2",
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "ext-fileinfo": "Required for MimeType",
+                "league/flysystem-aws-s3-v2": "Allows you to use S3 storage with AWS SDK v2",
+                "league/flysystem-aws-s3-v3": "Allows you to use S3 storage with AWS SDK v3",
+                "league/flysystem-azure": "Allows you to use Windows Azure Blob storage",
+                "league/flysystem-cached-adapter": "Flysystem adapter decorator for metadata caching",
+                "league/flysystem-copy": "Allows you to use Copy.com storage",
+                "league/flysystem-dropbox": "Allows you to use Dropbox storage",
+                "league/flysystem-eventable-filesystem": "Allows you to use EventableFilesystem",
+                "league/flysystem-rackspace": "Allows you to use Rackspace Cloud Files",
+                "league/flysystem-sftp": "Allows you to use SFTP server storage via phpseclib",
+                "league/flysystem-webdav": "Allows you to use WebDAV storage",
+                "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frenky.net"
+                }
+            ],
+            "description": "Filesystem abstraction: Many filesystems, one API.",
+            "keywords": [
+                "Cloud Files",
+                "WebDAV",
+                "abstraction",
+                "aws",
+                "cloud",
+                "copy.com",
+                "dropbox",
+                "file systems",
+                "files",
+                "filesystem",
+                "filesystems",
+                "ftp",
+                "rackspace",
+                "remote",
+                "s3",
+                "sftp",
+                "storage"
+            ],
+            "time": "2016-10-19 20:38:46"
+        },
+        {
             "name": "michelf/php-markdown",
             "version": "1.6.0",
             "source": {
@@ -1821,6 +2191,180 @@
             "time": "2016-10-16 21:08:01"
         },
         {
+            "name": "ollieday/yii2-uuid",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OllieDay/yii2-uuid.git",
+                "reference": "c5b6a6bfda5b0db7a5e2a31f3a78870329709183"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OllieDay/yii2-uuid/zipball/c5b6a6bfda5b0db7a5e2a31f3a78870329709183",
+                "reference": "c5b6a6bfda5b0db7a5e2a31f3a78870329709183",
+                "shasum": ""
+            },
+            "require": {
+                "ramsey/uuid": "3.*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "ollieday\\uuid\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ollie Day"
+                }
+            ],
+            "description": "Component for generating UUIDs with ramsey/uuid.",
+            "homepage": "https://github.com/ollieday",
+            "keywords": [
+                "extension",
+                "guid",
+                "identifier",
+                "uuid",
+                "yii2"
+            ],
+            "time": "2015-11-01 12:11:57"
+        },
+        {
+            "name": "paragonie/random_compat",
+            "version": "v2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paragonie/random_compat.git",
+                "reference": "a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e",
+                "reference": "a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*|5.*"
+            },
+            "suggest": {
+                "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/random.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paragon Initiative Enterprises",
+                    "email": "security@paragonie.com",
+                    "homepage": "https://paragonie.com"
+                }
+            ],
+            "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
+            "keywords": [
+                "csprng",
+                "pseudorandom",
+                "random"
+            ],
+            "time": "2016-11-07 23:38:38"
+        },
+        {
+            "name": "ramsey/uuid",
+            "version": "3.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ramsey/uuid.git",
+                "reference": "5677cfe02397dd6b58c861870dfaa5d9007d3954"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/5677cfe02397dd6b58c861870dfaa5d9007d3954",
+                "reference": "5677cfe02397dd6b58c861870dfaa5d9007d3954",
+                "shasum": ""
+            },
+            "require": {
+                "paragonie/random_compat": "^1.0|^2.0",
+                "php": ">=5.4"
+            },
+            "replace": {
+                "rhumsaa/uuid": "self.version"
+            },
+            "require-dev": {
+                "apigen/apigen": "^4.1",
+                "codeception/aspect-mock": "1.0.0",
+                "doctrine/annotations": "~1.2.0",
+                "goaop/framework": "1.0.0-alpha.2",
+                "ircmaxell/random-lib": "^1.1",
+                "jakub-onderka/php-parallel-lint": "^0.9.0",
+                "mockery/mockery": "^0.9.4",
+                "moontoast/math": "^1.1",
+                "php-mock/php-mock-phpunit": "^0.3|^1.1",
+                "phpunit/phpunit": "^4.7|>=5.0 <5.4",
+                "satooshi/php-coveralls": "^0.6.1",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "suggest": {
+                "ext-libsodium": "Provides the PECL libsodium extension for use with the SodiumRandomGenerator",
+                "ext-uuid": "Provides the PECL UUID extension for use with the PeclUuidTimeGenerator and PeclUuidRandomGenerator",
+                "ircmaxell/random-lib": "Provides RandomLib for use with the RandomLibAdapter",
+                "moontoast/math": "Provides support for converting UUID to 128-bit integer (in string form).",
+                "ramsey/uuid-console": "A console application for generating UUIDs with ramsey/uuid",
+                "ramsey/uuid-doctrine": "Allows the use of Ramsey\\Uuid\\Uuid as Doctrine field type."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ramsey\\Uuid\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marijn Huizendveld",
+                    "email": "marijn.huizendveld@gmail.com"
+                },
+                {
+                    "name": "Thibaud Fabre",
+                    "email": "thibaud@aztech.io"
+                },
+                {
+                    "name": "Ben Ramsey",
+                    "email": "ben@benramsey.com",
+                    "homepage": "https://benramsey.com"
+                }
+            ],
+            "description": "Formerly rhumsaa/uuid. A PHP 5.4+ library for generating RFC 4122 version 1, 3, 4, and 5 universally unique identifiers (UUID).",
+            "homepage": "https://github.com/ramsey/uuid",
+            "keywords": [
+                "guid",
+                "identifier",
+                "uuid"
+            ],
+            "time": "2016-11-22 19:21:44"
+        },
+        {
             "name": "rmrevin/yii2-fontawesome",
             "version": "2.15.1",
             "source": {
@@ -1925,6 +2469,65 @@
             "time": "2016-07-08 11:51:25"
         },
         {
+            "name": "symfony/polyfill-mbstring",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/e79d363049d1c2128f133a2667e4f4190904f7f4",
+                "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Mbstring extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "mbstring",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2016-11-14 01:06:16"
+        },
+        {
             "name": "trntv/yii2-aceeditor",
             "version": "dev-master",
             "source": {
@@ -1999,6 +2602,64 @@
             "time": "2016-07-22 11:12:56"
         },
         {
+            "name": "wbraganca/yii2-videojs-widget",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wbraganca/yii2-videojs-widget.git",
+                "reference": "e8d0f161af6a5cc47e3c74edee680879d94818a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wbraganca/yii2-videojs-widget/zipball/e8d0f161af6a5cc47e3c74edee680879d94818a8",
+                "reference": "e8d0f161af6a5cc47e3c74edee680879d94818a8",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/video.js": "~5.1.0",
+                "yiisoft/yii2": "~2.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                },
+                "asset-ignore-files": {
+                    "bower-asset/video.js": [
+                        "*/**",
+                        "!dist/*"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "wbraganca\\videojs\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Wanderson Bragança",
+                    "email": "wanderson.wbc@gmail.com",
+                    "homepage": "http://wbraganca.com"
+                }
+            ],
+            "description": "The yii2-videojs-widget is a Yii 2 wrapper for the [video.js](http://www.videojs.com/). A JavaScript and CSS library that makes it easier to work with and build on HTML5 video. This is also known as an HTML5 Video Player.",
+            "keywords": [
+                "html5 video",
+                "videojs",
+                "yii2",
+                "yii2-extension",
+                "yii2-videojs",
+                "yii2-videojs-widget"
+            ],
+            "time": "2015-11-05 18:39:32"
+        },
+        {
             "name": "webcreate/jquery-ias",
             "version": "v2.2.1",
             "source": {
@@ -2037,6 +2698,144 @@
                 "scrolling"
             ],
             "time": "2015-05-08 14:58:16"
+        },
+        {
+            "name": "weyii/yii2-base",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/weyii/yii2-base.git",
+                "reference": "52f2ea42c3139b7d152c2a1ad2957ad757cb6ed9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/weyii/yii2-base/zipball/52f2ea42c3139b7d152c2a1ad2957ad757cb6ed9",
+                "reference": "52f2ea42c3139b7d152c2a1ad2957ad757cb6ed9",
+                "shasum": ""
+            },
+            "require": {
+                "danielstjules/stringy": "~2.2",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "files": [
+                    "helpers.php"
+                ],
+                "psr-4": {
+                    "weyii\\base\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Long Zhang",
+                    "email": "callme-z@qq.com"
+                }
+            ],
+            "description": "The weyii base components for Yii2.",
+            "homepage": "https://github.com/weyii/yii2-weyii",
+            "keywords": [
+                "base",
+                "weyii",
+                "yii2"
+            ],
+            "time": "2016-08-21 02:53:04"
+        },
+        {
+            "name": "weyii/yii2-filesystem",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/weyii/yii2-filesystem.git",
+                "reference": "91e5c764db97b45e5ea57c687dc7e5d505895bba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/weyii/yii2-filesystem/zipball/91e5c764db97b45e5ea57c687dc7e5d505895bba",
+                "reference": "91e5c764db97b45e5ea57c687dc7e5d505895bba",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem": "~1.0",
+                "weyii/yii2-base": "*",
+                "yiisoft/yii2": "*"
+            },
+            "conflict": {
+                "aliyuncs/oss-sdk-php": "<2.0",
+                "qiniu/php-sdk": "<7.0"
+            },
+            "suggest": {
+                "aliyuncs/oss-sdk-php": "阿里云OSS存储SDK, 请使用'~2.0'以上版本",
+                "qiniu/php-sdk": "七牛云存储SDK, 请使用'~7.0'以上版本."
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "weyii\\filesystem\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Long Zhang",
+                    "email": "callme-z@qq.com"
+                }
+            ],
+            "description": "This extension provides a filesystem solution for Yii 2.",
+            "keywords": [
+                "Flysystem",
+                "file",
+                "filesystem",
+                "qiniu",
+                "storage",
+                "weyii",
+                "yii2"
+            ],
+            "time": "2016-01-05 03:04:16"
+        },
+        {
+            "name": "xj/yii2-oauth",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xjflyttp/yii2-oauth.git",
+                "reference": "8996cace4818b9308a1895e6faaa7fdf3b98904e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xjflyttp/yii2-oauth/zipball/8996cace4818b9308a1895e6faaa7fdf3b98904e",
+                "reference": "8996cace4818b9308a1895e6faaa7fdf3b98904e",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.0",
+                "yiisoft/yii2-authclient": "~2.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "xj\\oauth\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "xjflyttp",
+                    "email": "xjflyttp@gmail.com"
+                }
+            ],
+            "description": "yii2-oauth",
+            "time": "2016-09-07 10:49:02"
         },
         {
             "name": "yiier/yii2-backup",
@@ -2079,6 +2878,49 @@
                 "yii2-backup"
             ],
             "time": "2016-03-10 07:29:04"
+        },
+        {
+            "name": "yiier/yii2-editor.md",
+            "version": "v0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiier/yii2-editor.md.git",
+                "reference": "bf1f1ff2d3ff5ffc6c9b57269db19d7e1950387a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiier/yii2-editor.md/zipball/bf1f1ff2d3ff5ffc6c9b57269db19d7e1950387a",
+                "reference": "bf1f1ff2d3ff5ffc6c9b57269db19d7e1950387a",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/editor.md": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yiier\\editor\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-4-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "forecho",
+                    "email": "caizhenghai@gmail.com"
+                }
+            ],
+            "description": "editor.md for Yii2",
+            "keywords": [
+                "editor",
+                "editor.md",
+                "extension",
+                "yii2"
+            ],
+            "time": "2017-01-17 13:50:16"
         },
         {
             "name": "yiier/yii2-merit",
@@ -2805,6 +3647,7 @@
                 "codeception",
                 "yii2"
             ],
+            "abandoned": "codeception/codeception",
             "time": "2016-03-17 03:41:26"
         },
         {

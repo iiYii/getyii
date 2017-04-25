@@ -42,7 +42,8 @@ echo Nav::widget([
         //['label' =>  Icon::show('th-large')  . '首页', 'url' => ['/site/index'] ],
         ['label' => Icon::show('comment-o') . '话题', 'url' => ['/topic'], 'active' => $topicActive],
         //['label' => Icon::show('question-circle-o') . '问答', 'url' => ['/question'], 'active' => $topicActive],
-        ['label' => Icon::show('file-word-o') . '教程', 'url' => ['/article'], 'active' => $topicActive],
+        ['label' => Icon::show('file-word-o') . '文章', 'url' => ['/article'], 'active' => $topicActive],
+        ['label' => Icon::show('file-video-o') . '视频', 'url' => ['/video'], 'active' => $topicActive],
         ['label' => Icon::show('envelope-o') . '招聘', 'url' => ['/topic/default/index', 'node' => 'jobs'], 'active' => $jobsActive],
         //['label' => Icon::show('github-alt') . 'Lepus', 'url' => ['/topic/default/index', 'node' => 'lepus'], 'active' => $lepusActive],
         ['label' => Icon::show('commenting-o') . '动弹', 'url' => ['/tweet'], 'active' => $tweetActive],
@@ -96,10 +97,11 @@ echo Nav::widget([
 NavBar::end();
 ?>
 
+<?php if ($module!='video' or $action!='view'): ?>
 <div class="header_node">
     <div class="content">
     <div class="nav_home">
-        <a href="/"><i class="layui-icon">&#xe609;</i>&nbsp;主页</a>
+        <a href="/"><?= Icon::show('home') ?>主页</a>
         <a href="">|</a>
     </div>
     <div class="nav_node">
@@ -109,3 +111,4 @@ NavBar::end();
     </div>
     </div>
 </div>
+<?php endif; ?>

@@ -12,6 +12,7 @@ use common\services\TopicService;
 use common\services\TweetService;
 use common\services\QuestionService;
 use common\services\ArticleService;
+use common\services\VideoService;
 use Yii;
 use common\components\Controller;
 use yii\web\NotFoundHttpException;
@@ -42,6 +43,10 @@ class ActionController extends Controller
                 break;
             case 'article':
                 $articleService = new ArticleService();
+                list($result, $data) = $articleService->userDoAction($id, 'like');
+                break;
+            case 'video':
+                $articleService = new VideoService();
                 list($result, $data) = $articleService->userDoAction($id, 'like');
                 break;
             case 'tweet':
@@ -87,6 +92,16 @@ class ActionController extends Controller
         if ($type == 'article') {
             $articleService = new ArticleService();
             list($result, $data) = $articleService->userDoAction($id, 'hate');
+
+            if ($result) {
+                return $this->message('提交成功!', 'success');
+            } else {
+                return $this->message($data ? $data->getErrors() : '提交失败!');
+            }
+        }
+        if ($type == 'video') {
+            $videoService = new VideoService();
+            list($result, $data) = $videoService->userDoAction($id, 'hate');
 
             if ($result) {
                 return $this->message('提交成功!', 'success');
@@ -187,6 +202,16 @@ class ActionController extends Controller
         if ($type == 'article') {
             $articleService = new ArticleService();
             list($result, $data) = $articleService->userDoAction($id, 'favorite');
+
+            if ($result) {
+                return $this->message('提交成功!', 'success');
+            } else {
+                return $this->message($data ? $data->getErrors() : '提交失败!');
+            }
+        }
+        if ($type == 'video') {
+            $videoService = new VideoService();
+            list($result, $data) = $videoService->userDoAction($id, 'favorite');
 
             if ($result) {
                 return $this->message('提交成功!', 'success');

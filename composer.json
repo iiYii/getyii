@@ -51,7 +51,15 @@
     "dmstr/yii2-adminlte-asset": "2.*",
     "enyo/dropzone": "^4.3",
     "kartik-v/yii2-markdown": "dev-master",
-    "kucha/ueditor": "*"
+    "kucha/ueditor": "*",
+    "xj/yii2-oauth": "~2.0.0",
+    "wbraganca/yii2-videojs-widget": "~1.0",
+    "hector68/yii2-grafikart-markdown-editor": "^0.2.0",
+    "yiier/yii2-editor.md": "*",
+    "weyii/yii2-filesystem": "^2.0",
+    "league/flysystem": "^1.0",
+    "aliyuncs/oss-sdk-php": "^2.2",
+    "ollieday/yii2-uuid": "*"
     
   },
   "require-dev": {

@@ -24,14 +24,32 @@ $this->title = \Yii::$app->setting->get('siteName');
     </div>
     <div class="btn-group btn-group-justified">
         <?php if(Yii::$app->user->isGuest || (!Yii::$app->user->isGuest && !Yii::$app->user->identity->isSign)): ?>
-            <a class="btn btn-warning btn-registration" href="<?= Url::to(['/sign'])?>"><i class="fa fa-calendar-plus-o"></i> 点此处签到<br>签到有好礼</a>
+            <a class="btn btn-danger btn-registration " href="<?= Url::to(['/sign'])?>"><i class="fa fa-calendar-plus-o"></i> 点此处签到<br>签到有好礼</a>
         <?php else: ?>
-            <a class="btn btn-warning disabled" href="<?= Url::to(['/sign'])?>"><i class="fa fa-calendar-check-o"></i> 今日已签到<br>已连续<?= Yii::$app->user->identity->sign->continue_times ?>天</a>
+            <a class="btn btn-danger disabled" href="<?= Url::to(['/sign'])?>"><i class="fa fa-calendar-check-o"></i> 今日已签到<br>已连续<?= Yii::$app->user->identity->sign->continue_times ?>天</a>
         <?php endif; ?>
         <a class="btn btn-info" href="<?= Url::to(['/sign'])?>"><?= date('Y年m月d日') ?><br>今日已有<?= Yii::$app->db->createCommand('SELECT COUNT(*) FROM {{%sign}} WHERE FROM_UNIXTIME(last_sign_at, "%Y%m%d") = "'. date('Ymd') . '"')->queryScalar() ?>人签到</a>
     </div>
 
-    <div class="panel panel-default list-panel">
+    <div class="panel panel-default list-panel mt10">
+        <div class="panel-heading">
+            <h3 class="panel-title text-center">
+                <?= \Yii::t('app', 'Hot Articles') ?> &nbsp;
+            </h3>
+        </div>
+
+        <div class="clearfix site-index-topic article-list">
+            <?php if ($articles) {
+                foreach ($articles as $key => $vlaue) {
+                    echo $this->render('_item_article', ['model' => $vlaue]);
+                }
+            } else {
+                echo \Yii::t('app', 'Dont have any data Yet');
+            } ?>
+        </div>
+    </div>
+
+    <div class="panel panel-default list-panel ">
         <div class="panel-heading">
             <h3 class="panel-title text-center">
                 <?= \Yii::t('app', 'Excellent Topics') ?> &nbsp;

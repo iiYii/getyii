@@ -1,5 +1,5 @@
 jQuery(function ($) {
-
+    
     //goto top
     $('.gototop').click(function (event) {
         event.preventDefault();

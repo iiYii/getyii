@@ -13,7 +13,7 @@ class LayuiAsset extends AssetBundle
     public $baseUrl = '@web';
     public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
     public $css = [
-        'lib/layui/css/layui.css',
+        //'lib/layui/css/layui.css',
         'css/site-ruyi.css',  //site.css or site-ruyi.css
     ];
     public $js = [

@@ -27,7 +27,10 @@ else{
 $this->title = $seo_title;
 
 ?>
+
+
 <div class="col-md-9 article-list">
+
     <div class="panel panel-default">
 
         <?php if($node and !empty($node->description)): ?>

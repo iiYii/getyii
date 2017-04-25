@@ -1,4 +1,5 @@
 <?php
+
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'timeZone' => 'Asia/Shanghai', //time zone affect the formatter datetime format
@@ -7,7 +8,14 @@ return [
         /* other modules */
         'markdown' => [
             'class' => 'kartik\markdown\Module',
-        ]
+        ],
+        'markdown-editor' => [
+            'class' => 'Hector68\GrafikartMarkdownEditor\Module',
+            'uploadDir' => '@webroot/uploads/markdown',
+            'isFileNameUnique' => true, //set unique name or use base name,
+            'maxSize' => 2097152, // in bites, Default 2mb
+            'expansions' => ['jpg', 'png']
+        ],
     ],
     'components' => [
         'formatter' => [ //for the showing of date datetime
@@ -142,6 +150,9 @@ return [
                     'basePath' => '@common/messages',
                 ],
             ],
+        ],
+        'assetManager' =>[
+            'linkAssets'=>true,
         ],
 
     ],

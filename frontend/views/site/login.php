@@ -37,9 +37,14 @@ $this->title = Yii::t('app', 'Login');
             <div class="panel-heading">用其他平台的帐号登录</div>
             </br>
             <?= Connect::widget([
-                'baseAuthUrl' => ['/user/security/auth']
+                'baseAuthUrl' => ['/user/security/auth'],
+                'popupMode' => false,
             ]) ?>
         </div>
     </div>
 
 </div>
+
+
+
+

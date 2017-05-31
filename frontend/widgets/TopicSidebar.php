@@ -33,7 +33,7 @@ class TopicSidebar extends \yii\bootstrap\Widget
             'content',
             'title'
         );
-        $tips = array_rand($tipsModel);
+        $tips = $tipsModel ? array_rand($tipsModel) : [];
 
         $recommendResources = ArrayHelper::map(
             RightLink::find()->where(['type' => RightLink::RIGHT_LINK_TYPE_RSOURCES])->all(),

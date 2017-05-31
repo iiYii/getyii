@@ -136,6 +136,14 @@ class PostMeta extends ActiveRecord
     }
 
     /**
+     * @return array
+     */
+    public function getParents()
+    {
+        return [0 => '根目录'] + ArrayHelper::map(static::find()->where(['parent' => null])->all(), 'id', 'name');
+    }
+
+    /**
      * 获取父子节点
      * @return array
      */

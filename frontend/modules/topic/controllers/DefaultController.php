@@ -22,7 +22,10 @@ use yii\helpers\Html;
 
 class DefaultController extends Controller
 {
-    const PAGE_SIZE = 50;
+    /**
+     * @var integer 评论翻页
+     */
+    const PAGE_SIZE = 300;
     public $sorts = [
         'newest' => '最新',
         'excellent' => '优质',

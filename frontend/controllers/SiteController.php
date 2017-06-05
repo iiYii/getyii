@@ -312,6 +312,7 @@ class SiteController extends Controller
         curl_setopt($ch, CURLOPT_URL, 'https://sm.ms/api/upload');
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0');
         curl_setopt($ch, CURLOPT_POSTFIELDS, ['smfile' => $file]);
         $response = curl_exec($ch);
 

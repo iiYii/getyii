@@ -2,11 +2,14 @@
 
 use yii\web\Response;
 
-function env($envName, $default = false)
-{
-    $envName = getenv($envName);
+if (!function_exists('env')) {
 
-    return $envName === false ? $default : $envName;
+    function env($envName, $default = false)
+    {
+        $envName = getenv($envName);
+
+        return $envName === false ? $default : $envName;
+    }
 }
 
 

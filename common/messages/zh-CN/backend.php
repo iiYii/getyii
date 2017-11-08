@@ -1,19 +1,15 @@
 <?php
-
 return [
     'DELETED' => '已删除',
     'ACTIVE' => '正常',
     'EXCELLENT' => '推荐',
     'TOP' => '置顶',
-
     'Username' => '用户名',
     'Password' => '密码',
     'Remember Me' => '记住我',
     'Sign in' => '登录',
     'Username' => '用户名',
     'Username' => '用户名',
-
-
     'Article View' => 'Vista de Artículo',
     'Page View' => 'Vista de Página',
     '"{attribute}" must be a valid JSON' => '"{attribute}" debe de ser JSON válido',

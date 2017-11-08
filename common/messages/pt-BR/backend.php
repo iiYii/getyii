@@ -8,8 +8,6 @@ return [
     'Password' => 'Senha',
     'Remember Me' => 'Lembrar-me',
     'Sign in' => 'Acessar',
-    'Username' => 'Usuário',
-    'Username' => 'Usuário',
     'Article View' => 'Ver artigo',
     'Page View' => 'Ver Página',
     '"{attribute}" must be a valid JSON' => '"{attribute}" precisa ser JSON válido',
@@ -59,6 +57,5 @@ return [
     'Upload Ip' => 'IP',
     'Url' => 'Url',
     'User ID' => 'ID do Usuario',
-    'Username' => 'Usuario',
     'Value' => 'Valor',
 ];

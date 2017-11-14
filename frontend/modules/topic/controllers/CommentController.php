@@ -44,7 +44,7 @@ class CommentController extends Controller
     }
 
     /**
-     * 创建评论
+     * 创建回复
      * @param $id
      * @return PostComment|\yii\web\Response
      */
@@ -54,14 +54,14 @@ class CommentController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $topService = new TopicService();
             if (!$topService->filterContent($model->comment)) {
-                $this->flash('回复内容请勿回复无意义的内容，如你想收藏或赞等功能，请直接操作这篇帖子。', 'warning');
+                $model->addError('comment', '回复内容请勿回复无意义的内容，如你想收藏或赞等功能，请直接操作这篇帖子。');
                 return $this->redirect(['/topic/default/view', 'id' => $id]);
             }
             $model->user_id = Yii::$app->user->id;
             $model->post_id = $id;
             $model->ip = Yii::$app->getRequest()->getUserIP();
             if ($model->save()) {
-                $this->flash("评论成功", 'success');
+                $this->flash("回复成功", 'success');
             } else {
                 $this->flash(array_values($model->getFirstErrors())[0], 'warning');
             }
@@ -71,7 +71,7 @@ class CommentController extends Controller
     }
 
     /**
-     * 修改评论
+     * 修改回复
      * @param $id
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException

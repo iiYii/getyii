@@ -313,6 +313,14 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @return bool
+     */
+    public static function currUserIsSuperAdmin()
+    {
+        return user()->identity && Yii::$app->user->identity->role == self::ROLE_SUPER_ADMIN;
+    }
+
+    /**
      * 获取权限
      * @param $username
      * @return bool

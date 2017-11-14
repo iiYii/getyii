@@ -14,17 +14,17 @@ use yii\widgets\ActiveForm;
         ]
     ]); ?>
 
+
     <?= $form->field($model, 'content', [
         'selectors' => [
             'input' => '#md-input'
         ],
-        ])->textarea([
-            'placeholder' => t('app', 'Tweet Content'),
-            'id' => 'md-input',
-            'data-at-topic' => true,
-            'rows' => 5
-        ]) ?>
-
+    ])->textarea([
+        'placeholder' => t('app', 'Tweet Content'),
+        'id' => 'md-input',
+        'data-at-topic' => true,
+        'rows' => 5
+    ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('发布', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

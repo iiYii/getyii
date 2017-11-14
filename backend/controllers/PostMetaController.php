@@ -28,18 +28,6 @@ class PostMetaController extends Controller
     }
 
     /**
-     * Displays a single PostMeta model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
      * Creates a new PostMeta model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -49,7 +37,7 @@ class PostMetaController extends Controller
         $model = new PostMeta();
         $model->order = 999;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect('index');
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -68,7 +56,7 @@ class PostMetaController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect('index');
         } else {
             return $this->render('update', [
                 'model' => $model,

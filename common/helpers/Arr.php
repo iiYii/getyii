@@ -16,7 +16,7 @@ class Arr extends ArrayHelper
      * 随机筛选$num个数组
      * @param array $arr
      * @param int $num
-     * @return array
+     * @return array|false
      */
     public static function arrayRandomAssoc(Array $arr, $num = 1)
     {

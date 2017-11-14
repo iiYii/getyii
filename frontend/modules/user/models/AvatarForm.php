@@ -8,7 +8,9 @@
 
 namespace frontend\modules\user\models;
 
+use common\models\User;
 use yii\base\Model;
+use yii\helpers\FileHelper;
 use yii\web\UploadedFile;
 
 class AvatarForm extends Model
@@ -34,7 +36,7 @@ class AvatarForm extends Model
     {
         return [
             [['avatar'], 'required'],
-            [['avatar'], 'file', 'extensions' => 'gif, jpg, png', 'maxSize' => 1024 * 1024 * 2, 'tooBig' => \Yii::t('app', 'File has to be smaller than 2MB')],
+            [['avatar'], 'file', 'extensions' => 'jpg, png', 'maxSize' => 1024 * 1024 * 2, 'tooBig' => \Yii::t('app', 'File has to be smaller than 2MB')],
         ];
     }
 
@@ -76,7 +78,9 @@ class AvatarForm extends Model
      */
     public function getNewUploadedImageFile()
     {
-        return isset($this->avatar) ? \Yii::$app->basePath . \Yii::$app->params['avatarPath'] . $this->avatar : null;
+        $uploadAvatarPath = \Yii::$app->basePath . \Yii::$app->params['avatarPath'];
+        FileHelper::createDirectory($uploadAvatarPath); // 创建文件夹
+        return isset($this->avatar) ? $uploadAvatarPath . $this->avatar : null;
     }
 
     /**

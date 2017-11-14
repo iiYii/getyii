@@ -20,6 +20,6 @@ class EditorAsset extends AssetBundle
         'yii\web\YiiAsset',
         'common\assets\AtJs',
         'common\assets\CaretJs',
-        'common\assets\DropzoneJs',
+//        'common\assets\DropzoneJs',
     ];
 }

@@ -25,7 +25,7 @@ class ActionController extends Controller
     }
 
     /**
-     * 赞话题和评论
+     * 赞话题和回复
      * @param $type
      * @param $id
      * @return array|string

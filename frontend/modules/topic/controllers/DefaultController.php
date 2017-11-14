@@ -2,23 +2,19 @@
 
 namespace frontend\modules\topic\controllers;
 
-use common\models\Post;
+use common\models\PostMeta;
 use common\models\Search;
 use common\models\SearchLog;
 use common\models\User;
-use common\services\NotificationService;
+use common\services\PostService;
 use common\services\TopicService;
 use frontend\modules\topic\models\Topic;
-use frontend\modules\user\models\UserMeta;
+use frontend\modules\user\models\Donate;
 use Yii;
 use yii\filters\AccessControl;
-use common\models\PostSearch;
 use common\models\PostComment;
-use common\models\PostMeta;
-use common\models\UserInfo;
 use common\components\Controller;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
@@ -26,12 +22,15 @@ use yii\helpers\Html;
 
 class DefaultController extends Controller
 {
-    const PAGE_SIZE = 50;
+    /**
+     * @var integer 评论翻页
+     */
+    const PAGE_SIZE = 300;
     public $sorts = [
-        'newest' => '最新的',
-        'excellent' => '优质主题',
-        'hotest' => '热门的',
-        'uncommented' => '未回答的'
+        'newest' => '最新',
+        'excellent' => '优质',
+        'hotest' => '热门',
+//        'uncommented' => '未回答的'
     ];
 
     public function behaviors()
@@ -48,7 +47,7 @@ class DefaultController extends Controller
                 'rules' => [
                     // 默认只能Get方式访问
                     ['allow' => true, 'actions' => ['view', 'index', 'search'], 'verbs' => ['GET']],
-                    // 登录用户才能提交评论或其他内容
+                    // 登录用户才能提交回复或其他内容
                     ['allow' => true, 'actions' => ['api', 'view', 'delete'], 'verbs' => ['POST'], 'roles' => ['@']],
                     // 登录用户才能使用API操作(赞,踩,收藏)
                     ['allow' => true, 'actions' => ['create', 'update', 'revoke', 'excellent'], 'roles' => ['@']],
@@ -63,52 +62,20 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new PostSearch();
-
         // 话题或者分类筛选
         $params = Yii::$app->request->queryParams;
-        empty($params['tag']) ?: $params['PostSearch']['tags'] = $params['tag'];
-        if (isset($params['node'])) {
-            $postMeta = PostMeta::findOne(['alias' => $params['node']]);
-            ($postMeta) ? $params['PostSearch']['post_meta_id'] = $postMeta->id : '';
-        }
-
-        $dataProvider = $searchModel->search($params);
-        $dataProvider->query->andWhere([Post::tableName() . '.type' => 'topic', 'status' => [Post::STATUS_ACTIVE, Post::STATUS_EXCELLENT]]);
-        // 排序
-        $sort = $dataProvider->getSort();
-        $sort->attributes = array_merge($sort->attributes, [
-            'hotest' => [
-                'asc' => [
-                    'comment_count' => SORT_DESC,
-                    'created_at' => SORT_DESC
-                ],
-            ],
-            'excellent' => [
-                'asc' => [
-                    'status' => SORT_DESC,
-                    'comment_count' => SORT_DESC,
-                    'created_at' => SORT_DESC
-                ],
-            ],
-            'uncommented' => [
-                'asc' => [
-                    'comment_count' => SORT_ASC,
-                    'created_at' => SORT_DESC
-                ],
-            ]
-        ]);
+        $search = PostService::search($params);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'searchModel' => $search['searchModel'],
             'sorts' => $this->sorts,
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $search['dataProvider'],
+            'nodes' => PostMeta::getNodes(),
         ]);
     }
 
     public function actionSearch()
     {
-        $searchModel = new Search();
         $keyword = Yii::$app->request->get('keyword');
         if (empty($keyword)) $this->goHome();
 
@@ -121,11 +88,13 @@ class DefaultController extends Controller
         ]);
         $model->save();
 
-        $dataProvider = $searchModel->search($keyword);
+        $id = ArrayHelper::getColumn(Search::search($keyword), 'topic_id') ?: 0;
+        $search = PostService::search(['PostSearch' => ['id' => $id]]);
 
-        return $this->render('search', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+        return $this->render('index', [
+            'searchModel' => $search['searchModel'],
+            'sorts' => $this->sorts,
+            'dataProvider' => $search['dataProvider'],
         ]);
     }
 
@@ -137,6 +106,13 @@ class DefaultController extends Controller
     public function actionView($id)
     {
         $model = Topic::findTopic($id);
+
+        //登录才能访问的节点内容
+        if (\Yii::$app->user->isGuest && in_array($model->category->alias, params('loginNode'))) {
+            $this->flash('查看本主题需要登录!', 'warning');
+            return $this->redirect(['/site/login']);
+        }
+
         $dataProvider = new ActiveDataProvider([
             'query' => PostComment::findCommentList($id),
             'pagination' => [
@@ -148,6 +124,12 @@ class DefaultController extends Controller
         // 文章浏览次数
         Topic::updateAllCounters(['view_count' => 1], ['id' => $id]);
 
+        //内容页面打赏
+        if (in_array($model->category->alias, params('donateNode')) || array_intersect(explode(',', $model->tags), params('donateTag'))) {
+            $donate = Donate::findOne(['user_id' => $model->user_id, 'status' => Donate::STATUS_ACTIVE]);
+        }
+
+        /** @var User $user */
         $user = Yii::$app->user->identity;
         $admin = ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) ? true : false;
 
@@ -156,6 +138,7 @@ class DefaultController extends Controller
             'dataProvider' => $dataProvider,
             'comment' => new PostComment(),
             'admin' => $admin,
+            'donate' => isset($donate) ? $donate : [],
         ]);
     }
 
@@ -169,7 +152,7 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $topService = new TopicService();
             if (!$topService->filterContent($model->title) || !$topService->filterContent($model->content)) {
-                $this->flash('请勿发表无意义的内容', 'warning');
+                $model->addError('content', '请勿发表无意义的内容');
                 return $this->redirect('create');
             }
 
@@ -177,7 +160,6 @@ class DefaultController extends Controller
                 $this->flash('发表文章成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->id]);
             }
-
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -225,7 +207,7 @@ class DefaultController extends Controller
         }
 
         if ($model->comment_count) {
-            $this->flash("「{$model->title}」此文章已有评论，属于共有财产，不能删除", 'warning');
+            $this->flash("「{$model->title}」此文章已有回复，属于共有财产，不能删除", 'warning');
         } else {
 
             TopicService::delete($model);
@@ -261,6 +243,7 @@ class DefaultController extends Controller
      */
     public function actionExcellent($id)
     {
+        /** @var User $user */
         $user = Yii::$app->user->identity;
         $model = Topic::findTopic($id);
         if ($user && ($user->isAdmin($user->username) || $user->isSuperAdmin($user->username))) {

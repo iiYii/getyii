@@ -25,26 +25,20 @@ class NotificationService
      * @param User $fromUser
      * @param Topic $topic
      * @param PostComment $comment
-     * @param string $rawComment
-     * @throws Exception
+     * @param $atUsers
      */
     public function newReplyNotify(User $fromUser, Topic $topic, PostComment $comment, $atUsers)
     {
+        $users = [];
         foreach ($topic->follower as $key => $value) {
             $users[$value->user_id] = $value->user_id;
         }
 
         // Notify mentioned users
-        $this->batchNotify(
-            'at',
-            $fromUser,
-            $atUsers,
-            $topic,
-            $comment);
-
-        // 通知关注的用户
-        //print_r($users);die;
-        $this->batchNotify('new_comment', $fromUser, $users, $topic, $comment);
+        if (!$this->batchNotify('at', $fromUser, $atUsers, $topic, $comment)) {
+            // 通知关注的用户
+            $this->batchNotify('new_comment', $fromUser, $users, $topic, $comment);
+        }
     }
 
     /**
@@ -56,12 +50,7 @@ class NotificationService
      */
     public function newPostNotify(User $fromUser, Post $post, $users)
     {
-        $this->batchNotify(
-            'at_' . $post->type,
-            $fromUser,
-            $users,
-            $post
-        );
+        $this->batchNotify('at_' . $post->type, $fromUser, $users, $post);
     }
 
     /**
@@ -101,6 +90,7 @@ class NotificationService
      * @param $users
      * @param Post $post
      * @param PostComment $comment
+     * @return bool
      * @throws Exception
      */
     public function batchNotify($type, User $fromUser, $users, Post $post, PostComment $comment = null)
@@ -115,7 +105,7 @@ class NotificationService
                 'user_id' => $key,
                 'post_id' => $post->id,
                 'comment_id' => $comment ? $comment->id : 0,
-                'data' => $comment ? $comment->comment : $post->content,
+                'data' => self::getNotifyData($type, $comment ? $comment->comment : $post->content),
                 'type' => $type,
             ]);
             $this->notifiedUsers[] = $key;
@@ -125,12 +115,13 @@ class NotificationService
                 throw new Exception(array_values($model->getFirstErrors())[0]);
             }
         }
+        return count($this->notifiedUsers);
     }
-    
+
     /**
      * 查找用户的动作通知
      * @param UserMeta $meta
-     * @return null|static
+     * @return null|Notification
      */
     public function findUserActionNotify(UserMeta $meta)
     {
@@ -143,5 +134,18 @@ class NotificationService
                 'from_user_id' => $meta->user_id,
                 'type' => $meta->target_type . '_' . $meta->type,
             ] + $condition);
+    }
+
+    /**
+     * @param $type
+     * @param $data
+     * @return string
+     */
+    public static function getNotifyData($type, $data)
+    {
+        if (in_array($type, ['topic_like', 'topic_favorite', 'topic_thanks', 'at_topic'])) {
+            return '';
+        }
+        return $data;
     }
 }

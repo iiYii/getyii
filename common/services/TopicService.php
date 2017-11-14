@@ -7,7 +7,7 @@
 
 namespace common\services;
 
-use frontend\models\Notification;
+use common\models\User;
 use frontend\modules\topic\models\Topic;
 
 class TopicService extends PostService
@@ -16,6 +16,7 @@ class TopicService extends PostService
     public function userDoAction($id, $action)
     {
         $topic = Topic::findTopic($id);
+        /** @var User $user */
         $user = \Yii::$app->user->getIdentity();
         if (in_array($action, ['like', 'hate'])) {
             return UserService::TopicActionA($user, $topic, $action);

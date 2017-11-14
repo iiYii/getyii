@@ -36,7 +36,7 @@ class m190908_055507_init_data extends Migration
         $faker = Faker\Factory::create('zh_CN');
         $nodeData = [
             ['name' => '分享', 'alias' => '', 'parent' => 0],
-            ['name' => '招聘', 'alias' => 'recruit', 'parent' => 1],
+            ['name' => '招聘', 'alias' => 'jobs', 'parent' => 1],
             ['name' => '瞎扯淡', 'alias' => 'booshit', 'parent' => 1],
             ['name' => '健康', 'alias' => 'health', 'parent' => 1],
             ['name' => '创业', 'alias' => 'startup', 'parent' => 1],

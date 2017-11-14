@@ -1,47 +1,65 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
 use frontend\widgets\TopicSidebar;
 
-use kartik\icons\Icon;
-
-Icon::map($this);
-
 $this->title = '社区';
 $sort = Yii::$app->request->getQueryParam('sort');
-$tag = Yii::$app->request->getQueryParam('tag');
 if ($node = Yii::$app->request->getQueryParam('node')) {
     $node = \common\models\PostMeta::find()->where(['alias' => $node])->one();
 }
+/** @var array $sorts */
+/** @var \common\models\PostMeta $node */
+/** @var \common\models\PostMeta[] $nodes */
+/** @var \yii\data\ActiveDataProvider $dataProvider */
 ?>
 <div class="col-md-9 topic">
     <div class="panel panel-default">
-        <?php if($node): ?>
-        <div class="panel-heading clearfix">
-            <?= Icon::show('cloud-upload') ?> <?= $node->name; ?>
-            <?php if(!empty($node->description)): ?>
-                <br/>
-                <span style="color: #666666; font-size: 12px;"><?= $node->description; ?></span>
-            <?php endif; ?>
-        </div>
-        <?php endif; ?>
-
-        <div class="panel-heading clearfix">
-            <?php if ($tag): ?>
-                <div class="pull-left">搜索标签：<?= $tag; ?>
+        <div class="panel-heading clearfix tab">
+            <?php if (request('node')): ?>
+                <div class="node-header">
+                    <div class="title">
+                        <?= $node->name ?>
+                        <span class="total">共有 <?= $dataProvider->getTotalCount() ?> 个讨论主题</span>
+                    </div>
+                    <div class="summary" id="node-summary">
+                        <p><?= $node->description ?></p>
+                    </div>
                 </div>
-            <?php endif; ?>
-
+            <?php else: ?>
+                <span><?= Html::a('全部', ['/topic/default/index'], ['class' => request('tab') ? null : 'active']) ?></span>
+                <?php foreach ((array)$nodes as $key => $value): ?>
+                    <span><?= Html::a($value->name, ['/topic/default/index', 'tab' => $value->alias], ['class' => request('tab') == $value->alias ? 'active' : null]) ?></span>
+                <?php endforeach ?>
+            <?php endif ?>
+        </div>
+        <div class="panel-heading clearfix children">
             <div class="filter pull-right">
-                <span class="l">查看:</span>
+                <span class="l">排序:</span>
                 <?php foreach ($sorts as $key => $name): ?>
-                    <?= Html::a($name, \yii\helpers\Url::current(['sort' => $key]), ['class' => ($sort == $key || ((empty($sort) && $key == 'newest'))) ? 'active' : '']) ?> \
+                    <?= Html::a($name, Url::current(['sort' => $key]), ['class' => ($sort == $key || ((empty($sort) && $key == 'newest'))) ? 'active' : '']) ?> \
                 <?php endforeach ?>
             </div>
 
+            <?php if (request('tag')) {
+                echo Html::tag('div', '搜索标签：' . request('tag'), ['class' => 'pull-left']);
+            } elseif (request('keyword')) {
+                echo Html::tag('div', '搜索：' . request('keyword'), ['class' => 'pull-left']);
+            } elseif (request('tab')) {
+                /** @var \common\models\PostMeta $node */
+                if ($node = \yii\helpers\ArrayHelper::getValue($nodes, request('tab'))) {
+                    foreach ($node->children as $item) {
+                        $active = request('node') == $item->alias ? 'active' : null;
+                        echo Html::a($item->name, ['/topic/default/index', 'node' => $item->alias], ['class' => "children-node " . $active]);
+                    }
+                }
+            } ?>
+
         </div>
+
 
         <?php Pjax::begin([
             'scrollTo' => 0,

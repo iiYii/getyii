@@ -11,7 +11,6 @@ use common\models\PostComment;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yiier\merit\models\MeritLog;
-use yiier\merit\models\MeritTemplate;
 
 class DefaultController extends Controller
 {
@@ -83,17 +82,9 @@ class DefaultController extends Controller
     {
         $user = $this->user($username);
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => UserMeta::find()->where([
-                'user_id' => $user->id,
-                'type' => 'favorite',
-                'target_type' => 'topic',
-            ])->orderBy(['created_at' => SORT_DESC])
-        ]);
-
         return $this->render('show', [
             'user' => $user,
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $this->userMeta($user->id, 'favorite'),
         ]);
     }
 
@@ -113,6 +104,38 @@ class DefaultController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+
+    /**
+     * @param $username
+     * @return string
+     */
+    public function actionLike($username)
+    {
+        $user = $this->user($username);
+
+        return $this->render('show', [
+            'user' => $user,
+            'dataProvider' => $this->userMeta($user->id, 'like'),
+        ]);
+    }
+
+    /**
+     * @param $userId
+     * @param $type
+     * @param string $targetType
+     * @return ActiveDataProvider
+     */
+    protected function userMeta($userId, $type, $targetType = 'topic')
+    {
+        return new ActiveDataProvider([
+            'query' => UserMeta::find()->where([
+                'user_id' => $userId,
+                'type' => $type,
+                'target_type' => $targetType,
+            ])->orderBy(['created_at' => SORT_DESC])
+        ]);
+    }
+
 
     protected function user($username = '')
     {

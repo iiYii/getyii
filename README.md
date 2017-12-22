@@ -117,7 +117,7 @@ $ docker-compose up -d
 
 捐赠人    | 金额 | 时间 | 说明
 -------|------|------ | ------
-张**  | 1.00  | 2015年7月7日 | http://iamtutu.com/
+张**  | 1.00  | 2015年7月7日 | http://asjmtz.com/
 *作军  | 100.00 | 2015年08月07日 | http://www.dba-china.com/
 树*  | 333.00 | 2015年09月11日 | http://www.21cnjy.com/
 *作军  | 300.00 | 2016年04月28日 | http://www.dba-china.com/

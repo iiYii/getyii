@@ -122,6 +122,7 @@ $ docker-compose up -d
 树*  | 333.00 | 2015年09月11日 | http://www.21cnjy.com/
 *作军  | 300.00 | 2016年04月28日 | http://www.dba-china.com/
 *勇  | 20.00 | 2017年05月31日 | http://www.fecshop.com/
+*勇  | 66.00 | 2017年12月21日 | http://www.fecshop.com/
 
 
 ## 他们正在使用 GetYii

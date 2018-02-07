@@ -117,11 +117,12 @@ $ docker-compose up -d
 
 捐赠人    | 金额 | 时间 | 说明
 -------|------|------ | ------
-张**  | 1.00  | 2015年7月7日 | http://iamtutu.com/
+张**  | 1.00  | 2015年7月7日 | http://asjmtz.com/
 *作军  | 100.00 | 2015年08月07日 | http://www.dba-china.com/
 树*  | 333.00 | 2015年09月11日 | http://www.21cnjy.com/
 *作军  | 300.00 | 2016年04月28日 | http://www.dba-china.com/
 *勇  | 20.00 | 2017年05月31日 | http://www.fecshop.com/
+*勇  | 66.00 | 2017年12月21日 | http://www.fecshop.com/
 
 
 ## 他们正在使用 GetYii

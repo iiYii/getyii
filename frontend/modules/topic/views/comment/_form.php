@@ -35,7 +35,14 @@ use yiier\editor\EditorMdWidget;
         'class' => 'alert alert-danger'
     ]) ?>
 
-    <?= $form->field($model, 'comment')->textarea(['rows' => '6', 'placeholder' => '支持 Markdown 格式，另外请尽量让自己的回复能够对别人有帮助。',]) ?>
+    <?= $form->field($model, 'comment')->widget(EditorMdWidget::className(), [	+    <?= $form->field($model, 'comment')->textarea(['rows' => '6', 'placeholder' => '支持 Markdown 格式，另外请尽量让自己的回复能够对别人有帮助。',]) ?>
+        'clientOptions' => [	
+            'height' => 200,	
+            'imageUpload' => true,	
+            'placeholder' => '请尽量让自己的回复能够对别人有帮助',	
+            'imageUploadURL' => Url::to(['/site/upload', 'field' => 'editormd-image-file']),	
+        ]	
+    ]) ?>
 
         <div class="form-group">
             <?= Html::submitButton(

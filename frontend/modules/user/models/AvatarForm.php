@@ -36,7 +36,7 @@ class AvatarForm extends Model
     {
         return [
             [['avatar'], 'required'],
-            [['avatar'], 'file', 'extensions' => 'jpg, png', 'maxSize' => 1024 * 1024 * 2, 'tooBig' => \Yii::t('app', 'File has to be smaller than 2MB')],
+            [['avatar'], 'image', 'extensions' => 'jpg, png, gif, jpeg', 'maxSize' => 1024 * 1024 * 2, 'tooBig' => \Yii::t('app', 'File has to be smaller than 2MB')],
         ];
     }
 

@@ -23,7 +23,7 @@ community for Yii2
 建议使用 `utf8` 编码格式。
 
 ```
-composer global require "fxp/composer-asset-plugin:~1.1.1"
+composer global require "fxp/composer-asset-plugin:^1.4.0"
 git clone https://github.com/iiYii/getyii.git
 cd getyii
 composer install

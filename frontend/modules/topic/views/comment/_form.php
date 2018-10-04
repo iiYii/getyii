@@ -31,10 +31,6 @@ use yiier\editor\EditorMdWidget;
         ]
     ]); ?>
 
-    <?= $form->errorSummary($model, [
-        'class' => 'alert alert-danger'
-    ]) ?>
-
     <?= $form->field($model, 'comment')->widget(EditorMdWidget::className(), [
         'clientOptions' => [	
             'height' => 200,	

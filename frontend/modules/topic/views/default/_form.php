@@ -36,7 +36,7 @@ $model->tags = $model->tags ? explode(',', $model->tags) : '';
         'clientOptions' => [
             'placeholder' => '鼓励分享和讨论不鼓励伸手提问党。真的想提问请在提问帖内附上你曾经为了解决问题付出的行动或者分享一段小知识。',
             'imageUpload' => true,
-            'autoFoucs' => false,
+            'autoFocus' => false,
             'imageUploadURL' => Url::to(['/site/upload', 'field' => 'editormd-image-file']),
         ]
     ]) ?>

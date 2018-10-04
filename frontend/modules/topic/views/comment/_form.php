@@ -39,6 +39,7 @@ use yiier\editor\EditorMdWidget;
         'clientOptions' => [	
             'height' => 200,	
             'imageUpload' => true,	
+            'autoFoucs' => false,
             'placeholder' => '请尽量让自己的回复能够对别人有帮助',	
             'imageUploadURL' => Url::to(['/site/upload', 'field' => 'editormd-image-file']),	
         ]	

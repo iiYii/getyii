@@ -10,10 +10,10 @@ use yii\helpers\HtmlPurifier;
 <?php if ($model->status): ?>
 
 <div class="media-left">
-    <?= Html::a(Html::img($model->fromUser->userAvatar, ['class' => 'media-object img-circle']),
+    <?= Html::a(Html::img($model->fromUser->userAvatar, ['class' => 'media-object']),
         ['/user/default/show', 'username' => $model->fromUser['username']]
     ); ?>
-</div>:q:wq
+</div>
 <div class="media-body">
     <div class="media-heading">
         <?= Html::tag('span', Html::a($model->fromUser['username'], ['/user/default/show', 'username' => $model->fromUser['username']])); ?>

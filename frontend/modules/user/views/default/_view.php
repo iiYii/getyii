@@ -1,9 +1,9 @@
 <?php
 /**
  * @Author: forecho
- * @Date:   2015-01-29 23:26:54
- * @Last Modified by:   forecho
- * @Last Modified time: 2015-02-04 21:53:45
+ * @Date  :   2015-01-29 23:26:54
+ * @Last  Modified by:   forecho
+ * @Last  Modified time: 2015-02-04 21:53:45
  */
 
 use yii\helpers\Html;
@@ -20,7 +20,7 @@ use yii\helpers\Markdown;
             ['class' => 'list-group-item-heading']
         );
         echo Html::tag('span', Yii::$app->formatter->asRelativeTime($model->created_at), ['class' => 'ml5 fade-info']);
-        echo Html::tag('p', HtmlPurifier::process(Markdown::process($model->comment, 'gfm')));
+        echo Html::tag('p', HtmlPurifier::process(Markdown::process($model->comment, 'gfm')), ['class' => 'markdown-reply']);
         break;
     case 'favorite':
     case 'like':

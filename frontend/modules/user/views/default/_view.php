@@ -20,7 +20,7 @@ use yii\helpers\Markdown;
             ['class' => 'list-group-item-heading']
         );
         echo Html::tag('span', Yii::$app->formatter->asRelativeTime($model->created_at), ['class' => 'ml5 fade-info']);
-        echo Html::tag('p', HtmlPurifier::process(Markdown::process($model->comment, 'gfm')), ['class' => 'markdown-reply']);
+        echo Html::tag('div', HtmlPurifier::process(Markdown::process($model->comment, 'gfm')), ['class' => 'markdown-reply']);
         break;
     case 'favorite':
     case 'like':

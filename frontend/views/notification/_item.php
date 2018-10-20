@@ -10,7 +10,7 @@ use yii\helpers\HtmlPurifier;
 <?php if ($model->status): ?>
 
 <div class="media-left">
-    <?= Html::a(Html::img($model->fromUser->userAvatar, ['class' => 'media-object']),
+    <?= Html::a(Html::img($model->fromUser->userAvatar, ['class' => 'media-object img-circle']),
         ['/user/default/show', 'username' => $model->fromUser['username']]
     ); ?>
 </div>

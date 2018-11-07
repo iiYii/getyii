@@ -76,7 +76,7 @@ class DefaultController extends Controller
 
     public function actionSearch()
     {
-        $keyword = Yii::$app->request->get('keyword');
+        $keyword = htmlspecialchars(Yii::$app->request->get('keyword'));
         if (empty($keyword)) $this->goHome();
 
         // 记录log

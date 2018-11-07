@@ -47,7 +47,7 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
             <?php if (request('tag')) {
                 echo Html::tag('div', '搜索标签：' . request('tag'), ['class' => 'pull-left']);
             } elseif (request('keyword')) {
-                echo Html::tag('div', '搜索：' . request('keyword'), ['class' => 'pull-left']);
+                echo Html::tag('div', '搜索：' . htmlspecialchars(request('keyword')), ['class' => 'pull-left']);
             } elseif (request('tab')) {
                 /** @var \common\models\PostMeta $node */
                 if ($node = \yii\helpers\ArrayHelper::getValue($nodes, request('tab'))) {

@@ -12,7 +12,7 @@ use yii\helpers\Html;
 $module = Yii::$app->controller->module->id;
 $action = Yii::$app->controller->action->id;
 $tag = Yii::$app->request->getQueryParam('tag');
-$keyword = Yii::$app->request->getQueryParam('keyword');
+$keyword = htmlspecialchars(Yii::$app->request->getQueryParam('keyword'));
 
 $node = Yii::$app->request->getQueryParam('node');
 $topicActive = ($module == 'topic' && !$tag && $node != 'jobs') ? true : false;

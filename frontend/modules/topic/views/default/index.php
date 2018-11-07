@@ -45,7 +45,7 @@ if ($node = Yii::$app->request->getQueryParam('node')) {
             </div>
 
             <?php if (request('tag')) {
-                echo Html::tag('div', '搜索标签：' . request('tag'), ['class' => 'pull-left']);
+                echo Html::tag('div', '搜索标签：' . htmlspecialchars(request('tag')), ['class' => 'pull-left']);
             } elseif (request('keyword')) {
                 echo Html::tag('div', '搜索：' . htmlspecialchars(request('keyword')), ['class' => 'pull-left']);
             } elseif (request('tab')) {

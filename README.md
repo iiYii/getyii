@@ -30,13 +30,19 @@ composer install
 php init
 ```
 
-2、然后使用运行我写的安装程序（帮你生成数据库表和假数据）
+2、然后复制一份数据库配置，并且修改数据库配置，
+
+```
+cp common/config/db.php common/config/db-local.php
+```
+
+再使用运行我写的安装程序（帮你生成数据库表和假数据）
 
 ```
 php yii install 
 ```
 
-或者你直接执行数据库迁移工具生成数据库表
+或者直接执行数据库迁移工具生成数据库表
 
 ```
 php yii migrate 
@@ -54,13 +60,19 @@ cd getyii
 php init
 ```
 
-2、然后使用运行我写的安装程序（帮你生成数据库表和假数据）
+2、然后复制一份数据库配置，并且修改数据库配置，
+
+```
+cp common/config/db.php common/config/db-local.php
+```
+
+再使用运行我写的安装程序（帮你生成数据库表和假数据）
 
 ```
 php yii install 
 ```
 
-或者你直接执行数据库迁移工具生成数据库表
+或者直接执行数据库迁移工具生成数据库表
 
 ```
 php yii migrate 

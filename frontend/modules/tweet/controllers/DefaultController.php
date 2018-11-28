@@ -4,19 +4,14 @@ namespace frontend\modules\tweet\controllers;
 
 use common\components\Controller;
 use common\models\Post;
-use common\services\NotificationService;
-use common\services\PostService;
 use common\services\TweetService;
 use frontend\modules\tweet\models\Tweet;
 use frontend\modules\tweet\models\TweetSearch;
-use frontend\modules\user\models\UserMeta;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
-use yiier\AutoloadExample;
-use yiier\request\ThrottleBehavior;
 
 class DefaultController extends Controller
 {
@@ -43,6 +38,10 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * @return string
+     * @throws \yii\base\ExitException
+     */
     public function actionIndex()
     {
         $searchModel = new TweetSearch();
@@ -56,6 +55,10 @@ class DefaultController extends Controller
 
         $model = new Tweet();
 
+        if ($time = $model->limitPostTime()) {
+            $this->flash("新注册用户只能回帖，{$time}秒之后才能发帖。", 'warning');
+        }
+
         return $this->render('index', [
             'model' => $model,
             'searchModel' => $searchModel,
@@ -66,10 +69,12 @@ class DefaultController extends Controller
     /**
      * 新建动弹
      * @return mixed
+     * @throws \yii\base\ExitException
      */
     public function actionCreate()
     {
         $model = new Tweet();
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $topService = new TweetService();
             if (!$topService->filterContent($model->content)) {
@@ -82,6 +87,9 @@ class DefaultController extends Controller
                 $this->flash('发表成功!', 'success');
             }
         }
+        if ($model->hasErrors()) {
+            $this->flash('发表失败!' . array_values($model->firstErrors)[0], 'error');
+        }
         return $this->redirect('index');
     }
 
@@ -90,6 +98,7 @@ class DefaultController extends Controller
      * @param $id
      * @return \yii\web\Response
      * @throws NotFoundHttpException
+     * @throws \yii\base\ExitException
      */
     public function actionDelete($id)
     {

@@ -2,9 +2,8 @@
 
 namespace common\models;
 
-use Yii;
 use common\components\db\ActiveRecord;
-use yii\data\ActiveDataProvider;
+use Yii;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -84,8 +83,26 @@ class Post extends ActiveRecord
     {
         return [
             [['post_meta_id', 'title', 'content'], 'required'],
-            [['post_meta_id', 'user_id', 'view_count', 'comment_count', 'last_comment_time', 'favorite_count', 'like_count', 'thanks_count', 'hate_count', 'status', 'order', 'created_at', 'updated_at'], 'integer'],
+            [
+                [
+                    'post_meta_id',
+                    'user_id',
+                    'view_count',
+                    'comment_count',
+                    'last_comment_time',
+                    'favorite_count',
+                    'like_count',
+                    'thanks_count',
+                    'hate_count',
+                    'status',
+                    'order',
+                    'created_at',
+                    'updated_at'
+                ],
+                'integer'
+            ],
             [['content'], 'string', 'min' => 2],
+            ['content', 'validateLimitPostTime'],
             [['type'], 'string', 'max' => 32],
             [['last_comment_username'], 'string', 'max' => 20],
             [['title'], 'string', 'max' => 50, 'min' => 2],
@@ -93,6 +110,31 @@ class Post extends ActiveRecord
             [['author'], 'string', 'max' => 100],
             [['cc', 'tags'], 'safe']
         ];
+    }
+
+    /**
+     * 验证新用户是否能发帖
+     * @param $attribute
+     */
+    public function validateLimitPostTime($attribute)
+    {
+        if ($time = $this->limitPostTime()) {
+            $this->addError($attribute, "新注册用户只能回帖，{$time}秒之后才能发帖。");
+        }
+    }
+
+    /**
+     * 新用户N秒之后才能发帖
+     * @return bool|int
+     */
+    public function limitPostTime()
+    {
+        $userCreatedAt = Yii::$app->user->identity['created_at'];
+        $newUserPostLimit = params('newUserPostLimit');
+        if ($newUserPostLimit && time() - $userCreatedAt < $newUserPostLimit) {
+            return $newUserPostLimit - (time() - $userCreatedAt);
+        }
+        return false;
     }
 
     /**
@@ -149,6 +191,15 @@ class Post extends ActiveRecord
     public function isCurrent()
     {
         return $this->user_id == Yii::$app->user->id;
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

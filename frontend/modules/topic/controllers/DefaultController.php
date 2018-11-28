@@ -2,6 +2,8 @@
 
 namespace frontend\modules\topic\controllers;
 
+use common\components\Controller;
+use common\models\PostComment;
 use common\models\PostMeta;
 use common\models\Search;
 use common\models\SearchLog;
@@ -11,14 +13,12 @@ use common\services\TopicService;
 use frontend\modules\topic\models\Topic;
 use frontend\modules\user\models\Donate;
 use Yii;
-use yii\filters\AccessControl;
-use common\models\PostComment;
-use common\components\Controller;
-use yii\helpers\ArrayHelper;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\web\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
@@ -77,7 +77,9 @@ class DefaultController extends Controller
     public function actionSearch()
     {
         $keyword = htmlspecialchars(Yii::$app->request->get('keyword'));
-        if (empty($keyword)) $this->goHome();
+        if (empty($keyword)) {
+            $this->goHome();
+        }
 
         // 记录log
         $model = new SearchLog();
@@ -125,7 +127,8 @@ class DefaultController extends Controller
         Topic::updateAllCounters(['view_count' => 1], ['id' => $id]);
 
         //内容页面打赏
-        if (in_array($model->category->alias, params('donateNode')) || array_intersect(explode(',', $model->tags), params('donateTag'))) {
+        if (in_array($model->category->alias, params('donateNode')) || array_intersect(explode(',', $model->tags),
+                params('donateTag'))) {
             $donate = Donate::findOne(['user_id' => $model->user_id, 'status' => Donate::STATUS_ACTIVE]);
         }
 
@@ -145,10 +148,15 @@ class DefaultController extends Controller
     /**
      * 新建话题
      * @return mixed
+     * @throws \yii\base\ExitException
      */
     public function actionCreate()
     {
         $model = new Topic();
+        if ($time = $model->limitPostTime()) {
+            $this->flash("发表文章失败!新注册用户只能回帖，{$time}秒之后才能发帖。", 'warning');
+            return $this->redirect('index');
+        }
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $topService = new TopicService();
             if (!$topService->filterContent($model->title) || !$topService->filterContent($model->content)) {
@@ -172,6 +180,7 @@ class DefaultController extends Controller
      * @param integer $id
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException
+     * @throws \yii\base\ExitException
      */
     public function actionUpdate($id)
     {

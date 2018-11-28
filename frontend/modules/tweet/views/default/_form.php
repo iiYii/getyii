@@ -14,7 +14,6 @@ use yii\widgets\ActiveForm;
         ]
     ]); ?>
 
-
     <?= $form->field($model, 'content', [
         'selectors' => [
             'input' => '#md-input'

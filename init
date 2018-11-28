@@ -14,8 +14,8 @@
  * @license http://www.yiiframework.com/license/
  */
 
-if (!extension_loaded('mcrypt')) {
-    die('The mcrypt PHP extension is required by Yii2.');
+if (!extension_loaded('openssl')) {
+    die('The OpenSSL PHP extension is required by Yii2.');
 }
 
 $params = getParams();
@@ -65,6 +65,13 @@ if (empty($params['env'])) {
 
 echo "\n  Start initialization ...\n\n";
 $files = getFileList("$root/environments/{$env['path']}");
+if (isset($env['skipFiles'])) {
+    $skipFiles = $env['skipFiles'];
+    array_walk($skipFiles, function (&$value) use ($env, $root) {
+        $value = "$root/$value";
+    });
+    $files = array_diff($files, array_intersect_key($env['skipFiles'], array_filter($skipFiles, 'file_exists')));
+}
 $all = false;
 foreach ($files as $file) {
     if (!copyFile($root, "environments/{$env['path']}/$file", $file, $all, $params)) {
@@ -72,7 +79,7 @@ foreach ($files as $file) {
     }
 }
 
-$callbacks = ['setCookieValidationKey', 'setWritable', 'setExecutable'];
+$callbacks = ['setCookieValidationKey', 'setWritable', 'setExecutable', 'createSymlink'];
 foreach ($callbacks as $callback) {
     if (!empty($env[$callback])) {
         $callback($root, $env[$callback]);
@@ -86,7 +93,7 @@ function getFileList($root, $basePath = '')
     $files = [];
     $handle = opendir($root);
     while (($path = readdir($handle)) !== false) {
-        if ($path === '.svn' || $path === '.' || $path === '..') {
+        if ($path === '.git' || $path === '.svn' || $path === '.' || $path === '..') {
             continue;
         }
         $fullPath = "$root/$path";
@@ -168,8 +175,12 @@ function getParams()
 function setWritable($root, $paths)
 {
     foreach ($paths as $writable) {
-        echo "      chmod 0777 $writable\n";
-        @chmod("$root/$writable", 0777);
+        if (is_dir("$root/$writable")) {
+            echo "      chmod 0777 $writable\n";
+            @chmod("$root/$writable", 0777);
+        } else {
+            echo "\n  Error. Directory $writable does not exist. \n";
+        }
     }
 }
 
@@ -187,19 +198,20 @@ function setCookieValidationKey($root, $paths)
         echo "   generate cookie validation key in $file\n";
         $file = $root . '/' . $file;
         $length = 32;
-        $bytes = mcrypt_create_iv($length, MCRYPT_DEV_URANDOM);
+        $bytes = openssl_random_pseudo_bytes($length);
         $key = strtr(substr(base64_encode($bytes), 0, $length), '+/=', '_-.');
-        $content = preg_replace('/(("|\')cookieValidationKey("|\')\s*=>\s*)(""|\'\')/', "\\1'$key'", file_get_contents($file));
+        $content = preg_replace('/(("|\')cookieValidationKey("|\')\s*=>\s*)(""|\'\')/', "\\1'$key'",
+            file_get_contents($file));
         file_put_contents($file, $content);
     }
 }
 
-function createSymlink($links)
+function createSymlink($root, $links)
 {
     foreach ($links as $link => $target) {
-        echo "    symlink $target as $link\n";
-        if (!is_link($link)) {
-            symlink($target, $link);
-        }
+        echo "      symlink " . $root . "/" . $target . " " . $root . "/" . $link . "\n";
+        //first removing folders to avoid errors if the folder already exists
+        @rmdir($root . "/" . $link);
+        @symlink($root . "/" . $target, $root . "/" . $link);
     }
 }

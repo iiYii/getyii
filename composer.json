@@ -20,7 +20,7 @@
   "minimum-stability": "stable",
   "require": {
     "php": ">=5.4.0",
-    "yiisoft/yii2": "2.0.*@dev",
+    "yiisoft/yii2": ">=2.0.6",
     "yiisoft/yii2-bootstrap": "*",
     "yiisoft/yii2-swiftmailer": "*",
     "conquer/select2": "*",
@@ -45,6 +45,7 @@
     "yiier/yii2-editor.md": "*"
   },
   "require-dev": {
+    "fxp/composer-asset-plugin": "^1.2.0",
     "yiisoft/yii2-codeception": "*",
     "yiisoft/yii2-debug": "*",
     "yiisoft/yii2-gii": "*",

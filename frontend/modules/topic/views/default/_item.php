@@ -1,15 +1,16 @@
 <?php
 
-use yii\helpers\Html;
-use frontend\modules\topic\models\Topic;
 use common\helpers\Formatter;
+use frontend\modules\topic\models\Topic;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var  Topic $model */
 ?>
 <div class="media">
     <?= Html::a(Html::tag('span', $model['comment_count'], ['class' => 'badge badge-reply-count']),
-        ['/topic/default/view', 'id' => $model->id, '#' => 'comment' . $model['comment_count']], ['class' => 'pull-right']
+        ['/topic/default/view', 'id' => $model->id, '#' => 'comment' . $model['comment_count']],
+        ['class' => 'pull-right']
     ); ?>
 
     <div class="media-left">
@@ -23,7 +24,8 @@ use common\helpers\Formatter;
             <?= Html::a(Html::encode($model->title),
                 ['/topic/default/view', 'id' => $model->id], ['title' => $model->title]
             ); ?>
-            <?= ($model->status == Topic::STATUS_EXCELLENT) ? Html::tag('i', '', ['class' => 'fa fa-trophy excellent']) : null ?>
+            <?= ($model->status == Topic::STATUS_EXCELLENT) ? Html::tag('i', '',
+                ['class' => 'fa fa-trophy excellent']) : null ?>
         </div>
 
         <div class="title-info">
@@ -33,7 +35,7 @@ use common\helpers\Formatter;
                     ['/topic/default/view', 'id' => $model->id], ['class' => 'remove-padding-left']
                 ), ' • ';
             }
-            if (!request('node')) {
+            if (!request('node') && isset($model->category->name)) {
                 echo Html::a(
                     $model->category->name,
                     ['/topic/default/index', 'node' => $model->category->alias],

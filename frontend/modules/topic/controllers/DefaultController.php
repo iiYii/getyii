@@ -46,7 +46,7 @@ class DefaultController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     // 默认只能Get方式访问
-                    ['allow' => true, 'actions' => ['view', 'index', 'search'], 'verbs' => ['GET']],
+                    ['allow' => true, 'actions' => ['view', 'index', 'search', 'captcha'], 'verbs' => ['GET']],
                     // 登录用户才能提交回复或其他内容
                     ['allow' => true, 'actions' => ['api', 'view', 'delete'], 'verbs' => ['POST'], 'roles' => ['@']],
                     // 登录用户才能使用API操作(赞,踩,收藏)
@@ -55,6 +55,22 @@ class DefaultController extends Controller
             ],
         ]);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function actions()
+    {
+        return [
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'maxLength' => 5,
+                'minLength' => 4,
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+        ];
+    }
+
 
     /**
      * 话题列表
@@ -164,7 +180,7 @@ class DefaultController extends Controller
                 return $this->redirect('create');
             }
 
-            if ($model->save()) {
+            if ($model->save(false)) {
                 $this->flash('发表文章成功!', 'success');
                 return $this->redirect(['view', 'id' => $model->id]);
             }

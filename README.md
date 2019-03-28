@@ -23,20 +23,25 @@ community for Yii2
 建议使用 `utf8` 编码格式。
 
 ```
-composer global require "fxp/composer-asset-plugin:^1.4.0"
 git clone https://github.com/iiYii/getyii.git
 cd getyii
 composer install
 php init
 ```
 
-2、然后使用运行我写的安装程序（帮你生成数据库表和假数据）
+2、然后修改数据库配置文件的配置信息
+
+```
+vim common/config/db.php
+```
+
+再使用运行我写的安装程序（帮你生成数据库表和假数据）
 
 ```
 php yii install 
 ```
 
-或者你直接执行数据库迁移工具生成数据库表
+或者直接执行数据库迁移工具生成数据库表
 
 ```
 php yii migrate 
@@ -48,19 +53,24 @@ php yii migrate
 建议使用 `utf8` 编码格式。
 
 ```
-composer global require "fxp/composer-asset-plugin:~1.1.1"
 composer create-project --prefer-dist --stability=dev iiyii/getyii getyii
 cd getyii
 php init
 ```
 
-2、然后使用运行我写的安装程序（帮你生成数据库表和假数据）
+2、然后复制一份数据库配置，并且修改数据库配置，
+
+```
+cp common/config/db.php common/config/db-local.php
+```
+
+再使用运行我写的安装程序（帮你生成数据库表和假数据）
 
 ```
 php yii install 
 ```
 
-或者你直接执行数据库迁移工具生成数据库表
+或者直接执行数据库迁移工具生成数据库表
 
 ```
 php yii migrate 

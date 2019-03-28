@@ -1,4 +1,5 @@
 <?php
+
 namespace common\components;
 
 use Yii;
@@ -42,7 +43,7 @@ class Controller extends \yii\web\Controller
      * @param $message string 信息显示内容
      * @param string $type 信息显示类型, ['info', 'success', 'error', 'warning']
      * @param null $url 跳转地址
-     * @return Response
+     * @throws \yii\base\ExitException
      */
     public function flash($message, $type = 'info', $url = null)
     {

@@ -8,12 +8,11 @@
 namespace frontend\modules\tweet\models;
 
 use common\models\Post;
-use common\models\PostTag;
+use common\services\NotificationService;
 use common\services\PostService;
 use frontend\modules\user\models\UserMeta;
-use yii\web\NotFoundHttpException;
 use Yii;
-use common\services\NotificationService;
+use yii\web\NotFoundHttpException;
 
 class Tweet extends Post
 {
@@ -32,7 +31,24 @@ class Tweet extends Post
     {
         return [
             [['content'], 'required'],
-            [['post_meta_id', 'user_id', 'view_count', 'comment_count', 'favorite_count', 'like_count', 'thanks_count', 'hate_count', 'status', 'order', 'created_at', 'updated_at'], 'integer'],
+            ['content', 'validateLimitPostTime'],
+            [
+                [
+                    'post_meta_id',
+                    'user_id',
+                    'view_count',
+                    'comment_count',
+                    'favorite_count',
+                    'like_count',
+                    'thanks_count',
+                    'hate_count',
+                    'status',
+                    'order',
+                    'created_at',
+                    'updated_at'
+                ],
+                'integer'
+            ],
             [['content'], 'string', 'min' => 3, 'max' => 500],
             [['post_meta_id'], 'default', 'value' => 0],
             [['title'], 'default', 'value' => ''],
@@ -86,6 +102,7 @@ class Tweet extends Post
     }
 
     public $atUsers;
+
     public function beforeSave($insert)
     {
         if (!parent::beforeSave($insert)) {

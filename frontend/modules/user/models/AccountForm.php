@@ -112,6 +112,7 @@ class AccountForm extends Model
             // 新密码没填写 则为不修改密码
             ($this->new_password) ? $this->user->password = $this->new_password : '';
             $this->user->tagline = $this->tagline;
+            $this->user->email = $this->email;
             return $this->user->save();
         }
 

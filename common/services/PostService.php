@@ -100,7 +100,7 @@ class PostService
 
     public static function parseUsername($content)
     {
-        preg_match_all('/@(\S{4,255}) /', $content, $matches);
+        preg_match_all('/@(\S{4,255})\b/', $content, $matches);
         if (empty($matches[1])) {
             return [];
         }

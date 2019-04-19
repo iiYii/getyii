@@ -15,7 +15,7 @@ class Controller extends \yii\web\Controller
         return ArrayHelper::merge(parent::behaviors(), [
             'returnUrl' => [
                 'class' => 'yiier\returnUrl\ReturnUrl',
-                'uniqueIds' => ['site/qrcode', 'site/login', 'user/security/auth', 'site/reset-password']
+                'uniqueIds' => ['site/qr', 'site/login', 'user/security/auth', 'site/reset-password']
             ],
             MeritBehavior::className(),
         ]);

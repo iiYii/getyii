@@ -1,11 +1,13 @@
 <?php
+
 use frontend\assets\AppAsset;
 use frontend\assets\BowerAsset;
 use frontend\widgets\Alert;
-//use frontend\assets\EmojifyAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
+
+//use frontend\assets\EmojifyAsset;
 
 
 /* @var $this \yii\web\View */
@@ -90,7 +92,7 @@ rmrevin\yii\fontawesome\AssetBundle::register($this);
     <button type="button" class="btn btn-default" id="pageQrcode" title="本页二维码"><span
                 class="glyphicon glyphicon-qrcode"></span>
         <img class="qrcode" width="130" height="130"
-             src="<?= Url::to(['/site/qrcode', 'url' => Yii::$app->request->absoluteUrl]) ?>"/>
+             src="<?= Url::to(['/site/qr', 'text' => Yii::$app->request->absoluteUrl]) ?>"/>
     </button>
     <button type="button" class="btn btn-default" id="goBottom" title="去底部"><span
                 class="glyphicon glyphicon-arrow-down"></span></button>

@@ -21,6 +21,12 @@ return [
         'setting' => [
             'class' => 'funson86\setting\Setting',
         ],
+        'qr' => [
+            'class' => '\Da\QrCode\Component\QrCodeComponent',
+//            'label' => '2amigos consulting group llc',
+            'size' => 500 // big and nice :D
+            // ... you can configure more properties of the component here
+        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',

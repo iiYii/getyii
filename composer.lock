@@ -4,10 +4,10 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9abb5548bfe4d4a46aa1369368e19542",
+    "content-hash": "1581518271c06bf6f96d0f47763f920e",
     "packages": [
         {
-            "name": "2amigos/yii2-qrcode-helper",
+            "name": "2amigos/qrcode-library",
             "version": "1.1.2",
             "source": {
                 "type": "git",
@@ -71,7 +71,6 @@
                 "yii 2",
                 "yii2"
             ],
-            "abandoned": "2amigos/qrcode-library",
             "time": "2017-08-25T15:23:58+00:00"
         },
         {

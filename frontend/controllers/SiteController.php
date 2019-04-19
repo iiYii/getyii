@@ -1,32 +1,34 @@
 <?php
+
 namespace frontend\controllers;
 
+use common\components\Controller;
 use common\helpers\Arr;
 use common\helpers\UploadHelper;
+use common\models\LoginForm;
 use common\models\Post;
 use common\models\PostComment;
 use common\models\PostTag;
 use common\models\RightLink;
 use common\models\Session;
+use common\models\User;
 use common\services\UserService;
-use dosamigos\qrcode\QrCode;
-use Yii;
-use common\models\LoginForm;
+use Da\QrCode\Action\QrCodeAction;
+use frontend\models\ContactForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
-use frontend\models\ContactForm;
+use frontend\modules\user\models\UserAccount;
+use Yii;
 use yii\base\InvalidParamException;
 use yii\base\Model;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\helpers\Json;
 use yii\web\BadRequestHttpException;
-use common\components\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use common\models\User;
-use yii\web\Response;
 use yii\web\NotFoundHttpException;
-use frontend\modules\user\models\UserAccount;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
  * Site controller
@@ -63,6 +65,10 @@ class SiteController extends Controller
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
+            'qr' => [
+                'class' => QrCodeAction::className(),
+                'component' => 'qr' // if configured in our app as `qr`
+            ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
@@ -83,9 +89,11 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $topics = Post::find()->with('user', 'category')->limit(20)->where(['status' => 2])->orderBy(['created_at' => SORT_DESC])->all();
+        $topics = Post::find()->with('user',
+            'category')->limit(20)->where(['status' => 2])->orderBy(['created_at' => SORT_DESC])->all();
         $users = UserService::findActiveUser(12);
-        $headline = Arr::getColumn(RightLink::find()->where(['type' => RightLink::RIGHT_LINK_TYPE_HEADLINE])->all(), 'content');
+        $headline = Arr::getColumn(RightLink::find()->where(['type' => RightLink::RIGHT_LINK_TYPE_HEADLINE])->all(),
+            'content');
 
         $statistics = [];
         $statistics['post_count'] = Post::find()->count();
@@ -128,7 +136,8 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+                Yii::$app->session->setFlash('success',
+                    'Thank you for contacting us. We will respond to you as soon as possible.');
             } else {
                 Yii::$app->session->setFlash('error', 'There was an error sending email.');
             }
@@ -233,14 +242,6 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * @param string $url
-     */
-    public function actionQrcode($url = '')
-    {
-        QrCode::png($url);
-    }
-
     public function actionSignup()
     {
         $model = new SignupForm();
@@ -270,7 +271,8 @@ class SiteController extends Controller
 
                 return $this->goHome();
             } else {
-                Yii::$app->getSession()->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
+                Yii::$app->getSession()->setFlash('error',
+                    'Sorry, we are unable to reset password for email provided.');
             }
         }
 
@@ -307,7 +309,8 @@ class SiteController extends Controller
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        $file = UploadHelper::getCurlValue($_FILES[$field]['tmp_name'], $_FILES[$field]['type'], basename($_FILES[$field]['name']));
+        $file = UploadHelper::getCurlValue($_FILES[$field]['tmp_name'], $_FILES[$field]['type'],
+            basename($_FILES[$field]['name']));
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://sm.ms/api/upload');
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -335,13 +338,15 @@ class SiteController extends Controller
     /**
      * Performs ajax validation.
      * @param Model $model
+     * @return void
      * @throws \yii\base\ExitException
      */
     protected function performAjaxValidation($model)
     {
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
-            echo json_encode(\yii\widgets\ActiveForm::validate($model));
+            Yii::$app->response->data = ActiveForm::validate($model);
+            Yii::$app->response->send();
             Yii::$app->end();
         }
     }

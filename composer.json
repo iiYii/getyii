@@ -34,7 +34,6 @@
     "yiisoft/yii2-imagine": "^2.0",
     "hightman/xunsearch": "*@beta",
     "yiier/yii2-backup": "*",
-    "2amigos/yii2-qrcode-helper": "~1.0",
     "kop/yii2-scroll-pager": "dev-master",
     "devgroup/yii2-tag-dependency-helper": "*",
     "yiier/yii2-return-url": "*",
@@ -42,7 +41,8 @@
     "yiisoft/yii2-httpclient": "dev-master",
     "understeam/yii2-slack": "~0.1",
     "dmstr/yii2-adminlte-asset": "2.*",
-    "yiier/yii2-editor.md": "*"
+    "yiier/yii2-editor.md": "*",
+    "2amigos/qrcode-library": "^1.1"
   },
   "require-dev": {
     "fxp/composer-asset-plugin": "^1.2.0",

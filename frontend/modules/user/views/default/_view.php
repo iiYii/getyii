@@ -14,13 +14,17 @@ use yii\helpers\Markdown;
 <?php switch ($this->context->action->id) {
     case 'show':
         // 回复
-        echo Html::a(
-            Html::encode($model->post->title),
-            ["/{$model->post->type}/default/view", 'id' => $model->post->id],
-            ['class' => 'list-group-item-heading']
-        );
-        echo Html::tag('span', Yii::$app->formatter->asRelativeTime($model->created_at), ['class' => 'ml5 fade-info']);
-        echo Html::tag('div', HtmlPurifier::process(Markdown::process($model->comment, 'gfm')), ['class' => 'markdown-reply']);
+        if ($model->post) {
+            echo Html::a(
+                Html::encode($model->post->title),
+                ["/{$model->post->type}/default/view", 'id' => $model->post->id],
+                ['class' => 'list-group-item-heading']
+            );
+            echo Html::tag('span', Yii::$app->formatter->asRelativeTime($model->created_at),
+                ['class' => 'ml5 fade-info']);
+            echo Html::tag('div', HtmlPurifier::process(Markdown::process($model->comment, 'gfm')),
+                ['class' => 'markdown-reply']);
+        }
         break;
     case 'favorite':
     case 'like':
@@ -32,10 +36,12 @@ use yii\helpers\Markdown;
             ["/{$model->topic->type}/default/view", 'id' => $model->topic->id],
             ['class' => 'list-group-item-heading']
         );
-        echo Html::tag('span', Yii::$app->formatter->asRelativeTime($model->topic->created_at), ['class' => 'ml5 fade-info']);
+        echo Html::tag('span', Yii::$app->formatter->asRelativeTime($model->topic->created_at),
+            ['class' => 'ml5 fade-info']);
         echo Html::beginTag('p', ['class' => 'list-group-item-text title-info']);
 
-        echo Html::a($model->topic->category->name, ["/{$model->topic->type}/default/index", 'node' => $model->topic->category->alias]);
+        echo Html::a($model->topic->category->name,
+            ["/{$model->topic->type}/default/index", 'node' => $model->topic->category->alias]);
         echo ' • ';
         echo Html::beginTag('span');
         echo "{$model->topic->like_count} 个赞 • {$model->topic->comment_count} 条回复";

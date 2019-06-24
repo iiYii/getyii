@@ -56,21 +56,6 @@ class DefaultController extends Controller
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function actions()
-    {
-        return [
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'maxLength' => 5,
-                'minLength' => 4,
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
-        ];
-    }
-
 
     /**
      * 话题列表

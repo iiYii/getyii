@@ -53,13 +53,6 @@ $model->tags = $model->tags ? explode(',', $model->tags) : '';
         'items' => ArrayHelper::map(PostTag::find()->orderBy('count')->asArray()->all(), 'name', 'name'),
     ]); ?>
 
-    <?php if ($model->isNewRecord): ?>
-        <?= $form->field($model, 'verify_code')->widget(\yii\captcha\Captcha::className(), [
-            'captchaAction' => 'captcha',
-            'template' => '<div class="row"><div class="col-lg-5">{input}</div><div class="col-lg-7">{image}</div></div>',
-        ]) ?>
-    <?php endif ?>
-
     <div class="form-group">
         <?= $form->field($model, 'cc')->checkbox() ?>
     </div>

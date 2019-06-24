@@ -22,32 +22,6 @@ class Topic extends Post
 {
     const TYPE = 'topic';
 
-    public $verify_code;
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        $addRules = $this->isNewRecord ? [['verify_code', 'captcha', 'captchaAction' => 'topic/default/captcha']] : [];
-        return array_merge(
-            parent::rules(),
-            $addRules
-        );
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return array_merge(
-            parent::attributeLabels(),
-            ['verify_code' => '验证码']
-        );
-    }
-
-
     /**
      * @var boolean CC 协议
      */

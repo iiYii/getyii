@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df9e936dc4e9022c23c952a27796c710",
+    "content-hash": "05377aa5d840f847a947fc3885f31f81",
     "packages": [
         {
             "name": "2amigos/qrcode-library",
@@ -1833,16 +1833,16 @@
         },
         {
             "name": "yiier/yii2-anti-spam",
-            "version": "v0.1",
+            "version": "v0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiier/yii2-anti-spam.git",
-                "reference": "1e923b95fc99ec3be93ae081c1a0063c4ef791e4"
+                "reference": "23527a7c05918852ce3253bbbdbb8dc842f6bdf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiier/yii2-anti-spam/zipball/1e923b95fc99ec3be93ae081c1a0063c4ef791e4",
-                "reference": "1e923b95fc99ec3be93ae081c1a0063c4ef791e4",
+                "url": "https://api.github.com/repos/yiier/yii2-anti-spam/zipball/23527a7c05918852ce3253bbbdbb8dc842f6bdf8",
+                "reference": "23527a7c05918852ce3253bbbdbb8dc842f6bdf8",
                 "shasum": ""
             },
             "require": {
@@ -1871,7 +1871,7 @@
                 "spam",
                 "yii2"
             ],
-            "time": "2019-06-24T07:28:26+00:00"
+            "time": "2019-06-24T08:38:01+00:00"
         },
         {
             "name": "yiier/yii2-backup",

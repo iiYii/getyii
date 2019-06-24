@@ -43,7 +43,7 @@
     "dmstr/yii2-adminlte-asset": "2.*",
     "yiier/yii2-editor.md": "*",
     "2amigos/qrcode-library": "^1.1",
-    "yiier/yii2-anti-spam": "^0.1.0"
+    "yiier/yii2-anti-spam": "^0.2.0"
   },
   "require-dev": {
     "fxp/composer-asset-plugin": "^1.2.0",

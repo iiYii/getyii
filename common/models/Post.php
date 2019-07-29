@@ -4,7 +4,6 @@ namespace common\models;
 
 use common\components\db\ActiveRecord;
 use Yii;
-use yii\helpers\ArrayHelper;
 use yiier\antiSpam\SpamValidator;
 
 /**
@@ -136,6 +135,20 @@ class Post extends ActiveRecord
         $newUserPostLimit = params('newUserPostLimit');
         if ($newUserPostLimit && time() - $userCreatedAt < $newUserPostLimit) {
             return $newUserPostLimit - (time() - $userCreatedAt);
+        }
+        return false;
+    }
+
+    /**
+     * 限制发帖间隔
+     * @return bool|int
+     */
+    public function limitPostingIntervalTime()
+    {
+        $lastPostCreatedAt = Post::find()->select('created_at')->where(['type' => self::TYPE_TOPIC])->orderBy(['created_at' => SORT_DESC])->scalar();
+        $postingIntervalLimit = params('postingIntervalLimit');
+        if ($postingIntervalLimit && time() - $lastPostCreatedAt < $postingIntervalLimit) {
+            return $postingIntervalLimit - (time() - $lastPostCreatedAt);
         }
         return false;
     }

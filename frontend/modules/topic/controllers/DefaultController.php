@@ -158,6 +158,10 @@ class DefaultController extends Controller
             $this->flash("发表文章失败!新注册用户只能回帖，{$time}秒之后才能发帖。", 'warning');
             return $this->redirect('index');
         }
+        if ($time = $model->limitPostingIntervalTime()) {
+            $this->flash("发表文章失败!请勿连续频繁发帖，{$time}秒之后才能发帖。", 'warning');
+            return $this->redirect('index');
+        }
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $topService = new TopicService();
             if (!$topService->filterContent($model->title) || !$topService->filterContent($model->content)) {

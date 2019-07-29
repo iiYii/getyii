@@ -2,6 +2,7 @@
 
 use common\helpers\Formatter;
 use frontend\modules\topic\models\Topic;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -14,7 +15,8 @@ use yii\helpers\Html;
     ); ?>
 
     <div class="media-left">
-        <?= Html::a(Html::img($model->user->userAvatar, ['class' => 'media-object img-circle']),
+        <?= Html::a(Html::img(ArrayHelper::getValue($model->user, 'userAvatar'),
+            ['class' => 'media-object img-circle']),
             ['/user/default/show', 'username' => $model->user['username']]
         ); ?>
     </div>

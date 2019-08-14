@@ -16,6 +16,7 @@ use common\services\NotificationService;
 use common\services\TopicService;
 use frontend\modules\user\models\UserMeta;
 use Yii;
+use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 
 class Topic extends Post
@@ -122,8 +123,11 @@ class Topic extends Post
                 $this->addTags($this->tags);
                 $this->tags = implode(',', $this->tags);
             }
-            $this->content = TopicService::contentTopic($this->content, $this)
-                . ($this->cc ? t('app', 'cc {username}', ['username' => Yii::$app->user->identity->username]) : '');
+
+            $username = Yii::$app->user->identity->username;
+            $url = Url::to('/member/' . $username, true);
+            $this->content = TopicService::contentTopic($this->content, $this) .
+                ($this->cc ? t('app', 'cc {username} {url}', ['username' => $username, 'url' => $url]) : '');
 
             if ($insert) {
                 $this->user_id = (($this->user_id) ?: Yii::$app->user->id);

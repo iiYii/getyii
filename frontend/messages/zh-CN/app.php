@@ -90,7 +90,7 @@ return [
     'Are you sure want to unblock this User?' => '您确定要解封该用户吗？',
     'Unblock User' => '解封用户',
     'Block User' => '封停用户',
-    'This user is banned!'  => '该用户已被封停',
+    'This user is banned!' => '该用户已被封停',
     'Basic Info' => '个人信息',
     'Favorites' => '收藏',
     'Replies' => '回复',
@@ -164,7 +164,7 @@ return [
     'Description' => '描述',
 
     'Tweet Content' => '今天你有什么想分享的或者想吐槽的？（你可以 @forecho AT用户，支持 :joy: emoji 表情，支持 #干货分享# 话题功能）',
-    'cc {username}' => '
-> 本文由 [{username}](http://www.getyii.com/member/{username}) 创作，采用 [知识共享署名 3.0 中国大陆许可协议](http://creativecommons.org/licenses/by/3.0/cn) 进行许可。
+    'cc {username} {url}' => '
+> 本文由 [{username}]({url}) 创作，采用 [知识共享署名 3.0 中国大陆许可协议](http://creativecommons.org/licenses/by/3.0/cn) 进行许可。
 可自由转载、引用，但需署名作者且注明文章出处。',
 ];

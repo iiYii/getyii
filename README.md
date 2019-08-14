@@ -137,7 +137,7 @@ $ docker-compose up -d
 
 ## 他们正在使用 GetYii
 
-- [DBA-CHINA](http://www.dba-china.com/)
+- DBA-CHINA
 - [Fecshop 社区](http://www.fecshop.com/)
 
 ## 感谢

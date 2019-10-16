@@ -36,8 +36,8 @@
                         'icon' => 'fa fa-share',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii']],
-                            ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug']]
+                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
+                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']]
                         ],
                     ]
                 ];
@@ -46,30 +46,30 @@
 
         <?= dmstr\widgets\Menu::widget(
             [
-                'options' => ['class' => 'sidebar-menu'],
+                'options' => ['class' => 'sidebar-menu tree','data-widget'=>'tree'],
                 'items' => array_merge([
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
-                    ['label' => '用户管理', 'icon' => 'fa fa-users', 'url' => ['/user/index']],
-                    ['label' => '文章管理', 'icon' => 'fa fa-comment-o', 'url' => ['/post/index']],
-                    ['label' => '分类管理', 'icon' => 'fa fa-th-list', 'url' => ['/post-meta']],
-                    ['label' => '网站配置', 'icon' => 'fa fa-cog', 'url' => ['/setting/default']],
+                    ['label' => '用户管理', 'icon' => 'users', 'url' => ['/user/index']],
+                    ['label' => '文章管理', 'icon' => 'comment-o', 'url' => ['/post/index']],
+                    ['label' => '分类管理', 'icon' => 'th-list', 'url' => ['/post-meta']],
+                    ['label' => '网站配置', 'icon' => 'cog', 'url' => ['/setting/default']],
                     [
-                        'label' => '网站导航', 'url' => '#', 'icon' => 'fa fa-share',
+                        'label' => '网站导航', 'url' => '#', 'icon' => 'share',
                         'items' => [
-                            ['label' => '导航分类', 'icon' => 'fa fa-plane', 'url' => ['/nav/index']],
-                            ['label' => '导航链接', 'icon' => 'fa fa-plane', 'url' => ['/nav-url/index']],
+                            ['label' => '导航分类', 'icon' => 'plane', 'url' => ['/nav/index']],
+                            ['label' => '导航链接', 'icon' => 'plane', 'url' => ['/nav-url/index']],
                         ]
                     ],
                     [
-                        'label' => '积分模块', 'url' => '#', 'icon' => 'fa fa-share',
+                        'label' => '积分模块', 'url' => '#', 'icon' => 'share',
                         'items' => [
-                            ['label' => '积分模板', 'icon' => 'fa fa-money', 'url' => ['/merit/merit-template']],
-                            ['label' => '会员积分', 'icon' => 'fa fa-money', 'url' => ['/merit/merit']],
-                            ['label' => '积分日志', 'icon' => 'fa fa-money', 'url' => ['/merit/merit-log']],
+                            ['label' => '积分模板', 'icon' => 'money', 'url' => ['/merit/merit-template']],
+                            ['label' => '会员积分', 'icon' => 'money', 'url' => ['/merit/merit']],
+                            ['label' => '积分日志', 'icon' => 'money', 'url' => ['/merit/merit-log']],
                         ]
                     ],
-                    ['label' => '搜索日志', 'icon' => 'fa fa-search', 'url' => ['/search-log/index']],
-                    ['label' => '右边栏设置', 'icon' => 'fa fa-diamond', 'url' => ['/right-link/index']],
+                    ['label' => '搜索日志', 'icon' => 'search', 'url' => ['/search-log/index']],
+                    ['label' => '右边栏设置', 'icon' => 'diamond', 'url' => ['/right-link/index']],
                 ], $debugMenu),
             ]
         ) ?>

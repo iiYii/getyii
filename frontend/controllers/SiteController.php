@@ -207,7 +207,7 @@ class SiteController extends Controller
 
     /**
      * Displays page where user can create new account that will be connected to social account.
-     * @param  integer $account_id
+     * @param integer $account_id
      * @return string
      * @throws NotFoundHttpException
      */
@@ -308,15 +308,18 @@ class SiteController extends Controller
     public function actionUpload($field)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-
+        $token = params('smToken');
         $file = UploadHelper::getCurlValue($_FILES[$field]['tmp_name'], $_FILES[$field]['type'],
             basename($_FILES[$field]['name']));
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://sm.ms/api/upload');
+        curl_setopt($ch, CURLOPT_URL, 'https://sm.ms/api/v2/upload');
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0');
         curl_setopt($ch, CURLOPT_POSTFIELDS, ['smfile' => $file]);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            "Authorization:" . $token
+        ]);
         $response = curl_exec($ch);
 
         if (curl_errno($ch)) {

@@ -101,6 +101,7 @@ return [
                  */
                 [
                     'class' => 'common\components\FileTarget',
+                    'enabled' => YII_DEBUG, // debug 模式才开启
                     // 日志等级
                     'levels' => ['info'],
                     // 被收集记录的额外数据
@@ -116,6 +117,7 @@ return [
                  */
                 [
                     'class' => 'common\components\FileTarget',
+                    'enabled' => YII_DEBUG, // debug 模式才开启
                     // 日志等级
                     'levels' => ['trace'],
                     // 被收集记录的额外数据

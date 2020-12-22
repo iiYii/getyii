@@ -25,7 +25,7 @@
     "yiisoft/yii2-swiftmailer": "*",
     "conquer/select2": "*",
     "bower-asset/highlightjs": "*",
-    "bower-asset/PACE": "*",
+    "bower-asset/pace": "*",
     "bower-asset/localforage": "*",
     "bower-asset/At.js": "*",
     "yiisoft/yii2-authclient": "*",

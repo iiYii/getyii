@@ -2,16 +2,15 @@
 
 namespace common\models;
 
+use common\components\db\ActiveRecord;
 use common\services\NotificationService;
 use common\services\PostService;
+use frontend\modules\topic\models\Topic;
 use frontend\modules\user\models\UserMeta;
 use Yii;
-use common\components\db\ActiveRecord;
 use yii\db\Query;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
-use frontend\modules\topic\models\Topic;
+use yiier\antiSpam\SpamValidator;
 
 /**
  * This is the model class for table "post_comment".
@@ -60,6 +59,7 @@ class PostComment extends ActiveRecord
             [['parent', 'post_id', 'status', 'user_id', 'like_count', 'created_at', 'updated_at'], 'integer'],
             [['post_id', 'comment', 'user_id', 'ip'], 'required'],
             [['comment'], 'string', 'min' => 1],
+            ['comment', SpamValidator::className(), 'message' => '请勿发表垃圾内容'],
             [['ip'], 'string', 'max' => 255]
         ];
     }

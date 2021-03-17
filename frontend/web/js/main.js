@@ -41,7 +41,7 @@ jQuery(function ($) {
     // 加载代码高亮
     hljs.initHighlightingOnLoad();
 
-    emojify.setConfig({img_dir: 'https://ruby-china-files.b0.upaiyun.com/assets/emojis/'});
+    emojify.setConfig({img_dir: 'https://cdn.learnku.com/assets/images/emoji/'});
     emojify.run();
 
     function localStorage() {

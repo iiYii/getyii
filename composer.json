@@ -27,7 +27,7 @@
     "bower-asset/highlightjs": "*",
     "bower-asset/pace": "*",
     "bower-asset/localforage": "*",
-    "bower-asset/At.js": "*",
+    "bower-asset/at.js": "*",
     "yiisoft/yii2-authclient": "*",
     "yzalis/identicon": "*",
     "funson86/yii2-setting": "*",
@@ -54,7 +54,10 @@
     "yiisoft/yii2-faker": "*"
   },
   "config": {
-    "process-timeout": 1800
+    "process-timeout": 1800,
+    "fxp-asset": {
+      "enabled": false
+    }
   },
   "autoload": {
     "psr-4": {
@@ -75,10 +78,10 @@
       "common\\components\\ComposerInstaller::initProject"
     ]
   },
-  "extra": {
-    "asset-installer-paths": {
-      "npm-asset-library": "vendor/npm",
-      "bower-asset-library": "vendor/bower"
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
     }
-  }
+  ]
 }

@@ -7,7 +7,7 @@ var emojisList = $.map(emojis, function (value, i) {
 });
 $(".field-md-input textarea").atwho({
     at: ':',
-    displayTpl: "<li><img src='https://ruby-china-files.b0.upaiyun.com/assets/emojis/${name}.png' height='20' width='20'/> ${name} </li>",
+    displayTpl: "<li><img src='https://cdn.learnku.com/assets/images/emoji/${name}.png' height='20' width='20'/> ${name} </li>",
     insertTpl: ":${name}:",
     data: emojisList
 }).atwho({
@@ -24,7 +24,9 @@ $("[data-at-topic]").atwho({ // 动弹话题
 });
 $("[data-at-floor]").atwho({ // 楼层
     at: "#",
-    data: Array.apply(null, Array(99)).map(function (_, i) {return (i+1) + '楼';}),
+    data: Array.apply(null, Array(99)).map(function (_, i) {
+        return (i + 1) + '楼';
+    }),
     limit: 6,
     suffix: ' '
 });

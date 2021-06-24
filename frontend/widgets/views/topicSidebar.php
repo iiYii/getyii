@@ -4,6 +4,7 @@
  * createTime : 15/4/18 下午4:16
  * description:
  */
+
 use yii\helpers\Html;
 
 /** @var array $sameTopics */
@@ -46,6 +47,8 @@ $node = $config['node'];
                 <?= $tips ? \yii\helpers\Markdown::process($tips, 'gfm') : ''; ?>
             </div>
         </div>
+
+        <div class="wwads-cn" data-id="83" data-size="300x250"></div>
 
         <?php if (!$node) {
             echo \frontend\widgets\Panel::widget([

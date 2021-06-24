@@ -29,6 +29,7 @@ rmrevin\yii\fontawesome\AssetBundle::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?> - <?= \Yii::$app->setting->get('siteTitle') ?></title>
     <meta name="keywords" content="<?= \Yii::$app->setting->get('siteKeyword') ?>"/>
+    <script type="text/javascript" src="https://cdn.wwads.cn/js/makemoney.js" async></script>
     <?php $this->head() ?>
 </head>
 <body>

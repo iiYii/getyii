@@ -48,7 +48,9 @@ $node = $config['node'];
             </div>
         </div>
 
-        <div class="wwads-cn" data-id="83" data-size="300x250"></div>
+        <div class="panel panel-default corner-radius">
+            <div class="wwads-cn pb-5" data-id="83" data-size="300x250"></div>
+        </div>
 
         <?php if (!$node) {
             echo \frontend\widgets\Panel::widget([

@@ -1,7 +1,7 @@
 <?php
 /**
  * author     : forecho <caizhenghai@gmail.com>
- * createTime : 15/4/18 下午4:16
+ * createTime : 15/4/18 下午 4:16
  * description:
  */
 
@@ -49,7 +49,7 @@ $node = $config['node'];
         </div>
 
         <div class="panel panel-default corner-radius">
-            <div class="wwads-cn pb-5" data-id="83" data-size="300x250"></div>
+            <div class="wwads-cn wwads-vertical" data-id="83" style="max-width:290.5px"></div>
         </div>
 
         <?php if (!$node) {

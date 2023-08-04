@@ -1,7 +1,7 @@
 <?php
 /**
  * author     : forecho <caizhenghai@gmail.com>
- * createTime : 15/4/19 下午5:57
+ * createTime : 15/4/19 下午 5:57
  * description:
  */
 
@@ -68,7 +68,7 @@ class Topic extends Post
     }
 
     /**
-     * 通过ID获取指定话题
+     * 通过 ID 获取指定话题
      * @param $id
      * @param string $condition
      * @return array|null|\yii\db\ActiveRecord
@@ -92,7 +92,7 @@ class Topic extends Post
     }
 
     /**
-     * 通过ID获取指定话题
+     * 通过 ID 获取指定话题
      * @param $id
      * @return array|Topic|null|\yii\db\ActiveRecord
      * @throws NotFoundHttpException
@@ -122,6 +122,9 @@ class Topic extends Post
             if ($this->tags && is_array($this->tags)) {
                 $this->addTags($this->tags);
                 $this->tags = implode(',', $this->tags);
+            }
+            if (params('createPostNeedVerify')) {
+                $this->status = self::STATUS_DELETED;
             }
 
             $username = Yii::$app->user->identity->username;
